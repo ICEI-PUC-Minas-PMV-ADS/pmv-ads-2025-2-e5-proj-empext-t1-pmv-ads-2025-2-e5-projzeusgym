@@ -37,6 +37,8 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |------|-----------------------------------------|----|
 |RF-001| Como administrador poder criar, editar e excluir exercicios  | ALTA | 
 |RF-002| O usuário deve ser capaz de registrar seu peso e altura  | MÉDIA |
+|RF-003| O sistema deve permitir ao administrador realizar o CRUD de alunos  | ALTA | 
+|RF-004| O sistema deve permitir ao aluno realizar a edição de suas informações pessoais  | MÉDIA |
 
 ### Requisitos não Funcionais
 
@@ -44,6 +46,8 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
 |RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-003| O sistema deve utilizar autenticação segura por token (JWT) | ALTA | 
+|RNF-004|A interface deve ser intuitiva e de fácil utilização, mesmo para usuários com pouca experiência em tecnologia | MÉDIA | 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
