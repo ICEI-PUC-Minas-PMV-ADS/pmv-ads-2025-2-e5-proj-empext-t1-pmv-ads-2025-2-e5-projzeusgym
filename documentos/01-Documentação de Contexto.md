@@ -3,17 +3,21 @@
 Texto descritivo apresentando a compreensão sobre extensão universitária discutido no microfundamento de nivelamento, relacionando a situação-problema da organização e ao sistema sociotécnico que será desenvolvido e implantado.
 
 ## Problema
-Nesse momento o grupo deve apresentar a situação-problema (dor/oportunidade) do parceiro onde será desenvolvido sistema sociotécnico.
+A academia atualmente enfrenta dificuldades significativas no gerenciamento das fichas de treino dos alunos, que ainda são registradas de forma manual em papel. Esse modelo tradicional traz diversas limitações e riscos: as fichas podem ser facilmente perdidas, danificadas ou até mesmo extraviadas, o que compromete a continuidade do acompanhamento. Além disso, a consulta a esses registros torna-se lenta e pouco prática, já que os professores precisam organizar e revisar manualmente um grande volume de documentos.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Diante desse cenário, percebe-se a necessidade de modernizar o processo por meio de um sistema digital que garanta maior segurança das informações, facilite o acesso e melhore a eficiência tanto para professores quanto para alunos.
 
 ## Objetivos
 
-Aqui o grupo deve descrever os objetivos do trabalho indicando que o objetivo é aplicar os conceitos de extensão universitária no desenvolvimento de um sistema sociotécnico que impacte positivamente a comunidade.
+#### Objetivo Geral  
+Desenvolver um sistema para digitalizar e automatizar a gestão das fichas de treino da academia Zeus, promovendo maior eficiência no trabalho dos professores, melhor experiência para os alunos e maior confiabilidade na administração dos dados.  
 
+#### Objetivos Específicos  
+- Substituir as fichas de papel por registros digitais acessíveis via sistema.  
+- Permitir que professores criem, editem e acompanhem treinos de forma prática e segura.  
+- Oferecer aos alunos uma interface simples para consultar treinos, registrar progresso e atualizar informações pessoais.  
+- Apoiar os administradores no gerenciamento de alunos e exercícios disponíveis.  
+- Contribuir para a modernização e digitalização dos processos da academia, alinhando tecnologia com melhoria da qualidade de vida e saúde da comunidade atendida.  
 ## Justificativa
 
 Atualmente, a academia utiliza fichas de papel para registrar os treinos dos alunos. Esse processo manual, além de gerar riscos de perda ou danos às fichas, dificulta o acompanhamento da evolução de cada aluno, limita a eficiência dos professores e compromete a experiência dos alunos. Afim de modernizar e tornar esse processo mais prático, surgiu a ideia de desenvolver um aplicativo que permita digitalizar os registros, facilitando o acompanhamento, garantindo maior segurança dos dados e proporcionando uma gestão mais eficiente para professores e alunos.
