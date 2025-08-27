@@ -24,8 +24,11 @@ Atualmente, a academia utiliza fichas de papel para registrar os treinos dos alu
 
 ## Relação com a Extensão Universitária
 
-Relacionar a situação-problema da organização com o impacto social esperado com a implantação do sistema sociotécnico.
-Apresentar aqui como este projeto extensionista transforma a realidade do parceiro e dos alunos.
+A academia atualmente enfrenta desafios no gerenciamento das fichas de treino, que ainda são registradas de forma manual em papel. Esse modelo tradicional gera riscos de perda ou dano dos registros, dificulta a consulta e organização das informações e sobrecarrega os professores, comprometendo a eficiência do trabalho e a experiência dos alunos.
+
+A implantação de um sistema contribui para solucionar essas questões, oferecendo acesso rápido e seguro às informações, organizando os treinos e permitindo que professores e alunos acompanhem a evolução de forma prática. Além disso, a redução do uso de papel contribui para a sustentabilidade, diminuindo resíduos e reforçando valores de responsabilidade ambiental.
+
+Dessa forma, o projeto promove impactos sociais positivos como por exemplo: melhorar a rotina de professores e alunos, facilitar o acompanhamento da evolução dos alunos, modernizar a gestão da academia e incentivar práticas mais conscientes dentro da comunidade.
 
 ## Descrição do Parceiro
 
