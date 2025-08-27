@@ -39,8 +39,8 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Como administrador poder criar, editar e excluir exercicios  | ALTA | 
+|RF-002| O usuário deve ser capaz de registrar seu peso e altura  | MÉDIA |
 
 ### Requisitos não Funcionais
 
