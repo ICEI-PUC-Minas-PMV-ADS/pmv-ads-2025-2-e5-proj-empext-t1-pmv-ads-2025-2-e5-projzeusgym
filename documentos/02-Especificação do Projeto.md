@@ -5,16 +5,12 @@
 Definição do problema e ideia de solução a partir da perspectiva do usuário. 
 
 ## Usuários
-| Tipo de Usuário   | Descrição | Responsabilidades |
-|------------------|-----------|------------------|
-| **xxx** | xxxxx | xxxxx |
-
-### Exemplo
 
 | Tipo de Usuário   | Descrição | Responsabilidades |
 |------------------|-----------|------------------|
-| **Administrador** | Gerencia a aplicação e os usuários. | Gerenciar usuários, configurar o sistema, acessar todos os relatórios. |
-| **Funcionário** | Usa a aplicação para suas tarefas principais. | Criar e editar registros, visualizar relatórios. |
+| **Administrador** | Gerenciar aplicação e os usuários | Gerencia usuários, configura o sistema, ou seja, os exercicios disponíveis |
+| **Professor** | Usa a aplicação para suas tarefas principais | Cria treinos personalizados para cada aluno e acompanha seu progresso |
+| **Aluno** | Usa a aplicação para acompanhar seu treino e evolução | Consulta os treinos criados pelo professor, registra carga, repetições e peso corporal |
 
 
 ## Arquitetura e Tecnologias

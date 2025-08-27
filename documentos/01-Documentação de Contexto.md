@@ -16,10 +16,7 @@ Aqui o grupo deve descrever os objetivos do trabalho indicando que o objetivo é
 
 ## Justificativa
 
-Descreva as dores/dificuldades do parceiro que motivam trabalhar na construção da solução.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Atualmente, a academia utiliza fichas de papel para registrar os treinos dos alunos. Esse processo manual, além de gerar riscos de perda ou danos às fichas, dificulta o acompanhamento da evolução de cada aluno, limita a eficiência dos professores e compromete a experiência dos alunos. Afim de modernizar e tornar esse processo mais prático, surgiu a ideia de desenvolver um aplicativo que permita digitalizar os registros, facilitando o acompanhamento, garantindo maior segurança dos dados e proporcionando uma gestão mais eficiente para professores e alunos.
 
 ## Relação com a Extensão Universitária
 
