@@ -51,7 +51,7 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RNF-003| O sistema deve utilizar autenticação segura por token (JWT) | ALTA | 
 |RNF-004| A interface deve ser intuitiva e de fácil utilização, mesmo para usuários com pouca experiência em tecnologia | MÉDIA |
 |RNF-005| As atualizações do sistema devem ser realizadas sem causar interrupções no serviço              | MÉDIA      |
-|RNF-006| O armazenamento de dados deve ser realizado de forma criptografada | ALTA      |
+
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
