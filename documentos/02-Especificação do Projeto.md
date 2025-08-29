@@ -39,6 +39,8 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RF-002| O usuário deve ser capaz de registrar seu peso e altura  | MÉDIA |
 |RF-003| O sistema deve permitir ao administrador realizar o CRUD de alunos  | ALTA | 
 |RF-004| O sistema deve permitir ao aluno realizar a edição de suas informações pessoais  | MÉDIA |
+|RF-005| O aluno poderá visualizar gráficos de evolução física com base nos registros de peso e ganhos de massa ao longo do tempo.  | ALTA | 
+|RF-006| O professor poderá criar planos de treino personalizados, associando exercícios específicos a cada aluno com datas e metas.  | ALTA |
 
 ### Requisitos não Funcionais
 
