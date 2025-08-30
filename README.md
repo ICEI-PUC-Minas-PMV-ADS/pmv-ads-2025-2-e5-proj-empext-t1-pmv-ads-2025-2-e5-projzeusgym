@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# PROJETO ZEUS GYM
 
 `Análise e Desenvolvimento de Sistemas`
 
