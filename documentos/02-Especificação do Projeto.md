@@ -41,6 +41,7 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RF-004| O sistema deve permitir ao aluno realizar a edição de suas informações pessoais  | MÉDIA |
 |RF-005| O aluno poderá visualizar gráficos de evolução física com base nos registros de peso e ganhos de massa ao longo do tempo.  | ALTA | 
 |RF-006| O professor poderá criar planos de treino personalizados, associando exercícios específicos a cada aluno com datas e metas.  | ALTA |
+|RF-007| O sistema deve ter interface moderna e de fácil usabilidade do usuário  | MÉDIA |
 
 ### Requisitos não Funcionais
 
@@ -75,7 +76,9 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|02| As funcionalidades do sistema deverão se restringir à gestão das fichas de treino, sem módulos de agendamento de aulas, vendas ou controle financeiro. |
+|03| A segurança dos dados dos alunos é prioritária, e o sistema deve ter mecanismos para proteger as informações pessoais e de saúde. |
+|04| A usabilidade do sistema deve ser intuitiva e de fácil acesso para todos os usuários. |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
