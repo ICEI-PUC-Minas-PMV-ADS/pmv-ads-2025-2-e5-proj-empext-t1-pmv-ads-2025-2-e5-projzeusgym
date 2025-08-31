@@ -1,9 +1,12 @@
 # Introdução
 
 Nas últimas décadas, a cultura fitness deixou de ser um nicho para atletas e passou a ocupar um espaço central na vida cotidiana de milhões de pessoas. O culto ao corpo saudável, à estética e ao desempenho físico ganhou força com a popularização das redes sociais, onde estilos de vida ativos são constantemente exibidos e admirados. Mais do que uma tendência, o fitness se tornou um valor social — associado à disciplina, autoestima, saúde mental e até sucesso profissional.
+
 Por outro lado, em um mundo cada vez mais ágil, competitivo e orientado por dados, empresas que mantêm processos manuais correm o risco de ficar para trás. A digitalização não é apenas sobre tecnologia — é sobre transformar a forma como a empresa pensa, age e entrega valor. Automatizar tarefas, integrar sistemas e centralizar informações são passos que liberam tempo, reduzem erros e aumentam a capacidade de inovação. 
+
 Nesse contexto, se encontra, em pleno crescimento, o segmento de academias. Há academias que já atingiram patamares de empresas de médio e grande porte com negócios abrangentes, processos complexos e profissionais. Diante disso, como em qualquer outro tipo de negócio, a inovação e informatização são aliados essenciais para o desenvolvimento e sustentabilidade desses negócios. 
 Nesse ecossistema das academias, se encontram alguns agentes que movem movem esse negócio. Os professores de educação física são profissionais que buscam ferramentas que lhes permitam oferecer treinos personalizados e monitorar o progresso dos alunos de forma mais eficiente. Já os proprietários de academias desejam otimizar processos, fidelizar clientes e se destacar num mercado cada vez mais competitivo. Para os alunos, ter acesso a suas rotinas de treino na palma da mão, enquanto instrutores conseguem acompanhar e ajustar os exercícios de forma dinâmica, torna o acompanhamento mais engajante e motivador.
+
 A informatização das fichas de treino surge como uma solução inovadora que atende esses anseios. Ao migrar do papel para o digital, ganha-se praticidade, precisão, interatividade e responsabilidade ambiental. 
 Em resumo, o uso de um aplicativo para a gestão de treinos representa uma evolução natural e necessária para o setor, alinhando-se às demandas de uma sociedade cada vez mais conectado e exigente.
 
