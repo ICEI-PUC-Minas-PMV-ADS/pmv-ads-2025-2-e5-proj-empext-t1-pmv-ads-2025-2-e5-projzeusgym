@@ -16,7 +16,6 @@ Definição do problema e ideia de solução a partir da perspectiva do usuário
 ## Arquitetura e Tecnologias
 
 
-
 ![Arquitetura da solução](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Arquitetura%20da%20solu%C3%A7%C3%A3o.png)
 
 ## Project Model Canvas
@@ -41,6 +40,9 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RF-005| O aluno poderá visualizar gráficos de evolução física com base nos registros de peso e ganhos de massa ao longo do tempo.  | ALTA | 
 |RF-006| O professor poderá criar planos de treino personalizados, associando exercícios específicos a cada aluno com datas e metas.  | ALTA |
 |RF-007| O sistema deve ter interface moderna e de fácil usabilidade do usuário  | MÉDIA |
+|RF-008| Os usuários deverão ser divididos em alunos e professores| ALTA|
+|RF-009| O sistema deverá armazenar histórico de mudanças das fichas de treinos| Baixa|
+
 
 ### Requisitos não Funcionais
 
@@ -51,6 +53,7 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RNF-003| O sistema deve utilizar autenticação segura por token (JWT) | ALTA | 
 |RNF-004| A interface deve ser intuitiva e de fácil utilização, mesmo para usuários com pouca experiência em tecnologia | MÉDIA |
 |RNF-005| As atualizações do sistema devem ser realizadas sem causar interrupções no serviço              | MÉDIA      |
+|RNF-006| O sistema deverá ser compatívem co sistemas operacionais Android e IOS| ALTA|
 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
@@ -91,7 +94,12 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 
 ## Projeto da Base de Dados
+Diagrama Entidade Relacionamento
 ![Diagrama ER](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Diagrama%20Entidade%20Relacionamento.png)
+</br>
+</br>
+Esquema Relacional
 
-![Diagrama ER](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Database%20ER%20diagram.png)
+
+![Esquema ER](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Database%20ER%20diagram.png)
 
