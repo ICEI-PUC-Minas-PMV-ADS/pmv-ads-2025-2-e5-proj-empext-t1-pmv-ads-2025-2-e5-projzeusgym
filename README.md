@@ -10,12 +10,12 @@ Desenvolver um sistema para digitalizar e automatizar a gestão das fichas de tr
 
 ## Integrantes
 
+* Cassiano Torneiro Baptista
+* Douglas Takemi Kimura
+* Gabriel Victor Miranda de Oliveira
 * Lucas Oliveira Gonçalves
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Natália Romero Soltau
+* Rafael Dos Santos Rodrigues
 
 ## Orientador
 
