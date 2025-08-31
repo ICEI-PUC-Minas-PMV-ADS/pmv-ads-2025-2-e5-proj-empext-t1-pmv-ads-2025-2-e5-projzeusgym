@@ -6,11 +6,11 @@
 
 `eixo 5`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Desenvolver um sistema para digitalizar e automatizar a gestão das fichas de treino da academia Zeus, promovendo maior eficiência no trabalho dos professores, melhor experiência para os alunos e maior confiabilidade na administração dos dados.
 
 ## Integrantes
 
-* Nome completo do aluno 1
+* Lucas Oliveira Gonçalves
 * Nome completo do aluno 2
 * Nome completo do aluno 3
 * Nome completo do aluno 4
