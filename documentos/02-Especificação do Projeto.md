@@ -33,28 +33,32 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Como administrador poder criar, editar e excluir exercicios  | ALTA | 
-|RF-002| O usuário deve ser capaz de registrar seu peso e altura  | MÉDIA |
-|RF-003| O sistema deve permitir ao administrador realizar o CRUD de alunos  | ALTA | 
-|RF-004| O sistema deve permitir ao aluno realizar a edição de suas informações pessoais  | MÉDIA |
-|RF-005| O aluno poderá visualizar gráficos de evolução física com base nos registros de peso e ganhos de massa ao longo do tempo.  | ALTA | 
-|RF-006| O professor poderá criar planos de treino personalizados, associando exercícios específicos a cada aluno com datas e metas.  | ALTA |
-|RF-007| O sistema deve ter interface moderna e de fácil usabilidade do usuário  | MÉDIA |
-|RF-008| Os usuários deverão ser divididos em alunos e professores| ALTA|
-|RF-009| O sistema deverá armazenar histórico de mudanças das fichas de treinos| Baixa|
-
+|RF-001| Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino. | ALTA | 
+|RF-002| Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos. | ALTA |
+|RF-003| Como administrador, desejo realizar login seguro com autenticação para proteger meu acesso ao sistema. | ALTA | 
+|RF-004| Como administrador, desejo redefinir minha senha em caso de esquecimento, para não perder acesso ao sistema | MÉDIA | 
+|RF-005| Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários. | ALTA | 
+|RF-006| Como professor, desejo registrar avaliações físicas dos alunos (peso, altura, medidas corporais, etc.) para acompanhar sua evolução corporal | MÉDIA | 
+|RF-007| Como professor, desejo realizar login seguro com autenticação para proteger meu acesso ao sistema. | MÉDIA |
+|RF-008| Como professor, desejo redefinir minha senha em caso de esquecimento, para não perder acesso ao sistema | MÉDIA |
+|RF-009| Como aluno, desejo inserir informações do treino (peso, repetições etc.) para registrar meu desempenho. | MÉDIA |
+|RF-010| Como aluno, desejo acessar um histórico de avaliações físicas para acompanhar minha evolução ao longo do tempo  | MÉDIA |
+|RF-011| Como aluno, desejo baixar minha avaliação física em PDF para guardar ou compartilhar quando necessário. | BAIXA |
+|RF-012| Como aluno, desejo realizar login seguro com autenticação para proteger minha conta e meus dados. | ALTA |
+|RF-013| Como aluno, desejo redefinir minha senha em caso de esquecimento, para não perder acesso ao sistema | MÉDIA |
+|RF-014| Como aluno, desejo poder deletar minha conta do aplicativo de fichas de treino a qualquer momento para ter controle sobre meus dados pessoais.| Baixa |
+|RF-015| Como aluno, desejo calcular meu IMC para acompanhar minha condição física atual. | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-002| Deve processar requisições do usuário em no máximo 5s |  BAIXA | 
 |RNF-003| O sistema deve utilizar autenticação segura por token (JWT) | ALTA | 
 |RNF-004| A interface deve ser intuitiva e de fácil utilização, mesmo para usuários com pouca experiência em tecnologia | MÉDIA |
-|RNF-005| As atualizações do sistema devem ser realizadas sem causar interrupções no serviço              | MÉDIA      |
+|RNF-005| As atualizações do sistema devem ser realizadas sem causar interrupções no serviço | MÉDIA |
 |RNF-006| O sistema deverá ser compatívem com sistemas operacionais Android e IOS| ALTA|
-
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
