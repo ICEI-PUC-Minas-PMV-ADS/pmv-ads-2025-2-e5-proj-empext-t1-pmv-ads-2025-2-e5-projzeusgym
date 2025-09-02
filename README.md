@@ -19,7 +19,7 @@ Desenvolver um sistema para digitalizar e automatizar a gestão das fichas de tr
 
 ## Orientador
 
-* Nome completo do professor orientador
+* Sandra Maria Silveira
 
 ## Instruções de utilização
 
