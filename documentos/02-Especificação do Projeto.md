@@ -1,22 +1,19 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="01-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. 
-
 ## Usuários
 
-| Tipo de Usuário   | Descrição | Responsabilidades |
-|------------------|-----------|------------------|
-| **Administrador** | Gerenciar aplicação e os usuários | Gerencia usuários, configura o sistema, ou seja, os exercicios disponíveis |
-| **Professor** | Usa a aplicação para suas tarefas principais | Cria treinos personalizados para cada aluno e acompanha seu progresso |
-| **Aluno** | Usa a aplicação para acompanhar seu treino e evolução | Consulta os treinos criados pelo professor, registra carga, repetições e peso corporal |
+| Tipo de Usuário | Descrição | Responsabilidades |
+|-----------------|-----------|-------------------|
+| **Administrador** | Representa o gestor da academia ou responsável pelo sistema. Tem visão global sobre usuários e exercícios disponíveis. | - Cadastrar e gerenciar professores e alunos.<br> - Garantir segurança e integridade dos dados.<br>- Monitorar uso do sistema.<br>- Redefinir acessos quando necessário. |
+| **Professor** | Profissional de educação física responsável por planejar e acompanhar treinos personalizados. | - Criar e gerenciar fichas de treino.<br>- Registrar e atualizar avaliações físicas (peso, altura, medidas, etc.).<br>- Acompanhar a evolução dos alunos.<br>- Ajustar treinos com base no desempenho.<br>- Orientar os alunos via sistema. |
+| **Aluno** | Usuário final do sistema, matriculado na academia. Recebe, executa e acompanha seus treinos. | - Consultar fichas de treino e avaliações físicas.<br>- Registrar dados de desempenho (carga, repetições, peso corporal).<br>- Calcular IMC.<br>- Gerenciar sua própria conta (editar dados permitidos, trocar senha, exclusão da conta do aplicativo.). |
+
 
 
 ## Arquitetura e Tecnologias
 
+<img width="1201" height="471" alt="image" src="https://github.com/user-attachments/assets/fa2be8e8-2e8d-4156-bb7e-00c0acaf7078" />
 
-![Arquitetura da solução](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Arquitetura%20da%20solu%C3%A7%C3%A3o.png)
 
 ## Project Model Canvas
 
@@ -60,21 +57,6 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RNF-005| As atualizações do sistema devem ser realizadas sem causar interrupções no serviço | MÉDIA |
 |RNF-006| O sistema deverá ser compatívem com sistemas operacionais Android e IOS| ALTA|
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
-
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
@@ -86,24 +68,21 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |03| A segurança dos dados dos alunos é prioritária, e o sistema deve ter mecanismos para proteger as informações pessoais e de saúde. |
 |04| A usabilidade do sistema deve ser intuitiva e de fácil acesso para todos os usuários. |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
-
 ## Diagrama de Caso de Uso
 
-<img width="1003" height="683" alt="CasosDeUsoZeus1" src="https://github.com/user-attachments/assets/134731da-d92b-4cea-99aa-725f346d3961" />
+<img width="803" height="790" alt="image" src="https://github.com/user-attachments/assets/381b5f7f-8cd9-49d7-ae13-4bec57c660df" />
+
 
 
 ## Projeto da Base de Dados
-Diagrama Entidade Relacionamento
-![Diagrama ER](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Diagrama%20Entidade%20Relacionamento.png)
+Diagrama Entidade Relacionamento</br></br>
+<img width="617" height="948" alt="image" src="https://github.com/user-attachments/assets/107d6eea-81ee-4df7-9121-87057797f7c6" />
+
 </br>
 </br>
-Esquema Relacional
+Esquema Relacional</br></br>
 
 
-![Esquema ER](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Database%20ER%20diagram.png)
+<img width="560" height="1600" alt="image" src="https://github.com/user-attachments/assets/340ef23a-3d7e-4d96-a11e-071066b0e720" />
+
 
