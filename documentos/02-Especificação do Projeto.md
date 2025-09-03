@@ -70,7 +70,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Caso de Uso
 
-<img width="803" height="790" alt="image" src="https://github.com/user-attachments/assets/381b5f7f-8cd9-49d7-ae13-4bec57c660df" />
+
+<img width="1003" height="683" alt="CasosDeUsoZeus1" src="https://github.com/user-attachments/assets/2c0a4c76-2782-4bf1-a7e3-bbb73318b775" />
 
 
 
