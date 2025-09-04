@@ -30,8 +30,8 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Como usuário, desejo redefinir minha senha em caso de esquecimento, para não perder acesso ao sistema.| MÉDIA | 
-|RF-002| Como usuário, desejo realizar login seguro com autenticação para proteger meu acesso ao sistema. | MÉDIA |
+|RF-001| Como usuário, desejo redefinir minha senha em caso de esquecimento, para não perder acesso ao sistema.| ALTA | 
+|RF-002| Como usuário, desejo realizar login seguro com autenticação para proteger meu acesso ao sistema. | ALTA |
 |RF-003| Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino. | ALTA | 
 |RF-004| Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos. | ALTA |
 |RF-005| Como administrador e professor, desejo cadastrar e gerenciar exercicios. | ALTA | 
@@ -40,7 +40,7 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RF-008| Como aluno, desejo inserir informações do treino (peso, repetições etc.) para registrar meu desempenho.| MÉDIA |
 |RF-009| Como aluno, desejo acessar um histórico de avaliações físicas para acompanhar minha evolução ao longo do tempo  | MÉDIA |
 |RF-010| Como aluno, desejo baixar minha avaliação física em PDF para guardar ou compartilhar quando necessário. | BAIXA |
-|RF-011| Como aluno, desejo poder deletar minha conta do aplicativo de fichas de treino a qualquer momento para ter controle sobre meus dados pessoais.| Baixa |
+|RF-011| Como aluno, desejo poder deletar minha conta do aplicativo de fichas de treino a qualquer momento para ter controle sobre meus dados pessoais.| MÉDIA |
 |RF-012| Como aluno, desejo calcular meu IMC para acompanhar minha condição física atual. | BAIXA |
 |RF-013| Como aluno, desejo registar meu peso e poder acompanhar o histórico. | BAIXA |
 
