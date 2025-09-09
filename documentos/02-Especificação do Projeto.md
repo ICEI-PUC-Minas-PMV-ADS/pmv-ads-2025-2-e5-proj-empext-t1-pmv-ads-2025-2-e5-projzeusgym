@@ -17,8 +17,7 @@
 
 ## Project Model Canvas
 
-<img width="1345" height="743" alt="image" src="https://github.com/user-attachments/assets/23047b99-4b1e-4a2b-9b5c-e173a2e89a0e" />
-
+![Project model canvas (2)](https://github.com/user-attachments/assets/25795284-a56c-48da-8333-41c881bba6dd)
 
 ## Requisitos
 
@@ -40,7 +39,7 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RF-008| Como aluno, desejo inserir informações do treino (peso, repetições etc.) para registrar meu desempenho.| MÉDIA |
 |RF-009| Como aluno, desejo acessar um histórico de avaliações físicas para acompanhar minha evolução ao longo do tempo  | MÉDIA |
 |RF-010| Como aluno, desejo baixar minha avaliação física em PDF para guardar ou compartilhar quando necessário. | BAIXA |
-|RF-011| Como aluno, desejo poder deletar minha conta do aplicativo de fichas de treino a qualquer momento para ter controle sobre meus dados pessoais.| MÉDIA |
+|RF-011| Como aluno, desejo poder gerenciar minha conta a qualquer momento para ter controle sobre meus dados pessoais.| MÉDIA |
 |RF-012| Como aluno, desejo calcular meu IMC para acompanhar minha condição física atual. | BAIXA |
 |RF-013| Como aluno, desejo registar meu peso e poder acompanhar o histórico. | BAIXA |
 
