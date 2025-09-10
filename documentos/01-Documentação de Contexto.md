@@ -41,4 +41,4 @@ Dessa forma, o projeto promove impactos sociais positivos como por exemplo: melh
 
 ## Descrição do Parceiro
 
-Apresente uma descrição resumida sobre a organização onde o projeto será desenvolvido para que possa ser compreendido o cenário do sistema sociotécnico.
+O parceiro deste projeto é a Academia Zeus, uma instituição em crescimento que busca modernizar seus processos internos e aprimorar a experiência de seus alunos. Atualmente, enfrenta desafios no gerenciamento manual das fichas de treino, o que compromete a eficiência dos professores e a organização das informações. A academia se destaca pelo interesse em adotar soluções tecnológicas que tragam maior praticidade, segurança e inovação, fortalecendo sua posição no mercado e promovendo qualidade de vida para sua comunidade.
