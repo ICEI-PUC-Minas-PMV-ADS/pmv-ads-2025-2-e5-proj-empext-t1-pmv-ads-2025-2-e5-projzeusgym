@@ -74,7 +74,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Projeto da Base de Dados
 Diagrama Entidade Relacionamento</br></br>
-<img width="617" height="948" alt="image" src="https://github.com/user-attachments/assets/107d6eea-81ee-4df7-9121-87057797f7c6" />
+![DER (2)](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Diagrama%20relacionamento%20corrigido.png) />
 
 </br>
 </br>
