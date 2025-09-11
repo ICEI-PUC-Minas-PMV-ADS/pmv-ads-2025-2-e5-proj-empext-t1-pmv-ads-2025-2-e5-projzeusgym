@@ -12,7 +12,7 @@
 
 ## Arquitetura e Tecnologias
 
-<img width="1201" height="471" alt="image" src="https://github.com/user-attachments/assets/fa2be8e8-2e8d-4156-bb7e-00c0acaf7078" />
+<img width="1201" height="471" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Arquitetura%20da%20aplica%C3%A7%C3%A3o%20atualizada.png" />
 
 
 ## Project Model Canvas
