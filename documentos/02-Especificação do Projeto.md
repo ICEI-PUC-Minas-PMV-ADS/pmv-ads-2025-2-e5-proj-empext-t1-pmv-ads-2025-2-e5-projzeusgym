@@ -68,7 +68,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 ## Diagrama de Caso de Uso
 
 
-<img width="1003" height="683" alt="CasosDeUsoZeus1" src="https://github.com/user-attachments/assets/2c0a4c76-2782-4bf1-a7e3-bbb73318b775" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/6f7bc37b127032a14f830951cc8c52f4492d2836/documentos/img/diagrama.png" />
 
 
 
