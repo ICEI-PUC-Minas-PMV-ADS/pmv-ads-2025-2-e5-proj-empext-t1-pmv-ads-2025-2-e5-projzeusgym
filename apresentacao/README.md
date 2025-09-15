@@ -2,6 +2,8 @@
 Arquivo de apresentação (em slides) da proposta de solução  
 Deve conter a descrição do cliente, o Project Model Canvas e o Diagrama de Caso de Uso.
 
+[Academia Zeus.pdf](https://github.com/user-attachments/files/22351099/Academia.Zeus.pdf)
+
 # Etapa 5 - Apresentação da Solução
 - Apresentação para Mostra de Extensão Eixo 5 ADS:
   * descrição do cliente,
