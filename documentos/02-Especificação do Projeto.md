@@ -17,7 +17,8 @@
 
 ## Project Model Canvas
 
-![Project model canvas (2)](https://github.com/user-attachments/assets/25795284-a56c-48da-8333-41c881bba6dd)
+<img width="1170" height="643" alt="image" src="https://github.com/user-attachments/assets/6a336947-d817-49b3-ae0b-8629fe2d6a9f" />
+
 
 ## Requisitos
 
