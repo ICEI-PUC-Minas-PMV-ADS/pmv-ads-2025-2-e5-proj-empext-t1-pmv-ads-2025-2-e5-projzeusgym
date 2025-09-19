@@ -98,3 +98,58 @@ Cadastrar exercicio
 Editar exercicio
 
 <img width="816" height="504" alt="image" src="https://github.com/user-attachments/assets/10264103-5915-4b78-8ffc-6409f345b6ef" />
+</br>
+
+## Protótipo das telas mobile do Aluno
+
+</br>
+
+Tela de login do aluno
+
+
+<img align="center" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20login%20-%20Mobile.png"/>
+</br>
+
+Tela de treinos
+
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20treinos%20-%20Mobile.png"/>
+</br>
+
+
+Tela de treino específico
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20treino%20espec%C3%ADfica%20-%20Mobile.png"/>
+</br>
+
+Tela de informações adicionais do exercício
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20informa%C3%A7%C3%B5es%20adicionais%20exerc%C3%ADcio%20-%20Mobile.png"/>
+</br>
+
+Tela de comentário do exercício
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20coment%C3%A1rio%20do%20exerc%C3%ADcio%20-%20Mobile.png"/>
+</br>
+
+Tela de perfil do aluno
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20perfil%20do%20aluno%20-%20Mobile.png"/>
+</br>
+
+Menu suspenso
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Menu%20-%20Mobile.png"/>
+
+</br>
+
+Tela de cáuculo de IMC
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20c%C3%A1lculo%20IMC%20-%20Mobile.png"/>
+</br>
+
+Tela de Avaliações físicas
+
+<img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20Avalia%C3%A7%C3%B5es%20f%C3%ADsicas%20-%20Mobile.png"/>
+
+
