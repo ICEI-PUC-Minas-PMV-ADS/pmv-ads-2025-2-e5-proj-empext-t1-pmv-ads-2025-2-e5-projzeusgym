@@ -89,21 +89,21 @@ Passos para Configuração e Execução
 
 cd zeus-web-back/zeus-web
 
-###2. Instale as Dependências
+### 2. Instale as Dependências
 
 npm install
 
-###3. Execute em Modo Desenvolvimento
+### 3. Execute em Modo Desenvolvimento
 
 npm run dev
 
 O frontend estará disponível em: http://localhost:5173
 
-###4. Modo Desenvolvedor 
+### 4. Modo Desenvolvedor 
 
 npm run dev
 
-###5. Build para Produção
+### 5. Build para Produção
 
 npm run build
 
