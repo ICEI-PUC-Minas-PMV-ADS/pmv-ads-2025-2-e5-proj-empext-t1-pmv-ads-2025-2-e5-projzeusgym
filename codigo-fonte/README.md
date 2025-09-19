@@ -74,15 +74,17 @@ Configure-o localmente com base no .env.example.
 
 ***
 # Zeus Gym - Frontend
+```
 Frontend da aplicação Zeus Gym desenvolvido em React com Vite.
-
+```
 ## 🚀 Setup Local
+```
 - **Pré-requisitos**
 - **Node.js 18+**
 - **npm ou yarn**
 
 Backend da Zeus Gym rodando
-
+```
 Passos para Configuração e Execução
 ### 1. Acesse a Pasta do Frontend
 
