@@ -1,0 +1,161 @@
+/* src/pages/Login.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff7e00 0%, #ff5500 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(255, 126, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid #ff8c00;
+  align-items: center;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-logo {
+  max-width: 200px;
+  height: auto;
+  padding-top: 0;
+  border-radius: 50%;
+  background: white;
+}
+
+.login-form h2 {
+  text-align: center;
+  color: #000;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin-top: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o input */
+    margin-bottom: 1.5rem;
+}
+
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: left;       /* ← Label alinhado à esquerda */
+  width: 100%;           /* ← Ocupa toda a largura */
+  max-width: 300px;      /* ← mesma largura do input */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: #ffff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ff7e00;
+  box-shadow: 0 0 0 3px rgba(255, 126, 0, 0.2);
+  background-color: #fff;
+}
+
+
+.form-group input:disabled {
+  background-color: #f8f9fa;
+  border-color: #ced4da;
+}
+
+.error-message {
+  color: #ff3860;
+  text-align: center;
+  margin: 1.5rem 0;
+  font-weight: 500;
+  background-color: #ffeaea;
+  padding: 0.75rem;
+  border-radius: 5px;
+  border-left: 4px solid #ff3860;
+}
+
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ff7e00 0%, #ff5500 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 126, 0, 0.4);
+  background: linear-gradient(135deg, #ff5500 0%, #ff3d00 100%);
+}
+
+.login-button:active {
+  transform: translateY(-1px);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background: linear-gradient(135deg, #ffb74d 0%, #ff9800 100%);
+}
+
+.login-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 126, 0, 0.5);
+}
+
+.forgot-password-container {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ffe0b2;
+}
+
+.forgot-password-button {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: color 0.3s;
+  padding: 0.5rem;
+}
+
+.forgot-password-button:hover {
+  color: #ff5500;
+}
+
+.forgot-password-button:focus {
+  outline: none;
+  text-decoration: none;
+}
