@@ -128,7 +128,8 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Login_sucesso.mp4"/></td>
+    <td colspan="6" align="center"><video src=""/></td>
+      
   </tr>
 </table>
 
@@ -167,7 +168,7 @@ A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade d
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Login_invalido.mkv"/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/6b0abbe6-c2c8-4e72-a238-3cee7f835dd8"/></td>
   </tr>
 </table>
 
@@ -195,7 +196,7 @@ A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade d
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-time-sheet/assets/82043220/2e3c1722-7adc-4bd4-8b4c-3abe9ddc1b48"/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/d2679e6f-4dba-4acb-b444-6713437eea0b"/></td>
   </tr>
 </table>
 
