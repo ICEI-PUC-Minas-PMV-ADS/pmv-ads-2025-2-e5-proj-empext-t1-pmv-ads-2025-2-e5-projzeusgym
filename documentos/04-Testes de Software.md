@@ -6,8 +6,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
 - **Sucesso**: Tem o objetivo de verificar se as funcionalidades funcionam corretamente.
 - **Insucesso**: Tem o objetivo de verificar se o sistema trata erros de maneira correta.
 
-#### Exemplo de Caso de Teste de Sucesso
-O caso de teste de sucesso deve ser identificado por CT - xxx - S
+### ETAPA 2  
 
 <table>
   <tr>
@@ -19,7 +18,7 @@ O caso de teste de sucesso deve ser identificado por CT - xxx - S
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
-    <td width="430">José da Silva</td>
+    <td width="430">Cassiano Torneiro Baptista</td>
   </tr>
  <tr>
     <td><strong>Tipo do Teste</strong></td>
@@ -27,13 +26,13 @@ O caso de teste de sucesso deve ser identificado por CT - xxx - S
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td>RF-001: O funcionário deve conseguir logar no aplicativo</td>
+    <td>RF-002: Como usuário, desejo realizar login seguro com autenticação para proteger meu acesso ao sistema.</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
     <td>
       1. Abrir o aplicativo.<br>
-      2. Inserir o CPF válido.<br>
+      2. Inserir o usuário válido.<br>
       3. Inserir a senha válida.<br>
       4. Clicar no botão "Entrar".
       </td>
@@ -41,7 +40,7 @@ O caso de teste de sucesso deve ser identificado por CT - xxx - S
     <tr>
     <td><strong>Dados de teste</strong></td>
     <td>
-      - <strong>CPF:</strong> Colocar CPF cadastrado na base<br>
+      - <strong>Usuário:</strong> Colocar Usuário cadastrado na base<br>
       - <strong>Senha:</strong> Colocar valor de senha válida
   </tr>
     <tr>
@@ -50,13 +49,10 @@ O caso de teste de sucesso deve ser identificado por CT - xxx - S
   </tr>
 </table>
 
-#### Exemplo de Caso de Teste de Insucesso
-Os casos de testes de insucesso devem ser identificados por CT - xxx - I + sequencial de insucesso.
-Para cada etapa do projeto, criar uma seção com o nome da Etapa do projeto: Etapa 2, Etapa 3 e Etapa 4
-### ETAPA 2  
+
 <table>
   <tr>
-    <th colspan="2" width="1000">CT-001 - I01<br>Login com credenciais inválidas</th>
+    <th colspan="2" width="1000">CT-001 - I<br>Login com credenciais inválidas</th>
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
@@ -64,7 +60,7 @@ Para cada etapa do projeto, criar uma seção com o nome da Etapa do projeto: Et
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
-    <td width="430">José da Silva</td>
+    <td width="430">Cassiano Torneiro Baptista</td>
   </tr>
  <tr>
     <td><strong>Tipo do Teste</strong></td>
@@ -72,13 +68,13 @@ Para cada etapa do projeto, criar uma seção com o nome da Etapa do projeto: Et
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td>RF-001: O funcionário não conseguirá logar no aplicativo</td>
+    <td>RF-002: Como usuário, desejo realizar login seguro com autenticação para proteger meu acesso ao sistema.</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
     <td>
       1. Abrir o aplicativo.<br>
-      2. Inserir o CPF válido.<br>
+      2. Inserir o usuário válido.<br>
       3. Inserir a senha inválida.<br>
       4. Clicar no botão "Entrar".
       </td>
@@ -86,7 +82,7 @@ Para cada etapa do projeto, criar uma seção com o nome da Etapa do projeto: Et
     <tr>
     <td><strong>Dados de teste</strong></td>
     <td>
-      - <strong>CPF:</strong> Colocar CPF cadastrado na base<br>
+      - <strong>Usuário:</strong> Colocar usuário cadastrado na base<br>
       - <strong>Senha:</strong> Colocar senha inválida
   </tr>
     <tr>
@@ -132,7 +128,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-time-sheet/assets/82043220/2e3c1722-7adc-4bd4-8b4c-3abe9ddc1b48"/></td>
+    <td colspan="6" align="center"><video src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Login_sucesso.mkv"/></td>
   </tr>
 </table>
 
@@ -147,7 +143,6 @@ A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade d
 
 ### ETAPA 2
 
-### Exemplo
 <table>
   <tr>
     <th colspan="6" width="1000">CT-001<br>Login com credenciais válidas</th>
@@ -158,15 +153,43 @@ A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade d
   </tr>
     <tr>
       <td><strong>Responsável pela funcionalidade</strong></td>
-    <td width="430">José da Silva </td>
+    <td width="430">Cassiano Torneiro Baptista (backend) e Gabriel Victor Miranda de Oliveira (frontend) </td>
       <td><strong>Responsável pelo teste</strong></td>
-    <td width="430">Maria Oliveira </td>
+    <td width="430">Natália Romero Soltau </td>
      <td width="100"><strong>Data do teste</strong></td>
-    <td width="150">08/05/2024</td>
+    <td width="150">19/09/2025</td>
   </tr>
     <tr>
     <td width="170"><strong>Comentário</strong></td>
     <td colspan="5">O sistema está permitindo o login corretamente.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Login_invalido.mkv"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-001<br>Login com credenciais inválidas</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema não deve permitir o login do usuário e deve exibir uma mensagem de erro</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Cassiano Torneiro Baptista (backend) e Gabriel Victor Miranda de Oliveira (frontend) </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">19/09/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema está exibindo a mensagem de erro corretamente.</td>
   </tr>
   <tr>
     <td colspan="6" align="center"><strong>Evidência</strong></td>
