@@ -1,12 +1,37 @@
-# React + Vite
+***
+# Zeus Gym - Frontend
+```
+Frontend da aplicação Zeus Gym desenvolvido em React com Vite.
+```
+## 🚀 Setup Local
+```
+- **Pré-requisitos**
+- **Node.js 18+**
+- **npm ou yarn**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Backend da Zeus Gym rodando
+```
+Passos para Configuração e Execução
+### 1. Acesse a Pasta do Frontend
 
-Currently, two official plugins are available:
+```cd zeus-web-back/zeus-web```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 2. Instale as Dependências
 
-## Expanding the ESLint configuration
+```npm install```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Execute em Modo Desenvolvimento
+
+```
+npm run dev
+
+O frontend estará disponível em: http://localhost:5173
+```
+
+### 4. Modo Desenvolvedor 
+
+```npm run dev```
+
+### 5. Build para Produção
+
+```npm run build```
