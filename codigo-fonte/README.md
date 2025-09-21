@@ -66,7 +66,46 @@ node src/server.js
 O servidor será iniciado na porta definida em PORT no .env (padrão: 3000).
 Teste as rotas usando ferramentas como Postman ou Insomnia.
 ```
+### 6. Cadastro de Professores e Alunos por Admin
 
+Descrição: O admin logado pode cadastrar professores e alunos via API. Essa funcionalidade foi implementada recentemente e está disponível nas rotas protegidas.
+
+Pré-requisitos para Teste:
+
+Obtenha um token JWT fazendo login como admin na rota /adminLogin.
+Use uma ferramenta como Postman ou Insomnia para enviar requisições.
+
+Endpoints:
+
+Cadastrar Professor: POST /admin/professores
+```
+Headers: Authorization: Bearer <token>
+Body (JSON):
+json{
+  "name": "João Silva",
+  "birthdate": "1985-05-15",
+  "gender": "masculino",
+  "cpf": "12345678901",
+  "cref_mg": "123456-MG",
+  "email": "joao@zeusgym.com",
+  "password": "senha123"
+}
+```
+Cadastrar Aluno: POST /admin/alunos
+```
+Headers: Authorization: Bearer <token>
+Body (JSON):
+json{
+  "name": "Maria Oliveira",
+  "birthdate": "1995-08-20",
+  "gender": "feminino",
+  "cpf": "98765432100",
+  "cellphone": "11987654321",
+  "restriction": "Alergia a lactose",
+  "email": "maria@zeusgym.com",
+  "password": "senha456"
+}
+```
 
 ### Observações
 O arquivo .env é ignorado pelo .gitignore por motivos de segurança. 
