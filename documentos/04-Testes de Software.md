@@ -91,6 +91,89 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-002<br>Cadastro de professores</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de cadastro de professores é salvo no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-003: Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Usar a ferramenta Postman para enviar requisições.<br>
+      4. Checar resposta pela ferramenta Postman.<br>
+      5. Confirmar salvamento dados no banco de dados.<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Professor:</strong> Inserir dados do professor<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro salvos no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-003<br>Cadastro de alunos</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de cadastro de alunos é salvo no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004: Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Usar a ferramenta Postman para enviar requisições.<br>
+      4. Checar resposta pela ferramenta Postman.<br>
+      5. Confirmar salvamento dados no banco de dados.<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Professor:</strong> Inserir dados do Aluno<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro salvos no banco de dados.</td>
+  </tr>
+</table>
+
+
 ### ETAPA 3
 Criar casos de teste da etapa 3
 
