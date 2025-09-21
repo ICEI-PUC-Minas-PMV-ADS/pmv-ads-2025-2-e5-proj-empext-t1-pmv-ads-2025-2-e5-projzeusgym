@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 
 const adminLoginRoute = require('./routes/adminLogin');
-const adminTestRoute = require('./routes/adminTest'); 
+const adminTestRoute = require('./routes/adminTest');
+const adminManageRoute = require('./routes/adminManage'); 
 
 const app = express();
 
@@ -19,5 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/adminLogin', adminLoginRoute);
-app.use('/adminTest', adminTestRoute); 
+app.use('/adminTest', adminTestRoute);
+app.use('/admin', adminManageRoute);
+
 module.exports = app;
