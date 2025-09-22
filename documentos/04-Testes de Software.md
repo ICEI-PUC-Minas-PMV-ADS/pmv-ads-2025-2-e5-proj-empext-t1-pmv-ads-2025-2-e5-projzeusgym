@@ -97,7 +97,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td>Este caso de teste verifica se os dados de cadastro de professores é salvo no banco de dados.</td>
+    <td>Este caso de teste verifica se os dados de cadastro de professores são salvos no banco de dados.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
@@ -118,7 +118,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
       2. Logar e autenticar com o Admin.<br>
       3. Usar a ferramenta Postman para enviar requisições.<br>
       4. Checar resposta pela ferramenta Postman.<br>
-      5. Confirmar salvamento dados no banco de dados.<br>
+      5. Confirmar salvamento dos dados no banco de dados.<br>
       </td>
   </tr>
     <tr>
@@ -138,7 +138,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td>Este caso de teste verifica se os dados de cadastro de alunos é salvo no banco de dados.</td>
+    <td>Este caso de teste verifica se os dados de cadastro de alunos são salvos no banco de dados.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
@@ -159,7 +159,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
       2. Logar e autenticar com o Admin.<br>
       3. Usar a ferramenta Postman para enviar requisições.<br>
       4. Checar resposta pela ferramenta Postman.<br>
-      5. Confirmar salvamento dados no banco de dados.<br>
+      5. Confirmar salvamento dos dados no banco de dados.<br>
       </td>
   </tr>
     <tr>
