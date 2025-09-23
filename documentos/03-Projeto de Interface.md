@@ -153,3 +153,8 @@ Tela de Avaliações físicas
 <img  alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym/blob/main/documentos/img/Tela%20de%20Avalia%C3%A7%C3%B5es%20f%C3%ADsicas%20-%20Mobile.png"/>
 
 
+## Protótipo Interativo
+<span>Ferramenta Figma: <a href="https://www.figma.com/proto/IPplD8e1Fl0Q0VJ1WS1vJW/Untitled?node-id=46-66&starting-point-node-id=46%3A66&t=0FsILbNfppdUtphE-1"> Protótipo interativo</a></span>
+
+
+
