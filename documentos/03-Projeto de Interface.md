@@ -9,95 +9,108 @@ Visão geral da interação do usuário com as funcionalidades que fazem parte d
 
 Login
 
-<img width="681" height="422" alt="image" src="https://github.com/user-attachments/assets/2c9387c5-4f64-4c4a-a7ea-565e67f5a441" />
+<img width="1201" height="738" alt="image" src="https://github.com/user-attachments/assets/1d29da76-c099-49f5-ba88-a18e95f692a6" />
 
-Tela inicial / Alunos
+Tela inicial 
 
-<img width="845" height="454" alt="image" src="https://github.com/user-attachments/assets/202fa865-41d5-41e5-b87c-353a69989e76" />
+<img width="1388" height="773" alt="image" src="https://github.com/user-attachments/assets/14129327-3054-449d-a97d-645a273aa5c0" />
 
-<img width="851" height="506" alt="image" src="https://github.com/user-attachments/assets/9a3447c8-66c3-4cf1-a5ca-2d87e571fc4e" />
+Tela alunos
+
+<img width="1387" height="769" alt="image" src="https://github.com/user-attachments/assets/0203ade5-70ca-4964-86d8-690a84cc63d8" />
+
+<img width="1348" height="802" alt="image" src="https://github.com/user-attachments/assets/6bdfd6ad-434d-48dc-a36c-cdf2d0499358" />
 
 Upload de ficha de avaliação
 
-<img width="853" height="527" alt="image" src="https://github.com/user-attachments/assets/00def060-ea3a-496b-9ba9-b4eda542e6d1" />
+<img width="1344" height="800" alt="image" src="https://github.com/user-attachments/assets/10490162-648b-4cd6-a679-bfb7752ade91" />
 
 Criar ficha de treino
 
-<img width="850" height="520" alt="image" src="https://github.com/user-attachments/assets/b83c4591-7bb3-46ac-9a41-00db0b6bb495" />
+<img width="1285" height="800" alt="image" src="https://github.com/user-attachments/assets/c290a1e5-d49a-4ccf-8642-b0763f3a4dcc" />
 
-<img width="864" height="541" alt="image" src="https://github.com/user-attachments/assets/b1975f8c-f640-42c6-b83b-5c33560084df" />
+<img width="1275" height="802" alt="image" src="https://github.com/user-attachments/assets/ccbc14a6-1a68-4fb1-b214-82dee7e37c74" />
 
 Editar ficha de treino
 
-<img width="865" height="541" alt="image" src="https://github.com/user-attachments/assets/f0d458a4-4555-4db7-bdf4-293b47a6d29c" />
+<img width="1229" height="802" alt="image" src="https://github.com/user-attachments/assets/f04b6d2f-9b4f-46ae-ad67-58e4ec00b503" />
 
-<img width="858" height="514" alt="image" src="https://github.com/user-attachments/assets/1e6aa809-6df7-4810-b549-e8a967c1cd19" />
+<img width="1201" height="723" alt="image" src="https://github.com/user-attachments/assets/e9e6c8e9-859a-44c6-8907-18f510bf66f7" />
 
 Gerenciar exercicios
 
-<img width="850" height="527" alt="image" src="https://github.com/user-attachments/assets/7a4cafa2-be4b-4d38-bcc0-c521466f64ce" />
+<img width="1124" height="700" alt="image" src="https://github.com/user-attachments/assets/9a2f8472-1907-4753-9322-28233b37a8d9" />
 
 Adicionar exercicio
 
-<img width="850" height="528" alt="image" src="https://github.com/user-attachments/assets/1229d629-eb98-4d2d-8a55-6a4bbe7fb6d6" />
+<img width="1200" height="811" alt="image" src="https://github.com/user-attachments/assets/a52fdd64-be1b-4897-bddb-05a738f5f520" />
 
 Editar exercicio
 
-<img width="845" height="527" alt="image" src="https://github.com/user-attachments/assets/eae1a002-0aca-40d2-88ea-253dba79572c" />
+<img width="1283" height="800" alt="image" src="https://github.com/user-attachments/assets/9db39c43-2d2d-471f-a65a-0f55ece81ffb" />
 
 Excluir exercicio
 
-<img width="847" height="529" alt="image" src="https://github.com/user-attachments/assets/bdfe036a-f822-490a-98a9-887066de7a69" />
+<img width="1284" height="800" alt="image" src="https://github.com/user-attachments/assets/53f2a277-82f1-410b-bcdb-9175df5c875b" />
 
 ## Protótipo das telas de administrador
 
 Login
 
-<img width="846" height="524" alt="image" src="https://github.com/user-attachments/assets/8832c23a-634d-4499-b9c8-325467f41db1" />
+<img width="1201" height="741" alt="image" src="https://github.com/user-attachments/assets/b10477f3-234b-4802-8e13-944d6a0fb1f5" />
 
-Tela inicial / Gerenciar alunos
+Tela inicial 
 
-<img width="844" height="496" alt="image" src="https://github.com/user-attachments/assets/5df13109-0585-4345-ab43-a4bd67614021" />
+<img width="1386" height="770" alt="image" src="https://github.com/user-attachments/assets/e7566f39-881a-4770-b11f-3d55b1996f58" />
+
+Gerenciar alunos
+
+<img width="1389" height="773" alt="image" src="https://github.com/user-attachments/assets/0502141b-8f99-443c-853c-88cf4d7d7166" />
 
 Excluir aluno
 
-<img width="854" height="477" alt="image" src="https://github.com/user-attachments/assets/14f7be83-285e-4b41-a6b9-689f3f18ec7a" />
+<img width="1387" height="769" alt="image" src="https://github.com/user-attachments/assets/86fedc17-5baa-47aa-aa47-bab6d55c72e8" />
 
 Cadastrar novo aluno
 
-<img width="846" height="473" alt="image" src="https://github.com/user-attachments/assets/aeafa89a-2b47-4a50-8ec6-0b0e8f81c33b" />
+<img width="1387" height="771" alt="image" src="https://github.com/user-attachments/assets/927a66e8-ddb5-4629-bf24-f10dbe9ecb6e" />
 
 Editar aluno
 
-<img width="851" height="470" alt="image" src="https://github.com/user-attachments/assets/75bee5f0-ca9e-4521-ab50-6584f61c3835" />
+<img width="1387" height="772" alt="image" src="https://github.com/user-attachments/assets/e187387e-ccb6-4e7b-9924-a768297df17f" />
 
 Gerenciar professores
 
-<img width="847" height="506" alt="image" src="https://github.com/user-attachments/assets/5509f98c-b9f6-4e2f-91ad-3bec9eb90688" />
+<img width="1385" height="770" alt="image" src="https://github.com/user-attachments/assets/d28c5bb2-ead9-4aa5-a1a5-9d7ec5e53dbb" />
+
+Execluir professor
+
+<img width="1387" height="770" alt="image" src="https://github.com/user-attachments/assets/3538d16c-5251-4148-95fc-67c5ce1d567f" />
 
 Cadastrar novo professor
 
-<img width="849" height="469" alt="image" src="https://github.com/user-attachments/assets/4ee5429d-faf0-4980-bd95-7299a4706542" />
+<img width="1386" height="772" alt="image" src="https://github.com/user-attachments/assets/5602d928-4e92-421c-885b-2d9607704964" />
 
 Editar professor
 
-<img width="848" height="485" alt="image" src="https://github.com/user-attachments/assets/cc44bcd6-d0f7-41eb-8f0b-5bda02fad76e" />
+<img width="1387" height="773" alt="image" src="https://github.com/user-attachments/assets/c751af30-5432-49ec-8ecd-c2fd49e8421e" />
 
 Gerenciar exercicios
 
-<img width="849" height="528" alt="image" src="https://github.com/user-attachments/assets/7ada1e40-f0db-4ab4-8f17-b021b751e1d4" />
+<img width="1287" height="802" alt="image" src="https://github.com/user-attachments/assets/d64ad072-7ff5-4159-b1e0-5fd7813d9bce" />
 
 Excluir exercicio
 
-<img width="846" height="531" alt="image" src="https://github.com/user-attachments/assets/db05e495-e8da-44d6-ad48-07bc341c98a5" />
+<img width="1284" height="800" alt="image" src="https://github.com/user-attachments/assets/aa4ad37b-8eca-47e2-9d80-233b89ba885c" />
 
 Cadastrar exercicio
 
-<img width="793" height="494" alt="image" src="https://github.com/user-attachments/assets/f01e3f1c-d59b-4e50-bd77-d6971d8ea68f" />
+<img width="1286" height="801" alt="image" src="https://github.com/user-attachments/assets/9b80242c-c186-4e33-9231-0525b7300cf9" />
 
 Editar exercicio
 
-<img width="816" height="504" alt="image" src="https://github.com/user-attachments/assets/10264103-5915-4b78-8ffc-6409f345b6ef" />
+<img width="1286" height="799" alt="image" src="https://github.com/user-attachments/assets/32901211-885c-4f87-8f25-b315826f45f7" />
+
 </br>
 
 ## Protótipo das telas mobile do Aluno
