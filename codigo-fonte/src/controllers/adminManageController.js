@@ -78,10 +78,10 @@ exports.createAluno = async (req, res) => {
 
 exports.createExercise = async (req, res) => {
   try {
-    const { nome } = req.body;
+    const { nome, exerGrupo, comentario } = req.body;
 
-    if (!nome) {
-      return res.status(400).json({ error: 'O campo nome é obrigatório.' });
+    if (!nome || !exerGrupo) {
+      return res.status(400).json({ error: 'Os campos nome e grupo muscular são obrigatórios.' });
     }
 
     const existingExercise = await Exercises.findOne({ where: { nome } });
@@ -89,7 +89,7 @@ exports.createExercise = async (req, res) => {
       return res.status(400).json({ error: 'Exercício já cadastrado.' });
     }
 
-    const exercise = await Exercises.create({ nome });
+    const exercise = await Exercises.create({ nome, exerGrupo, comentario });
 
     return res.status(201).json({ message: 'Exercício cadastrado com sucesso!', exercise });
   } catch (error) {
@@ -98,3 +98,43 @@ exports.createExercise = async (req, res) => {
   }
 };
 
+exports.deleteExercise = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const exercise = await Exercises.findByPk(id);
+    if (!exercise) {
+      return res.status(404).json({ error: 'Exercício não encontrado.' });
+    }
+
+    await exercise.destroy();
+    return res.status(200).json({ message: 'Exercício deletado com sucesso.' });
+  } catch (error) {
+    console.error('Erro ao deletar exercício:', error);
+    return res.status(500).json({ error: 'Erro interno ao deletar exercício.' });
+  }
+};
+
+exports.updateExercise = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome, exerGrupo, comentario } = req.body;
+
+    const exercise = await Exercises.findByPk(id);
+    if (!exercise) {
+      return res.status(404).json({ error: 'Exercício não encontrado.' });
+    }
+
+    // Atualiza apenas os campos enviados
+    if (nome) exercise.nome = nome;
+    if (exerGrupo) exercise.exerGrupo = exerGrupo;
+    if (comentario) exercise.comentario = comentario;
+
+    await exercise.save();
+
+    return res.status(200).json({ message: 'Exercício atualizado com sucesso.', exercise });
+  } catch (error) {
+    console.error('Erro ao atualizar exercício:', error);
+    return res.status(500).json({ error: 'Erro interno ao atualizar exercício.' });
+  }
+};

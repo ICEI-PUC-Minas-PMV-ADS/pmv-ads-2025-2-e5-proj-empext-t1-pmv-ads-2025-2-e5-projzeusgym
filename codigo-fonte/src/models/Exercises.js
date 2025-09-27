@@ -11,6 +11,14 @@ const Exercises = sequelize.define('Exercises', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    exerGrupo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    comentario: { 
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
 }, {
     tableName: 'exercises',
     timestamps: true,

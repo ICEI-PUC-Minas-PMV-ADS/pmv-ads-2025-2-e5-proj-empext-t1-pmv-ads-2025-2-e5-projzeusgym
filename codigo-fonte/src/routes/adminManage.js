@@ -24,4 +24,18 @@ router.post('/exercises', authMiddleware, async (req, res) => {
   await adminManageController.createExercise(req, res);
 });
 
+router.delete('/exercises/:id', authMiddleware, async (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Apenas administradores podem deletar exercícios.' });
+  }
+  await adminManageController.deleteExercise(req, res);
+});
+
+router.put('/exercises/:id', authMiddleware, async (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Apenas administradores podem atualizar exercícios.' });
+  }
+  await adminManageController.updateExercise(req, res);
+});
+
 module.exports = router;
