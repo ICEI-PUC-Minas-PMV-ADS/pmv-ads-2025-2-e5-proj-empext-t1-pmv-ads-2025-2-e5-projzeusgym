@@ -17,4 +17,11 @@ router.post('/alunos', authMiddleware, async (req, res) => {
   await adminManageController.createAluno(req, res);
 });
 
+router.post('/exercises', authMiddleware, async (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Apenas administradores podem cadastrar exercícios.' });
+  }
+  await adminManageController.createExercise(req, res);
+});
+
 module.exports = router;

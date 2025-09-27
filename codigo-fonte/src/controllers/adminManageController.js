@@ -1,4 +1,4 @@
-const { Users } = require('../models/index');
+const { Users, Exercises } = require('../models/index');
 const bcrypt = require('bcrypt');
 
 exports.createProfessor = async (req, res) => {
@@ -73,3 +73,28 @@ exports.createAluno = async (req, res) => {
     return res.status(500).json({ error: 'Erro interno ao cadastrar aluno.' });
   }
 };
+
+
+
+exports.createExercise = async (req, res) => {
+  try {
+    const { nome } = req.body;
+
+    if (!nome) {
+      return res.status(400).json({ error: 'O campo nome é obrigatório.' });
+    }
+
+    const existingExercise = await Exercises.findOne({ where: { nome } });
+    if (existingExercise) {
+      return res.status(400).json({ error: 'Exercício já cadastrado.' });
+    }
+
+    const exercise = await Exercises.create({ nome });
+
+    return res.status(201).json({ message: 'Exercício cadastrado com sucesso!', exercise });
+  } catch (error) {
+    console.error('Erro ao cadastrar exercício:', error);
+    return res.status(500).json({ error: 'Erro interno ao cadastrar exercício.' });
+  }
+};
+
