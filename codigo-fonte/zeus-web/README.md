@@ -14,7 +14,7 @@ Backend da Zeus Gym rodando
 Passos para Configuração e Execução
 ### 1. Acesse a Pasta do Frontend
 
-```cd zeus-web-back/zeus-web```
+```cd codigo-fonte/zeus-web```
 
 ### 2. Instale as Dependências
 
