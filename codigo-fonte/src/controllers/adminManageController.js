@@ -74,6 +74,131 @@ exports.createAluno = async (req, res) => {
   }
 };
 
+exports.listAlunos = async (req, res) => {
+    try {
+        const alunos = await Users.findAll({
+            where: {
+                role: 'aluno' 
+            },
+            attributes: { exclude: ['password'] } 
+        });
+
+        if (alunos.length === 0) {
+            return res.status(404).json({ message: 'Nenhum aluno encontrado.' });
+        }
+
+        return res.status(200).json(alunos);
+    } catch (error) {
+        console.error('Erro ao listar alunos:', error);
+        return res.status(500).json({ error: 'Erro interno ao listar alunos.' });
+    }
+};
+
+exports.getAlunoById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const aluno = await Users.findOne({
+            where: {
+                id,
+                role: 'aluno' 
+            },
+            attributes: { exclude: ['password'] } // Exclui a senha da resposta
+        });
+
+        if (!aluno) {
+            return res.status(404).json({ error: 'Aluno não encontrado.' });
+        }
+
+        return res.status(200).json(aluno);
+    } catch (error) {
+        console.error('Erro ao buscar aluno por ID:', error);
+        return res.status(500).json({ error: 'Erro interno ao buscar aluno.' });
+    }
+};
+
+exports.updateAluno = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, birthdate, gender, cpf, cellphone, restriction, email, password } = req.body;
+
+        const aluno = await Users.findOne({
+            where: {
+                id,
+                role: 'aluno'
+            }
+        });
+
+        if (!aluno) {
+            return res.status(404).json({ error: 'Aluno não encontrado.' });
+        }
+
+        if (cpf && cpf !== aluno.cpf) {
+            const existingUserByCpf = await Users.findOne({ where: { cpf } });
+            if (existingUserByCpf) {
+                return res.status(400).json({ error: 'CPF já cadastrado para outro usuário.' });
+            }
+        }
+
+        if (email && email !== aluno.email) {
+            const existingUserByEmail = await Users.findOne({ where: { email } });
+            if (existingUserByEmail) {
+                return res.status(400).json({ error: 'Email já cadastrado para outro usuário.' });
+            }
+        }
+
+        const updateData = {
+            name,
+            birthdate,
+            gender,
+            cpf,
+            cellphone,
+            restriction,
+            email,
+        };
+
+        if (password) {
+            updateData.password = await bcrypt.hash(password, 10);
+            updateData.mustChangePassword = true; 
+        }
+
+        Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
+
+        await Users.update(updateData, { where: { id } });
+
+        const updatedAluno = await Users.findOne({ 
+            where: { id },
+            attributes: { exclude: ['password'] }
+        });
+
+        return res.status(200).json({ message: 'Aluno atualizado com sucesso!', aluno: updatedAluno });
+    } catch (error) {
+        console.error('Erro ao atualizar aluno:', error);
+        return res.status(500).json({ error: 'Erro interno ao atualizar aluno.' });
+    }
+};
+
+exports.deleteAluno = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedCount = await Users.destroy({
+            where: {
+                id,
+                role: 'aluno' 
+            }
+        });
+
+        if (deletedCount === 0) {
+            return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
+        }
+
+        return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao excluir aluno:', error);
+        return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
+    }
+};
 
 
 exports.createExercise = async (req, res) => {
