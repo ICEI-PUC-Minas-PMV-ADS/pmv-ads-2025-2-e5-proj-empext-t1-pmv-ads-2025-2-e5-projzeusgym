@@ -1,7 +1,14 @@
 // src/pages/Dashboard.jsx
 import './Dashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const gerenciarAluno = () => {
+    navigate('/alunos');
+  };
+
   return (
     <div className="dashboard-container">
       {/* Header Laranja */}
@@ -24,7 +31,8 @@ const Dashboard = () => {
           <button className="dashboard-btn">
             Gerenciar Professores
           </button>
-          <button className="dashboard-btn">
+          <button className="dashboard-btn"
+          onClick={gerenciarAluno}>
             Gerenciar Alunos
           </button>
           <button className="dashboard-btn">
