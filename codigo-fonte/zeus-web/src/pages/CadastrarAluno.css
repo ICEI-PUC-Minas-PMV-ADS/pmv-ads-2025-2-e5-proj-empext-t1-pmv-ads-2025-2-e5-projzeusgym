@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.alunos-container {
+    background: white;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.alunos-header {
+    background: #E2760A;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header-content {
+    width: 100%;
+    margin: 0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon-group {
+    display: flex;
+    position: absolute;
+    right: 20px;
+}
+
+.profile-icon {
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffd166;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+}
+
+.header-btn {
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    background-color: #ABABAB;
+    padding: 10px 32px;
+    border-radius: 12px;
+    border-color: transparent;
+}
+
+.alunos-main {
+    max-width: 100%;
+    padding: 40px 30px;
+}
+
+/*---Main-Titulo--- */
+.header-main {
+    font-size: 40px;
+    font-weight: 400;
+    color: #444;
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: Verdana;
+}
+
+/*---Formulário--- */
+.cadastro-aluno-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Linhas do Formulário (Form Rows) */
+.form-row {
+    display: flex;
+    gap: 30px;
+}
+
+/* Grupos de Campos (Colunas) */
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+/* Placeholder (Usado para manter o alinhamento de 3 colunas na última linha) */
+.placeholder-group {
+    visibility: hidden;
+}
+
+
+/*==================================
+   Estilo dos Inputs e Labels
+====================================*/
+.form-group label {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: unset;
+    text-align: left;
+    padding-right: 0;
+    display: block;
+}
+
+/* Estilo unificado para inputs e select */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    transition: border-color 0.2s;
+    margin-top: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #ff9500;
+    /* Laranja de foco */
+    outline: none;
+}
+
+/* Textarea de Restrição (Altura maior, sem required) */
+.large-textarea textarea {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 100px;
+    height: auto;
+}
+
+
+/*==================================
+   Área de Ações e Botões
+====================================*/
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid black;
+}
+
+/* Estilo Base do Botão */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 120px;
+    transition: opacity 0.2s, background-color 0.2s;
+    text-transform: uppercase;
+}
+
+/* Botão Cancelar (Vermelho) */
+.btn-cancelar {
+    background-color: #ff3b30;
+    /* Vermelho */
+    color: white;
+}
+
+.btn-cancelar:hover {
+    background-color: #e5352b;
+}
+
+/* Botão Salvar (Laranja) */
+.btn-salvar {
+    background-color: #ff9500;
+    /* Laranja */
+    color: white;
+}
+
+.btn-salvar:hover {
+    background-color: #e58600;
+}
+
+/*==================================
+   Responsividade
+====================================*/
+@media (max-width: 768px) {
+    .cadastro-aluno-container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .placeholder-group {
+        display: none;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        min-width: 100%;
+    }
+}
+
+/*---Footer---*/
+.app-footer {
+    background-color: #E2760A; 
+    color: white; 
+    height: 60px; 
+    width: 100%;
+    z-index: 10;
+}
+
+/* GARANTINDO QUE O FOOTER FIQUE ABAIXO (LAYOUT) */
+.alunos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+.alunos-main {
+    flex-grow: 1; 
+}
+

@@ -3,13 +3,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { FaPlus, FaSearch, FaTrash, FaEdit, FaPencilAlt, FaTimes } from 'react-icons/fa';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const GerenciarAluno = () => {
-    const { user, logout } = useAuth(); // Usando o hook para obter o usuário (e potencial role)
+    const { user, logout } = useAuth(); 
     const [alunos, setAlunos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [alunoToDelete, setAlunoToDelete] = useState(null); 
+    const navigate = useNavigate();
+
+  const cadastrarAluno = () => {
+    navigate('/cadastraralunos');
+  };
 
     const fetchAlunos = useCallback(async () => {
         setIsLoading(true);
@@ -63,7 +69,7 @@ const GerenciarAluno = () => {
             
             // Sucesso: atualiza o estado local
             setAlunos(alunos.filter(aluno => aluno.id !== id));
-            alert(`Aluno ${id} deletado com sucesso.`);
+            alert(`Aluno ${alunoToDelete.name} deletado com sucesso.`);
 
         } catch (err) {
             if (err.response && err.response.status === 403) {
@@ -79,8 +85,10 @@ const GerenciarAluno = () => {
        openDeleteModal(aluno);
         }
 
-    const handleEdit = (id) => {
+    const handleEdit = async (id) => {
         console.log(`Abrir modal/página para editar aluno com ID: ${id}`);
+        navigate(`/cadastraralunos/${id}`);
+
     };
 
     if (isLoading) {
@@ -122,7 +130,8 @@ const GerenciarAluno = () => {
                 <div className="content-wrapper">
                     <div className="main-header">
                         <h2 className="main-title">Alunos</h2>
-                        <button className="add-aluno-btn">
+                        <button className="add-aluno-btn"
+                        onClick={cadastrarAluno}>
                             <FaPlus className="add-icon" />
                             Cadastrar aluno
                         </button>
