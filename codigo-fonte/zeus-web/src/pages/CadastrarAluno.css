@@ -4,28 +4,28 @@
     box-sizing: border-box;
 }
 
- html, body {
+body,
+html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    height: 100%;
 }
 
 .alunos-container {
+    min-height: 100vh;
     background: white;
-    box-sizing: border-box;
+    max-width: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 .alunos-header {
     background: #E2760A;
+    width: 100%;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
 }
 
 .header-content {
@@ -71,6 +71,7 @@
     border-radius: 12px;
     border-color: transparent;
 }
+
 
 .alunos-main {
     max-width: 100%;
