@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.alunos-container {
+    min-height: 100vh;
+    background: white;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.alunos-header {
+    background: #E2760A;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    width: 100%;
+    margin: 0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon-group {
+    display: flex;
+    position: absolute;
+    right: 20px;
+}
+
+.profile-icon {
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffd166;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+}
+
+.header-btn {
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    background-color: #ABABAB;
+    padding: 10px 32px;
+    border-radius: 12px;
+    border-color: transparent;
+}
+
+/* --- Main --- */
+.alunos-main {
+    max-width: 100%;
+    padding: 40px 0;
+}
+
+.content-wrapper {
+    padding: 0 40px;
+    /* 20px de espaço nas laterais */
+}
+
+/* --- Cabeçalho --- */
+.main-header {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.main-title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: Verdana;
+}
+
+.add-aluno-btn {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.add-icon {
+    font-size: 50px;
+    background: #E2760A;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+/* --- Barra de pesquisa --- */
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.search-icon {
+    color: #888;
+    font-size: 1.2em;
+}
+
+/* ---Lista de Alunos--- */
+.alunos-list-container {
+    max-width: 1800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ABABAB;
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    min-height: 200px;
+}
+
+/* 2. ITEM INDIVIDUAL (CADA ALUNO) */
+.aluno-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+/* Efeito hover para feedback visual */
+.aluno-item:hover {
+    background-color: #888787;
+}
+
+.aluno-item:last-child {
+    border-bottom: none;
+}
+
+/* 3. NOME DO ALUNO */
+.aluno-name {
+    font-size: 25px;
+    color: black;
+    font-weight: 500;
+    flex-grow: 1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 4. BOTÕES DE AÇÃO (Lixeira e Lápis) */
+.aluno-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 1.1rem;
+}
+
+/* Estilo para o botão Deletar */
+.delete-btn {
+    color: black;
+}
+
+.delete-btn:hover {
+    color: #e74c3c;
+    background-color: #ffeaea;
+}
+
+/* Estilo para o botão Editar */
+.edit-btn {
+    color: black;
+}
+
+.edit-btn:hover {
+    color: #3498db;
+    background-color: #eaf3ff;
+}
+
+
+/* MENSAGEM DE VAZIO */
+.no-alunos-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+
+/* 1. ESTILOS DO RODAPÉ (FOOTER) */
+.app-footer {
+    background-color: #E2760A; 
+    color: white; 
+    height: 60px; 
+    width: 100%;
+    z-index: 10;
+}
+
+/* 2. GARANTINDO QUE O FOOTER FIQUE ABAIXO (LAYOUT) */
+.alunos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+.alunos-main {
+    flex-grow: 1; 
+}
+
+/* Popup Deletar Aluno */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+/* CONTEÚDO DO MODAL (O box branco/cinza) */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.modal-close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #555;
+    text-align: center; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 15px; 
+}
+
+.modal-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 80px;
+    transition: background-color 0.2s;
+}
+
+/* Botão "Não"*/
+.btn-nao {
+    background-color: #e74c3c; 
+    color: white;
+}
+
+.btn-nao:hover {
+    background-color: #c0392b;
+}
+
+/* Botão "Sim" */
+.btn-sim {
+    background-color: #E2760A; 
+    color: white;
+}
+
+.btn-sim:hover {
+    background-color: #e67e22;
+}
