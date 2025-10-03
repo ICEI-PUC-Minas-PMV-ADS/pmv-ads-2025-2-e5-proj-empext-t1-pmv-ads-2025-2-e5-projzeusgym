@@ -9,17 +9,17 @@ const authMiddleware = async (req, res, next) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     const user = await Users.findByPk(payload.id);
 
-    if (!user) return res.status(404).json({ message: 'Usuário não encontrado.' });
+    if (!user) return res.status(404).json({ message: 'Usuï¿½rio nï¿½o encontrado.' });
 
     if (user.mustChangePassword) {
-      return res.status(403).json({ message: 'Troca de senha obrigatória.' });
+      return res.status(403).json({ message: 'Troca de senha obrigatï¿½ria.' });
     }
 
     req.user = user;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Token inválido.' });
+    return res.status(401).json({ message: 'Token invï¿½lido.' });
   }
 };
 
-module.exports = authNotAdminMiddleware;
+module.exports = authMiddleware;

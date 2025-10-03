@@ -26,7 +26,7 @@ exports.createProfessor = async (req, res) => {
       cpf,
       cref_mg,
       email,
-      password: await bcrypt.hash(password, 10), 
+      password, 
       role: 'professor',
     });
 

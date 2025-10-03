@@ -4,6 +4,9 @@ const cors = require('cors');
 const adminLoginRoute = require('./routes/adminLogin');
 const adminTestRoute = require('./routes/adminTest');
 const adminManageRoute = require('./routes/adminManage'); 
+const authNotAdminRoutes = require('./routes/authNotAdminRoutes');
+const trainingSheetRoutes = require('./routes/trainingSheetRoutes');
+
 
 const app = express();
 
@@ -22,5 +25,9 @@ app.get('/', (req, res) => {
 app.use('/adminLogin', adminLoginRoute);
 app.use('/adminTest', adminTestRoute);
 app.use('/admin', adminManageRoute);
+
+app.use('/auth', authNotAdminRoutes);
+app.use('/trainingsheets', trainingSheetRoutes);
+
 
 module.exports = app;

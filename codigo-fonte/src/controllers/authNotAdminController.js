@@ -1,20 +1,25 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
+const { Op } = require('sequelize'); 
 
 const userLogin = async (req, res) => {
     const { login, password } = req.body;
 
     if (!login || !password) {
-        return res.status(400).json({ message: 'Login e senha são obrigatórios.' });
+        return res.status(400).json({ message: 'Login e senha sï¿½o obrigatï¿½rios.' });
     }
 
     try {
+
         const user = await Users.findOne({
-            where: { name: login, role: ['professor', 'aluno'] },
-            attributes: ['id', 'name', 'password', 'role', 'mustChangePassword'],
+            where: { 
+                email: login, 
+                role: { [Op.in]: ['professor', 'aluno'] } 
+            },
+            attributes: ['id', 'name', 'email', 'password', 'role', 'mustChangePassword'],
         });
-        if (!user) return res.status(404).json({ message: 'Usuário não encontrado.' });
+        if (!user) return res.status(404).json({ message: 'Usuï¿½rio nï¿½o encontrado.' });
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) return res.status(401).json({ message: 'Senha incorreta.' });
@@ -26,7 +31,7 @@ const userLogin = async (req, res) => {
                 { expiresIn: '15m' }
             );
             return res.status(403).json({
-                message: 'Troca de senha obrigatória.',
+                message: 'Troca de senha obrigatï¿½ria.',
                 tempToken,
             });
         }
@@ -49,7 +54,7 @@ const changePassword = async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
 
     if (!newPassword) {
-        return res.status(400).json({ message: 'Nova senha é obrigatória.' });
+        return res.status(400).json({ message: 'Nova senha ï¿½ obrigatï¿½ria.' });
     }
 
     try {
@@ -59,7 +64,7 @@ const changePassword = async (req, res) => {
         }
 
         const user = await Users.findByPk(payload.id);
-        if (!user) return res.status(404).json({ message: 'Usuário não encontrado.' });
+        if (!user) return res.status(404).json({ message: 'Usuï¿½rio nï¿½o encontrado.' });
 
         user.password = await bcrypt.hash(newPassword, 10);
         user.mustChangePassword = false;
@@ -67,7 +72,7 @@ const changePassword = async (req, res) => {
 
         return res.json({ message: 'Senha alterada com sucesso.' });
     } catch (error) {
-        return res.status(401).json({ message: 'Token inválido ou expirado.' });
+        return res.status(401).json({ message: 'Token invï¿½lido ou expirado.' });
     }
 };
 
