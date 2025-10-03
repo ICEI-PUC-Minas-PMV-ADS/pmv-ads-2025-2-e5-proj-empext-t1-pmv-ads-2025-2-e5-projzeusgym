@@ -37,6 +37,129 @@ exports.createProfessor = async (req, res) => {
   }
 };
 
+exports.listProfessors = async (req, res) => {
+  try {
+    const professors = await Users.findAll({
+      where: { role: 'professor' },
+      attributes: { exclude: ['password'] } 
+    });
+
+    if (!professors || professors.length === 0) {
+      return res.status(404).json({ message: 'Nenhum professor encontrado.' });
+    }
+
+    return res.status(200).json(professors);
+  } catch (error) {
+    console.error('Erro ao listar professores:', error);
+    return res.status(500).json({ error: 'Erro interno ao listar professores.' });
+  }
+};
+
+exports.getProfessorById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const professor = await Users.findOne({
+            where: {
+                id,
+                role: 'professor' 
+            },
+            attributes: { exclude: ['password'] } 
+        });
+
+        if (!professor) {
+            return res.status(404).json({ message: 'Professor não encontrado.' });
+        }
+
+        return res.status(200).json(professor);
+    } catch (error) {
+        console.error('Erro ao buscar professor por ID:', error);
+        return res.status(500).json({ error: 'Erro interno ao buscar professor.' });
+    }
+};
+
+exports.updateProfessor = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, birthdate, gender, cpf, cref_mg, email, password } = req.body;
+
+        const professor = await Users.findOne({
+            where: {
+                id,
+                role: 'professor'
+            }
+        });
+
+        if (!professor) {
+            return res.status(404).json({ error: 'Professor não encontrado.' });
+        }
+
+        if (cpf && cpf !== professor.cpf) {
+            const existingUserByCpf = await Users.findOne({ where: { cpf } });
+            if (existingUserByCpf) {
+                return res.status(400).json({ error: 'CPF já cadastrado para outro usuário.' });
+            }
+        }
+
+        if (email && email !== professor.email) {
+            const existingUserByEmail = await Users.findOne({ where: { email } });
+            if (existingUserByEmail) {
+                return res.status(400).json({ error: 'Email já cadastrado para outro usuário.' });
+            }
+        }
+
+        const updateData = {
+            name,
+            birthdate,
+            gender,
+            cpf,
+            cref_mg,
+            email,
+        };
+
+        if (password) {
+            updateData.password = await bcrypt.hash(password, 10);
+            updateData.mustChangePassword = true; 
+        }
+
+        Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
+
+        await Users.update(updateData, { where: { id } });
+
+        const updatedProfessor = await Users.findOne({ 
+            where: { id },
+            attributes: { exclude: ['password'] }
+        });
+
+        return res.status(200).json({ message: 'Professor atualizado com sucesso!', professor: updatedProfessor });
+    } catch (error) {
+        console.error('Erro ao atualizar professor:', error);
+        return res.status(500).json({ error: 'Erro interno ao atualizar professor.' });
+    }
+};
+
+exports.deleteProfessor = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedCount = await Users.destroy({
+            where: {
+                id,
+                role: 'professor'
+            }
+        });
+
+        if (deletedCount === 0) {
+            return res.status(404).json({ error: 'Professor não encontrado para exclusão.' });
+        }
+
+        return res.status(200).json({ message: 'Professor excluído com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao excluir professor:', error);
+        return res.status(500).json({ error: 'Erro interno ao excluir professor.' });
+    }
+};
+
 exports.createAluno = async (req, res) => {
   try {
     const { name, birthdate, gender, cpf, cellphone, restriction, email, password } = req.body;
