@@ -3,16 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import api from '../services/api';
 import React, { useState, useEffect } from 'react';
 
-const generateRandomPassword = (length = 10) => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let password = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * chars.length);
-        password += chars[randomIndex];
-    }
-    return password;
-};
-
 const CadastrarAluno = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -25,19 +15,8 @@ const CadastrarAluno = () => {
         cpf: '',
         cellphone: '',
         email: '',
-        password: '',
         restriction: ''
     });
-
-   useEffect(() => {
-        if (!isEditing) { 
-            const randomPassword = generateRandomPassword();
-            setFormData(prevState => ({
-                ...prevState,
-                password: randomPassword
-            }));
-        }
-    }, [isEditing]);
 
     useEffect(() => {
         const fetchAlunoData = async () => {
@@ -92,11 +71,6 @@ const CadastrarAluno = () => {
             }
         }
 
-        if (!isEditing && (!formData.password || String(formData.password).trim() === '')) {
-            alert('A senha não foi gerada automaticamente. Por favor, recarregue a página ou insira uma manualmente.');
-            return false;
-        }
-
         return true;
     };
 
@@ -108,9 +82,6 @@ const CadastrarAluno = () => {
         }
         
         let dataToSubmit = { ...formData };
-        if (isEditing && dataToSubmit.password === '') {
-            delete dataToSubmit.password; // Remove a senha para não alterá-la no backend
-        }
         
         const method = isEditing ? api.put : api.post; 
         const url = isEditing ? `/admin/alunos/${id}` : '/admin/alunos';
@@ -120,8 +91,8 @@ const CadastrarAluno = () => {
             const response = await method(url, dataToSubmit);
             
             const successMessage = isEditing 
-                ? 'Aluno atualizado com sucesso!' 
-                : `Aluno cadastrado com sucesso! A senha gerada é: ${formData.password}`;
+                 ? 'Aluno atualizado com sucesso!' 
+                : `Aluno cadastrado com sucesso! A senha inicial foi enviada para o e-mail: ${formData.email}`;
             
             alert(successMessage);
             navigate(-1);
@@ -161,7 +132,7 @@ const CadastrarAluno = () => {
             </header>
             <main className="alunos-main">
                 <div className="header-main">
-                    Cadastrar novo aluno
+                    {isEditing ? 'Editar Aluno' : 'Cadastrar novo aluno'}
                 </div>
                 <form className="cadastro-aluno-form" onSubmit={handleSalvar}>
                    <div className="form-row">
@@ -190,8 +161,9 @@ const CadastrarAluno = () => {
                             <input type="tel" id="cellphone" name="cellphone" value={formData.cellphone} onChange={handleChange} required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Senha</label>
-                            <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
+                            {!isEditing && (
+                                <p className="info-text">A senha inicial será gerada e enviada por e-mail.</p>
+                            )}
                         </div>
                     </div>
 
