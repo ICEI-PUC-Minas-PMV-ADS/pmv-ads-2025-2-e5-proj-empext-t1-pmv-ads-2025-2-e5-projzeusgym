@@ -73,7 +73,7 @@ router.delete('/alunos/:id', authMiddleware, async (req, res) => {
   await adminManageController.deleteAluno(req, res);
 });
 
-router.put('/exercises', authMiddleware, async (req, res) => {
+router.post('/exercises', authMiddleware, async (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Apenas administradores podem cadastrar exercícios.' });
   }
@@ -92,6 +92,13 @@ router.put('/exercises/:id', authMiddleware, async (req, res) => {
     return res.status(403).json({ error: 'Apenas administradores podem atualizar exercícios.' });
   }
   await adminManageController.updateExercise(req, res);
+});
+
+router.get('/exercises', authMiddleware, async (req, res) => {
+  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver exercícios.' });
+  }
+  await adminManageController.listExercises(req, res);
 });
 
 module.exports = router;

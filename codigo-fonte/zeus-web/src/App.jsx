@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard'; // ← Certifique-se que este arquivo existe
 import GerenciarAluno from './pages/GerenciarAluno';
 import CadastrarAluno from './pages/CadastrarAluno';
+import GerenciarExercicio from './pages/GerenciarExercicios'; // ← Certifique-se que este arquivo existe  
+
 
 // Componente para proteger rotas (só acessa se estiver autenticado)
 const ProtectedRoute = ({ children }) => {
@@ -43,6 +45,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <CadastrarAluno />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gerenciarexercicios"
+            element={
+              <ProtectedRoute>
+                <GerenciarExercicio />
               </ProtectedRoute>
             }
           />
