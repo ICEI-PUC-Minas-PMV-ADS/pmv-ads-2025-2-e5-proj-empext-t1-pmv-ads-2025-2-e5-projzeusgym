@@ -85,3 +85,8 @@ li {
 .dashboard-btn:active {
   transform: translateY(-1px);
 }
+
+.highlighted {
+  background: #ffeeba !important;
+  border-left: 4px solid orange;
+}

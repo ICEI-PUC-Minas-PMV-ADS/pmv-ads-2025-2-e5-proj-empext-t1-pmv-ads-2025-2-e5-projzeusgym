@@ -1,6 +1,8 @@
 import './GerenciarExercicios.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+  import { AiFillDelete, AiFillEdit}from 'react-icons/ai';
+  
 
 const baseURL = 'http://localhost:3000';
 
@@ -226,24 +228,51 @@ const GerenciarExercicio = () => {
           {(!loading && exercicios.length === 0) && (
             <p style={{ color: 'gray' }}>Não há exercícios cadastrados.</p>
           )}
-          <ul>
-            {exercicios.map((exercicio, idx) => (
-              <li
-                key={exercicio.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '8px',
-                  background: highlightedId === exercicio.id && idx === 0 ? '#ffeeba' : 'transparent'
-                }}
-              >
-                <span style={{ flex: 1 }}>{exercicio.nome}</span>
-                <button style={{ marginLeft: '8px' }} onClick={() => openEditForm(exercicio)}>Editar</button>
-                <button style={{ marginLeft: '8px' }} onClick={() => handleDelete(exercicio.id)}>Excluir</button>
-                <button style={{ marginLeft: '8px' }}>Ação 3</button>
-              </li>
-            ))}
-          </ul>
+          {/* Área de rolagem para lista de exercícios */}
+          <div style={{
+            maxHeight: '480px',
+            overflowY: 'auto',
+            border: '1px solid #eee',
+            borderRadius: '6px',
+            padding: '8px',
+            background: '#fafafa'
+          }}>
+            <ul style={{ margin: 0, padding: 0 }}>
+              {(() => {
+                let sorted = [...exercicios].sort((a, b) => a.nome.localeCompare(b.nome));
+                if (search.trim()) {
+                  const lowerSearch = search.toLowerCase();
+                  const closest = sorted.find(ex => ex.nome.toLowerCase().includes(lowerSearch));
+                  if (closest) {
+                    sorted = [closest, ...sorted.filter(ex => ex.id !== closest.id)];
+                  }
+                }
+                return sorted.map((exercicio, idx) => (
+                  <li
+                    key={exercicio.id}
+                    className={
+                      search.trim() &&
+                      idx === 0 &&
+                      exercicio.nome.toLowerCase().includes(search.toLowerCase())
+                        ? 'highlighted'
+                        : ''
+                    }
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginBottom: '8px',
+                      padding: '4px 0',
+                      listStyle: 'none'
+                    }}
+                  >
+                    <span style={{ flex: 1 }}>{exercicio.nome}</span>
+                    <AiFillEdit style={{ marginLeft: '8px', cursor: 'pointer' }} onClick={() => openEditForm(exercicio)} />
+                    <AiFillDelete style={{ marginLeft: '8px', cursor: 'pointer' }} onClick={() => handleDelete(exercicio.id)} />
+                  </li>
+                ));
+              })()}
+            </ul>
+          </div>
         </section>
       </main>
 
