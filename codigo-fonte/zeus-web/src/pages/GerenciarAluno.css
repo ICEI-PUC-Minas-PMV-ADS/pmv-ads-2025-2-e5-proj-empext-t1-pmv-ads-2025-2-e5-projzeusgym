@@ -30,21 +30,19 @@ html {
 }
 
 .header-content {
-    width: 100%;
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 0;
+    max-width: none !important; 
 }
 
 .icon-group {
     display: flex;
     align-items: center;
-    margin-left: 16px;
-    /* opcional, só para espaçamento */
-    position: static;
-    /* garante que não seja absoluto */
+    justify-content: flex-end;
 }
 
 .profile-icon {
@@ -67,6 +65,10 @@ html {
     justify-content: flex-start;
 }
 
+.header-btn:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
+}
+
 .header-btn {
     margin: 0;
     color: black;
@@ -75,6 +77,7 @@ html {
     padding: 10px 32px;
     border-radius: 12px;
     border-color: transparent;
+
 }
 
 /* --- Main --- */
