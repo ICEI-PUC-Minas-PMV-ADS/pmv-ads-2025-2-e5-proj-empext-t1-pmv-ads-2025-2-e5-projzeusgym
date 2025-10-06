@@ -605,6 +605,31 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
 ### ETAPA 3
 <table>
   <tr>
+    <th colspan="6" width="1000">CT-006S<br>Excluir exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados excluídos com sucesso do banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema excluiu o cadastro com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/142d0221-4717-41ba-b8ca-d67af6d1c518"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
     <th colspan="6" width="1000">CT-007<br>Cadastro aluno</th>
   </tr>
   <tr>
@@ -736,6 +761,8 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
       
   </tr>
 </table>
+
+
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
