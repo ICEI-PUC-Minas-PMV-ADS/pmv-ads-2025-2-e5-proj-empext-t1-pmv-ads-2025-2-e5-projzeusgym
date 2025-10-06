@@ -386,6 +386,212 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-007 S<br>Cadastrar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se dados de aluno são cadstardos do banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Cadastrar aluno <br>
+      5. Checar se o aluno foi cadastrado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Dados cadstrados com sucesso do banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-007 i<br>Cadastrar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema não permite cadastro de alunos com e-mail e/ou cpf já existente no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Cadastrar aluno <br>
+      5. Checar se o aluno foi cadastrado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Deve ser disparada mensagem que e-mail e/ou cpf já existe no BD.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-007 S<br>Editar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados do aluno são editado no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Editar aluno <br>
+      5. Checar se o aluno foi editado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Os dados do aluno selecionado deve estar editado.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-007 i<br>Editar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema não permite editar o aluno com e-mail e/ou cpf já existente no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Editar aluno <br>
+      5. Checar se o aluno foi editado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Deve ser disparada mensagem que e-mail e/ou cpf já existe no BD.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-007 S<br>Excluir Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema exclui os dados do aluno no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Excluir aluno <br>
+      5. Checar se o aluno foi excluido no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Os dados do aluno selecionado deve ser excluido.</td>
+  </tr>
+</table>
+
+
 ### ETAPA 4
 Criar casos de teste da etapa 4
  
