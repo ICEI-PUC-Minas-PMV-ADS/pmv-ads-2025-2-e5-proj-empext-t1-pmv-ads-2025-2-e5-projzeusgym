@@ -651,11 +651,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=" 
-
-https://github.com/user-attachments/assets/b4941e45-40e5-475b-8298-20d685ba81e6
-
-"/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/b4941e45-40e5-475b-8298-20d685ba81e6"/></td>
       
   </tr>
 </table>
@@ -682,9 +678,7 @@ https://github.com/user-attachments/assets/b4941e45-40e5-475b-8298-20d685ba81e6
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=
-
-"https://github.com/user-attachments/assets/4be1dba2-3b5b-4c60-adaf-2531d51bc987"/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/4be1dba2-3b5b-4c60-adaf-2531d51bc987"/></td>
       
   </tr>
 </table>
@@ -711,11 +705,7 @@ https://github.com/user-attachments/assets/b4941e45-40e5-475b-8298-20d685ba81e6
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="
-
-https://github.com/user-attachments/assets/cb2dd6ea-e378-4002-a233-d6c209575f1e
-
- "/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/cb2dd6ea-e378-4002-a233-d6c209575f1e"/></td>
       
   </tr>
 </table>
@@ -742,11 +732,7 @@ https://github.com/user-attachments/assets/cb2dd6ea-e378-4002-a233-d6c209575f1e
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="
-
-https://github.com/user-attachments/assets/db2e9891-a1d2-4fca-a1c3-40990f9980b8
-
- "/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/db2e9891-a1d2-4fca-a1c3-40990f9980b8"/></td>
       
   </tr>
 </table>
