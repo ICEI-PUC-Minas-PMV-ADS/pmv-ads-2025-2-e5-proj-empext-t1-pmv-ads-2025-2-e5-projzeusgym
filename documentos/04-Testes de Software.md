@@ -193,7 +193,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td>RF-006:Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+    <td>>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
@@ -235,7 +235,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td>RF-006:Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+    <td>>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
@@ -256,6 +256,92 @@ Apresente os casos de testes utilizados na realização da verificação e valid
     <tr>
     <td><strong>Critérios de êxito</strong></td>
     <td>O sistema deve disparar uma mensagem de erro e não cadastrar o exercício inválido.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-005 S<br>Editar de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de exercícios são editados e salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+     1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Editar exercício qualquer exercício <br>
+      5. Editar nome de exercício com dádo válido<br>
+      4. Checar se o exercício foi atualizado no BD <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados válidos nos campos de edição de exercício<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro de exercícios editados e salvos no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-005 I<br>Editar de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se edição com dados inválidos de exercícios não são salvos durante  no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Editar exercício qualquer exercício <br>
+      5. Editar nome de exercício com nome já existente no BD (Dado Inválido)<br>
+      4. Checar se o exercício não foi atualizado no BD e <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados inválidos nos campos de edição de exercício<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Disparar uma mensagemde erro e dados inválidos de cadastro de exercícios não atualizados no banco de dados.</td>
   </tr>
 </table>
 
