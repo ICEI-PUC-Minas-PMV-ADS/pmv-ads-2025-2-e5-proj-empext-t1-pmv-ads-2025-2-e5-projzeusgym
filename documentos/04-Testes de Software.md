@@ -605,6 +605,106 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
 ### ETAPA 3
 <table>
   <tr>
+    <th colspan="6" width="1000">CT-004S<br>Cadastrar exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados cadastrados com sucesso do banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema cadastrou novo eercício com seucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/0470bfe6-3f4b-46db-9ed5-d6868d1ec1d5"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-004I<br>Cadastro de exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve disparar uma mensagem de erro e não cadastrar o exercício inválido.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema não cadastrou dados inválidos ou repetidos.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/60d92423-e5b3-4a80-aade-53f9d4c53e52"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-005S<br>Editar exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">	Os dados de cadastro de exercícios editados e salvos no banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema editou o cadastro no BD com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/413f376f-e8ce-4ffb-9168-70d60237df00"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-005I<br>Editar exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Disparar uma mensagem de erro e dados inválidos de cadastro de exercícios não atualizados no banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema não salvou dados inválidos ou repetidos.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/07970fde-8048-40a2-999a-5cf7a16198ad"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
     <th colspan="6" width="1000">CT-006S<br>Excluir exercícios</th>
   </tr>
   <tr>
@@ -628,6 +728,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/142d0221-4717-41ba-b8ca-d67af6d1c518"/></td>
   </tr>
 </table>
+      
 <table>
   <tr>
     <th colspan="6" width="1000">CT-007<br>Cadastro aluno</th>
