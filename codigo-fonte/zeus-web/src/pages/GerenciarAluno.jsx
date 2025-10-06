@@ -6,16 +6,36 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const GerenciarAluno = () => {
-    const { user, logout } = useAuth(); 
+    const { user, logout } = useAuth();
     const [alunos, setAlunos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [alunoToDelete, setAlunoToDelete] = useState(null); 
+    const [alunoToDelete, setAlunoToDelete] = useState(null);
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
 
-  const cadastrarAluno = () => {
-    navigate('/cadastraralunos');
-  };
+    const cadastrarAluno = () => {
+        navigate('/cadastraralunos');
+    };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+      const normalizeString = (str) => {
+        return str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, "");
+      };
+
+    const filteredAlunos = alunos.filter(aluno => { 
+        const normalizedName = normalizeString(aluno.name);
+        const normalizedSearchTerm = normalizeString(searchTerm);
+        return normalizedName.includes(normalizedSearchTerm);
+    });
+
+    const listToRender = filteredAlunos;
 
     const fetchAlunos = useCallback(async () => {
         setIsLoading(true);
@@ -32,7 +52,7 @@ const GerenciarAluno = () => {
                     setError("Você não tem permissão para visualizar a lista de alunos.");
                 } else if (err.response.status === 401) {
                     setError("Sessão expirada ou não autorizada. Por favor, faça login novamente.");
-                    logout(); 
+                    logout();
                 } else {
                     setError(`Erro ${err.response.status}: Falha ao carregar a lista de alunos.`);
                 }
@@ -44,11 +64,11 @@ const GerenciarAluno = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [logout]); 
+    }, [logout]);
 
     useEffect(() => {
         fetchAlunos();
-    }, [fetchAlunos]); 
+    }, [fetchAlunos]);
 
     const openDeleteModal = (aluno) => {
         setAlunoToDelete(aluno);
@@ -62,18 +82,18 @@ const GerenciarAluno = () => {
         if (!alunoToDelete) return;
 
         const id = alunoToDelete.id;
-        closeDeleteModal(); 
+        closeDeleteModal();
 
         try {
             await api.delete(`/admin/alunos/${id}`);
-            
+
             // Sucesso: atualiza o estado local
             setAlunos(alunos.filter(aluno => aluno.id !== id));
             alert(`Aluno ${alunoToDelete.name} deletado com sucesso.`);
 
         } catch (err) {
             if (err.response && err.response.status === 403) {
-                 alert("Falha ao deletar: Você não tem permissão para esta ação.");
+                alert("Falha ao deletar: Você não tem permissão para esta ação.");
             } else {
                 console.error("Erro ao deletar aluno:", err);
                 alert(`Falha ao deletar: ${err.message || 'Erro de conexão/servidor'}`);
@@ -82,8 +102,8 @@ const GerenciarAluno = () => {
     };
 
     const handleDelete = (aluno) => {
-       openDeleteModal(aluno);
-        }
+        openDeleteModal(aluno);
+    }
 
     const handleEdit = async (id) => {
         console.log(`Abrir modal/página para editar aluno com ID: ${id}`);
@@ -131,7 +151,7 @@ const GerenciarAluno = () => {
                     <div className="main-header">
                         <h2 className="main-title">Alunos</h2>
                         <button className="add-aluno-btn"
-                        onClick={cadastrarAluno}>
+                            onClick={cadastrarAluno}>
                             <FaPlus className="add-icon" />
                             Cadastrar aluno
                         </button>
@@ -142,13 +162,15 @@ const GerenciarAluno = () => {
                             type="text"
                             placeholder="Procurar"
                             className="search-input"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
                         />
                         <FaSearch className="search-icon" />
                     </div>
                 </div>
                 <div className="alunos-list-container">
-                    {alunos.length > 0 ? (
-                        alunos.map(aluno => (
+                    {listToRender.length > 0 ? (
+                        listToRender.map(aluno => (
                             <div key={aluno.id} className="aluno-item">
                                 <span className="aluno-name">{aluno.name}</span>
                                 <div className="aluno-actions">
@@ -157,7 +179,7 @@ const GerenciarAluno = () => {
                                         <>
                                             <button
                                                 className="action-btn delete-btn"
-                                                onClick={() => handleDelete(aluno)} 
+                                                onClick={() => handleDelete(aluno)}
                                             >
                                                 <FaTrash />
                                             </button>
@@ -179,7 +201,7 @@ const GerenciarAluno = () => {
             </main>
 
             <footer className="app-footer">
-             
+
             </footer>
 
             {alunoToDelete && (
