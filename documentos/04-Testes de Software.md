@@ -287,7 +287,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
       3. Navegar até o dashboard de gerenciamento de exercícios <br>
       4. Editar exercício qualquer exercício <br>
       5. Editar nome de exercício com dádo válido<br>
-      4. Checar se o exercício foi atualizado no BD <br>
+      6. Checar se o exercício foi atualizado no BD <br>
       </td>
   </tr>
     <tr>
@@ -308,7 +308,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td>Este caso de teste verifica se edição com dados inválidos de exercícios não são salvos durante  no banco de dados.</td>
+    <td>Este caso de teste verifica se edição com dados inválidos de exercícios não são salvos no banco de dados.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
@@ -329,8 +329,8 @@ Apresente os casos de testes utilizados na realização da verificação e valid
       2. Logar e autenticar com o Admin.<br>
       3. Navegar até o dashboard de gerenciamento de exercícios <br>
       4. Editar exercício qualquer exercício <br>
-      5. Editar nome de exercício com nome já existente no BD (Dado Inválido)<br>
-      4. Checar se o exercício não foi atualizado no BD e <br>
+      5. Editar nome de exercício com nome de exercício já existente no BD (Dado Inválido)<br>
+      6. Checar se o exercício não foi atualizado no BD e <br>
       </td>
   </tr>
     <tr>
@@ -341,7 +341,48 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td> Disparar uma mensagemde erro e dados inválidos de cadastro de exercícios não atualizados no banco de dados.</td>
+    <td> Disparar uma mensagem de erro e dados inválidos de cadastro de exercícios não atualizados no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-006 S<br>Excluir de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se dados de exercícios são excluídos do banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Excluir exercício qualquer exercício <br>
+      5. Checar se o exercício foi excluído do BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Dados excluídos com sucesso do banco de dados.</td>
   </tr>
 </table>
 
