@@ -1,0 +1,93 @@
+/* src/pages/ManageProfessors.css */
+
+.manage-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.manage-container h2 {
+    color: var(--color-text-dark);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--color-primary, #E2760A);
+    padding-bottom: 10px;
+}
+
+/* Header de Ações (Botão + Cadastrar) */
+.actions-header {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+    margin-bottom: 20px;
+}
+
+.btn-add-professor {
+    background-color: var(--color-primary, #E2760A);
+    color: var(--color-text-light, white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-add-professor:hover {
+    background-color: #c96707; 
+}
+
+/* Estilos da Tabela */
+.professors-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.professors-table th,
+.professors-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.professors-table th {
+    background-color: var(--color-primary, #E2760A);
+    color: var(--color-text-light, white);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.professors-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Estilos dos Botões de Ação na Tabela */
+.table-actions button {
+    margin-right: 8px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: opacity 0.2s;
+}
+
+.table-actions .btn-edit {
+    background-color: #4a90e2; /* Azul para editar */
+    color: white;
+    border: none;
+}
+
+.table-actions .btn-remove {
+    background-color: #d0021b; /* Vermelho para remover */
+    color: white;
+    border: none;
+}
+
+.loading-msg, .error-msg {
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
