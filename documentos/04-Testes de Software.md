@@ -175,7 +175,422 @@ Apresente os casos de testes utilizados na realização da verificação e valid
 
 
 ### ETAPA 3
-Criar casos de teste da etapa 3
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-004 S<br>Cadastro de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de cadastro de exercícios são salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Tentar criar novo exercício com nome idêntico a exercício já <br>
+      4. Checar se novo exercício foi criado com sucesso no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados válidos do novo exercício<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro de exercícios salvos no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-004 I<br>Cadastro de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema não permite cadastro de exercícios com nome já existente no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Tentar criar novo exercício com nome idêntico a exercício já <br>
+      4. Checar se novo exercício foi criado com sucesso no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados inválidos do novo exercício<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve disparar uma mensagem de erro e não cadastrar o exercício inválido.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-005 S<br>Editar de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de exercícios são editados e salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+     1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Editar exercício qualquer exercício <br>
+      5. Editar nome de exercício com dádo válido<br>
+      6. Checar se o exercício foi atualizado no BD <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados válidos nos campos de edição de exercício<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro de exercícios editados e salvos no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-005 I<br>Editar de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se edição com dados inválidos de exercícios não são salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Editar exercício qualquer exercício <br>
+      5. Editar nome de exercício com nome de exercício já existente no BD (Dado Inválido)<br>
+      6. Checar se o exercício não foi atualizado no BD e <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados inválidos nos campos de edição de exercício<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Disparar uma mensagem de erro e dados inválidos de cadastro de exercícios não atualizados no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-006 S<br>Excluir de Exercícios</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se dados de exercícios são excluídos do banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-005: Como administrador e professor, desejo cadastrar e gerenciar exercicios.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de exercícios <br>
+      4. Excluir exercício qualquer exercício <br>
+      5. Checar se o exercício foi excluído do BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de exercícios com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Dados excluídos com sucesso do banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-007 S<br>Cadastrar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se dados de aluno são cadstardos do banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Cadastrar aluno <br>
+      5. Checar se o aluno foi cadastrado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Dados cadstrados com sucesso do banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-008 i<br>Cadastrar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema não permite cadastro de alunos com e-mail e/ou cpf já existente no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Cadastrar aluno <br>
+      5. Checar se o aluno foi cadastrado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Deve ser disparada mensagem que e-mail e/ou cpf já existe no BD.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-009 S<br>Editar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados do aluno são editado no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Editar aluno <br>
+      5. Checar se o aluno foi editado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Os dados do aluno selecionado deve estar editado.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-010 i<br>Editar Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema não permite editar o aluno com e-mail e/ou cpf já existente no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Editar aluno <br>
+      5. Checar se o aluno foi editado no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Deve ser disparada mensagem que e-mail e/ou cpf já existe no BD.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-011 S<br>Excluir Aluno</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o sistema exclui os dados do aluno no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-004	Como administrador, desejo cadastrar e gerenciar os alunos matriculados na academia para manter o controle dos usuários ativos.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de alunos <br>
+      4. Excluir aluno <br>
+      5. Checar se o aluno foi excluido no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Administrador:</strong> Acessar dashboard de gerenciamento de alunos com conta Admin válida<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td> Os dados do aluno selecionado deve ser excluido.</td>
+  </tr>
+</table>
+
 
 ### ETAPA 4
 Criar casos de teste da etapa 4
@@ -187,37 +602,268 @@ Apresente imagens e/ou vídeos que comprovam que um determinado teste foi execut
 ## Parte 1 - Testes de desenvolvimento
 Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, utilizando casos de teste, tanto de sucesso quanto de insucesso, elaborados por ele. Todos os testes devem ser evidenciados.
 
-### Exemplo
-### ETAPA 2
+### ETAPA 3
 <table>
   <tr>
-    <th colspan="6" width="1000">CT-001<br>Login com credenciais válidas</th>
+    <th colspan="6" width="1000">CT-004S<br>Cadastrar exercícios</th>
   </tr>
   <tr>
     <td width="170"><strong>Critérios de êxito</strong></td>
-    <td colspan="5">O sistema deve redirecionar o usuário para a página inicial do aplicativo após o login bem-sucedido.</td>
+    <td colspan="5">Dados cadastrados com sucesso do banco de dados.</td>
   </tr>
     <tr>
     <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
-    <td width="430">José da Silva </td>
+    <td width="430">Douglas Takemi Kimura </td>
      <td width="100"><strong>Data do Teste</strong></td>
-    <td width="150">08/05/2024</td>
+    <td width="150">06/10/2025</td>
   </tr>
     <tr>
     <td width="170"><strong>Comentário</strong></td>
-    <td colspan="5">O sistema está permitindo o login corretamente.</td>
+    <td colspan="5">O sistema cadastrou novo eercício com seucesso.</td>
   </tr>
   <tr>
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=""/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/0470bfe6-3f4b-46db-9ed5-d6868d1ec1d5"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-004I<br>Cadastro de exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve disparar uma mensagem de erro e não cadastrar o exercício inválido.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema não cadastrou dados inválidos ou repetidos.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/60d92423-e5b3-4a80-aade-53f9d4c53e52"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-005S<br>Editar exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">	Os dados de cadastro de exercícios editados e salvos no banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema editou o cadastro no BD com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/413f376f-e8ce-4ffb-9168-70d60237df00"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-005I<br>Editar exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Disparar uma mensagem de erro e dados inválidos de cadastro de exercícios não atualizados no banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema não salvou dados inválidos ou repetidos.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/07970fde-8048-40a2-999a-5cf7a16198ad"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-006S<br>Excluir exercícios</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados excluídos com sucesso do banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema excluiu o cadastro com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/142d0221-4717-41ba-b8ca-d67af6d1c518"/></td>
+  </tr>
+</table>
+      
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-007<br>Cadastro aluno</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve redirecionar o administrador para a página de gerenciamento de alunos após cadastro bem-sucedido.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema está fazendo o cadastro corretamente.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/435745ed-4be0-4c22-ba59-718684c7af93"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-008<br>Cadastro aluno</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve emitir uma mensagem de alerta ao colocar e-mail e/ou cpf já cadstrados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema está emitindo a mensagem ao colocar e-mail e cpf já cadstrado.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/b4941e45-40e5-475b-8298-20d685ba81e6"/></td>
       
   </tr>
 </table>
 
-### ETAPA 3
-Colocar evidências de teste da etapa 3
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-009<br>Editar aluno</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve redirecionar o administrador para a página de gerenciamento de alunos após edição bem-sucedida.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema está fazendo a edição de aluno corretamente.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/4be1dba2-3b5b-4c60-adaf-2531d51bc987"/></td>
+      
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-010<br>Editar aluno</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve emitir uma mensagem de alerta ao colocar e-mail e/ou cpf já cadstrados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema está emitindo a mensagem ao colocar e-mail e cpf já cadstrado.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/cb2dd6ea-e378-4002-a233-d6c209575f1e"/></td>
+      
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-011<br>Excluir aluno</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve emitir uma mensagem de confirmação da exclusão de aluno e quando confirmar deve ser excluido.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema está excluindo os dados do aluno corretamente.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/db2e9891-a1d2-4fca-a1c3-40990f9980b8"/></td>
+      
+  </tr>
+</table>
+
+
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4

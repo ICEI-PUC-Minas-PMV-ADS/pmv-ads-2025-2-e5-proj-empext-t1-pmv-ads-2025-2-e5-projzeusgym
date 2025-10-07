@@ -8,8 +8,10 @@ const Dashboard = () => {
   const gerenciarAluno = () => {
     navigate('/alunos');
   };
-
-  return (
+  const gerenciarExercicio = () => {
+    navigate('/gerenciarexercicios');
+  };
+  return (  
     <div className="dashboard-container">
       {/* Header Laranja */}
       <header className="dashboard-header">
@@ -35,13 +37,14 @@ const Dashboard = () => {
           onClick={gerenciarAluno}>
             Gerenciar Alunos
           </button>
-          <button className="dashboard-btn">
+          <button className="dashboard-btn"
+          onClick={gerenciarExercicio}>
             Gerenciar Exercícios
           </button>
         </div>
       </main>
-    </div>
-  );
+    </div>)
+  
 };
 
 export default Dashboard;

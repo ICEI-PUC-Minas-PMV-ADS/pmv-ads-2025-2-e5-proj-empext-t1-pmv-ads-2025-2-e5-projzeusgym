@@ -87,12 +87,10 @@ router.get('/exercises', authMiddleware, async (req, res) => {
 });
 
 router.put('/exercises', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem cadastrar exercícios.' });
-  }
-  // Se esta rota for para criar, o método deveria ser POST. Alterei de PUT para POST.
-  // Se PUT for usado para criar (o que é incomum), mantenha PUT. Ajustei para criar/POST.
-  await adminManageController.createExercise(req, res);
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Apenas administradores podem cadastrar exercícios.' });
+  }
+  await adminManageController.createExercise(req, res);
 });
 
 router.delete('/exercises/:id', authMiddleware, async (req, res) => {
@@ -107,6 +105,13 @@ router.put('/exercises/:id', authMiddleware, async (req, res) => {
     return res.status(403).json({ error: 'Apenas administradores podem atualizar exercícios.' });
   }
   await adminManageController.updateExercise(req, res);
+});
+
+router.get('/exercises', authMiddleware, async (req, res) => {
+  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver exercícios.' });
+  }
+  await adminManageController.listExercises(req, res);
 });
 
 module.exports = router;

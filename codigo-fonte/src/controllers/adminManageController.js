@@ -395,10 +395,10 @@ exports.updateExercise = async (req, res) => {
     const { id } = req.params;
     const { nome, exerGrupo, comentario } = req.body;
 
-    const exercise = await Exercises.findByPk(id);
-    if (!exercise) {
-      return res.status(404).json({ error: 'Exercício não encontrado.' });
-    }
+    const exercise = await Exercises.findByPk(id);
+    if (!exercise) {
+      return res.status(404).json({ error: 'Exercício não encontrado.' });
+    }
 
     // Atualiza apenas os campos enviados
     if (nome) exercise.nome = nome;
@@ -412,4 +412,17 @@ exports.updateExercise = async (req, res) => {
     console.error('Erro ao atualizar exercício:', error);
     return res.status(500).json({ error: 'Erro interno ao atualizar exercício.' });
   }
+};
+
+exports.listExercises = async (req, res) => {
+  try {
+    const exercises = await Exercises.findAll();
+    if (!exercises || exercises.length === 0) {
+      return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
+    }
+    return res.status(200).json(exercises);
+  } catch (error) {
+    console.error('Erro ao listar exercícios:', error);
+    return res.status(500).json({ error: 'Erro interno ao listar exercícios.' });
+  }
 };
