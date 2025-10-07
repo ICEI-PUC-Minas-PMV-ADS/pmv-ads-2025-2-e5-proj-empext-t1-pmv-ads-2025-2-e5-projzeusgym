@@ -125,7 +125,7 @@ const GerenciarExercicio = () => {
       }
       closeForm();
     } catch (err) {
-      setError('Erro ao salvar exercício.');
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -154,7 +154,7 @@ const GerenciarExercicio = () => {
       }
       setExercicios(prev => prev.filter(ex => ex.id !== id));
     } catch (err) {
-      setError('Erro ao excluir exercício.');
+      setError(err.message);
     } finally {
       setLoading(false);
     }

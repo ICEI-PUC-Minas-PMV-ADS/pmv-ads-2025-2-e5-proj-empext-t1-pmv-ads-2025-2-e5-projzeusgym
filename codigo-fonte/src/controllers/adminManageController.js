@@ -382,6 +382,11 @@ exports.updateExercise = async (req, res) => {
       return res.status(404).json({ error: 'Exercício não encontrado.' });
     }
 
+    const existingExercise = await Exercises.findOne({ where: { nome } });
+    if (existingExercise) {
+      return res.status(400).json({ error: 'Exercício já cadastrado.' });
+    }
+
     // Atualiza apenas os campos enviados
     if (nome) exercise.nome = nome;
     if (exerGrupo) exercise.exerGrupo = exerGrupo;
