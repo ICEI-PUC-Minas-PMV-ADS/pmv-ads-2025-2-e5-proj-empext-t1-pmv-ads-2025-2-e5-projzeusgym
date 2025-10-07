@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard'; // ← Certifique-se que este arquivo existe
 import GerenciarAluno from './pages/GerenciarAluno';
 import CadastrarAluno from './pages/CadastrarAluno';
+import GerenciarAvaliacoes from './pages/GerenciarAvaliacoes';
+import CadastrarAvaliacao from './pages/CadastrarAvaliacao';
 
 // Componente para proteger rotas (só acessa se estiver autenticado)
 const ProtectedRoute = ({ children }) => {
@@ -89,8 +91,36 @@ function App() {
             }
           />
 
-          {/* Rota padrão redireciona para login */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* ROTAS DE GERENCIAMENTO DE AVALIAÇÕES FÍSICAS */}
+          <Route
+            path="/avaliacoes"
+            element={
+              <ProtectedRoute>
+                <GerenciarAvaliacoes />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/avaliacoes/nova"
+            element={
+              <ProtectedRoute>
+                <CadastrarAvaliacao />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/avaliacoes/editar/:id"
+            element={
+              <ProtectedRoute>
+                <CadastrarAvaliacao />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rota padrão redireciona para login */}
+          <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </AuthProvider>
