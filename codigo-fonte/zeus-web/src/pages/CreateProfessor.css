@@ -1,0 +1,86 @@
+/* src/pages/CreateProfessor.css */
+
+.create-professor-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.create-professor-container h2 {
+    color: var(--color-primary, #E2760A); /* Laranja Zeus */
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Estiliza o formulário (o componente ProfessorForm) */
+.professor-form h3 {
+    margin-top: 0;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Estilos dos inputs dentro do formulário */
+.professor-form input,
+.professor-form select {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; 
+    box-sizing: border-box; 
+    font-size: 1em;
+}
+
+/* Estilo para Botão de Submissão (usa a cor primária) */
+.professor-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 15px;
+    /* Estilos herdados de btn-primary */
+}
+
+/* Botão Voltar */
+.btn-back {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #333;
+}
+
+/* Mensagens de feedback */
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-msg {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-msg {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

@@ -1,0 +1,282 @@
+/*
+=================================================
+Estilos Gerais do Container Principal
+=================================================
+*/
+.cadastro-ficha-container {
+    padding: 30px;
+    background-color: #f8f9fa; /* Fundo mais claro para destaque */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.cadastro-ficha-container h2 {
+    color: #343a40; /* Cor escura para o título */
+    margin-bottom: 25px;
+    border-bottom: 2px solid #E2760A; /* Linha de destaque */
+    padding-bottom: 10px;
+}
+
+/*
+=================================================
+Mensagens de Erro e Sucesso
+=================================================
+*/
+.loading-message, .error-message, .success-message {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.loading-message {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/*
+=================================================
+Estilos do Formulário e Componentes de Controle
+=================================================
+*/
+
+/* Layout principal dos controles (Alunos e Metadata) */
+.form-header-controls {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; 
+    padding: 15px;
+    border: 1px solid #ced4da; /* Borda para agrupar os campos principais */
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+.form-group {
+    flex: 1 1 300px; 
+    margin-bottom: 0; /* Remove margem desnecessária neste container flex */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 🛑 CORREÇÃO APLICADA AQUI PARA ISOLAR OS ESTILOS DE INPUT NO COMPONENTE */
+.cadastro-ficha-container .form-group select,
+.cadastro-ficha-container .form-group input[type="text"],
+.cadastro-ficha-container .form-group input[type="number"],
+.cadastro-ficha-container .form-group textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* 🛑 CORREÇÃO APLICADA AQUI PARA ISOLAR OS ESTILOS DE FOCO NO COMPONENTE */
+.cadastro-ficha-container .form-group select:focus,
+.cadastro-ficha-container .form-group input:focus,
+.cadastro-ficha-container .form-group textarea:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/*
+=================================================
+Estilos da Seção de Exercícios (Tabela)
+=================================================
+*/
+
+.exercise-list-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.exercise-list-section h3 {
+    margin-bottom: 20px;
+    color: #E2760A;
+}
+
+
+/*
+-------------------------------
+Estilos da Tabela de Exercícios
+-------------------------------
+*/
+
+.added-exercises-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.added-exercises-table th,
+.added-exercises-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.added-exercises-table th {
+    background-color: #E2760A;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.added-exercises-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Inputs dentro da tabela */
+.added-exercises-table input, 
+.added-exercises-table select, 
+.added-exercises-table textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Ajustes de largura para colunas específicas */
+.added-exercises-table td:nth-child(1) { width: 5%; } /* # */
+.added-exercises-table td:nth-child(2) { width: 25%; } /* Nome */
+.added-exercises-table td:nth-child(3),
+.added-exercises-table td:nth-child(4) { width: 10%; } /* Séries, Reps */
+.added-exercises-table td:nth-child(6) { width: 10%; text-align: center; } /* Ação */
+
+/*
+=================================================
+Estilos de Botões
+=================================================
+*/
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.1s;
+    white-space: nowrap; 
+}
+
+.btn-primary {
+    background-color: #28a745; /* Botão principal/Finalizar: Verde */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #007bff; /* Botão de Adicionar: Azul */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 10px; /* Mais compacto para a tabela */
+    font-size: 0.85rem;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.action-buttons-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+/*
+=================================================
+Media Queries (Responsividade)
+=================================================
+*/
+
+@media (max-width: 992px) {
+    /* Oculta colunas menos importantes em telas menores */
+    .added-exercises-table th:nth-child(5), 
+    .added-exercises-table td:nth-child(5) { /* Coluna de Observação */
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .cadastro-ficha-container {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .form-header-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .action-buttons-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-buttons-footer .btn {
+        width: 100%;
+    }
+    
+    /* Força os inputs da tabela a ocuparem mais espaço verticalmente em mobile */
+    .added-exercises-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: right;
+    }
+
+    .added-exercises-table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .added-exercises-table th {
+        display: none; /* Esconde headers da tabela em mobile */
+    }
+}

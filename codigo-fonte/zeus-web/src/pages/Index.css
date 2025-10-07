@@ -1,0 +1,44 @@
+:root {
+  --color-primary: #e2760a; /* O laranja da Zeus Gym */
+  --color-secondary: #000;
+  --color-background: #f4f4f4; /* Um branco suave */
+  --color-text-light: #fff;
+  --color-text-dark: #333;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: var(--color-background);
+}
+
+/* Estilo para botões primários (o laranja) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #c96707; /* Laranja um pouco mais escuro no hover */
+}
+
+/* Estilo de inputs e seletores */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Largura total dentro do container */
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
+}
