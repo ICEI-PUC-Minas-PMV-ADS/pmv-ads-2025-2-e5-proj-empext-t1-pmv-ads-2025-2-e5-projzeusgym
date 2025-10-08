@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const physicalAssessmentController = require('../controllers/physicalAssessmentController');
 const authMiddleware = require('../middlewares/authMiddleware');
+const { upload, handleUploadError } = require('../config/upload');
 
 // Aplicar middleware de autenticação em todas as rotas
 router.use(authMiddleware);
 
-// Rota para criar uma nova avaliação física
-router.post('/', physicalAssessmentController.createPhysicalAssessment);
+// Rota para criar uma nova avaliação física (com upload de arquivo)
+router.post('/', upload.single('pdfFile'), handleUploadError, physicalAssessmentController.createPhysicalAssessment);
 
 // Rota para listar todas as avaliações físicas do professor
 router.get('/', physicalAssessmentController.getPhysicalAssessments);
@@ -23,5 +24,11 @@ router.delete('/:assessmentId', physicalAssessmentController.deletePhysicalAsses
 
 // Rota para buscar todas as avaliações de um aluno específico
 router.get('/student/:studentId', physicalAssessmentController.getStudentAssessments);
+
+// Rota para download de PDF
+router.get('/:assessmentId/download', physicalAssessmentController.downloadPDF);
+
+// Rota para visualização de PDF
+router.get('/:assessmentId/view', physicalAssessmentController.viewPDF);
 
 module.exports = router;

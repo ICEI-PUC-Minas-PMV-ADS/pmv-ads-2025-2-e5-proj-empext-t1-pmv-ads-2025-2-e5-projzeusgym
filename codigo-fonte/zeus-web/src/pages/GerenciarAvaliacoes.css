@@ -109,6 +109,28 @@
     background-color: #2980b9;
 }
 
+.btn-view {
+    background-color: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-view:hover {
+    background-color: #2980b9;
+}
+
+.btn-download {
+    background-color: #27ae60;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-download:hover {
+    background-color: #229954;
+}
+
 .btn-delete {
     background-color: #e74c3c;
     color: white;
@@ -205,7 +227,8 @@
     font-size: 0.8rem;
 }
 
-.assessment-data {
+.assessment-data,
+.assessment-info {
     margin-bottom: 1rem;
 }
 
@@ -224,6 +247,12 @@
 .data-item .value {
     color: #27ae60;
     font-weight: bold;
+}
+
+.data-item .value.file-name {
+    color: #3498db;
+    font-size: 0.9rem;
+    word-break: break-all;
 }
 
 .assessment-observations {

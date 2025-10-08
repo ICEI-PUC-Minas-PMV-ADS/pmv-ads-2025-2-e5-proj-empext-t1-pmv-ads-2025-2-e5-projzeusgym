@@ -50,6 +50,49 @@ const GerenciarAvaliacoes = () => {
         return new Date(dateString).toLocaleDateString('pt-BR');
     };
 
+    const formatFileSize = (bytes) => {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    };
+
+    const handleDownload = async (assessmentId) => {
+        try {
+            const token = localStorage.getItem('authToken');
+            const response = await api.get(`/physical-assessments/${assessmentId}/download`, {
+                headers: { Authorization: `Bearer ${token}` },
+                responseType: 'blob'
+            });
+            
+            // Criar URL para download
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            
+            // Extrair nome do arquivo do header Content-Disposition
+            const contentDisposition = response.headers['content-disposition'];
+            let fileName = 'avaliacao.pdf';
+            if (contentDisposition) {
+                const fileNameMatch = contentDisposition.match(/filename="(.+)"/);
+                if (fileNameMatch) {
+                    fileName = fileNameMatch[1];
+                }
+            }
+            
+            link.setAttribute('download', fileName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+            
+        } catch (error) {
+            console.error('Erro ao fazer download:', error);
+            alert('Erro ao fazer download do arquivo.');
+        }
+    };
+
     const filteredAssessments = assessments.filter(assessment => 
         !filterStudent || 
         assessment.student.name.toLowerCase().includes(filterStudent.toLowerCase())
@@ -92,7 +135,7 @@ const GerenciarAvaliacoes = () => {
                     <h1>Gerenciar Avaliações Físicas</h1>
                     <button 
                         className="btn btn-primary"
-                        onClick={() => navigate('/avaliacoes/nova')}
+                        onClick={() => navigate('/avaliacoes/upload')}
                     >
                         Nova Avaliação
                     </button>
@@ -127,29 +170,21 @@ const GerenciarAvaliacoes = () => {
                                         </span>
                                     </div>
                                     
-                                    <div className="assessment-data">
-                                        {assessment.weight && (
+                                    <div className="assessment-info">
+                                        <div className="data-item">
+                                            <span className="label">Tipo:</span>
+                                            <span className="value">{assessment.assessmentType}</span>
+                                        </div>
+                                        {assessment.fileName && (
                                             <div className="data-item">
-                                                <span className="label">Peso:</span>
-                                                <span className="value">{assessment.weight} kg</span>
+                                                <span className="label">Arquivo:</span>
+                                                <span className="value file-name">{assessment.fileName}</span>
                                             </div>
                                         )}
-                                        {assessment.height && (
+                                        {assessment.fileSize && (
                                             <div className="data-item">
-                                                <span className="label">Altura:</span>
-                                                <span className="value">{assessment.height} cm</span>
-                                            </div>
-                                        )}
-                                        {assessment.bodyFat && (
-                                            <div className="data-item">
-                                                <span className="label">% Gordura:</span>
-                                                <span className="value">{assessment.bodyFat}%</span>
-                                            </div>
-                                        )}
-                                        {assessment.muscleMass && (
-                                            <div className="data-item">
-                                                <span className="label">Massa Muscular:</span>
-                                                <span className="value">{assessment.muscleMass} kg</span>
+                                                <span className="label">Tamanho:</span>
+                                                <span className="value">{formatFileSize(assessment.fileSize)}</span>
                                             </div>
                                         )}
                                     </div>
@@ -162,12 +197,22 @@ const GerenciarAvaliacoes = () => {
                                     )}
 
                                     <div className="assessment-actions">
-                                        <button 
-                                            className="btn btn-edit"
-                                            onClick={() => navigate(`/avaliacoes/editar/${assessment.id}`)}
-                                        >
-                                            Editar
-                                        </button>
+                                        {assessment.filePath && (
+                                            <>
+                                                <button 
+                                                    className="btn btn-view"
+                                                    onClick={() => window.open(`http://localhost:3000/physical-assessments/${assessment.id}/view`, '_blank')}
+                                                >
+                                                    Visualizar
+                                                </button>
+                                                <button 
+                                                    className="btn btn-download"
+                                                    onClick={() => handleDownload(assessment.id)}
+                                                >
+                                                    Baixar
+                                                </button>
+                                            </>
+                                        )}
                                         <button 
                                             className="btn btn-delete"
                                             onClick={() => handleDelete(assessment.id)}
