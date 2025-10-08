@@ -1,50 +1,85 @@
-// src/pages/Dashboard.jsx
 import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
+  // Função para Gerenciar Alunos (JÁ EXISTIA)
   const gerenciarAluno = () => {
     navigate('/alunos');
   };
+  
+  // Função para Gerenciar Exercícios (JÁ EXISTIA, MAS O PATH FOI CORRIGIDO NO App.jsx)
   const gerenciarExercicio = () => {
     navigate('/gerenciarexercicios');
   };
-  return (  
+  
+  // 🚨 NOVA FUNÇÃO PARA GERENCIAR PROFESSORES
+  const gerenciarProfessor = () => {
+    navigate('/professores'); // Path definido no seu App.jsx
+  };
+
+  // 🚨 NOVA FUNÇÃO PARA GERENCIAR FICHAS DE TREINO
+  const gerenciarFichaTreino = () => {
+    navigate('/fichas-treino'); // Path definido no seu App.jsx
+  };
+
+  return (  
     <div className="dashboard-container">
       {/* Header Laranja */}
       <header className="dashboard-header">
         <div className="header-content">
           <h1>Zeus Gym</h1>
           <div className="profile-icon">
-           <a href="#"> <img 
+            <a href="#"> <img 
               src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" 
               alt="Perfil" 
               className="profile-image"
             /> </a>
           </div>
         </div>
-      </header>    
+      </header>    
 
       {/* Conteúdo em Branco */}
       <main className="dashboard-main">
         <div className="dashboard-buttons">
-          <button className="dashboard-btn">
+          
+          {/* 🚨 BOTÃO DE PROFESSORES CORRIGIDO */}
+          <button 
+            className="dashboard-btn"
+            onClick={gerenciarProfessor}
+          >
             Gerenciar Professores
           </button>
-          <button className="dashboard-btn"
-          onClick={gerenciarAluno}>
+          
+          {/* BOTÃO DE ALUNOS JÁ ESTAVA OK */}
+          <button 
+            className="dashboard-btn"
+            onClick={gerenciarAluno}
+          >
             Gerenciar Alunos
           </button>
-          <button className="dashboard-btn"
-          onClick={gerenciarExercicio}>
+          
+          {/* BOTÃO DE EXERCÍCIOS JÁ ESTAVA OK */}
+          <button 
+            className="dashboard-btn"
+            onClick={gerenciarExercicio}
+          >
             Gerenciar Exercícios
           </button>
+
+          {/* 🚨 BOTÃO DE FICHA DE TREINO REINSERIDO E FUNCIONAL */}
+          <button 
+            className="dashboard-btn"
+            onClick={gerenciarFichaTreino}
+          >
+            Gerenciar Fichas de Treino
+          </button>
+          
         </div>
       </main>
-    </div>)
-  
+    </div>
+  );
 };
 
 export default Dashboard;

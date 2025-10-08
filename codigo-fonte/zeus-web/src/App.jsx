@@ -1,84 +1,107 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard'; // ← Certifique-se que este arquivo existe
+import Dashboard from './pages/Dashboard';
 import GerenciarAluno from './pages/GerenciarAluno';
 import CadastrarAluno from './pages/CadastrarAluno';
 
+// NOVAS IMPORTAÇÕES CORRIGIDAS (FICHAS DE TREINO)
+import CadastroFichaTreino from './pages/CadastroFichaTreino'; 
+
+// NOVAS IMPORTAÇÕES CORRIGIDAS (CRUD DE PROFESSORES)
+import ManageProfessors from './pages/ManageProfessors';
+import CreateProfessor from './pages/CreateProfessor'; 
+import EditProfessor from './pages/EditProfessor';
+
+// 🚨 IMPORTAÇÃO CORRIGIDA PARA O CRUD DE EXERCÍCIOS
+import GerenciarExercicios from './pages/GerenciarExercicios';
+
+
 // Componente para proteger rotas (só acessa se estiver autenticado)
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* ------------------ ROTAS PÚBLICAS ------------------ */}
-          <Route path="/login" element={<Login />} />
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* ------------------ ROTAS PÚBLICAS ------------------ */}
+          <Route path="/login" element={<Login />} />
 
-          {/* ------------------ ROTAS PROTEGIDAS ------------------ */}
-          
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* 🚨 NOVA ROTA: GERENCIAMENTO DE FICHAS DE TREINO */}
-          <Route
-            path="/fichas-treino" // Liga ao botão "Gerenciar Fichas de Treino"
-            element={
-              <ProtectedRoute>
-                <CadastroFichaTreino /> 
-              </ProtectedRoute>
-            }
-          />
+          {/* ------------------ ROTAS PROTEGIDAS ------------------ */}
           
-          {/* ROTAS DE GERENCIAMENTO DE PROFESSORES */}
-          <Route
-            path="/professores"
-            element={
-              <ProtectedRoute>
-                <ManageProfessors />
-              </ProtectedRoute>
-            }
-          />
+          {/* DASHBOARD */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route
-            path="/professores/cadastrar"
-            element={
-              <ProtectedRoute>
-                <CreateProfessor />
-              </ProtectedRoute>
-            }
-          />
+          {/* ROTAS DE GERENCIAMENTO DE FICHAS DE TREINO */}
+          <Route
+            path="/fichas-treino" 
+            element={
+              <ProtectedRoute>
+                <CadastroFichaTreino /> 
+              </ProtectedRoute>
+            }
+          />
+          
+          {/*  NOVA ROTA DE EXERCÍCIOS (PARA RESOLVER O ERRO DE NAVEGAÇÃO) */}
+          <Route
+            path="/gerenciarexercicios" // O path que seu botão estava chamando
+            element={
+              <ProtectedRoute>
+                <GerenciarExercicios /> 
+              </ProtectedRoute>
+            }
+          />
 
-          <Route
-            path="/professores/editar/:id"
-            element={
-              <ProtectedRoute>
-                <EditProfessor />
-              </ProtectedRoute>
-            }
-          />
+          {/* ROTAS DE GERENCIAMENTO DE PROFESSORES */}
+          <Route
+            path="/professores"
+            element={
+              <ProtectedRoute>
+                <ManageProfessors />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/professores/cadastrar"
+            element={
+              <ProtectedRoute>
+                <CreateProfessor />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/professores/editar/:id"
+            element={
+              <ProtectedRoute>
+                <EditProfessor />
+              </ProtectedRoute>
+            }
+          />
 
 
-          {/* ROTAS DE GERENCIAMENTO DE ALUNOS */}
+          {/* ROTAS DE GERENCIAMENTO DE ALUNOS */}
 
-          <Route
-            path="/alunos"
-            element={
-              <ProtectedRoute>
-                <GerenciarAluno />
-              </ProtectedRoute>
-            }
-          />
+          <Route
+            path="/alunos"
+            element={
+              <ProtectedRoute>
+                <GerenciarAluno />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/cadastraralunos/:id?"
@@ -89,12 +112,12 @@ function App() {
             }
           />
 
-          {/* Rota padrão redireciona para login */}
-          <Route path="/" element={<Navigate to="/login" />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
-  );
+          {/* Rota padrão redireciona para login */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
 }
 
 export default App;
