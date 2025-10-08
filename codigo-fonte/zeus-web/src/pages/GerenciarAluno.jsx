@@ -18,6 +18,14 @@ const GerenciarAluno = () => {
         navigate('/cadastraralunos');
     };
 
+    const gerenciarProf = () => {
+        navigate('/professores');
+    };
+
+    const gerenciarExercicio = () => {
+        navigate('/gerenciarexercicio');
+    };
+
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -130,8 +138,8 @@ const GerenciarAluno = () => {
             <header className="alunos-header">
                 <div className="header-content">
                     <div className="button-group">
-                        <button className="header-btn">Gerenciar Exercícios</button>
-                        <button className="header-btn">Gerenciar Professores</button>
+                        <button className="header-btn" onClick={gerenciarExercicio}>Gerenciar Exercícios</button>
+                        <button className="header-btn" onClick={gerenciarProf}>Gerenciar Professores</button>
                         <button className="header-btn">Gerenciar Alunos</button>
                     </div>
                     <div className="icon-group">
