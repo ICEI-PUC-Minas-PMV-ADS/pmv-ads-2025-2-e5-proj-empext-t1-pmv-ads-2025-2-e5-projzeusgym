@@ -23,7 +23,7 @@ const ManageProfessors = () => {
 
     try {
         // CHAMADA GET: Inclui o Header Authorization manualmente
-        const response = await api.get('/admin/professores', {
+        const response = await api.get('admin/professores', {
             headers: { Authorization: `Bearer ${token}` }
         });
         setProfessors(response.data);

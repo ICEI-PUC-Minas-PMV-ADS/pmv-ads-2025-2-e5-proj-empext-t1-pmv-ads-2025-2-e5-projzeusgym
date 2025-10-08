@@ -40,21 +40,18 @@ exports.createProfessor = async (req, res) => {
 };
 
 exports.listProfessors = async (req, res) => {
-  try {
-    const professors = await Users.findAll({
-      where: { role: 'professor' },
-      attributes: { exclude: ['password'] }
-    });
+  try {
+    const professors = await Users.findAll({
+      where: { role: 'professor' },
+      attributes: { exclude: ['password'] }
+    });
 
-    if (!professors || professors.length === 0) {
-      return res.status(404).json({ message: 'Nenhum professor encontrado.' });
-    }
-
-    return res.status(200).json(professors);
-  } catch (error) {
-    console.error('Erro ao listar professores:', error);
-    return res.status(500).json({ error: 'Erro interno ao listar professores.' });
-  }
+    // Mesmo que vazio, retorna 200 com array []
+    return res.status(200).json(professors);
+  } catch (error) {
+    console.error('Erro ao listar professores:', error);
+    return res.status(500).json({ error: 'Erro interno ao listar professores.' });
+  }
 };
 
 exports.getProfessorById = async (req, res) => {
