@@ -1077,7 +1077,135 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-012S<br>Cadastrar professor</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve cadastrar um novo professor com sucesso e salvar os dados no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Cassiano Torneiro Baptista</td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema cadastrou corretamente o professor e retornou mensagem de sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center">lorem</td>
+  </tr>
+</table>
 
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-013I<br>Cadastrar professor (Insucesso)</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve impedir o cadastro de um professor com e-mail ou CPF já existentes, retornando mensagem de erro.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Cassiano Torneiro Baptista</td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema exibiu mensagem de erro ao tentar cadastrar professor com dados repetidos.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center">lorem</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-014S<br>Listar professores</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">A API deve retornar status 200 e exibir a lista de professores cadastrados no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Cassiano Torneiro Baptista</td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema retornou corretamente todos os professores cadastrados.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center">lorem</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-015S<br>Editar professor</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve permitir editar os dados de um professor existente e atualizar corretamente no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Cassiano Torneiro Baptista</td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema atualizou corretamente as informações do professor no banco de dados.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center">lorem</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-016S<br>Excluir professor</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve excluir corretamente o professor selecionado e removê-lo do banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Cassiano Torneiro Baptista</td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema removeu o cadastro do professor com sucesso e retornou mensagem de confirmação.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center">lorem</td>
+  </tr>
+</table>
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
