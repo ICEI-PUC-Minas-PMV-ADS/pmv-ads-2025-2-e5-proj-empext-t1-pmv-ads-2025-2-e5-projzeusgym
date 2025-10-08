@@ -5,18 +5,6 @@ import Dashboard from './pages/Dashboard';
 import GerenciarAluno from './pages/GerenciarAluno';
 import CadastrarAluno from './pages/CadastrarAluno';
 
-// NOVAS IMPORTAÇÕES CORRIGIDAS (FICHAS DE TREINO)
-import CadastroFichaTreino from './pages/CadastroFichaTreino'; 
-
-// NOVAS IMPORTAÇÕES CORRIGIDAS (CRUD DE PROFESSORES)
-import ManageProfessors from './pages/ManageProfessors';
-import CreateProfessor from './pages/CreateProfessor'; 
-import EditProfessor from './pages/EditProfessor';
-
-// 🚨 IMPORTAÇÃO CORRIGIDA PARA O CRUD DE EXERCÍCIOS
-import GerenciarExercicios from './pages/GerenciarExercicios';
-
-
 // Componente para proteger rotas (só acessa se estiver autenticado)
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -112,12 +100,12 @@ function App() {
             }
           />
 
-          {/* Rota padrão redireciona para login */}
-          <Route path="/" element={<Navigate to="/login" />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
-  );
+          {/* Rota padrão redireciona para login */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
 }
 
 export default App;
