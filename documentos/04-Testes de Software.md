@@ -591,6 +591,220 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-012 S<br>Cadastro de Professor (Sucesso)</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Verifica se o sistema cadastra um novo professor corretamente e armazena seus dados no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste</strong></td>
+    <td width="430">Cassiano Torneiro Baptista</td>
+  </tr>
+  <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td>Sucesso</td>
+  </tr>
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-003: Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. No Postman, enviar requisição <code>POST /admin/professores</code>.<br>
+      4. Preencher os campos obrigatórios (nome, e-mail, senha, CPF).<br>
+      5. Checar resposta da API e verificar persistência no banco de dados.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      <pre>{
+  "nome": "João Silva",
+  "email": "joao@academia.com",
+  "cpf": "12345678900",
+  "senha": "123456"
+}</pre>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve retornar mensagem de sucesso e o professor deve ser salvo corretamente no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-013 I<br>Cadastro de Professor (Insucesso)</th>
+  </tr>
+  <tr>
+    <td><strong>Descrição</strong></td>
+    <td>Verifica se o sistema impede o cadastro de um professor com e-mail ou CPF já existentes no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste</strong></td>
+    <td>Cassiano Torneiro Baptista</td>
+  </tr>
+  <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td>Insucesso</td>
+  </tr>
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-003: Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Tentar cadastrar um professor com e-mail já existente.<br>
+      4. Checar a resposta da API.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      <pre>{
+  "nome": "João Silva",
+  "email": "joao@academia.com",
+  "cpf": "12345678900",
+  "senha": "123456"
+}</pre>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve retornar mensagem de erro informando que o e-mail ou CPF já está cadastrado e não salvar os dados no BD.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-014 S<br>Listar Professores</th>
+  </tr>
+  <tr>
+    <td><strong>Descrição</strong></td>
+    <td>Verifica se o sistema retorna corretamente a lista de professores cadastrados no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste</strong></td>
+    <td>Cassiano Torneiro Baptista</td>
+  </tr>
+  <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td>Sucesso</td>
+  </tr>
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-003: Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar como Admin.<br>
+      3. Enviar requisição <code>GET /admin/professores</code>.<br>
+      4. Checar se a lista retornada contém todos os professores cadastrados.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>Sem dados específicos, apenas professores previamente cadastrados no BD.</td>
+  </tr>
+  <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>A API deve retornar status 200 e a lista completa de professores cadastrados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-015 S<br>Editar Professor</th>
+  </tr>
+  <tr>
+    <td><strong>Descrição</strong></td>
+    <td>Verifica se o sistema permite a edição dos dados de um professor existente e atualiza corretamente no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste</strong></td>
+    <td>Cassiano Torneiro Baptista</td>
+  </tr>
+  <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td>Sucesso</td>
+  </tr>
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-003: Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar como Admin.<br>
+      3. Enviar requisição <code>PUT /admin/professores/:id</code> com dados atualizados.<br>
+      4. Checar resposta e validar atualização no BD.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      <pre>{
+  "nome": "João da Silva",
+  "email": "joaos@academia.com"
+}</pre>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve retornar status 200 e refletir as mudanças no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-016 S<br>Excluir Professor</th>
+  </tr>
+  <tr>
+    <td><strong>Descrição</strong></td>
+    <td>Verifica se o sistema exclui corretamente um professor selecionado e remove seus dados do banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste</strong></td>
+    <td>Cassiano Torneiro Baptista</td>
+  </tr>
+  <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td>Sucesso</td>
+  </tr>
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-003: Como administrador, desejo cadastrar e gerenciar professores para garantir que apenas profissionais autorizados possam criar fichas de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar backend e BD.<br>
+      2. Logar como Admin.<br>
+      3. Enviar requisição <code>DELETE /admin/professores/:id</code>.<br>
+      4. Checar resposta e confirmar remoção no banco de dados.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>ID do professor a ser excluído.</td>
+  </tr>
+  <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve retornar status 200 e o professor não deve mais constar no banco de dados.</td>
+  </tr>
+</table>
 
 ### ETAPA 4
 Criar casos de teste da etapa 4
