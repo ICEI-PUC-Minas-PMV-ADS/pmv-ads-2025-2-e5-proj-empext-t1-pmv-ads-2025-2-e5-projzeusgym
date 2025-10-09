@@ -932,6 +932,36 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-020 S<br>Listar Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste Lista e mostra todos as fichas de treino </td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430"> Gabriel Victor </td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-006 Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de Fichas de treino <br>
+      4. Ver ficha de treino <br>
+      4. Checar se a Ficha de treino esta presente <br>
+      </td>
+  </tr>
 
 
 
