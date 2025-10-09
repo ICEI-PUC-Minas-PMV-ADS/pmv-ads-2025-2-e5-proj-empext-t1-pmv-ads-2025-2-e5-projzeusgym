@@ -1668,6 +1668,89 @@ Colocar evidências de teste da etapa 3
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-009 S<br>Editar Aluno
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Os dados do aluno selecionado deve estar editado.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Natália Romero Soltau   </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">09/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados aluno foram atualizados no BD</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/3ed3dda4-6bbe-405d-b8e0-b5b4c28747be"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-010 I<br>Editar Aluno
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">	Deve ser disparada mensagem que e-mail e/ou cpf já existe no BD.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Natália Romero Soltau   </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">09/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Emitida mensagem de e-mail e CPF já cadastrados </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/9b056aae-c23a-4ce4-b705-ada8ddf8c203"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-011 S<br>Excluir aluno
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Os dados do aluno selecionado deve ser excluido.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Natália Romero Soltau   </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">09/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados do aluno foram deletados do BD </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/0b97b59e-3fa1-4d27-8c57-cdc177d4ae19"/></td>
+  </tr>
+</table>
+
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
 
