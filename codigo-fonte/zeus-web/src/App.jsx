@@ -5,7 +5,7 @@ import Dashboard from './pages/Dashboard';
 import GerenciarAluno from './pages/GerenciarAluno';
 import CadastrarAluno from './pages/CadastrarAluno';
 
-// 🛑 NOVAS IMPORTAÇÕES NECESSÁRIAS (Solução do ReferenceError)
+
 // Ajuste o caminho './pages/' se seus arquivos estiverem em outro lugar
 import CadastroFichaTreino from './pages/CadastroFichaTreino'; 
 import GerenciarExercicios from './pages/GerenciarExercicios'; 

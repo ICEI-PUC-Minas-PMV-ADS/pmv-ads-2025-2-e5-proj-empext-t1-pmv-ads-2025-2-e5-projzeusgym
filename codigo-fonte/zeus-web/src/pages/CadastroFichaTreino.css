@@ -1,282 +1,261 @@
-/*
-=================================================
-Estilos Gerais do Container Principal
-=================================================
-*/
-.cadastro-ficha-container {
-    padding: 30px;
-    background-color: #f8f9fa; /* Fundo mais claro para destaque */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 1200px;
-    margin: 30px auto;
+/* Container principal: centraliza a tela verticalmente, se necessário, e define a área de conteúdo */
+.ficha-main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5; /* Cor de fundo da área principal, como nas imagens */
 }
 
-.cadastro-ficha-container h2 {
-    color: #343a40; /* Cor escura para o título */
+/* Área de conteúdo: garante que o conteúdo fique no centro horizontal e empurra o footer para baixo */
+.ficha-content-area {
+    flex-grow: 1; /* Permite que ocupe o espaço restante */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente o card */
+    padding: 30px 20px;
+}
+
+/* O "card" branco onde o formulário ou lista fica */
+.ficha-content-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1100px; /* Largura máxima, ajustável */
+    width: 100%;
+    padding: 30px;
+    margin: 0; /* Remove margens que possam causar overflow */
+}
+
+/* Título principal e controle de listagem/cadastro */
+.list-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 25px;
-    border-bottom: 2px solid #E2760A; /* Linha de destaque */
+    border-bottom: 2px solid #ff9933; /* Linha laranja abaixo do título */
     padding-bottom: 10px;
 }
 
-/*
-=================================================
-Mensagens de Erro e Sucesso
-=================================================
-*/
-.loading-message, .error-message, .success-message {
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-weight: bold;
+.section-title {
+    color: #4a4a4a;
+    font-size: 24px;
+    margin: 0;
 }
 
-.loading-message {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
-}
-
-.error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-.success-message {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-/*
-=================================================
-Estilos do Formulário e Componentes de Controle
-=================================================
-*/
-
-/* Layout principal dos controles (Alunos e Metadata) */
-.form-header-controls {
+/* Formulário e Grupos */
+.ficha-form {
     display: flex;
-    gap: 30px;
-    margin-bottom: 20px;
-    flex-wrap: wrap; 
-    padding: 15px;
-    border: 1px solid #ced4da; /* Borda para agrupar os campos principais */
-    border-radius: 6px;
-    background-color: #ffffff;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.form-group {
-    flex: 1 1 300px; 
-    margin-bottom: 0; /* Remove margem desnecessária neste container flex */
+/* CORREÇÃO 1: Ajustado para 2 colunas para alinhar Título e Aluno */
+.form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 colunas para Título e Aluno */
+    gap: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+    background-color: #e9ecef; /* Fundo cinza para campos desabilitados/somente leitura */
     color: #495057;
+    cursor: not-allowed;
 }
 
-/* 🛑 CORREÇÃO APLICADA AQUI PARA ISOLAR OS ESTILOS DE INPUT NO COMPONENTE */
-.cadastro-ficha-container .form-group select,
-.cadastro-ficha-container .form-group input[type="text"],
-.cadastro-ficha-container .form-group input[type="number"],
-.cadastro-ficha-container .form-group textarea {
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1; /* Ocupa todas as colunas (2 colunas) */
+}
+
+/* Tabela de Exercícios (Formulário e Listagem) */
+.data-table {
     width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border-collapse: separate;
+    border-spacing: 0; /* Remove espaçamento padrão entre células */
 }
 
-/* 🛑 CORREÇÃO APLICADA AQUI PARA ISOLAR OS ESTILOS DE FOCO NO COMPONENTE */
-.cadastro-ficha-container .form-group select:focus,
-.cadastro-ficha-container .form-group input:focus,
-.cadastro-ficha-container .form-group textarea:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-/*
-=================================================
-Estilos da Seção de Exercícios (Tabela)
-=================================================
-*/
-
-.exercise-list-section {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #dee2e6;
-}
-
-.exercise-list-section h3 {
-    margin-bottom: 20px;
-    color: #E2760A;
-}
-
-
-/*
--------------------------------
-Estilos da Tabela de Exercícios
--------------------------------
-*/
-
-.added-exercises-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.added-exercises-table th,
-.added-exercises-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.added-exercises-table th {
-    background-color: #E2760A;
+.data-table th {
+    background-color: #ff9933; /* Cabeçalho laranja */
     color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: bold;
+    border: none; /* Remove bordas internas */
 }
 
-.added-exercises-table tr:hover {
-    background-color: #f1f1f1;
+/* Arredondamento dos cantos do cabeçalho */
+.data-table thead tr th:first-child {
+    border-top-left-radius: 4px;
 }
 
-/* Inputs dentro da tabela */
-.added-exercises-table input, 
-.added-exercises-table select, 
-.added-exercises-table textarea {
+.data-table thead tr th:last-child {
+    border-top-right-radius: 4px;
+}
+
+.data-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+    text-align: left; /* Padrão para texto */
+}
+
+/* CORREÇÃO 2a: Centraliza dados da tabela (Lista de Fichas) */
+.data-table tbody td {
+    text-align: center;
+}
+/* Alinha a coluna 'Título' e 'Aluno' à esquerda para melhor leitura */
+.data-table tbody td:nth-child(2),
+.data-table tbody td:nth-child(3) { 
+    text-align: left;
+}
+
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* CORREÇÃO 2b: Ajuste de inputs na Tabela de Exercícios */
+.exercises-table td input, 
+.exercises-table td select {
     width: 100%;
-    padding: 6px 8px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    padding: 8px; /* Aumenta um pouco o padding para altura uniforme */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 14px; 
+    height: 36px; /* Garante altura uniforme */
 }
 
-/* Ajustes de largura para colunas específicas */
-.added-exercises-table td:nth-child(1) { width: 5%; } /* # */
-.added-exercises-table td:nth-child(2) { width: 25%; } /* Nome */
-.added-exercises-table td:nth-child(3),
-.added-exercises-table td:nth-child(4) { width: 10%; } /* Séries, Reps */
-.added-exercises-table td:nth-child(6) { width: 10%; text-align: center; } /* Ação */
+/* CORREÇÃO 2c: Alinha o texto do Select do Exercício à esquerda */
+.exercises-table td:nth-child(2) select {
+    text-align: left;
+}
 
-/*
-=================================================
-Estilos de Botões
-=================================================
-*/
+/* Estilo para a visualização simples dos exercícios */
+.exercises-view-table td {
+    text-align: center !important; 
+}
+.exercises-view-table td:first-child {
+    text-align: left !important; 
+}
 
+/* Botões de Ação */
 .btn {
-    padding: 10px 15px;
+    padding: 8px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s, transform 0.1s;
-    white-space: nowrap; 
+    font-weight: bold;
+    transition: background-color 0.2s;
+    white-space: nowrap; /* Evita quebra de linha em botões curtos */
+    /* CORREÇÃO 3: Altura e padding de botões de ação na tabela */
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-primary {
-    background-color: #28a745; /* Botão principal/Finalizar: Verde */
+    background-color: #4CAF50; /* Verde para ação principal */
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #1e7e34;
-    transform: translateY(-1px);
+    background-color: #45a049;
 }
 
 .btn-secondary {
-    background-color: #007bff; /* Botão de Adicionar: Azul */
+    background-color: #ff9933; /* Laranja para ação secundária */
     color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #0056b3;
-    transform: translateY(-1px);
+    background-color: #e68a2e;
 }
 
 .btn-danger {
-    background-color: #dc3545;
+    background-color: #e53935; /* Vermelho para deletar/remover */
     color: white;
-    padding: 6px 10px; /* Mais compacto para a tabela */
-    font-size: 0.85rem;
 }
 
 .btn-danger:hover {
-    background-color: #c82333;
+    background-color: #c62828;
 }
 
+.btn-action {
+    padding: 8px 12px;
+}
+
+.btn-action.view {
+    background-color: #00bcd4; /* Azul claro para Ver */
+    color: white;
+    margin-right: 5px;
+}
+
+.btn-action.edit {
+    background-color: #ffc107; /* Amarelo para Editar */
+    color: #333;
+    margin-right: 5px;
+}
+
+/* Footer de botões no formulário */
 .action-buttons-footer {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #dee2e6;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
-/*
-=================================================
-Media Queries (Responsividade)
-=================================================
-*/
-
-@media (max-width: 992px) {
-    /* Oculta colunas menos importantes em telas menores */
-    .added-exercises-table th:nth-child(5), 
-    .added-exercises-table td:nth-child(5) { /* Coluna de Observação */
-        display: none;
-    }
+/* Mensagens de feedback */
+.error-message {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-@media (max-width: 768px) {
-    .cadastro-ficha-container {
-        padding: 15px;
-        margin: 15px;
-    }
+.success-message {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
-    .form-header-controls {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .action-buttons-footer {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .action-buttons-footer .btn {
-        width: 100%;
-    }
-    
-    /* Força os inputs da tabela a ocuparem mais espaço verticalmente em mobile */
-    .added-exercises-table td {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: right;
-    }
-
-    .added-exercises-table td::before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    .added-exercises-table th {
-        display: none; /* Esconde headers da tabela em mobile */
-    }
+.loading-message, .info-message {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
 }

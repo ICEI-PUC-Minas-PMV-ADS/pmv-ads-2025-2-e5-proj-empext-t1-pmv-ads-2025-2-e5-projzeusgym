@@ -1,0 +1,19 @@
+/* src/components/Footer.css */
+
+/* --- VARIÁVEIS DE COR --- */
+:root {
+    --color-primary-aluno: #E2760A; /* Laranja Principal */
+}
+
+/* ===================================================
+ESTILOS DO FOOTER
+=================================================== */
+
+.app-footer {
+    background-color: var(--color-primary-aluno);
+    color: white; 
+    height: 60px; /* Altura da faixa laranja */
+    width: 100%;
+    z-index: 10;
+    position: fixed; bottom: 0; 
+}
