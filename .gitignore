@@ -47,3 +47,5 @@ yarn-error.log
 .DS_Store
 Thumbs.db
 >>>>>>> branch-gabriel
+codigo-fonte/package-lock.json
+codigo-fonte/package.json
