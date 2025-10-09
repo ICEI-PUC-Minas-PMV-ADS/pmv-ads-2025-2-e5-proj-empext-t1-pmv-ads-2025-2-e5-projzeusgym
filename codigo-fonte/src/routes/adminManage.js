@@ -86,7 +86,7 @@ router.get('/exercises', authMiddleware, async (req, res) => {
   await adminManageController.listExercises(req, res);
 });
 
-router.put('/exercises', authMiddleware, async (req, res) => {
+router.post('/exercises', authMiddleware, async (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Apenas administradores podem cadastrar exercícios.' });
   }
