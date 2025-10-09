@@ -25,6 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
+    assessmentType: {
+      type: DataTypes.ENUM('inicial', 'trimestral', 'semestral', 'anual'),
+      allowNull: false,
+      defaultValue: 'inicial'
+    },
+    fileName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    filePath: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    fileSize: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     weight: {
       type: DataTypes.DECIMAL(5, 2),
       allowNull: true,

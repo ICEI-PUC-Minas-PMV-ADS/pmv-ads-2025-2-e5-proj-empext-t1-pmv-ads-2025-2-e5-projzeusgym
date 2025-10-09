@@ -1,21 +1,13 @@
 const { PhysicalAssessment, Users } = require('../models');
+const fs = require('fs');
+const path = require('path');
 
 exports.createPhysicalAssessment = async (req, res) => {
   try {
     const { 
       studentId, 
       assessmentDate, 
-      weight, 
-      height, 
-      bodyFat, 
-      muscleMass,
-      chest,
-      waist,
-      hip,
-      arm,
-      thigh,
-      calf,
-      neck,
+      assessmentType,
       observations 
     } = req.body;
     
@@ -47,21 +39,21 @@ exports.createPhysicalAssessment = async (req, res) => {
       });
     }
 
+    // Verificar se foi enviado um arquivo
+    if (!req.file) {
+      return res.status(400).json({ 
+        error: 'Arquivo PDF é obrigatório.' 
+      });
+    }
+
     const assessment = await PhysicalAssessment.create({
       studentId,
       professorId,
       assessmentDate,
-      weight,
-      height,
-      bodyFat,
-      muscleMass,
-      chest,
-      waist,
-      hip,
-      arm,
-      thigh,
-      calf,
-      neck,
+      assessmentType: assessmentType || 'inicial',
+      fileName: req.file.originalname,
+      filePath: req.file.path,
+      fileSize: req.file.size,
       observations
     });
 
@@ -200,18 +192,32 @@ exports.deletePhysicalAssessment = async (req, res) => {
     const { assessmentId } = req.params;
     const professorId = req.user.id;
 
-    const deletedCount = await PhysicalAssessment.destroy({
+    // Buscar a avaliação para obter o caminho do arquivo
+    const assessment = await PhysicalAssessment.findOne({
       where: { 
         id: assessmentId, 
         professorId 
       }
     });
 
-    if (deletedCount === 0) {
+    if (!assessment) {
       return res.status(404).json({ 
         error: 'Avaliação física não encontrada ou você não tem permissão para excluí-la.' 
       });
     }
+
+    // Excluir o arquivo físico se existir
+    if (assessment.filePath && fs.existsSync(assessment.filePath)) {
+      try {
+        fs.unlinkSync(assessment.filePath);
+      } catch (fileError) {
+        console.error('Erro ao excluir arquivo:', fileError);
+        // Continuar mesmo se não conseguir excluir o arquivo
+      }
+    }
+
+    // Excluir o registro do banco
+    await assessment.destroy();
 
     return res.status(200).json({ message: 'Avaliação física excluída com sucesso!' });
   } catch (error) {
@@ -252,5 +258,77 @@ exports.getStudentAssessments = async (req, res) => {
   } catch (error) {
     console.error('Erro ao buscar avaliações do aluno:', error);
     return res.status(500).json({ error: 'Erro interno ao buscar avaliações do aluno.' });
+  }
+};
+
+exports.downloadPDF = async (req, res) => {
+  try {
+    const { assessmentId } = req.params;
+    const professorId = req.user.id;
+
+    const assessment = await PhysicalAssessment.findOne({
+      where: { 
+        id: assessmentId, 
+        professorId 
+      },
+      include: [
+        { model: Users, as: 'student', attributes: ['name'] }
+      ]
+    });
+
+    if (!assessment) {
+      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+    }
+
+    if (!assessment.filePath || !fs.existsSync(assessment.filePath)) {
+      return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
+    }
+
+    // Gerar nome descritivo para o download
+    const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
+    const date = assessment.assessmentDate.replace(/-/g, '');
+    const fileName = `avaliacao_${studentName}_${date}.pdf`;
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+    
+    const fileStream = fs.createReadStream(assessment.filePath);
+    fileStream.pipe(res);
+
+  } catch (error) {
+    console.error('Erro ao fazer download do PDF:', error);
+    return res.status(500).json({ error: 'Erro interno ao fazer download do arquivo.' });
+  }
+};
+
+exports.viewPDF = async (req, res) => {
+  try {
+    const { assessmentId } = req.params;
+    const professorId = req.user.id;
+
+    const assessment = await PhysicalAssessment.findOne({
+      where: { 
+        id: assessmentId, 
+        professorId 
+      }
+    });
+
+    if (!assessment) {
+      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+    }
+
+    if (!assessment.filePath || !fs.existsSync(assessment.filePath)) {
+      return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
+    }
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'inline');
+    
+    const fileStream = fs.createReadStream(assessment.filePath);
+    fileStream.pipe(res);
+
+  } catch (error) {
+    console.error('Erro ao visualizar PDF:', error);
+    return res.status(500).json({ error: 'Erro interno ao visualizar arquivo.' });
   }
 };

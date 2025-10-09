@@ -806,6 +806,178 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-017 S<br>Cadastro de Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de cadastro da ficha de treino são salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430"> Gabriel Victor </td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-006 Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de Fichas de treino <br>
+      4. Tentar criar nova Ficha de treino<br>
+      4. Checar se nova Ficha de treino foi criada com sucesso no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de fichas de treino com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados válidos na nova ficha de treino<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro de Ficha de treino foram salvos no banco de dados.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-018 S<br>Cadastro de Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de cadastro da ficha de treino foram deletados no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430"> Gabriel Victor </td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-006 Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de Fichas de treino <br>
+      4. Tentar deletar Ficha de treino<br>
+      4. Checar se nova Ficha de treino foi deletada com sucesso no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de fichas de treino com conta Admin válida<br>
+      - <strong>Exercício:</strong> Clicar no botão de deletar<br>
+  </tr>
+    <tr>
+    <td><strong> Critérios de êxito </strong></td>
+    <td> Ficha de treino deletada com sucesso.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-019 I<br>Editar Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste edita os dados da ficha de treino </td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430"> Gabriel Victor </td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-006 Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de Fichas de treino <br>
+      4. Tentar editar a ficha de treino <br>
+      4. Checar se a Ficha de treino foi editada com sucesso <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de fichas de treino com conta Admin válida<br>
+      - <strong>Exercício:</strong> Clicar no botão de editar <br>
+  </tr>
+    <tr>
+    <td><strong> Critérios de êxito </strong></td>
+    <td> Dados da ficha de treino não foram alterados com sucesso. </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-020 S<br>Listar Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste Lista e mostra todos as fichas de treino </td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430"> Gabriel Victor </td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-006 Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de Fichas de treino <br>
+      4. Ver ficha de treino <br>
+      4. Checar se a Ficha de treino esta presente <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de fichas de treino com conta Admin válida<br>
+      - <strong>ação:</strong> Clicar no botão de lista de ficahs de treino <br>
+  </tr>
+    <tr>
+    <td><strong> Critérios de êxito </strong></td>
+    <td> Fichas de treino presente. </td>
+  </tr>
+</table>
+
+</table>
+
+
+
 ### ETAPA 4
 Criar casos de teste da etapa 4
  
@@ -1099,7 +1271,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center">lorem</td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/94808ab0-29c4-4be5-9c58-c20a40718735"></td>
   </tr>
 </table>
 
@@ -1125,7 +1297,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center">lorem</td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/8b713cba-6fa6-461e-98e4-876d9ec3e4c4"></td>
   </tr>
 </table>
 
@@ -1151,7 +1323,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center">lorem</td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/1f38b95f-b44e-487e-a585-603d7458f7f0"></td>
   </tr>
 </table>
 
@@ -1177,7 +1349,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center">lorem</td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/8e376a6e-9b9b-451a-bc92-845b75af30d3"></td>
   </tr>
 </table>
 
@@ -1203,7 +1375,7 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center">lorem</td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/4c700507-75a1-4276-b19e-7a7aee3461b8"></td>
   </tr>
 </table>
 

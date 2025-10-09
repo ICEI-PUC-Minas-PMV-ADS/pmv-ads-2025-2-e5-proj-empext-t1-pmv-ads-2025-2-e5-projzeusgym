@@ -12,6 +12,8 @@ import GerenciarExercicios from './pages/GerenciarExercicios';
 import ManageProfessors from './pages/ManageProfessors';
 import CreateProfessor from './pages/CreateProfessor';
 import EditProfessor from './pages/EditProfessor';
+import GerenciarAvaliacoes from './pages/GerenciarAvaliacoes';
+import UploadAvaliacao from './pages/UploadAvaliacao';
 
 // Componente para proteger rotas (só acessa se estiver autenticado)
 const ProtectedRoute = ({ children }) => {
@@ -99,17 +101,36 @@ function App() {
             }
           />
 
-          <Route
-            path="/cadastraralunos/:id?"
-            element={
-              <ProtectedRoute>
-                <CadastrarAluno />
-              </ProtectedRoute>
-            }
-          />
+          <Route
+            path="/cadastraralunos/:id?"
+            element={
+              <ProtectedRoute>
+                <CadastrarAluno />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Rota padrão redireciona para login */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* ROTAS DE GERENCIAMENTO DE AVALIAÇÕES FÍSICAS */}
+          <Route
+            path="/avaliacoes"
+            element={
+              <ProtectedRoute>
+                <GerenciarAvaliacoes />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/avaliacoes/upload"
+            element={
+              <ProtectedRoute>
+                <UploadAvaliacao />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rota padrão redireciona para login */}
+          <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </AuthProvider>

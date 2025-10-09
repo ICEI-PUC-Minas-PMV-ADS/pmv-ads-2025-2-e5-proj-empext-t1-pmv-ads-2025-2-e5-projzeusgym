@@ -62,14 +62,14 @@ router.get('/alunos/:id', authMiddleware, async (req, res) => {
 });
 
 router.put('/alunos/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+  if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Apenas administradores e professores atualizar os dados de alunos.' });
   }
   await adminManageController.updateAluno(req, res);
 });
 
 router.delete('/alunos/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+  if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Apenas administradores e professores apagar alunos.' });
   }
   await adminManageController.deleteAluno(req, res);
