@@ -932,6 +932,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
   <tr>
     <th colspan="2" width="1000">CT-020 S<br>Listar Ficha de treino</th>
   </tr>
