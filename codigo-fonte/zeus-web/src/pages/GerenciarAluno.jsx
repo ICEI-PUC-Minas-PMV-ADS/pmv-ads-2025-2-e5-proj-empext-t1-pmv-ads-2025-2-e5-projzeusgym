@@ -61,8 +61,10 @@ const GerenciarAluno = () => {
                 } else if (err.response.status === 401) {
                     setError("Sessão expirada ou não autorizada. Por favor, faça login novamente.");
                     logout();
-                } else {
-                    setError(`Erro ${err.response.status}: Falha ao carregar a lista de alunos.`);
+                } else if (err.response.status === 404)  {
+                    setAlunos([]);
+                    setMensagemInformativa("Nenhum aluno cadastrado.");
+                    setError(null);
                 }
             } else {
                 console.error("Erro no fetchAlunos:", err);
