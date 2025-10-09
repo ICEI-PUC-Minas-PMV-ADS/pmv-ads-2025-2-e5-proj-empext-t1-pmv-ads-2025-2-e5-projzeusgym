@@ -961,6 +961,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
       4. Checar se a Ficha de treino esta presente <br>
       </td>
   </tr>
+</table>
 
 
 
