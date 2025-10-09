@@ -1402,9 +1402,92 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/cd5ec6db-1a73-4b69-84d5-f267483d888c"></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/cc3aa1d8-2791-4b8c-84d4-084d96593ef6"></td>
   </tr>
 </table>
+
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-018 S<br>Deletar Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O Sistema deve deletar a ficha de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Gabriel Victor </td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">08/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema deletou a ficha de treino com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/62fda005-6a7c-401a-bb69-21dd3f32e22c"></td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-019 I<br>Editar  Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O Sistema deve permitir editar a ficha de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Gabriel Victor </td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">08/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema permite editar aluno porem os exercícios, rep e series não foram passados.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/1d44d4fe-6b3a-4b74-a9e0-361d9976dbd6"></td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-020 S<br>Listar  Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O Sistema deve permitir o admin Liste todas as ficha de treino.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Gabriel Victor </td>
+    <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">08/10/2025</td>
+  </tr>
+  <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema permite visualizar todas as fichas de treino.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/20fb8c65-b297-4294-b966-c0d49e88adda"></td>
+  </tr>
+</table
+
+
 
 
 ### ETAPA 4
