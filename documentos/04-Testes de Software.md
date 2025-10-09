@@ -995,11 +995,11 @@ Apresente os casos de testes utilizados na realização da verificação e valid
     <td><strong>Dados de teste</strong></td>
     <td>
       - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de fichas de treino com conta Admin válida<br>
-      - <strong>Exercício:</strong> Clicar no botão de editar <br>
+      - <strong>ação:</strong> Clicar no botão de lista de ficahs de treino <br>
   </tr>
     <tr>
     <td><strong> Critérios de êxito </strong></td>
-    <td> Dados da ficha de treino não foram alterados com sucesso. </td>
+    <td> Fichas de treino presente. </td>
   </tr>
 </table>
 
