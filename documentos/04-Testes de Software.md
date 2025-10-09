@@ -850,7 +850,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
 
 <table>
   <tr>
-    <th colspan="2" width="1000">CT-018 S<br>Cadastro de Ficha de treino</th>
+    <th colspan="2" width="1000">CT-018 S<br>Deletar Ficha de treino</th>
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
