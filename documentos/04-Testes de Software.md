@@ -806,6 +806,48 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-017 S<br>Cadastro de Ficha de treino</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se os dados de cadastro da ficha de treino são salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430"> Gabriel Victor </td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>>RF-006 Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Executar frontend, backend e BD.<br>
+      2. Logar e autenticar com o Admin.<br>
+      3. Navegar até o dashboard de gerenciamento de Fichas de treino <br>
+      4. Tentar criar nova Ficha de treino<br>
+      4. Checar se nova Ficha de treino foi criada com sucesso no BD<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Acessar dashboard de gerenciamento de fichas de treino com conta Admin válida<br>
+      - <strong>Exercício:</strong> Inserir dados válidos na nova ficha de treino<br>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>Os dados de cadastro de Ficha de treino foram salvos no banco de dados.</td>
+  </tr>
+</table>
+
 ### ETAPA 4
 Criar casos de teste da etapa 4
  
