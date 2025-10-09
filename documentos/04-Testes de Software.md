@@ -1612,6 +1612,61 @@ A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade d
 
 ### ETAPA 3
 Colocar evidências de teste da etapa 3
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-007 S<br>Cadastrar alunos
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados cadstrados com sucesso do banco de dados..</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Natália Romero Soltau   </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">09/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Cadastro de aluno salvo com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/f5ca3335-7939-4c65-b575-f638362f8246"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-008 I<br>Cadastrar alunos
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Deve ser disparada mensagem que e-mail e/ou cpf já existe no BD.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Natália Romero Soltau   </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">09/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Mensagem disparada de email e CPF já cadastrados</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/84fd4688-78d3-41bc-ace9-477acea7b161"/></td>
+  </tr>
+</table>
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
