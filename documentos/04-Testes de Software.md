@@ -1,5 +1,4 @@
 
-https://github.com/user-attachments/assets/512f967c-40ed-4064-ba05-f3850aebd550
 # Planos de Testes de Software
 
 Apresente os casos de testes utilizados na realização da verificação e validação da aplicação. Escolha cenários de testes que demonstrem os requisitos sendo satisfeitos bem como o tratamento de erros (robustez da aplicação).
