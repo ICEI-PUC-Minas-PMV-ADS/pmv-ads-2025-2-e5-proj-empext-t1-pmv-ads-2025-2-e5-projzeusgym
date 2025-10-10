@@ -12,12 +12,18 @@ html {
 
 }
 
+#root {
+    white-space: normal; 
+    font-size: 0; 
+}
+
 .alunos-container {
     min-height: 100vh;
     background: white;
     max-width: none;
     margin: 0;
     padding: 0;
+    font-size: initial;
 }
 
 .alunos-header {
@@ -29,7 +35,7 @@ html {
     align-items: center;
 }
 
-.header-content {
+.header-content-aluno {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,13 +45,13 @@ html {
     max-width: none !important; 
 }
 
-.icon-group {
+.icon-group-aluno {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-.profile-icon {
+.profile-icon-aluno {
     margin: 0;
     width: 50px;
     height: 50px;
@@ -58,18 +64,18 @@ html {
     box-sizing: border-box;
 }
 
-.button-group {
+.button-group-aluno {
     display: flex;
     gap: 15px;
     align-items: center;
     justify-content: flex-start;
 }
 
-.header-btn:hover {
+.header-btn-aluno:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
-.header-btn {
+.header-btn-aluno {
     margin: 0;
     color: black !important;
     font-size: 16px;
@@ -86,20 +92,20 @@ html {
     padding: 40px 0;
 }
 
-.content-wrapper {
+.content-wrapper-aluno {
     padding: 0 40px;
     /* 20px de espaço nas laterais */
 }
 
 /* --- Cabeçalho --- */
-.main-header {
+.main-header-aluno {
     margin-bottom: 20px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
 
-.main-title {
+.main-title-aluno {
     font-size: 50px;
     font-weight: bold;
     color: #444;
@@ -129,7 +135,7 @@ html {
 }
 
 /* --- Barra de pesquisa --- */
-.search-container {
+.search-container-aluno {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
@@ -239,12 +245,12 @@ html {
     text-align: center;
     padding: 20px;
     color: #666;
-    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
 /* 1. ESTILOS DO RODAPÉ (FOOTER) */
-.app-footer {
+.app-footer-aluno {
     background-color: #E2760A !important;
     color: white;
     height: 60px;
@@ -264,7 +270,7 @@ html {
 }
 
 /* Popup Deletar Aluno */
-.modal-overlay {
+.modal-overlay-aluno {
     position: fixed;
     top: 0;
     left: 0;
@@ -278,7 +284,7 @@ html {
 }
 
 /* CONTEÚDO DO MODAL (O box branco/cinza) */
-.modal-content {
+.modal-content-aluno {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -289,7 +295,7 @@ html {
     flex-direction: column;
 }
 
-.modal-header {
+.modal-header-aluno {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -298,14 +304,14 @@ html {
     padding-bottom: 10px;
 }
 
-.modal-title {
+.modal-title-aluno {
     font-size: 1.2rem;
     font-weight: 600;
     color: #333;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.modal-close-btn {
+.modal-close-btn-aluno {
     background: none;
     border: none;
     font-size: 1.2rem;
@@ -314,11 +320,11 @@ html {
     transition: color 0.2s;
 }
 
-.modal-close-btn:hover {
+.modal-close-btn-aluno:hover {
     color: #333;
 }
 
-.modal-body {
+.modal-body-aluno {
     margin-bottom: 25px;
     font-size: 1rem;
     color: #555;
@@ -326,13 +332,13 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.modal-footer {
+.modal-footer-aluno {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
 }
 
-.modal-btn {
+.modal-btn-aluno {
     padding: 10px 25px;
     border: none;
     border-radius: 4px;

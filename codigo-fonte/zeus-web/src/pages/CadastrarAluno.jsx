@@ -113,11 +113,11 @@ const CadastrarAluno = () => {
     return (
         <div className="alunos-container">
             <header className="alunos-header">
-                <div className="header-content">
-                    <div className="button-group">
-                        <button className="header-btn">Gerenciar Exercícios</button>
-                        <button className="header-btn">Gerenciar Professores</button>
-                        <button className="header-btn">Gerenciar Alunos</button>
+                <div className="header-content-aluno">
+                    <div className="button-group-aluno">
+                        <button className="header-btn-aluno">Gerenciar Exercícios</button>
+                        <button className="header-btn-aluno">Gerenciar Professores</button>
+                        <button className="header-btn-aluno">Gerenciar Alunos</button>
                     </div>
                     <div className="icon-group">
                         <div className="profile-icon">
@@ -131,44 +131,44 @@ const CadastrarAluno = () => {
                 </div>
             </header>
             <main className="alunos-main">
-                <div className="header-main">
+                <div className="header-main-aluno">
                     {isEditing ? 'Editar Aluno' : 'Cadastrar novo aluno'}
                 </div>
                 <form className="cadastro-aluno-form" onSubmit={handleSalvar}>
-                   <div className="form-row">
-                        <div className="form-group">
+                   <div className="form-row-aluno">
+                        <div className="form-group-aluno">
                             <label htmlFor="name">Nome</label>
                             <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
 
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-aluno">
                             <label htmlFor="cpf">CPF</label>
                             <input type="text" id="cpf" name="cpf" value={formData.cpf} onChange={handleChange} required />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-aluno">
                             <label htmlFor="email">E-mail</label>
                             <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                         </div>
                     </div>
 
-                    <div className="form-row">
-                        <div className="form-group">
+                    <div className="form-row-aluno">
+                        <div className="form-group-aluno">
                             <label htmlFor="birthdate">Data de nascimento</label>
                             <input type="date" id="birthdate" name="birthdate" value={formData.birthdate} onChange={handleChange} required />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-aluno">
                             <label htmlFor="cellphone">Celular</label>
                             <input type="tel" id="cellphone" name="cellphone" value={formData.cellphone} onChange={handleChange} required />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-aluno">
                             {!isEditing && (
-                                <p className="info-text">A senha inicial será gerada e enviada por e-mail.</p>
+                                <p className="info-text-aluno">A senha inicial será gerada e enviada por e-mail.</p>
                             )}
                         </div>
                     </div>
 
-                    <div className="form-row">
-                        <div className="form-group">
+                    <div className="form-row-aluno">
+                        <div className="form-group-aluno">
                             <label htmlFor="gender">Sexo</label>
                             <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
                                 <option value="">Selecione</option>
@@ -177,25 +177,25 @@ const CadastrarAluno = () => {
                                 <option value="outro">Outro</option>
                             </select>
                         </div>
-                        <div className="form-group large-textarea">
+                        <div className="form-group-aluno large-textarea">
                             <label htmlFor="restriction">Possui alguma restrição?</label>
                             <textarea id="restriction" name="restriction" value={formData.restriction} onChange={handleChange} rows="4"></textarea>
                         </div>
-                        <div className="form-group placeholder-group"></div>
+                        <div className="form-group-aluno placeholder-group"></div>
                     </div>
 
-                    <div className="form-actions">
-                        <button type="button" className="btn btn-cancelar" onClick={handleCancelar}>
+                    <div className="form-actions-aluno">
+                        <button type="button" className="btn-aluno btn-cancelar-aluno" onClick={handleCancelar}>
                             Cancelar
                         </button>
-                        <button type="submit" className="btn btn-salvar">
+                        <button type="submit" className="btn-aluno btn-salvar-aluno">
                             Salvar
                         </button>
                     </div>
                 </form>
             </main>
 
-            <footer className="app-footer">
+            <footer className="app-footer-aluno">
             </footer>
 
         </div>

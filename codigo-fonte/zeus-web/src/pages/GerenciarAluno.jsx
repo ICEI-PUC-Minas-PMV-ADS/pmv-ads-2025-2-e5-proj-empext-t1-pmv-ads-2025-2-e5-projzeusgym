@@ -26,6 +26,10 @@ const GerenciarAluno = () => {
         navigate('/gerenciarexercicio');
     };
 
+    const paginaInicial = () => {
+        navigate('/dashboard');
+    };
+
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -138,18 +142,19 @@ const GerenciarAluno = () => {
     return (
         <div className="alunos-container">
             <header className="alunos-header">
-                <div className="header-content">
-                    <div className="button-group">
-                        <button className="header-btn" onClick={gerenciarExercicio}>Gerenciar Exercícios</button>
-                        <button className="header-btn" onClick={gerenciarProf}>Gerenciar Professores</button>
-                        <button className="header-btn">Gerenciar Alunos</button>
+                <div className="header-content-aluno">
+                    <div className="button-group-aluno">
+                        <button className="header-btn-aluno" onClick={gerenciarExercicio}>Gerenciar Exercícios</button>
+                        <button className="header-btn-aluno" onClick={gerenciarProf}>Gerenciar Professores</button>
+                        <button className="header-btn-aluno">Gerenciar Alunos</button>
                     </div>
-                    <div className="icon-group">
-                        <div className="profile-icon">
+                    <div className="icon-group-aluno">
+                        <div className="profile-icon-aluno">
                             <a href="#"> <img
                                 src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                                 alt="Perfil"
                                 className="profile-image"
+                                onClick={paginaInicial}
                             /> </a>
                         </div>
                     </div>
@@ -157,9 +162,9 @@ const GerenciarAluno = () => {
             </header>
 
             <main className="alunos-main">
-                <div className="content-wrapper">
-                    <div className="main-header">
-                        <h2 className="main-title">Alunos</h2>
+                <div className="content-wrapper-aluno">
+                    <div className="main-header-aluno">
+                        <h2 className="main-title-aluno">Alunos</h2>
                         <button className="add-aluno-btn"
                             onClick={cadastrarAluno}>
                             <FaPlus className="add-icon" />
@@ -167,7 +172,7 @@ const GerenciarAluno = () => {
                         </button>
                     </div>
 
-                    <div className="search-container">
+                    <div className="search-container-aluno">
                         <input
                             type="text"
                             placeholder="Procurar"
@@ -184,8 +189,7 @@ const GerenciarAluno = () => {
                             <div key={aluno.id} className="aluno-item">
                                 <span className="aluno-name">{aluno.name}</span>
                                 <div className="aluno-actions">
-                                    {/* Botões visíveis apenas se tiver permissão de admin/professor */}
-                                    {(user?.role === 'admin' || user?.role === 'professor') && (
+                                    {(user?.role === 'admin') && (
                                         <>
                                             <button
                                                 className="action-btn delete-btn"
@@ -210,27 +214,27 @@ const GerenciarAluno = () => {
                 </div>
             </main>
 
-            <footer className="app-footer">
+            <footer className="app-footer-aluno">
 
             </footer>
 
             {alunoToDelete && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h3 className="modal-title">Deletar aluno</h3>
-                            <button className="modal-close-btn" onClick={closeDeleteModal}>
+                <div className="modal-overlay-aluno">
+                    <div className="modal-content-aluno">
+                        <div className="modal-header-aluno">
+                            <h3 className="modal-title-aluno">Deletar aluno</h3>
+                            <button className="modal-close-btn-aluno" onClick={closeDeleteModal}>
                                 <FaTimes />
                             </button>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body-aluno">
                             <p>Tem certeza que deseja apagar o aluno <strong>{alunoToDelete.name}</strong>?</p>
                         </div>
-                        <div className="modal-footer">
-                            <button className="modal-btn btn-nao" onClick={closeDeleteModal}>
+                        <div className="modal-footer-aluno">
+                            <button className="modal-btn-aluno btn-nao" onClick={closeDeleteModal}>
                                 Não
                             </button>
-                            <button className="modal-btn btn-sim" onClick={confirmDelete}>
+                            <button className="modal-btn-aluno btn-sim" onClick={confirmDelete}>
                                 Sim
                             </button>
                         </div>
