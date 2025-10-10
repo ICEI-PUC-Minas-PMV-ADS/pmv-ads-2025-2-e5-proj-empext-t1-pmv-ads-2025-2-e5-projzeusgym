@@ -23,7 +23,7 @@ const GerenciarAluno = () => {
     };
 
     const gerenciarExercicio = () => {
-        navigate('/gerenciarexercicio');
+        navigate('/gerenciarexercicios');
     };
 
     const paginaInicial = () => {

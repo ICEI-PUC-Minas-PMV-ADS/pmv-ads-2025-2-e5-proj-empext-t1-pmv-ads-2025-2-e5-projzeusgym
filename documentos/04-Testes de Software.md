@@ -1612,6 +1612,147 @@ A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade d
 
 ### ETAPA 3
 Colocar evidências de teste da etapa 3
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-004 S<br>Cadastrar exercicio
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Os dados de cadastro de exercícios salvos no banco de dados.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">10/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Cadastro de exercicio salvo com sucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-004 I<br>Cadastrar exercicio
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve disparar uma mensagem de erro e não cadastrar o exercício inválido.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">10/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Disparou uma mensagem de erro.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-005 S<br>Editar de exercicio
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Os dados de cadastro de exercícios editados e salvos no banco de dados.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">10/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Os dados de exercícios foram editados e salvos no banco de dados.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-005 I<br>Editar de exercicio
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve disparar uma mensagem de erro e não editar o exercício inválido.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">10/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Disparou uma mensagem de erro.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-006 S<br>Excluir de exercicio
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados excluídos com sucesso do banco de dados.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">10/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O exercicio foi excluido corretamente</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
+
 <table>
   <tr>
     <th colspan="6" width="1000">CT-007 S<br>Cadastrar alunos
