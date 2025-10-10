@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/512f967c-40ed-4064-ba05-f3850aebd550
 # Planos de Testes de Software
 
 Apresente os casos de testes utilizados na realização da verificação e validação da aplicação. Escolha cenários de testes que demonstrem os requisitos sendo satisfeitos bem como o tratamento de erros (robustez da aplicação).
@@ -1637,7 +1639,7 @@ Colocar evidências de teste da etapa 3
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=""/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/b0cef80c-9a91-46c5-b24e-6b402b780eca"/></td>
   </tr>
 </table>
 
@@ -1665,7 +1667,7 @@ Colocar evidências de teste da etapa 3
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=""/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/b60a1a79-9a92-4d5c-bad2-83e27e1d9ac6"/></td>
   </tr>
 </table>
 
@@ -1693,7 +1695,7 @@ Colocar evidências de teste da etapa 3
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=""/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/3af9ac67-ad72-4ca1-a4a4-d6c73e45d9fe"/></td>
   </tr>
 </table>
 
@@ -1715,13 +1717,13 @@ Colocar evidências de teste da etapa 3
   </tr>
     <tr>
     <td width="170"><strong>Comentário</strong></td>
-    <td colspan="5">Disparou uma mensagem de erro.</td>
+    <td colspan="5">O sistema não permitiu editar, porém não disparou nenhuma mensagem</td>
   </tr>
   <tr>
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=""/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/3bac333e-fcfc-4457-8109-e3e4272d53d0"/></td>
   </tr>
 </table>
 
@@ -1749,7 +1751,7 @@ Colocar evidências de teste da etapa 3
     <td colspan="6" align="center"><strong>Evidência</strong></td>
   </tr>
   <tr>
-    <td colspan="6" align="center"><video src=""/></td>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/29ca6804-fd45-4620-a50c-c52c455d3ca7"/></td>
   </tr>
 </table>
 
