@@ -10,10 +10,16 @@ ESTILOS DO FOOTER
 =================================================== */
 
 .app-footer {
-    background-color: var(--color-primary-aluno);
+    background-color: var(--color-primary-aluno) !important;
     color: white; 
     height: 60px; /* Altura da faixa laranja */
     width: 100%;
     z-index: 10;
     position: fixed; bottom: 0; 
 }
+.app-footer p {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}   

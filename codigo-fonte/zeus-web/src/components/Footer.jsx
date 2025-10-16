@@ -6,7 +6,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer className="app-footer">
-            {/* O conteúdo do rodapé pode ser adicionado aqui, se houver */}
+            <p>© 2023 Zeus Gym. Todos os direitos reservados.</p>
         </footer>
     );
 };

@@ -92,7 +92,7 @@ const ManageProfessors = () => {
             <header className="layout-header">
                 <div className="header-content">
                     <div className="button-group">
-                        <button className="header-btn" onClick={() => handleNavigate('/exercicios')}>Gerenciar Exercícios</button>
+                        <button className="header-btn" onClick={() => handleNavigate('/gerenciarexercicios')}>Gerenciar Exercícios</button>
                         <button className="header-btn active" onClick={() => handleNavigate('/professores')}>Gerenciar Professores</button>
                         <button className="header-btn" onClick={() => handleNavigate('/alunos')}>Gerenciar Alunos</button>
                     </div>
