@@ -16,7 +16,7 @@
 .professor-layout-container { 
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o footer vá para o fim da tela */
+    min-height: 100vh; 
     background: white; 
     max-width: none;
     margin: 0;
@@ -111,7 +111,7 @@
 /* 2. ESTILOS DO CARD E DA TABELA (SEUS ORIGINAIS) */
 /* ================================================= */
 
-/* manage-container: É o seu CARD BRANCO que estava bom */
+/* manage-container: É o seu CARD estava bom */
 .manage-container {
     max-width: 1200px;
     margin: 0 auto; /* Centraliza no espaço do layout-main */
