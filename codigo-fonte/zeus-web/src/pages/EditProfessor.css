@@ -1,0 +1,246 @@
+/*==================================
+  ESTILOS GLOBAIS / LAYOUT BASE
+  (Copied from CadastrarAluno.css)
+====================================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.alunos-container {
+    display: flex; /* Adicionado para layout column */
+    flex-direction: column; /* Garante que main/footer fiquem em colunas */
+    min-height: 100vh;
+    background: #f0f2f5; /* Fundo mais claro para o corpo, como na imagem */
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*==================================
+  HEADER E NAVEGAÇÃO
+====================================*/
+.alunos-header {
+    background: #E2760A; /* Cor Laranja */
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content-aluno {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-group-aluno {
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+}
+
+.header-btn-aluno {
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    background-color: #ABABAB;
+    padding: 10px 32px;
+    border-radius: 12px;
+    border-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.header-btn-aluno:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* ESTILO PARA O BOTÃO ATIVO (Gerenciar Professores) */
+.header-btn-aluno.active {
+    background-color: white; /* Cor de fundo para botão ativo */
+    color: #E2760A; /* Cor da fonte para botão ativo */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.icon-group {
+    display: flex;
+    /* Ajustei a posição para ser relativa ao header-content-aluno */
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffd166;
+    box-sizing: border-box;
+    overflow: hidden; /* Garante que a imagem se encaixe */
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*==================================
+  MAIN E CONTEÚDO PRINCIPAL
+====================================*/
+.alunos-main {
+    flex-grow: 1; /* Permite que o conteúdo principal cresça */
+    max-width: 100%;
+    padding: 40px 30px;
+}
+
+/* Título principal da página */
+.header-main-aluno {
+    font-size: 40px;
+    font-weight: 400;
+    color: #444;
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: Verdana;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+/* CARD CONTAINER (Onde o formulário fica) */
+.card-professor {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px; 
+    margin: 0 auto; /* Centraliza o card */
+}
+
+/* ESTILOS DE MENSAGENS (Sucesso/Erro) */
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.success-msg {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-msg {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.loading-msg, .error-msg-full {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+/*==================================
+  ESTILOS DO PROFESSOR FORM (Reutilizados)
+  Assumindo que o ProfessorForm usa estas classes
+====================================*/
+
+/* Reutilizando as classes de ação e botão do CadastrarAluno para o "Voltar" */
+.form-actions-aluno {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid black;
+}
+
+/* Estilo Base do Botão */
+.btn-aluno {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 120px;
+    transition: opacity 0.2s, background-color 0.2s;
+    text-transform: uppercase;
+}
+
+/* Botão Cancelar/Voltar (Vermelho no CadastrarAluno, usado para Voltar aqui) */
+.btn-cancelar-aluno {
+    background-color: #6c757d; /* Cinza para "Voltar" (Mais neutro que vermelho) */
+    color: white;
+    text-transform: none; /* Não precisa de uppercase para "Voltar" */
+}
+
+.btn-cancelar-aluno:hover {
+    background-color: #5a6268;
+}
+
+/*==================================
+  FOOTER
+====================================*/
+.app-footer-aluno {
+    background-color: #E2760A; 
+    color: white; 
+    height: 60px; 
+    width: 100%;
+    z-index: 10;
+}
+
+
+/*==================================
+  RESPONSIVIDADE (Ajustada)
+====================================*/
+@media (max-width: 768px) {
+    .alunos-main {
+        padding: 20px 15px;
+    }
+
+    .header-content-aluno {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .icon-group {
+        position: static;
+    }
+
+    .button-group-aluno {
+        flex-wrap: wrap;
+    }
+
+    .header-main-aluno {
+        font-size: 30px;
+    }
+
+    .form-actions-aluno {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-aluno {
+        min-width: 100%;
+    }
+}

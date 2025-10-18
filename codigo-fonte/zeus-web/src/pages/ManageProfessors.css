@@ -1,31 +1,36 @@
 /* src/pages/ManageProfessors.css */
 
-/* ================================================= */
-/* 1. VARIÁVEIS DE COR E LAYOUT PRINCIPAL (LARANJA) */
-/* ================================================= */
-
-:root {
-    --color-orange: #E2760A; /* Cor Laranja Principal */
-    --color-primary: #E2760A; /* Garante que os botões usem a cor */
-    --color-secondary: #ABABAB; /* Cinza dos botões não ativos */
-    --color-text-light: white;
-    --color-text-dark: #333;
+/* Removendo estilos globais desnecessários do CSS anterior */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* CONTAINER GERAL (Para fixar Header e Footer) */
-.professor-layout-container { 
-    display: flex;
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ================================================= */
+/* ESTILOS DE LAYOUT (PADRÃO NATÁLIA) */
+/* ================================================= */
+
+.alunos-container {
+    display: flex; /* Adicionado para garantir o layout de coluna */
     flex-direction: column;
-    min-height: 100vh; 
-    background: white; 
+    min-height: 100vh;
+    background: white;
     max-width: none;
     margin: 0;
     padding: 0;
 }
 
 /* HEADER LARANJA */
-.layout-header {
-    background: var(--color-orange);
+.alunos-header {
+    background: #E2760A; /* Laranja do ZeusGym */
     width: 100%;
     padding: 10px 20px;
     display: flex;
@@ -33,54 +38,56 @@
     align-items: center;
 }
 
-.header-content {
+.header-content-aluno {
     width: 100%;
-    margin: 0 auto; 
+    margin: 0;
     padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.button-group {
+.button-group-aluno {
     display: flex;
     gap: 15px;
     justify-content: start;
 }
 
-.header-btn {
+.header-btn-aluno {
+    margin: 0;
     color: black;
     font-size: 16px;
-    background-color: var(--color-secondary);
+    background-color: #ABABAB; /* Cinza */
     padding: 10px 32px;
     border-radius: 12px;
     border-color: transparent;
     cursor: pointer;
-    transition: box-shadow 0.3s, background-color 0.2s;
 }
 
-.header-btn:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+.header-btn-aluno:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
-.header-btn.active {
-    background-color: white; 
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+.header-btn-aluno.active {
+    background-color: white; /* Cor do botão ativo (se aplicável) */
 }
 
-.icon-group { 
+.icon-group {
     display: flex;
+    position: absolute;
+    right: 20px;
 }
 
 .profile-icon {
+    margin: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background: white;
-    border: 2px solid #ffd166;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #ffd166;
     box-sizing: border-box;
 }
 
@@ -91,24 +98,36 @@
     object-fit: cover;
 }
 
-/* CONTEÚDO PRINCIPAL (Main) */
-.layout-main {
-    flex-grow: 1; 
+/* CONTEÚDO PRINCIPAL */
+.alunos-main {
+    flex-grow: 1; /* Garante que o main ocupe o espaço restante */
     max-width: 100%;
-    padding: 40px 30px; /* Espaço entre o Header/Footer e o Card Branco */
+    padding: 40px 30px;
+}
+
+/* TÍTULO PRINCIPAL */
+.header-main-aluno {
+    font-size: 40px;
+    font-weight: 400;
+    color: #444;
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: Verdana;
 }
 
 /* FOOTER LARANJA */
-.layout-footer {
-    background-color: var(--color-orange); 
-    height: 60px; 
+.app-footer-aluno {
+    background-color: #E2760A;
+    color: white;
+    height: 60px;
     width: 100%;
-    margin-top: auto; /* Empurra para o final */
+    z-index: 10;
+    margin-top: auto; /* Empurra para o final da página */
 }
 
 
 /* ================================================= */
-/* 2. ESTILOS DO CARD E DA TABELA (SEUS ORIGINAIS) */
+/* ESTILOS ESPECÍFICOS DE MANAGEPROFESSORS (SEU CÓDIGO) */
 /* ================================================= */
 
 /* manage-container: É o seu CARD estava bom */
@@ -116,16 +135,14 @@
     max-width: 1200px;
     margin: 0 auto; /* Centraliza no espaço do layout-main */
     padding: 20px;
-    background-color: var(--color-secondary);
+    background-color: #ABABAB; /* Mantendo o cinza do seu código anterior */
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .manage-container h2 {
-    color: var(--color-text-dark);
-    margin-bottom: 25px;
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: 10px;
+    /* Removido o h2 duplicado, mas mantendo o estilo caso você o use */
+    display: none; /* Já temos o header-main-aluno, vamos esconder este */
 }
 
 /* Header de Ações (Botão + Cadastrar) */
@@ -136,8 +153,8 @@
 }
 
 .btn-add-professor {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
+    background-color: #E2760A;
+    color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -165,8 +182,8 @@
 }
 
 .professors-table th {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
+    background-color: #E2760A;
+    color: white;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.9em;

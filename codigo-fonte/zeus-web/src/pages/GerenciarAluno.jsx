@@ -11,6 +11,7 @@ const GerenciarAluno = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [alunoToDelete, setAlunoToDelete] = useState(null);
+    const [mensagemInformativa, setMensagemInformativa] = useState(null); // ✅ CORREÇÃO CRUCIAL AQUI!
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -34,12 +35,12 @@ const GerenciarAluno = () => {
         setSearchTerm(event.target.value);
     };
 
-      const normalizeString = (str) => {
+    const normalizeString = (str) => {
         return str
             .toLowerCase()
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, "");
-      };
+    };
 
     const filteredAlunos = alunos.filter(aluno => { 
         const normalizedName = normalizeString(aluno.name);
@@ -52,10 +53,10 @@ const GerenciarAluno = () => {
     const fetchAlunos = useCallback(async () => {
         setIsLoading(true);
         setError(null);
+        setMensagemInformativa(null); // Limpa a mensagem ao recarregar
 
         try {
             const response = await api.get('/admin/alunos');
-            console.log(alunos)
             setAlunos(response.data);
 
         } catch (err) {
@@ -65,9 +66,9 @@ const GerenciarAluno = () => {
                 } else if (err.response.status === 401) {
                     setError("Sessão expirada ou não autorizada. Por favor, faça login novamente.");
                     logout();
-                } else if (err.response.status === 404)  {
+                } else if (err.response.status === 404)  {
                     setAlunos([]);
-                    setMensagemInformativa("Nenhum aluno cadastrado.");
+                    setMensagemInformativa("Nenhum aluno cadastrado."); 
                     setError(null);
                 }
             } else {
@@ -209,7 +210,7 @@ const GerenciarAluno = () => {
                             </div>
                         ))
                     ) : (
-                        <p className="no-alunos-message">Nenhum aluno cadastrado.</p>
+                        <p className="no-alunos-message">{mensagemInformativa || 'Nenhum aluno cadastrado.'}</p>
                     )}
                 </div>
             </main>

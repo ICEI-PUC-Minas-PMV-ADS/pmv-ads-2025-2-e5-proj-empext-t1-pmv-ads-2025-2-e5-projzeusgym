@@ -5,9 +5,14 @@ import Dashboard from './pages/Dashboard';
 import GerenciarAluno from './pages/GerenciarAluno';
 import CadastrarAluno from './pages/CadastrarAluno';
 
+// Componentes NOVOS e/ou AJUSTADOS para Fichas
+import ManageFichasTreino from './pages/ManageFichasTreino'; // Rota base /fichas-treino (Tabela)
+import CadastroFichaTreino from './pages/CadastroFichaTreino'; // Rota /cadastrar-ficha
+// ** Novos componentes a serem criados **
+import EditFichaTreino from './pages/EditFichaTreino'; // Rota /fichas-treino/:id/edit
+import ViewFichaTreino from './pages/ViewFichaTreino'; // Rota /fichas-treino/:id/view
 
-// Ajuste o caminho './pages/' se seus arquivos estiverem em outro lugar
-import CadastroFichaTreino from './pages/CadastroFichaTreino'; 
+// Componentes existentes
 import GerenciarExercicios from './pages/GerenciarExercicios'; 
 import ManageProfessors from './pages/ManageProfessors';
 import CreateProfessor from './pages/CreateProfessor';
@@ -42,11 +47,43 @@ function App() {
           />
 
           {/* ROTAS DE GERENCIAMENTO DE FICHAS DE TREINO */}
+          
+          {/* 1. Rota de Listagem/Gerenciamento (ManageFichasTreino) */}
           <Route
             path="/fichas-treino" 
             element={
               <ProtectedRoute>
+                <ManageFichasTreino /> {/* ✅ APONTA PARA A TELA DE TABELA/LISTAGEM */}
+              </ProtectedRoute>
+            }
+          />
+
+          {/* 2. Rota de Cadastro de Nova Ficha */}
+          <Route
+            path="/cadastrar-ficha" 
+            element={
+              <ProtectedRoute>
                 <CadastroFichaTreino /> 
+              </ProtectedRoute>
+            }
+          />
+
+          {/* 3. Rota de Edição (Usa parâmetro ':id') */}
+          <Route
+            path="/fichas-treino/:id/edit"
+            element={
+              <ProtectedRoute>
+                <EditFichaTreino /> {/* ✅ NOVO COMPONENTE */}
+              </ProtectedRoute>
+            }
+          />
+
+          {/* 4. Rota de Visualização (Usa parâmetro ':id') */}
+          <Route
+            path="/fichas-treino/:id/view"
+            element={
+              <ProtectedRoute>
+                <ViewFichaTreino /> {/* ✅ NOVO COMPONENTE */}
               </ProtectedRoute>
             }
           />
@@ -101,36 +138,36 @@ function App() {
             }
           />
 
-          <Route
-            path="/cadastraralunos/:id?"
-            element={
-              <ProtectedRoute>
-                <CadastrarAluno />
-              </ProtectedRoute>
-            }
-          />
+          <Route
+            path="/cadastraralunos/:id?"
+            element={
+              <ProtectedRoute>
+                <CadastrarAluno />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* ROTAS DE GERENCIAMENTO DE AVALIAÇÕES FÍSICAS */}
-          <Route
-            path="/avaliacoes"
-            element={
-              <ProtectedRoute>
-                <GerenciarAvaliacoes />
-              </ProtectedRoute>
-            }
-          />
+          {/* ROTAS DE GERENCIAMENTO DE AVALIAÇÕES FÍSICAS */}
+          <Route
+            path="/avaliacoes"
+            element={
+              <ProtectedRoute>
+                <GerenciarAvaliacoes />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route
-            path="/avaliacoes/upload"
-            element={
-              <ProtectedRoute>
-                <UploadAvaliacao />
-              </ProtectedRoute>
-            }
-          />
+          <Route
+            path="/avaliacoes/upload"
+            element={
+              <ProtectedRoute>
+                <UploadAvaliacao />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Rota padrão redireciona para login */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* Rota padrão redireciona para login */}
+          <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </AuthProvider>

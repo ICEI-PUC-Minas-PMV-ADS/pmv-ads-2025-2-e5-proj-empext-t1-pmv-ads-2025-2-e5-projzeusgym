@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import './ManageProfessors.css'; 
+// Importações de Header e Footer ANTIGAS (se houver) foram REMOVIDAS.
 
 const ManageProfessors = () => {
     const navigate = useNavigate();
     
-    // ✅ 1. VARIÁVEIS DE ESTADO DEFINIDAS NO TOPO (Corrigido o ReferenceError)
     const [professors, setProfessors] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
@@ -33,7 +33,7 @@ const ManageProfessors = () => {
         } catch (err) {
             if (err.response && (err.response.status === 401 || err.response.status === 403)) {
                 setError("Acesso negado ou token expirado. Faça login novamente.");
-                navigate('/adminlogin');
+                // navigate('/adminlogin'); // Não navegaremos aqui para evitar loops, mas esta é a lógica
             } else {
                 setError("Erro ao carregar professores. Tente novamente.");
             }
@@ -79,22 +79,21 @@ const ManageProfessors = () => {
     };
 
 
-    // ✅ 2. RENDERIZAÇÃO CONDICIONAL (Agora 'loading' e 'error' estão definidas)
     if (loading && !professors.length) return <p className="loading-msg">Carregando professores...</p>;
     if (error && !professors.length) return <p className="error-msg">{error}</p>;
 
 
     return (
-        // ✅ 3. ENVOLVIMENTO COM LAYOUT LARANJA
-        <div className="professor-layout-container"> 
+        // Usando o container do padrão Natália (alunos-container)
+        <div className="alunos-container"> 
             
-            {/* HEADER LARANJA */}
-            <header className="layout-header">
-                <div className="header-content">
-                    <div className="button-group">
-                        <button className="header-btn" onClick={() => handleNavigate('/exercicios')}>Gerenciar Exercícios</button>
-                        <button className="header-btn active" onClick={() => handleNavigate('/professores')}>Gerenciar Professores</button>
-                        <button className="header-btn" onClick={() => handleNavigate('/alunos')}>Gerenciar Alunos</button>
+            {/* HEADER (Padrão Natália) */}
+            <header className="alunos-header">
+                <div className="header-content-aluno">
+                    <div className="button-group-aluno">
+                        <button className="header-btn-aluno" onClick={() => handleNavigate('/exercicios')}>Gerenciar Exercícios</button>
+                        <button className="header-btn-aluno active" onClick={() => handleNavigate('/professores')}>Gerenciar Professores</button>
+                        <button className="header-btn-aluno" onClick={() => handleNavigate('/alunos')}>Gerenciar Alunos</button>
                     </div>
                     <div className="icon-group">
                         <div className="profile-icon">
@@ -108,13 +107,15 @@ const ManageProfessors = () => {
                 </div>
             </header>
 
-            {/* MAIN: Envolve o card de listagem */}
-            <main className="layout-main">
+            {/* MAIN (Seu conteúdo de gerenciamento) */}
+            <main className="alunos-main">
                 
-                {/* 🛑 CARD BRANCO ORIGINAL (manage-container) MANTIDO */}
+                <div className="header-main-aluno">
+                    Gerenciamento de Professores
+                </div>
+                
+                {/* Seu card branco de gerenciamento */}
                 <div className="manage-container">
-                    
-                    <h2>Gerenciamento de Professores</h2>
                     
                     {/* Botões de Ação */}
                     <div className="actions-header">
@@ -164,8 +165,8 @@ const ManageProfessors = () => {
 
             </main>
 
-            {/* FOOTER LARANJA */}
-            <footer className="layout-footer">
+            {/* FOOTER (Padrão Natália) */}
+            <footer className="app-footer-aluno">
             </footer>
         </div>
     );

@@ -1,261 +1,335 @@
-/* Container principal: centraliza a tela verticalmente, se necessário, e define a área de conteúdo */
-.ficha-main-container {
+/* ================================================= */
+/* ============== 1. ESTILOS GERAIS/LAYOUT ============== */
+/* ================================================= */
+
+.alunos-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f5f5f5; /* Cor de fundo da área principal, como nas imagens */
+    background-color: #f4f4f4; /* Fundo cinza claro */
 }
 
-/* Área de conteúdo: garante que o conteúdo fique no centro horizontal e empurra o footer para baixo */
-.ficha-content-area {
-    flex-grow: 1; /* Permite que ocupe o espaço restante */
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente o card */
-    padding: 30px 20px;
-}
-
-/* O "card" branco onde o formulário ou lista fica */
-.ficha-content-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 1100px; /* Largura máxima, ajustável */
+/* --- Main Content (Conteúdo Principal) --- */
+.alunos-main {
+    flex-grow: 1;
+    padding: 20px 40px;
+    max-width: 1200px;
     width: 100%;
-    padding: 30px;
-    margin: 0; /* Remove margens que possam causar overflow */
+    margin: 0 auto; /* Centraliza o conteúdo */
 }
 
-/* Título principal e controle de listagem/cadastro */
-.list-controls {
+.header-main-aluno {
+    color: #333;
+    border-bottom: 2px solid #E2760A; /* Linha de destaque */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Card Principal que engloba o formulário/dados */
+.ficha-content-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================================= */
+/* ============== 2. ESTILOS DO HEADER ============== */
+/* ================================================= */
+
+.alunos-header {
+    background-color: #333; /* Fundo escuro */
+    color: white;
+    padding: 15px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.header-content-aluno {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #ff9933; /* Linha laranja abaixo do título */
-    padding-bottom: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.section-title {
-    color: #4a4a4a;
-    font-size: 24px;
-    margin: 0;
+.button-group-aluno {
+    display: flex;
+    gap: 10px;
 }
 
-/* Formulário e Grupos */
+.header-btn-aluno {
+    background-color: transparent;
+    color: white;
+    border: 2px solid transparent; /* Borda transparente */
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.header-btn-aluno:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #E2760A;
+}
+
+.header-btn-aluno.active {
+    background-color: #E2760A; /* Cor de destaque (Laranja/Amarelo) */
+    border-color: #E2760A;
+    font-weight: bold;
+}
+
+.profile-icon {
+    /* Estilo para o ícone de perfil (se houver) */
+    background: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    line-height: 1;
+}
+
+/* ================================================= */
+/* ============== 3. ESTILOS DE FORMULÁRIO E LISTA ============== */
+/* ================================================= */
+
 .ficha-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* CORREÇÃO 1: Ajustado para 2 colunas para alinhar Título e Aluno */
-.form-group-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colunas para Título e Aluno */
-    gap: 20px;
+.form-group {
+    margin-bottom: 10px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
-    color: #666;
+    font-weight: 600;
+    color: #555;
 }
 
 .form-group input[type="text"],
 .form-group input[type="number"],
-.form-group select,
-.form-group textarea {
+.form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
     font-size: 16px;
 }
 
-.form-group input:disabled,
-.form-group select:disabled,
-.form-group textarea:disabled {
-    background-color: #e9ecef; /* Fundo cinza para campos desabilitados/somente leitura */
-    color: #495057;
-    cursor: not-allowed;
-}
-
-.form-group textarea {
-    resize: vertical;
+.form-group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dois campos por linha por padrão */
+    gap: 20px;
 }
 
 .form-group.full-width {
-    grid-column: 1 / -1; /* Ocupa todas as colunas (2 colunas) */
+    grid-column: 1 / -1; /* Ocupa a largura total da grade */
 }
 
-/* Tabela de Exercícios (Formulário e Listagem) */
-.data-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0; /* Remove espaçamento padrão entre células */
+/* Título e Controles das Listas/Seções */
+.list-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 15px;
+    border-bottom: 1px solid #ddd;
 }
 
-.data-table th {
-    background-color: #ff9933; /* Cabeçalho laranja */
-    color: white;
-    padding: 12px 10px;
-    text-align: left;
-    font-weight: bold;
-    border: none; /* Remove bordas internas */
-}
-
-/* Arredondamento dos cantos do cabeçalho */
-.data-table thead tr th:first-child {
-    border-top-left-radius: 4px;
-}
-
-.data-table thead tr th:last-child {
-    border-top-right-radius: 4px;
-}
-
-.data-table td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    vertical-align: middle;
-    text-align: left; /* Padrão para texto */
-}
-
-/* CORREÇÃO 2a: Centraliza dados da tabela (Lista de Fichas) */
-.data-table tbody td {
-    text-align: center;
-}
-/* Alinha a coluna 'Título' e 'Aluno' à esquerda para melhor leitura */
-.data-table tbody td:nth-child(2),
-.data-table tbody td:nth-child(3) { 
-    text-align: left;
+.section-title {
+    color: #E2760A; 
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin: 0; /* Ajustado para list-controls */
+    font-size: 20px;
+    font-weight: 600;
 }
 
 
-.data-table tbody tr:last-child td {
-    border-bottom: none;
-}
+/* ================================================= */
+/* ============== 4. ESTILOS DE BOTÕES E AÇÕES ============== */
+/* ================================================= */
 
-/* CORREÇÃO 2b: Ajuste de inputs na Tabela de Exercícios */
-.exercises-table td input, 
-.exercises-table td select {
-    width: 100%;
-    padding: 8px; /* Aumenta um pouco o padding para altura uniforme */
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-size: 14px; 
-    height: 36px; /* Garante altura uniforme */
-}
-
-/* CORREÇÃO 2c: Alinha o texto do Select do Exercício à esquerda */
-.exercises-table td:nth-child(2) select {
-    text-align: left;
-}
-
-/* Estilo para a visualização simples dos exercícios */
-.exercises-view-table td {
-    text-align: center !important; 
-}
-.exercises-view-table td:first-child {
-    text-align: left !important; 
-}
-
-/* Botões de Ação */
 .btn {
-    padding: 8px 15px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    white-space: nowrap; /* Evita quebra de linha em botões curtos */
-    /* CORREÇÃO 3: Altura e padding de botões de ação na tabela */
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-weight: 600;
+    transition: background-color 0.3s, opacity 0.3s;
+    font-size: 14px;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .btn-primary {
-    background-color: #4CAF50; /* Verde para ação principal */
+    background-color: #E2760A; /* Laranja Principal */
     color: white;
 }
-
-.btn-primary:hover {
-    background-color: #45a049;
+.btn-primary:hover:not(:disabled) {
+    background-color: #c46408;
 }
 
 .btn-secondary {
-    background-color: #ff9933; /* Laranja para ação secundária */
+    background-color: #6c757d;
     color: white;
 }
+.btn-secondary:hover:not(:disabled) {
+    background-color: #5a6268;
+}
 
-.btn-secondary:hover {
-    background-color: #e68a2e;
+.btn-warning {
+    background-color: #ffc107; /* Amarelo (Usado para Editar/Salvar Edição) */
+    color: #333;
+}
+.btn-warning:hover:not(:disabled) {
+    background-color: #e0a800;
+}
+
+.btn-success {
+    background-color: #28a745; /* Verde (Usado para Adicionar/Ver) */
+    color: white;
+}
+.btn-success:hover:not(:disabled) {
+    background-color: #1e7e34;
 }
 
 .btn-danger {
-    background-color: #e53935; /* Vermelho para deletar/remover */
+    background-color: #dc3545; /* Vermelho (Usado para Remover/Deletar) */
     color: white;
 }
-
-.btn-danger:hover {
-    background-color: #c62828;
+.btn-danger:hover:not(:disabled) {
+    background-color: #c82333;
 }
 
+/* Botões pequenos dentro da tabela (Ações) */
 .btn-action {
-    padding: 8px 12px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin: 0 2px;
 }
 
-.btn-action.view {
-    background-color: #00bcd4; /* Azul claro para Ver */
-    color: white;
-    margin-right: 5px;
+.action-buttons-cell {
+    text-align: center;
+    white-space: nowrap; /* Evita que os botões quebrem a linha */
 }
 
-.btn-action.edit {
-    background-color: #ffc107; /* Amarelo para Editar */
-    color: #333;
-    margin-right: 5px;
-}
-
-/* Footer de botões no formulário */
 .action-buttons-footer {
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 20px;
+    justify-content: flex-end; 
+    gap: 10px;
+    margin-top: 30px;
     padding-top: 15px;
     border-top: 1px solid #eee;
 }
 
-/* Mensagens de feedback */
-.error-message {
+/* ================================================= */
+/* ============== 5. ESTILOS DE TABELA ============== */
+/* ================================================= */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
     padding: 10px;
-    background-color: #f44336;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #E2760A; 
     color: white;
-    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* ================================================= */
+/* ============== 6. ESTILOS DE MENSAGENS (FEEDBACK) ============== */
+/* ================================================= */
+
+.success-message, .error-message, .info-message {
+    padding: 15px;
     margin-bottom: 20px;
-    text-align: center;
+    border-radius: 4px;
+    font-weight: 500;
+    border-left: 5px solid;
 }
 
 .success-message {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    text-align: center;
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
 }
 
-.loading-message, .info-message {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-    background-color: #fff;
-    border: 1px solid #ddd;
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.info-message {
+    background-color: #cce5ff;
+    color: #004085;
+    border-color: #b8daff;
+}
+
+
+/* ================================================= */
+/* ============== 7. ESTILOS DE VISUALIZAÇÃO (VIEW) ============== */
+/* ================================================= */
+
+.view-field {
+    /* Container para cada par label/valor na visualização */
+    margin-bottom: 15px;
+    padding: 10px;
+    border-left: 3px solid #E2760A; /* Linha lateral laranja para destaque */
+    background-color: #f8f8f8; 
     border-radius: 4px;
-    margin-top: 10px;
+}
+
+.view-field label {
+    display: block;
+    font-weight: bold;
+    color: #777; 
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.view-value {
+    /* Estilo para o valor real do dado */
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+}
+
+
+/* ================================================= */
+/* ============== 8. ESTILOS DO FOOTER ============== */
+/* ================================================= */
+
+.app-footer-aluno {
+    background-color: #333; /* Fundo escuro */
+    color: #ccc;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    font-size: 12px;
 }
