@@ -1,10 +1,7 @@
-// src/pages/ManageProfessors.jsx
-
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import './ManageProfessors.css'; 
-// Importações de Header e Footer ANTIGAS (se houver) foram REMOVIDAS.
 
 const ManageProfessors = () => {
     const navigate = useNavigate();
@@ -87,13 +84,13 @@ const ManageProfessors = () => {
         // Usando o container do padrão Natália (alunos-container)
         <div className="alunos-container"> 
             
-            {/* HEADER (Padrão Natália) */}
-            <header className="alunos-header">
-                <div className="header-content-aluno">
-                    <div className="button-group-aluno">
-                        <button className="header-btn-aluno" onClick={() => handleNavigate('/exercicios')}>Gerenciar Exercícios</button>
-                        <button className="header-btn-aluno active" onClick={() => handleNavigate('/professores')}>Gerenciar Professores</button>
-                        <button className="header-btn-aluno" onClick={() => handleNavigate('/alunos')}>Gerenciar Alunos</button>
+            {/* HEADER LARANJA */}
+            <header className="layout-header">
+                <div className="header-content">
+                    <div className="button-group">
+                        <button className="header-btn" onClick={() => handleNavigate('/exercicios')}>Gerenciar Exercícios</button>
+                        <button className="header-btn active" onClick={() => handleNavigate('/professores')}>Gerenciar Professores</button>
+                        <button className="header-btn" onClick={() => handleNavigate('/alunos')}>Gerenciar Alunos</button>
                     </div>
                     <div className="icon-group">
                         <div className="profile-icon">
