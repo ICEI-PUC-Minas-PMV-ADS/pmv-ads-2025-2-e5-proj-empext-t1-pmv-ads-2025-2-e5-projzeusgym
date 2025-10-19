@@ -1921,6 +1921,91 @@ Colocar evidências de teste da etapa 3
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-012 S<br>Deletar Professor
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Professor deve ser deletado do sistema e BD. </td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Cassiano Baptista </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Gabriel Victor </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">19/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados do Professor foram deletados do sistemas e no BD </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/5651ba84-02de-4134-a5c3-2a039a6df2c8"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-012 S<br>Editar dados do Professor
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados do Professor devem ser editados do sistema e BD. </td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Cassiano Baptista </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Gabriel Victor </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">19/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados do Professor foram editados com sucesso </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/3a7f65b6-881f-45da-a571-796e6e7e364c"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-012 S<br>Visualizar dados do Professor
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados do Professor devem ser exibidos no front da aplicação. </td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Cassiano Baptista </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Gabriel Victor </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">19/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados do Professor foram exibidos com sucesso </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/9238b51e-7fe7-44e9-8dfb-d1e381ea7ca9"/></td>
+  </tr>
+</table>
+
+
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
