@@ -1923,7 +1923,7 @@ Colocar evidências de teste da etapa 3
 
 <table>
   <tr>
-    <th colspan="6" width="1000">CT-012 S<br>Deletar Professor
+    <th colspan="6" width="1000">CT-013 S<br>Deletar Professor
   </tr>
   <tr>
     <td width="170"><strong>Critérios de êxito</strong></td>
@@ -1951,7 +1951,7 @@ Colocar evidências de teste da etapa 3
 
 <table>
   <tr>
-    <th colspan="6" width="1000">CT-012 S<br>Editar dados do Professor
+    <th colspan="6" width="1000">CT-014 S<br>Editar dados do Professor
   </tr>
   <tr>
     <td width="170"><strong>Critérios de êxito</strong></td>
@@ -1979,7 +1979,7 @@ Colocar evidências de teste da etapa 3
 
 <table>
   <tr>
-    <th colspan="6" width="1000">CT-012 S<br>Visualizar dados do Professor
+    <th colspan="6" width="1000">CT-015 S<br>Visualizar dados do Professor
   </tr>
   <tr>
     <td width="170"><strong>Critérios de êxito</strong></td>
