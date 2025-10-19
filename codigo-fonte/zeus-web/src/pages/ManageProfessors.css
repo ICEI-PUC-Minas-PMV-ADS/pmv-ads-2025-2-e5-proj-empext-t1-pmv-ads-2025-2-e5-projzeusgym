@@ -19,7 +19,7 @@ html {
 /* ================================================= */
 
 .alunos-container {
-    display: flex; /* Adicionado para garantir o layout de coluna */
+    display: flex; 
     flex-direction: column;
     min-height: 100vh;
     background: white;
@@ -30,7 +30,7 @@ html {
 
 /* HEADER LARANJA */
 .alunos-header {
-    background: #E2760A; /* Laranja do ZeusGym */
+    background: #E2760A; 
     width: 100%;
     padding: 10px 20px;
     display: flex;
@@ -57,7 +57,7 @@ html {
     margin: 0;
     color: black;
     font-size: 16px;
-    background-color: #ABABAB; /* Cinza */
+    background-color: #ABABAB; 
     padding: 10px 32px;
     border-radius: 12px;
     border-color: transparent;
@@ -69,7 +69,7 @@ html {
 }
 
 .header-btn-aluno.active {
-    background-color: white; /* Cor do botão ativo (se aplicável) */
+    background-color: white; 
 }
 
 .icon-group {
@@ -100,7 +100,7 @@ html {
 
 /* CONTEÚDO PRINCIPAL */
 .alunos-main {
-    flex-grow: 1; /* Garante que o main ocupe o espaço restante */
+    flex-grow: 1; 
     max-width: 100%;
     padding: 40px 30px;
 }
@@ -122,7 +122,7 @@ html {
     height: 60px;
     width: 100%;
     z-index: 10;
-    margin-top: auto; /* Empurra para o final da página */
+    margin-top: auto; 
 }
 
 
@@ -130,19 +130,17 @@ html {
 /* ESTILOS ESPECÍFICOS DE MANAGEPROFESSORS (SEU CÓDIGO) */
 /* ================================================= */
 
-/* manage-container: É o seu CARD estava bom */
 .manage-container {
     max-width: 1200px;
-    margin: 0 auto; /* Centraliza no espaço do layout-main */
+    margin: 0 auto; 
     padding: 20px;
-    background-color: #ABABAB; /* Mantendo o cinza do seu código anterior */
+    background-color: #ABABAB; 
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .manage-container h2 {
-    /* Removido o h2 duplicado, mas mantendo o estilo caso você o use */
-    display: none; /* Já temos o header-main-aluno, vamos esconder este */
+    display: none; 
 }
 
 /* Header de Ações (Botão + Cadastrar) */
@@ -211,6 +209,13 @@ html {
 
 .table-actions .btn-remove {
     background-color: #d0021b; 
+    color: white;
+    border: none;
+}
+
+/* NOVO ESTILO: Botão Ver (Azul) */
+.table-actions .btn-view {
+    background-color: #007bff; /* Azul */
     color: white;
     border: none;
 }

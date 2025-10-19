@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import './ManageProfessors.css'; 
 
-// Adicione as importações do HeaderAdmin e FooterAdmin
-import HeaderAdmin from '../components/HeaderAdmin'; // Ajuste o caminho conforme a localização real
-import FooterAdmin from '../components/FooterAdmin'; // Ajuste o caminho conforme a localização real
+// Importações de Componentes
+import HeaderAdmin from '../components/HeaderAdmin'; 
+import FooterAdmin from '../components/FooterAdmin'; 
 
 const ManageProfessors = () => {
-    // ... (restante do código React e funções fetchProfessors, handleDelete, etc.)
     const navigate = useNavigate();
     
     const [professors, setProfessors] = useState([]);
@@ -74,34 +73,23 @@ const ManageProfessors = () => {
         }
     };
     
-    // REMOVA a função handleNavigate, pois ela não é mais necessária aqui
-    // const handleNavigate = (path) => {
-    //     navigate(path);
-    // };
-
-
     if (loading && !professors.length) return <p className="loading-msg">Carregando professores...</p>;
     if (error && !professors.length) return <p className="error-msg">{error}</p>;
 
 
     return (
-        // Usando o container do padrão Natália (alunos-container)
         <div className="alunos-container"> 
             
-            {/* NOVO HEADER: Use o componente HeaderAdmin */}
             <HeaderAdmin activePage="professores" />
 
-            {/* MAIN (Seu conteúdo de gerenciamento) */}
             <main className="alunos-main">
                 
                 <div className="header-main-aluno">
                     Gerenciamento de Professores
                 </div>
                 
-                {/* Seu card branco de gerenciamento */}
                 <div className="manage-container">
                     
-                    {/* Botões de Ação */}
                     <div className="actions-header">
                         <button 
                             className="btn-add-professor" 
@@ -111,7 +99,6 @@ const ManageProfessors = () => {
                         </button>
                     </div>
 
-                    {/* Tabela de Professores */}
                     <div className="table-responsive">
                         <table className="professors-table">
                             <thead>
@@ -132,8 +119,25 @@ const ManageProfessors = () => {
                                             <td>{prof.email}</td>
                                             <td>{prof.cref_mg}</td>
                                             <td className="table-actions">
-                                                <button className="btn-edit" onClick={() => navigate(`/professores/editar/${prof.id}`)}>Editar</button>
-                                                <button className="btn-remove" onClick={() => handleDelete(prof.id)}>Remover</button>
+                                                {/* NOVO BOTÃO 'VER' */}
+                                                <button 
+                                                    className="btn-view" 
+                                                    onClick={() => navigate(`/professores/ver/${prof.id}`)}
+                                                >
+                                                    Ver
+                                                </button>
+                                                <button 
+                                                    className="btn-edit" 
+                                                    onClick={() => navigate(`/professores/editar/${prof.id}`)}
+                                                >
+                                                    Editar
+                                                </button>
+                                                <button 
+                                                    className="btn-remove" 
+                                                    onClick={() => handleDelete(prof.id)}
+                                                >
+                                                    Remover
+                                                </button>
                                             </td>
                                         </tr>
                                     ))
@@ -149,7 +153,6 @@ const ManageProfessors = () => {
 
             </main>
 
-            {/* NOVO FOOTER: Use o componente FooterAdmin */}
             <FooterAdmin />
         </div>
     );
