@@ -1893,6 +1893,35 @@ Colocar evidências de teste da etapa 3
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-012 S<br>Adicionar Professor
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Professor deve ser cadastrado. </td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">Cassiano Baptista </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Gabriel Victor </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">19/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados do Professor foram cadastrados no BD </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/b8e992b1-3f5a-4331-9671-14f06c5f197f"/></td>
+  </tr>
+</table>
+
+
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
 
