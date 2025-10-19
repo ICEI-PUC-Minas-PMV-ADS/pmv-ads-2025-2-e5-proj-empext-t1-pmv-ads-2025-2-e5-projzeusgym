@@ -2,12 +2,6 @@
 
 const { TrainingSheet, Users, Exercises, TrainingSheetExercises } = require('../models');
 
-// Função auxiliar para garantir que strings vazias se tornem null no BD
-const normalizeValue = (value) => {
-    if (value === '') return null;
-    return value;
-};
-
 // =================================================================
 // 1. CRIAÇÃO DE FICHA (POST)
 // =================================================================
@@ -31,7 +25,7 @@ exports.createTrainingSheet = async (req, res) => {
             return res.status(400).json({ error: 'A ficha deve conter pelo menos um exercício válido.' });
         }
 
-        // 1. Cria a Ficha de Treino
+
         const sheet = await TrainingSheet.create({
             nome: nome,        
             descricao: descricao || 'Sem descrição', 
@@ -40,39 +34,24 @@ exports.createTrainingSheet = async (req, res) => {
         });
         
         
-        // 2. Cria as associações detalhadas (tabela pivô)
         if (exercises.length > 0) {
-             const newAssociations = exercises.map(ex => ({
-                sheetId: sheet.id, 
-                exerciseId: ex.exerciseId, 
-                // 🎯 Aplica normalização para evitar strings vazias no BD
-                series: normalizeValue(ex.series), 
-                repeticoes: normalizeValue(ex.repeticoes), 
-                carga: normalizeValue(ex.carga),
-                descanso: normalizeValue(ex.descanso) || 'N/A',
-            }));
+            const attributesForThrough = {};
+            exercises.forEach(ex => {
+                // Prepara os dados da tabela pivô (Front-end envia series/repeticoes)
+                attributesForThrough[ex.exerciseId] = {
+                    series: ex.series, 
+                    repeticoes: ex.repeticoes, 
+                    carga: ex.carga,
+                    descanso: ex.descanso || 'N/A'
+                };
+            });
             
-            await TrainingSheetExercises.bulkCreate(newAssociations);
+            await sheet.setExercises(exercises.map(ex => ex.exerciseId), { 
+                through: attributesForThrough 
+            });
         }
 
-        // 3. Recarrega a ficha com os detalhes para o retorno
-        const createdSheet = await TrainingSheet.findOne({
-            where: { id: sheet.id },
-            include: [
-                { association: 'aluno', attributes: ['id', 'name', 'email'] }, 
-                { 
-                    association: 'exercises', 
-                    attributes: ['id', 'nome'],
-                    through: { attributes: ['series', 'repeticoes', 'carga', 'descanso'] } 
-                }
-            ]
-        });
-
-        return res.status(201).json({ 
-            message: 'Ficha de treino criada com sucesso!', 
-            sheet: createdSheet 
-        });
-        
+        return res.status(201).json({ message: 'Ficha de treino criada com sucesso!', sheet });
     } catch (error) {
         console.error('Erro ao criar ficha de treino:', error);
         if (error.name === 'SequelizeForeignKeyConstraintError') {
@@ -111,7 +90,7 @@ exports.addExercisesToSheet = async (req, res) => {
 };
 
 // =================================================================
-// 3. LISTAR FICHAS (GET)
+// 3. LISTAR FICHAS (GET) - ✅ CORRIGIDO: Inclui séries/repetições na lista
 // =================================================================
 exports.listTrainingSheets = async (req, res) => {
     try {
@@ -128,6 +107,7 @@ exports.listTrainingSheets = async (req, res) => {
                 { 
                     association: 'exercises', 
                     attributes: ['id', 'nome'], 
+                    // CORREÇÃO ESSENCIAL: Busca as colunas da tabela pivô
                     through: { attributes: ['series', 'repeticoes', 'carga', 'descanso'] } 
                 }
             ]
@@ -141,7 +121,7 @@ exports.listTrainingSheets = async (req, res) => {
 };
 
 // =================================================================
-// 4. OBTER FICHA POR ID (GET)
+// 4. OBTER FICHA POR ID (GET) - ✅ CORRIGIDO: Inclui séries/repetições na visualização
 // =================================================================
 exports.getTrainingSheetById = async (req, res) => {
     try {
@@ -159,6 +139,7 @@ exports.getTrainingSheetById = async (req, res) => {
                 { 
                     association: 'exercises', 
                     attributes: ['id', 'nome'],
+                    // CORREÇÃO ESSENCIAL: Busca as colunas da tabela pivô
                     through: { attributes: ['series', 'repeticoes', 'carga', 'descanso'] } 
                 }
             ]
@@ -176,7 +157,7 @@ exports.getTrainingSheetById = async (req, res) => {
 };
 
 // =================================================================
-// 5. ATUALIZAR FICHA (PUT) - 🎯 Lógica destroy + bulkCreate
+// 5. ATUALIZAR FICHA (PUT) - 🎯 CORREÇÃO CRÍTICA: Salva exercícios na atualização
 // =================================================================
 exports.updateTrainingSheet = async (req, res) => {
     try {
@@ -196,43 +177,27 @@ exports.updateTrainingSheet = async (req, res) => {
 
         // 2. Lógica para ATUALIZAR/SUBSTITUIR os exercícios
         if (exercises && Array.isArray(exercises)) {
+            const exerciseIds = exercises.map(ex => ex.exerciseId);
             
-            // PASSO 1 CRÍTICO: Deleta as associações antigas
-            await TrainingSheetExercises.destroy({ where: { sheetId: sheet.id } });
+            const attributesForThrough = {};
+            exercises.forEach(ex => {
+                // O Front-end envia 'series' e 'repeticoes' (corrigido no Front)
+                attributesForThrough[ex.exerciseId] = {
+                    series: ex.series, 
+                    repeticoes: ex.repeticoes, 
+                    carga: ex.carga,
+                    descanso: ex.descanso || 'N/A'
+                };
+            });
 
-            // PASSO 2 CRÍTICO: Cria a lista de novos exercícios formatada
-            const newAssociations = exercises.map(ex => ({
-                sheetId: sheet.id, 
-                exerciseId: ex.exerciseId, 
-                // 🎯 Aplica normalização para evitar strings vazias no BD
-                series: normalizeValue(ex.series), 
-                repeticoes: normalizeValue(ex.repeticoes), 
-                carga: normalizeValue(ex.carga),
-                descanso: normalizeValue(ex.descanso) || 'N/A',
-            }));
-            
-            // PASSO 3 CRÍTICO: Insere as novas associações
-            await TrainingSheetExercises.bulkCreate(newAssociations);
+            // setExercises: REMOVE os exercícios antigos e ADICIONA os novos/atualizados
+            await sheet.setExercises(exerciseIds, { 
+                through: attributesForThrough 
+            });
         }
 
-        // 3. Recarrega a ficha com os detalhes para o retorno
-        const updatedSheet = await TrainingSheet.findOne({
-            where: { id: sheetId },
-            include: [
-                { association: 'aluno', attributes: ['id', 'name', 'email'] }, 
-                { 
-                    association: 'exercises', 
-                    attributes: ['id', 'nome'],
-                    through: { attributes: ['series', 'repeticoes', 'carga', 'descanso'] } 
-                }
-            ]
-        });
 
-        return res.status(200).json({ 
-            message: 'Ficha atualizada com sucesso!', 
-            sheet: updatedSheet 
-        });
-        
+        return res.status(200).json({ message: 'Ficha atualizada com sucesso!', sheet });
     } catch (error) {
         console.error('Erro ao atualizar ficha:', error);
         return res.status(500).json({ error: 'Erro interno ao atualizar ficha.' });

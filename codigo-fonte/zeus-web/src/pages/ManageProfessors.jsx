@@ -1,12 +1,14 @@
-// src/pages/ManageProfessors.jsx
-
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import './ManageProfessors.css'; 
-// Importações de Header e Footer ANTIGAS (se houver) foram REMOVIDAS.
+
+// Adicione as importações do HeaderAdmin e FooterAdmin
+import HeaderAdmin from '../components/HeaderAdmin'; // Ajuste o caminho conforme a localização real
+import FooterAdmin from '../components/FooterAdmin'; // Ajuste o caminho conforme a localização real
 
 const ManageProfessors = () => {
+    // ... (restante do código React e funções fetchProfessors, handleDelete, etc.)
     const navigate = useNavigate();
     
     const [professors, setProfessors] = useState([]);
@@ -33,7 +35,6 @@ const ManageProfessors = () => {
         } catch (err) {
             if (err.response && (err.response.status === 401 || err.response.status === 403)) {
                 setError("Acesso negado ou token expirado. Faça login novamente.");
-                // navigate('/adminlogin'); // Não navegaremos aqui para evitar loops, mas esta é a lógica
             } else {
                 setError("Erro ao carregar professores. Tente novamente.");
             }
@@ -73,10 +74,10 @@ const ManageProfessors = () => {
         }
     };
     
-    // Função auxiliar para navegação nos botões do header
-    const handleNavigate = (path) => {
-        navigate(path);
-    };
+    // REMOVA a função handleNavigate, pois ela não é mais necessária aqui
+    // const handleNavigate = (path) => {
+    //     navigate(path);
+    // };
 
 
     if (loading && !professors.length) return <p className="loading-msg">Carregando professores...</p>;
@@ -87,25 +88,8 @@ const ManageProfessors = () => {
         // Usando o container do padrão Natália (alunos-container)
         <div className="alunos-container"> 
             
-            {/* HEADER (Padrão Natália) */}
-            <header className="alunos-header">
-                <div className="header-content-aluno">
-                    <div className="button-group-aluno">
-                        <button className="header-btn-aluno" onClick={() => handleNavigate('/exercicios')}>Gerenciar Exercícios</button>
-                        <button className="header-btn-aluno active" onClick={() => handleNavigate('/professores')}>Gerenciar Professores</button>
-                        <button className="header-btn-aluno" onClick={() => handleNavigate('/alunos')}>Gerenciar Alunos</button>
-                    </div>
-                    <div className="icon-group">
-                        <div className="profile-icon">
-                            <a href="#"> <img
-                                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                alt="Perfil"
-                                className="profile-image"
-                            /> </a>
-                        </div>
-                    </div>
-                </div>
-            </header>
+            {/* NOVO HEADER: Use o componente HeaderAdmin */}
+            <HeaderAdmin activePage="professores" />
 
             {/* MAIN (Seu conteúdo de gerenciamento) */}
             <main className="alunos-main">
@@ -165,9 +149,8 @@ const ManageProfessors = () => {
 
             </main>
 
-            {/* FOOTER (Padrão Natália) */}
-            <footer className="app-footer-aluno">
-            </footer>
+            {/* NOVO FOOTER: Use o componente FooterAdmin */}
+            <FooterAdmin />
         </div>
     );
 };
