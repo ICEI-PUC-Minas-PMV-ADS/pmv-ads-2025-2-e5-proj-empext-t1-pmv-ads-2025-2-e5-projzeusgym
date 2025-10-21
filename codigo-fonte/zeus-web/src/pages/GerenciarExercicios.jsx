@@ -1,11 +1,11 @@
 import './GerenciarExercicios.css';
-import '../components/Header.css';
+import HeaderAdmin from '../components/HeaderAdmin';  
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
   import { AiFillDelete, AiFillEdit}from 'react-icons/ai';
   import { FaPlus } from 'react-icons/fa';
   import Footer from '../components/Footer';
-  import bracoImg from '../assets/braco.png';
+  
 
   
 
@@ -174,34 +174,12 @@ const GerenciarExercicio = () => {
   return (
     <div className="dashboard-container">
       {/* Header Laranja */}
-        <header className="alunos-header">
-            <div className="header-content">
-                {/* Botões de Navegação */}
-                <div className="button-group">
-                    <button className="header-btn">Gerenciar Exercícios</button>
-                    <button className="header-btn" onClick={gerenciarProf}>Gerenciar Professores</button>
-                    <button className="header-btn" onClick={gerenciarAluno}>Gerenciar Alunos</button>
-                </div>
-                
-                {/* Ícone de Perfil */}
-                <div className="icon-group">
-                    <div className="profile-icon">
-                        <a href="#"> 
-                            <img
-                                  onClick={paginaInicial}
-                                src={bracoImg}
-                                alt="Perfil"
-                                className="profile-image"
-                            /> 
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
+      <HeaderAdmin activePage="exercicios" />
     
 
       {/* Conteúdo em Branco */}
       <main className="dashboard-main">
+        <div v className="content-exercises">
         <div className="main-header-aluno">
                                 <h2 className="main-title-aluno">Exercícios</h2>
                                 <button className="add-aluno-btn"
@@ -210,6 +188,8 @@ const GerenciarExercicio = () => {
                                     Cadastrar exercício
                                 </button>
                             </div>
+                            </div>
+                            
 
         {/* Campo de pesquisa */}
         <section style={{ marginTop: '2rem' }}>
@@ -221,6 +201,7 @@ const GerenciarExercicio = () => {
             onChange={e => setSearch(e.target.value)}
             style={{ width: '100%', padding: '8px', marginBottom: '8px' }}
           />
+        
           {/* Sugestões */}
           {suggestions.length > 0 && (
             <ul style={{
@@ -256,6 +237,7 @@ const GerenciarExercicio = () => {
             padding: '8px',
             background: '#fafafa'
           }}>
+          
             <ul style={{ margin: 0, padding: 0 }}>
               {(() => {
                 let sorted = [...exercicios].sort((a, b) => a.nome.localeCompare(b.nome));
@@ -309,7 +291,7 @@ const GerenciarExercicio = () => {
                   value={formData.nome}
                   onChange={handleInputChange}
                   required
-                  style={{ width: '100%', marginBottom: '8px' }}
+                  style={{ width: '100%', marginBottom: '8px', borderRadius: '10px' }}
                 />
               </label>
               <label>
@@ -320,7 +302,7 @@ const GerenciarExercicio = () => {
                   value={formData.grupoMuscular}
                   onChange={handleInputChange}
                   required
-                  style={{ width: '100%', marginBottom: '8px' }}
+                  style={{ width: '100%', marginBottom: '8px', borderRadius: '10px' }}
                 />
               </label>
               <label>
@@ -330,7 +312,7 @@ const GerenciarExercicio = () => {
                   name="descricao"
                   value={formData.descricao}
                   onChange={handleInputChange}
-                  style={{ width: '100%', marginBottom: '16px' }}
+                  style={{ width: '100%', marginBottom: '16px', borderRadius: '10px' }}
                 />
               </label>
               <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
