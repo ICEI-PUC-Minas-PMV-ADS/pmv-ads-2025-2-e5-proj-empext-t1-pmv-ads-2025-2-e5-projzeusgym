@@ -24,6 +24,11 @@ const Dashboard = () => {
     navigate('/fichas-treino'); // Path definido no seu App.jsx
   };
 
+  // 🚨 NOVA FUNÇÃO PARA GERENCIAR AVALIAÇÕES FÍSICAS
+  const gerenciarAvaliacoes = () => {
+    navigate('/avaliacoes'); // Path definido no App.jsx
+  };
+
   return (  
     <div className="dashboard-container">
       {/* Header Laranja */}
@@ -74,6 +79,14 @@ const Dashboard = () => {
             onClick={gerenciarFichaTreino}
           >
             Gerenciar Fichas de Treino
+          </button>
+
+          {/* 🚨 BOTÃO DE AVALIAÇÕES FÍSICAS ADICIONADO */}
+          <button 
+            className="dashboard-btn"
+            onClick={gerenciarAvaliacoes}
+          >
+            Gerenciar Avaliações Físicas
           </button>
           
         </div>
