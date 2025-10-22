@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import HomeScreenStyle from '../styles/HomeScreenStyle.js';
@@ -12,11 +11,24 @@ const MainButton = ({ label, onPress }) => (
     </TouchableOpacity>
 );
 
-const HomeScreen = () => {
+const routeMap = {
+    //'Treinos': 'TreinosScreen', // Colocar nome correto da rota
+    'Registar Peso': 'RegistrarPeso',
+    //'Calcular IMC': 'CalcularIMCScreen', // Colocar nome correto da rota
+    //'Avaliação Física': 'AvaliacaoFisicaScreen', // Colocar nome correto da rota
+};
+
+const HomeScreen = ({ navigation }) => {
 
     const handlePress = (buttonType) => {
-        alert(`Você selecionou a opção ${buttonType}`);
-        // No futuro, isso usará o React Navigation para ir para a tela do treino
+
+        const routeName = routeMap[buttonType];
+
+        if (routeName) {
+            navigation.navigate(routeName);
+        } else {
+            alert(`A rota para "${buttonType}" não foi encontrada no mapa.`);
+        }
     };
 
     return (
@@ -39,7 +51,7 @@ const HomeScreen = () => {
             <View style={HomeScreenStyle.content}>
                 <Text style={HomeScreenStyle.titleText}>Zeus Gym</Text>
                 <MainButton label="Treinos" onPress={() => handlePress('Treinos')} />
-                <MainButton label="Registar Peso" onPress={() => handlePress('Registar peso')} />
+                <MainButton label="Registar Peso" onPress={() => handlePress('Registar Peso')} />
                 <MainButton label="Calcular IMC" onPress={() => handlePress('Calcular IMC')} />
                 <MainButton label="Avaliação Física" onPress={() => handlePress('Avaliação física')} />
             </View>
