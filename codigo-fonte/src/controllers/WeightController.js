@@ -1,11 +1,9 @@
 const Weight = require('../models/Weight');
-// Importe o seu middleware de erro se tiver um
 
 // 1. Registrar um novo peso
 exports.registerWeight = async (req, res) => {
-    // ⚠️ ALERTA: Ajuste para como o ID do usuário é anexado pelo seu middleware ⚠️
-    const userId = req.user.id; // Ex: Se o ID estiver em req.user.id
-    const { weight, date } = req.body; // 'date' é opcional se usar o default
+    const userId = req.user.id; 
+    const { weight, date } = req.body; 
 
     try {
         if (!userId) {
@@ -18,7 +16,6 @@ exports.registerWeight = async (req, res) => {
         const newWeightEntry = await Weight.create({
             userId: userId,
             weight: parseFloat(weight),
-            // Usa a data fornecida ou a data padrão do Sequelize (NOW)
             date: date || new Date(), 
         });
 
@@ -32,19 +29,17 @@ exports.registerWeight = async (req, res) => {
 
 // 2. Buscar histórico de peso do usuário
 exports.getWeightHistory = async (req, res) => {
-    // ⚠️ ALERTA: Ajuste para como o ID do usuário é anexado pelo seu middleware ⚠️
-    const userId = req.user.id; // Ex: Se o ID estiver em req.user.id
+    const userId = req.user.id; 
 
     try {
         if (!userId) {
             return res.status(401).json({ error: 'Usuário não autenticado.' });
         }
         
-        // Busca todos os registros de peso para este usuário
         const history = await Weight.findAll({
             where: { userId: userId },
             order: [
-                ['date', 'DESC'] // Ordena do mais recente (DESC) para o mais antigo
+                ['date', 'DESC'] 
             ],
             attributes: ['id', 'weight', 'date', 'createdAt'] // Seleciona apenas campos relevantes
         });
