@@ -149,30 +149,59 @@ const UploadAvaliacao = () => {
         <div className="upload-avaliacao-container">
             <header className="upload-avaliacao-header">
                 <div className="header-content">
-                    <div className="button-group">
-                        <button className="header-btn">Gerenciar Exercícios</button>
-                        <button className="header-btn">Gerenciar Professores</button>
-                        <button className="header-btn">Gerenciar Alunos</button>
-                        <button className="header-btn active">Avaliações Físicas</button>
-                    </div>
+                        <div className="button-group">
+                            <button 
+                                className="header-btn"
+                                onClick={() => navigate('/gerenciarexercicios')}
+                            >
+                                Gerenciar Exercícios
+                            </button>
+                            <button 
+                                className="header-btn"
+                                onClick={() => navigate('/professores')}
+                            >
+                                Gerenciar Professores
+                            </button>
+                            <button 
+                                className="header-btn"
+                                onClick={() => navigate('/alunos')}
+                            >
+                                Gerenciar Alunos
+                            </button>
+                            <button 
+                                className="header-btn active"
+                                onClick={() => navigate('/avaliacoes')}
+                            >
+                                Avaliações Físicas
+                            </button>
+                        </div>
                     <div className="icon-group">
                         <div className="profile-icon">
-                            <a href="#">
+                            <button 
+                                onClick={() => navigate('/dashboard')}
+                                style={{ 
+                                    background: 'none', 
+                                    border: 'none', 
+                                    cursor: 'pointer',
+                                    padding: 0
+                                }}
+                            >
                                 <img
                                     src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                    alt="Perfil"
+                                    alt="Página Principal"
                                     className="profile-image"
                                 />
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
             </header>
 
             <main className="upload-avaliacao-main">
-                <div className="header-main">
-                    <h1>Fazer upload da avaliação física</h1>
-                </div>
+                <div className="content-wrapper-upload">
+                    <div className="header-main">
+                        <h1>Fazer upload da avaliação física</h1>
+                    </div>
 
                 <form className="upload-form" onSubmit={handleSubmit}>
                     <div className="form-section">
@@ -296,6 +325,7 @@ const UploadAvaliacao = () => {
                         </button>
                     </div>
                 </form>
+                </div>
             </main>
 
             <footer className="app-footer">
