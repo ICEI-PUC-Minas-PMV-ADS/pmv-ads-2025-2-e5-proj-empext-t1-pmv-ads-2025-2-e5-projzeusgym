@@ -1,7 +1,12 @@
 /* src/pages/Dashboard.css */
 .dashboard-container {
-  min-height: 100vh;
-  background: white;
+  display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f0f2f5;
+    max-width: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header Laranja */
@@ -10,7 +15,9 @@
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
+.content-exercises{
+  padding: 0px 40px;
+}
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -44,9 +51,10 @@
 
 /* Conteúdo Principal */
 .dashboard-main {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+      flex-grow: 1;
+  max-width: 100%;
+    padding: 40px 30px;
+        width: 100%;
 }
 .popup-overlay {
               position: fixed;

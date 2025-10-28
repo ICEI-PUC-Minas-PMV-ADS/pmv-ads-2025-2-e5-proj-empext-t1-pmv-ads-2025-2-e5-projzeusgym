@@ -1,7 +1,6 @@
-***
 # Zeus Gym - Frontend
 ```
-Frontend da aplicação Zeus Gym desenvolvido em React com Vite.
+Frontend da aplicação Zeus Gym desenvolvido em React Native com expo.
 ```
 ## 🚀 Setup Local
 ```
@@ -14,7 +13,7 @@ Backend da Zeus Gym rodando
 Passos para Configuração e Execução
 ### 1. Acesse a Pasta do Frontend
 
-```cd codigo-fonte/zeus-web```
+```cd codigo-fonte/zeus-mobile```
 
 ### 2. Instale as Dependências
 
@@ -23,17 +22,9 @@ Passos para Configuração e Execução
 ### 3. Execute em Modo Desenvolvimento
 
 ```
-npm run dev
+npx expo start
 
-O frontend estará disponível em: http://localhost:5173
+O frontend estará disponível em: http://SEU_IP:8081
 ```
-
-### 4. Modo Desenvolvedor 
-
-```npm run dev```
-
-### 5. Build para Produção
-
-```npm run build```
-
+Obs: criar arquivo .env com seu endereço IP
 

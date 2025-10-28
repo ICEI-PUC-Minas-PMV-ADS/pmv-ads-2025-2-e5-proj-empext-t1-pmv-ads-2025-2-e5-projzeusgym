@@ -110,51 +110,75 @@ const GerenciarAvaliacoes = () => {
         <div className="avaliacoes-container">
             <header className="avaliacoes-header">
                 <div className="header-content">
-                    <div className="button-group">
-                        <button className="header-btn">Gerenciar Exercícios</button>
-                        <button className="header-btn">Gerenciar Professores</button>
-                        <button className="header-btn">Gerenciar Alunos</button>
-                        <button className="header-btn active">Avaliações Físicas</button>
-                    </div>
+                        <div className="button-group">
+                            <button 
+                                className="header-btn"
+                                onClick={() => navigate('/gerenciarexercicios')}
+                            >
+                                Gerenciar Exercícios
+                            </button>
+                            <button 
+                                className="header-btn"
+                                onClick={() => navigate('/professores')}
+                            >
+                                Gerenciar Professores
+                            </button>
+                            <button 
+                                className="header-btn"
+                                onClick={() => navigate('/alunos')}
+                            >
+                                Gerenciar Alunos
+                            </button>
+                            <button className="header-btn active">Avaliações Físicas</button>
+                        </div>
                     <div className="icon-group">
                         <div className="profile-icon">
-                            <a href="#">
+                            <button 
+                                onClick={() => navigate('/dashboard')}
+                                style={{ 
+                                    background: 'none', 
+                                    border: 'none', 
+                                    cursor: 'pointer',
+                                    padding: 0
+                                }}
+                            >
                                 <img
                                     src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                    alt="Perfil"
+                                    alt="Página Principal"
                                     className="profile-image"
                                 />
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
             </header>
 
             <main className="avaliacoes-main">
-                <div className="header-main">
-                    <h1>Gerenciar Avaliações Físicas</h1>
-                    <button 
-                        className="btn btn-primary"
-                        onClick={() => navigate('/avaliacoes/upload')}
-                    >
-                        Nova Avaliação
-                    </button>
-                </div>
-
-                <div className="filters">
-                    <div className="filter-group">
-                        <label htmlFor="filterStudent">Filtrar por aluno:</label>
-                        <input
-                            type="text"
-                            id="filterStudent"
-                            value={filterStudent}
-                            onChange={(e) => setFilterStudent(e.target.value)}
-                            placeholder="Digite o nome do aluno..."
-                        />
+                <div className="content-wrapper-avaliacoes">
+                    <div className="header-main">
+                        <h1>Gerenciar Avaliações Físicas</h1>
+                        <button 
+                            className="btn-new-evaluation"
+                            onClick={() => navigate('/avaliacoes/upload')}
+                        >
+                            <span className="add-icon">+</span>
+                            Nova Avaliação
+                        </button>
                     </div>
-                </div>
 
-                <div className="assessments-list">
+                    <div className="search-section">
+                        <span className="search-icon">🔍</span>
+                        <div className="search-bar">
+                            <input
+                                type="text"
+                                value={filterStudent}
+                                onChange={(e) => setFilterStudent(e.target.value)}
+                                placeholder="Digite o nome do aluno..."
+                            />
+                        </div>
+                    </div>
+
+                    <div className="content-box">
                     {filteredAssessments.length === 0 ? (
                         <div className="no-data">
                             <p>Nenhuma avaliação física encontrada.</p>
@@ -224,6 +248,7 @@ const GerenciarAvaliacoes = () => {
                             ))}
                         </div>
                     )}
+                    </div>
                 </div>
             </main>
 
