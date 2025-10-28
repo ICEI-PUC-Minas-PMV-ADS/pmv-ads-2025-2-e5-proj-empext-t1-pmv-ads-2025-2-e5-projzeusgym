@@ -110,8 +110,16 @@ function App() {
           />
 
           {/* ROTAS DE GERENCIAMENTO DE PROFESSORES */}
-          <Route
+          
+          {/* ⭐️ ADICIONADO: Redireciona a rota antiga /professores para a nova /professores/gerenciar */}
+          <Route 
             path="/professores"
+            element={<Navigate to="/professores/gerenciar" replace />} 
+          />
+          
+          {/* ROTA PRINCIPAL: Listagem/Gerenciamento de Professores */}
+          <Route
+            path="/professores/gerenciar" 
             element={
               <ProtectedRoute>
                 <ManageProfessors />
@@ -137,7 +145,7 @@ function App() {
             }
           />
           
-          {/* ROTA DE VISUALIZAÇÃO DE PROFESSOR (NOVA) */}
+          {/* ROTA DE VISUALIZAÇÃO DE PROFESSOR */}
           <Route
             path="/professores/ver/:id" 
             element={

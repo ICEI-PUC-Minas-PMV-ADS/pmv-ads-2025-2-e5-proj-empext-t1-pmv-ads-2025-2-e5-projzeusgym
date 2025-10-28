@@ -1,19 +1,15 @@
-// src/components/ProfessorForm.jsx
-
 import { useState } from 'react';
 import './ProfessorForm.css'; // Importa os estilos
 
-// Este componente é o formulário em si, reutilizável para POST (Criação) e PUT (Edição)
-const ProfessorForm = ({ initialData = {}, onSubmit, isEditing = false }) => {
+// Adicionamos 'onCancel' para o botão de Voltar
+const ProfessorForm = ({ initialData = {}, onSubmit, isEditing = false, onCancel }) => { 
     const [formData, setFormData] = useState({
         name: initialData.name || '',
-        // Garante que a data de nascimento esteja no formato YYYY-MM-DD para o input
         birthdate: initialData.birthdate ? new Date(initialData.birthdate).toISOString().substring(0, 10) : '',
         gender: initialData.gender || 'masculino',
         cpf: initialData.cpf || '',
         cref_mg: initialData.cref_mg || '',
         email: initialData.email || '',
-        // A senha é vazia por padrão, pois é nova na criação ou opcional na edição
         password: '', 
     });
 
@@ -147,10 +143,26 @@ const ProfessorForm = ({ initialData = {}, onSubmit, isEditing = false }) => {
                 </select>
             </div>
             
-            {/* 8. Botão de Submissão (CLASSE CORRETA) */}
-            <button type="submit" className="btn-submit">
-                {isEditing ? 'Salvar Alterações' : 'Cadastrar Professor'}
-            </button>
+            {/* 8. Campo Vazio para Alinhamento (Empurra o 9 para a 2ª coluna) */}
+            <div className="form-group">
+            </div>
+
+            {/* 9. ⭐️ GRUPO DE BOTÕES DE AÇÃO (Fica na parte inferior direita) */}
+            <div className="form-actions"> 
+                {/* ⭐️ BOTÃO CANCELAR/VOLTAR (AZUL) */}
+                <button 
+                    type="button" 
+                    className="btn-cancel" // Estilizado como azul no CSS
+                    onClick={onCancel} // Chama a função que navega de volta
+                >
+                    Voltar
+                </button>
+                
+                {/* Botão de Submissão (Verde) */}
+                <button type="submit" className="btn-submit">
+                    {isEditing ? 'Salvar Alterações' : 'Cadastrar Professor'}
+                </button>
+            </div>
             
         </form>
     );

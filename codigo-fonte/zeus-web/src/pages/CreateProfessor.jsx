@@ -1,88 +1,106 @@
-// src/pages/CreateProfessor.jsx
+// Arquivo: src/pages/CreateProfessor.jsx
+// Objetivo: Orquestrar a tela, importando layout (HeaderAdmin/FooterAdmin) e o formulário reutilizável.
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProfessorForm from '../components/ProfessorForm'; 
-import api from '../services/api'; 
-import './CreateProfessor.css'; 
 
-// 🎯 IMPORTAÇÃO DOS COMPONENTES REUTILIZÁVEIS
+// IMPORTAÇÕES CORRIGIDAS DE COMPONENTES DE LAYOUT
 import HeaderAdmin from '../components/HeaderAdmin'; 
 import FooterAdmin from '../components/FooterAdmin'; 
-// Importa o CSS de layout comum para aplicar as classes do container
-import '../styles/AdminLayout.css'; 
 
+// IMPORTAÇÃO DO COMPONENTE DE FORMULÁRIO REUTILIZÁVEL
+import ProfessorForm from '../components/ProfessorForm'; 
+
+// Caminhos confirmados:
+import api from '../services/api'; 
+import './CreateProfessor.css'; // CSS na mesma pasta que o JSX
 
 const CreateProfessor = () => {
-    const navigate = useNavigate();
-    const [message, setMessage] = useState(''); 
+    const navigate = useNavigate();
+    
+    const [mensagem, setMensagem] = useState(null);
+    const [carregando, setCarregando] = useState(false);
 
-    const handleCreateSubmit = async (formData) => {
-        setMessage('');
-        const token = localStorage.getItem('token'); 
-        
-        if (!token) {
-            setMessage('Sessão expirada. Redirecionando...');
-            setTimeout(() => navigate('/adminlogin'), 1500);
-            return;
-        }
+    const lidarComEnvio = async (formData) => {
+        setCarregando(true);
+        setMensagem(null);
+        
+        const token = localStorage.getItem('token');
+        if (!token) {
+            setMensagem({ type: 'error-msg', text: 'Sessão expirada. Faça login novamente.' });
+            setCarregando(false);
+            navigate('/adminlogin');
+            return;
+        }
 
-        try {
-            await api.post('/admin/professores', formData, {
-                headers: { 
-                    'Authorization': `Bearer ${token}` 
-                }
-            });
+        try {
+            await api.post('admin/professores', formData, { 
+                headers: { Authorization: `Bearer ${token}` } 
+            });
+            
+            setMensagem({ type: 'success-msg', text: 'Professor cadastrado com sucesso!' });
+            
+            setTimeout(() => navigate('/professores/gerenciar'), 2000);
 
-            setMessage('Professor cadastrado com sucesso!');
-            setTimeout(() => navigate('/professores'), 2000); 
-            
-        } catch (err) {
-            const errorMessage = err.response?.data?.error || 'Erro ao cadastrar professor. Verifique os dados.';
-            setMessage(`Erro: ${errorMessage}`);
-            console.error("Erro no cadastro de professor:", err);
-        }
-    };
-    
-    // Usa a classe de layout padronizada (.alunos-container)
-    return (
-        <div className="alunos-container">
-            
-            {/* COMPONENTE HEADER - Botão "Gerenciar Professores" ativo */}
-            <HeaderAdmin activePage="professores" /> 
-            
-            {/* Main usa a classe de layout padronizada (.alunos-main) */}
-            <main className="alunos-main"> 
-                
-                {/* Seu card de cadastro específico */}
-                <div className="cadastro-professor-card"> 
-                    
-                    <h2>Cadastrar Novo Professor</h2>
-                    
-                    {message && (
-                        <p className={`message ${message.includes('sucesso') ? 'success-msg' : 'error-msg'}`}>
-                            {message}
-                        </p>
-                    )}
+        } catch (erro) {
+            const msgErro = erro.response?.data?.error || "Falha ao cadastrar professor. Verifique os dados.";
+            setMensagem({ type: 'error-msg', text: msgErro });
+            console.error("Erro no cadastro:", erro);
 
-                    <ProfessorForm onSubmit={handleCreateSubmit} />
-                    
-                    <div style={{ marginTop: '20px', textAlign: 'right' }}>
-                        <button 
-                            type="button" 
-                            className="btn-back btn-secondary" 
-                            onClick={() => navigate('/professores')}
-                        >
-                            Voltar para a Lista
-                        </button>
-                    </div>
-                </div>
-            </main>
+        } finally {
+            setCarregando(false);
+        }
+    };
+    
+    const lidarComCancelamento = () => {
+        navigate('/professores/gerenciar'); 
+    };
 
-            {/* COMPONENTE FOOTER */}
-            <FooterAdmin />
-        </div>
-    );
+    return (
+        <div className="admin-container"> 
+            
+            <HeaderAdmin /> 
+
+            <main className="admin-main">
+                
+                <div className="cadastro-professor-card">
+                    
+                    <h2>Cadastrar Novo Professor</h2>
+                    
+                    {/* Mensagem de Feedback */}
+                    {mensagem && (
+                        <div className={`message ${mensagem.type}`}>
+                            {mensagem.text}
+                        </div>
+                    )}
+                    
+                    {/* REMOVIDO: O bloco do botão de Voltar/Cancelar que estava em cima! */}
+                    {/* <div style={{ marginBottom: '20px' }}>
+                        <button 
+                            type="button" 
+                            className="botao-acao botao-cancelar"
+                            onClick={lidarComCancelamento}
+                        >
+                            Voltar
+                        </button>
+                    </div> 
+                    */}
+
+                    {/* ⭐️ ADICIONADO: O onCancel é passado para o formulário reutilizável */}
+                    <ProfessorForm 
+                        onSubmit={lidarComEnvio} 
+                        onCancel={lidarComCancelamento} 
+                        isEditing={false} 
+                        disabled={carregando} 
+                    />
+
+                </div>
+
+            </main>
+
+            <FooterAdmin />
+        </div>
+    );
 };
 
 export default CreateProfessor;

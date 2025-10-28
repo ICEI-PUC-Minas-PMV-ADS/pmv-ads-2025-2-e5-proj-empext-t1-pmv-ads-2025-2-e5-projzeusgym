@@ -1,227 +1,215 @@
-/* src/pages/ManageProfessors.css */
-
-/* Removendo estilos globais desnecessários do CSS anterior */
+/* ========================= */
+/* RESET E ESTILOS GLOBAIS   */
+/* ========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body,
-html {
+body, html {
+    font-family: Verdana, sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
-/* ================================================= */
-/* ESTILOS DE LAYOUT (PADRÃO NATÁLIA) */
-/* ================================================= */
-
-.alunos-container {
-    display: flex; 
+.professors-page-container {
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: white;
-    max-width: none;
-    margin: 0;
-    padding: 0;
+    background-color: #fff;
 }
 
-/* HEADER LARANJA */
-.alunos-header {
-    background: #E2760A; 
-    width: 100%;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-content-aluno {
-    width: 100%;
-    margin: 0;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.button-group-aluno {
-    display: flex;
-    gap: 15px;
-    justify-content: start;
-}
-
-.header-btn-aluno {
-    margin: 0;
-    color: black;
-    font-size: 16px;
-    background-color: #ABABAB; 
-    padding: 10px 32px;
-    border-radius: 12px;
-    border-color: transparent;
-    cursor: pointer;
-}
-
-.header-btn-aluno:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
-}
-
-.header-btn-aluno.active {
-    background-color: white; 
-}
-
-.icon-group {
-    display: flex;
-    position: absolute;
-    right: 20px;
-}
-
-.profile-icon {
-    margin: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #ffd166;
-    box-sizing: border-box;
-}
-
-.profile-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* CONTEÚDO PRINCIPAL */
-.alunos-main {
-    flex-grow: 1; 
-    max-width: 100%;
-    padding: 40px 30px;
-}
-
-/* TÍTULO PRINCIPAL */
-.header-main-aluno {
+.page-title {
     font-size: 40px;
-    font-weight: 400;
+    font-weight: 800;
     color: #444;
     text-align: left;
     margin-bottom: 20px;
-    font-family: Verdana;
+    font-family: Verdana; 
 }
 
-/* FOOTER LARANJA */
-.app-footer-aluno {
-    background-color: #E2760A;
-    color: white;
-    height: 60px;
-    width: 100%;
-    z-index: 10;
-    margin-top: auto; 
-}
-
-
-/* ================================================= */
-/* ESTILOS ESPECÍFICOS DE MANAGEPROFESSORS (SEU CÓDIGO) */
-/* ================================================= */
-
-.manage-container {
-    max-width: 1200px;
-    margin: 0 auto; 
-    padding: 20px;
-    background-color: #ABABAB; 
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.manage-container h2 {
-    display: none; 
-}
-
-/* Header de Ações (Botão + Cadastrar) */
-.actions-header {
+/* ========================= */
+/* CONTEÚDO PRINCIPAL (Main)     */
+/* ========================= */
+.professors-main-content {
+    flex-grow: 1;
+    /* O padding lateral de 30px define a margem da tela */
+    padding: 40px 30px; 
     display: flex;
-    justify-content: flex-end; 
+    flex-direction: column;
+    /* ALINHA TUDO À ESQUERDA (Largura Total) */
+    align-items: flex-start; 
+}
+
+.manage-professors-wrapper {
+    /* Sem largura máxima, ocupa 100% da área do main */
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+/* ========================= */
+/* BOTÃO + CADASTRAR          */
+/* ========================= */
+.btn-add-professor-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #000; 
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
     margin-bottom: 20px;
-}
-
-.btn-add-professor {
-    background-color: #E2760A;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
+    text-transform: none;
 }
 
-.btn-add-professor:hover {
-    background-color: #c96707; 
-}
-
-/* Estilos da Tabela */
-.professors-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.professors-table th,
-.professors-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.professors-table th {
-    background-color: #E2760A;
+.btn-add-professor-icon-text .icon-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #E2760A; 
     color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9em;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
 }
 
-.professors-table tr:hover {
-    background-color: #f9f9f9;
-}
 
-/* Estilos dos Botões de Ação na Tabela */
-.table-actions button {
-    margin-right: 8px;
-    padding: 6px 10px;
+/* ========================= */
+/* BARRA DE BUSCA (Largura Total)   */
+/* ========================= */
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    /* Ocupa 100% da largura do wrapper */
+    width: 100%; 
+    max-width: none; /* Garante que não há restrição de largura */
+    border: 1px solid #ccc;
     border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+}
+
+.professor-search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-right: 10px;
+}
+
+.search-bar-container .icon-search {
+    color: #888;
+    font-size: 18px;
+}
+
+/* ========================= */
+/* LISTA DE PROFESSORES      */
+/* ========================= */
+.professor-list {
+    list-style: none;
+    width: 100%;
+    border: none; 
+    box-shadow: none; 
+    border-radius: 0; 
+    overflow: hidden;
+}
+
+.professor-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px; 
+    
+    /* CORREÇÃO COR: Linha ÍMPAR */
+    background-color: #ababab; 
+    border-bottom: 1px solid #ffffff; 
+}
+
+.professor-list-item:nth-child(even) {
+    background-color: #A9A9A9;
+}
+
+.professor-list-item:last-child {
+    border-bottom: none;
+}
+
+.professor-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: black; 
+}
+
+.item-actions {
+    display: flex;
+    gap: 15px; 
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
     cursor: pointer;
-    font-size: 0.85em;
-    transition: opacity 0.2s;
+    padding: 0;
+    transition: transform 0.1s;
 }
 
-.table-actions .btn-edit {
-    background-color: #4a90e2; 
-    color: white;
-    border: none;
+.action-btn:hover {
+    transform: scale(1.1);
 }
 
-.table-actions .btn-remove {
-    background-color: #d0021b; 
-    color: white;
-    border: none;
+.action-btn .icon-delete,
+.action-btn .icon-edit {
+    font-size: 18px;
+    color: black ; 
 }
 
-/* NOVO ESTILO: Botão Ver (Azul) */
-.table-actions .btn-view {
-    background-color: #007bff; /* Azul */
-    color: white;
-    border: none;
+.action-btn:hover .icon-delete,
+.action-btn:hover .icon-edit {
+    color: #333;
 }
 
-.loading-msg, .error-msg {
-    text-align: center;
-    padding: 20px;
-    font-weight: bold;
+/* ========================= */
+/* MENSAGENS DE ERRO/LOAD     */
+/* ========================= */
+.loading-msg,
+.error-msg,
+.no-results-msg {
+    font-size: 16px;
+    color: #555;
+    padding: 10px 0;
+}
+
+/* ========================= */
+/* RESPONSIVIDADE             */
+/* ========================= */
+@media (max-width: 768px) {
+    .professors-main-content {
+        padding: 20px 15px; 
+    }
+    .manage-professors-wrapper {
+        width: 100%;
+        padding-top: 0;
+    }
+    .professor-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+    .item-actions {
+        margin-top: 8px;
+        gap: 10px;
+    }
+    .search-bar-container {
+        max-width: 100%;
+    }
 }

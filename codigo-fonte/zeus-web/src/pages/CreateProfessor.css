@@ -1,56 +1,141 @@
 .cadastro-professor-card {
-    max-width: 1000px; /* Ajuste se necessário para seu layout */
-    margin: 0 auto; 
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; 
+    margin: 30px auto; /* Centraliza verticalmente e adiciona espaço em cima */
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px; /* Reduzi um pouco para harmonizar com inputs */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
 }
 
+/* Aplicando o estilo de título padronizado (usando a classe H1 ou H2 do JSX) */
+.cadastro-professor-card h1,
 .cadastro-professor-card h2 {
-    font-size: 2.5rem;
-    color: #333; /* Usando cor fixa ou variável */
-    margin-bottom: 20px;
-    border-bottom: 2px solid #E2760A;
-    padding-bottom: 10px;
-    font-weight: 600;
+    font-size: 24px; /* Ajustado para 24px, como no esquema */
+    color: #333;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #E2760A; /* Cor Laranja Zeus */
+    padding-bottom: 10px;
+    font-weight: 600;
 }
 
-/* Estilos de mensagens de feedback (podem ser movidos para AdminLayout se forem usados em outras páginas) */
+/* ------------------------------------------------ */
+/* 2. ESTRUTURA DOS CAMPOS (GRID 2 COLUNAS) */
+/* ------------------------------------------------ */
+.grupo-campos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dois campos por linha */
+    gap: 20px 30px; /* Espaço entre campos */
+    margin-bottom: 20px;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-formulario label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* ------------------------------------------------ */
+/* 3. ESTILO DOS INPUTS E SELECTS (PADRÃO) */
+/* ------------------------------------------------ */
+.campo-formulario input,
+.campo-formulario select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+    border-color: #E2760A; /* Borda laranja Zeus ao focar */
+    outline: none;
+    box-shadow: 0 0 0 1px #E2760A;
+}
+
+/* ------------------------------------------------ */
+/* 4. BOTÕES DE AÇÃO (RODAPÉ) */
+/* ------------------------------------------------ */
+.rodape-acoes-formulario {
+    /* Alinhamento dos botões 'Cancelar' e 'Salvar' */
+    display: flex;
+    justify-content: flex-end; 
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.botao-acao {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.botao-cancelar {
+    /* Cor de Cancelar/Voltar (Vermelho da ref. visual) */
+    background-color: #dc3545; 
+    color: white;
+}
+.botao-cancelar:hover {
+    background-color: #c82333;
+}
+
+.botao-salvar {
+    /* Cor principal de Salvar (Laranja Zeus da ref. visual) */
+    background-color: #E2760A; 
+    color: white;
+}
+.botao-salvar:hover {
+    background-color: #c76709; 
+}
+
+
+/* Estilos de mensagens de feedback (mantidos para consistência) */
 .message {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-weight: bold;
 }
 
 .success-msg {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
 .error-msg {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
-
-/* Estilos do Botão Voltar */
+/* O botão btn-back não é necessário se usarmos .botao-cancelar */
+/* Você pode remover as classes btn-back e btn-secondary ou ajustá-las para a mesma cor do .botao-cancelar */
+/* Se quiser manter o back-button laranja (que difere da ref. visual): */
 .btn-back.btn-secondary {
-    background-color: #ff9500; 
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    min-width: 120px;
-    transition: background-color 0.2s;
-    text-transform: uppercase;
+    background-color: #ff9500; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 120px;
+    transition: background-color 0.2s;
+    text-transform: uppercase;
 }
-
 .btn-back.btn-secondary:hover {
-    background-color: #e58600;
+    background-color: #e58600;
 }

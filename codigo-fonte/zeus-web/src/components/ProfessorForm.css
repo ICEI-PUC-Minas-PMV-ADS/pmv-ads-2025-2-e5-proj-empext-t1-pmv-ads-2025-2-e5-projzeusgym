@@ -1,16 +1,16 @@
-/* src/components/ProfessorForm.css */
+/* src/components/ProfessorForm.css (Completo e Atualizado - COR AZUL para Voltar) */
 
 :root {
     --color-primary: #E2760A;
     --color-secondary: #ABABAB;
     --color-success: #4CAF50; /* Verde do botão de cadastro */
-    --color-error: #f44336;
+    --color-error: #f44336; /* Vermelho para erros */
+    --color-cancel-blue: #007bff; /* ⭐️ NOVO: Azul para o botão de Voltar/Cancelar */
     --color-text-dark: #333;
 }
 
 .professor-form {
     display: grid;
-    /* Divide o formulário em duas colunas de tamanho igual */
     grid-template-columns: 1fr 1fr; 
     gap: 20px;
     padding: 20px 0;
@@ -24,11 +24,9 @@
     font-weight: 500;
 }
 
-/* Estilo para o grupo de campo e label */
 .form-group {
     display: flex;
     flex-direction: column;
-    /* Ocupa uma das colunas do grid */
     grid-column: span 1; 
 }
 
@@ -61,15 +59,40 @@
     outline: none;
 }
 
-/* ESTILO DO BOTÃO CADASTRAR PROFESSOR (VERDE COM ALTA PRIORIDADE) */
-.professor-form .btn-submit {
-    /* Posição no grid: começa na coluna 2 e termina no final, alinhado à direita */
-    grid-column: 2 / 3;
-    justify-self: end;
+/* CONTAINER PARA OS BOTÕES DE AÇÃO (VOLTAR e SALVAR) */
+.form-actions {
+    grid-column: 2 / 3; 
+    justify-self: end; 
     align-self: end;
-    margin-top: 20px; /* Garante espaçamento extra */
+    margin-top: 20px; 
     
-    background-color: var(--color-success) !important; /* FORÇA O ESTILO VERDE */
+    display: flex;
+    gap: 15px; 
+}
+
+/* ⭐️ ESTILO DO BOTÃO DE CANCELAR/VOLTAR (AGORA AZUL) */
+.btn-cancel {
+    background-color: var(--color-cancel-blue); /* ⭐️ MUDANÇA: Usando o novo azul */
+    color: white;
+    padding: 15px 30px; 
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-cancel:hover {
+    background-color: #0056b3; /* Tom mais escuro de azul no hover */
+    transform: translateY(-1px);
+}
+
+/* ESTILO DO BOTÃO CADASTRAR PROFESSOR (btn-submit) */
+.professor-form .btn-submit {
+    background-color: var(--color-success) !important;
     color: white;
     padding: 15px 30px; 
     border: none;
@@ -88,19 +111,28 @@
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsividade: Transforma em coluna única em telas pequenas */
+
+/*==================================
+  RESPONSIVIDADE DO FORMULÁRIO
+====================================*/
 @media (max-width: 768px) {
     .professor-form {
         grid-template-columns: 1fr;
     }
 
     .form-group {
-        grid-column: 1 / -1; /* Ocupa a coluna inteira */
-    }
-
-    .professor-form .btn-submit {
         grid-column: 1 / -1; 
-        justify-self: stretch;
+    }
+    
+    .form-actions {
+        grid-column: 1 / -1; 
+        justify-self: stretch; 
         margin-top: 20px;
+        flex-direction: column; 
+    }
+    
+    .btn-cancel,
+    .professor-form .btn-submit {
+        width: 100%; 
     }
 }

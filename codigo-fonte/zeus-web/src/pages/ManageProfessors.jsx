@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import './ManageProfessors.css'; 
 
-// Importações de Componentes
 import HeaderAdmin from '../components/HeaderAdmin'; 
 import FooterAdmin from '../components/FooterAdmin'; 
+
+const DeleteIcon = () => <span className="icon-delete">🗑️</span>; 
+const EditIcon = () => <span className="icon-edit">📝</span>;   
+const PlusIcon = () => <span className="icon-plus">+</span>;    
+const SearchIcon = () => <span className="icon-search">🔍</span>; 
 
 const ManageProfessors = () => {
     const navigate = useNavigate();
@@ -13,24 +17,26 @@ const ManageProfessors = () => {
     const [professors, setProfessors] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(''); 
 
-    // Função para buscar os professores (GET /admin/professores)
     const fetchProfessors = useCallback(async () => {
         setLoading(true);
         setError(null);
         const token = localStorage.getItem('token'); 
-        
         if (!token) {
             navigate('/adminlogin'); 
             return;
         }
-
         try {
             const response = await api.get('admin/professores', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            setProfessors(response.data);
-            
+            const dataWithIds = response.data.map((prof, index) => ({
+                ...prof,
+                id: prof.id || index + 1, 
+                name: prof.name || `Professor ${index + 1}`
+            }));
+            setProfessors(dataWithIds);
         } catch (err) {
             if (err.response && (err.response.status === 401 || err.response.status === 403)) {
                 setError("Acesso negado ou token expirado. Faça login novamente.");
@@ -38,7 +44,6 @@ const ManageProfessors = () => {
                 setError("Erro ao carregar professores. Tente novamente.");
             }
             console.error("Erro na listagem de professores:", err);
-            
         } finally {
             setLoading(false);
         }
@@ -48,23 +53,15 @@ const ManageProfessors = () => {
         fetchProfessors();
     }, [fetchProfessors]);
 
-
-    // Função para excluir um professor (DELETE /admin/professores/:id)
     const handleDelete = async (professorId) => {
-        if (!window.confirm(`Tem certeza que deseja excluir o professor ID ${professorId}?`)) {
-            return;
-        }
-        
+        if (!window.confirm(`Tem certeza que deseja excluir o professor ID ${professorId}?`)) return;
         const token = localStorage.getItem('token');
-        
         try {
             await api.delete(`/admin/professores/${professorId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            
             setProfessors(prev => prev.filter(prof => prof.id !== professorId));
-            alert(`Professor ID ${professorId} excluído com sucesso!`);
-            
+            alert(`Professor excluído com sucesso!`);
         } catch (err) {
             const errorMessage = err.response?.data?.error || "Falha ao excluir professor.";
             alert(errorMessage);
@@ -72,85 +69,70 @@ const ManageProfessors = () => {
             console.error("Erro na exclusão:", err);
         }
     };
-    
+
+    const filteredProfessors = professors.filter(prof =>
+        prof.name && prof.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     if (loading && !professors.length) return <p className="loading-msg">Carregando professores...</p>;
     if (error && !professors.length) return <p className="error-msg">{error}</p>;
 
-
     return (
-        <div className="alunos-container"> 
-            
+        <div className="professors-page-container">
             <HeaderAdmin activePage="professores" />
 
-            <main className="alunos-main">
-                
-                <div className="header-main-aluno">
-                    Gerenciamento de Professores
+            <main className="professors-main-content">
+                <div className="page-title">Professores</div>
+
+                <div className="manage-professors-wrapper">
+                    <button 
+                        className="btn-add-professor-icon-text" 
+                        onClick={() => navigate('/professores/cadastrar')}
+                    >
+                        <PlusIcon /> Cadastrar professor
+                    </button>
+
+                    <div className="search-bar-container">
+                        <input
+                            type="text"
+                            placeholder="Procurar"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="professor-search-input"
+                        />
+                        <SearchIcon />
+                    </div>
+
+                    <ul className="professor-list">
+                        {filteredProfessors.length > 0 ? (
+                            filteredProfessors.map(prof => (
+                                <li key={prof.id} className="professor-list-item">
+                                    <span className="professor-name">{prof.name}</span> 
+                                    <div className="item-actions">
+                                        <button 
+                                            className="action-btn delete-btn" 
+                                            onClick={() => handleDelete(prof.id)}
+                                        >
+                                            <DeleteIcon />
+                                        </button>
+                                        <button 
+                                            className="action-btn edit-btn" 
+                                            onClick={() => navigate(`/professores/editar/${prof.id}`)}
+                                        >
+                                            <EditIcon />
+                                        </button>
+                                    </div>
+                                </li>
+                            ))
+                        ) : (
+                            <li className="no-results-msg">
+                                {searchTerm ? `Nenhum professor encontrado com o nome "${searchTerm}".` : 'Nenhum professor cadastrado.'}
+                            </li>
+                        )}
+                    </ul>
                 </div>
-                
-                <div className="manage-container">
-                    
-                    <div className="actions-header">
-                        <button 
-                            className="btn-add-professor" 
-                            onClick={() => navigate('/professores/cadastrar')}
-                        >
-                            + Cadastrar Novo Professor
-                        </button>
-                    </div>
 
-                    <div className="table-responsive">
-                        <table className="professors-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Email</th>
-                                    <th>CREF/MG</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {professors.length > 0 ? (
-                                    professors.map(prof => (
-                                        <tr key={prof.id}>
-                                            <td>{prof.id}</td>
-                                            <td>{prof.name}</td>
-                                            <td>{prof.email}</td>
-                                            <td>{prof.cref_mg}</td>
-                                            <td className="table-actions">
-                                                {/* NOVO BOTÃO 'VER' */}
-                                                <button 
-                                                    className="btn-view" 
-                                                    onClick={() => navigate(`/professores/ver/${prof.id}`)}
-                                                >
-                                                    Ver
-                                                </button>
-                                                <button 
-                                                    className="btn-edit" 
-                                                    onClick={() => navigate(`/professores/editar/${prof.id}`)}
-                                                >
-                                                    Editar
-                                                </button>
-                                                <button 
-                                                    className="btn-remove" 
-                                                    onClick={() => handleDelete(prof.id)}
-                                                >
-                                                    Remover
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="5" style={{ textAlign: 'center' }}>Nenhum professor cadastrado.</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </div> 
-
+                {error && <p className="error-msg" style={{marginTop: '20px'}}>{error}</p>}
             </main>
 
             <FooterAdmin />
