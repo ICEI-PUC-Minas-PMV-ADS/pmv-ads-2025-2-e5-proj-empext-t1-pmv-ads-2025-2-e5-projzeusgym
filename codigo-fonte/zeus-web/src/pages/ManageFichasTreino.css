@@ -1,0 +1,222 @@
+/* Container principal */
+.manage-fichas-container {
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+/* Conteúdo principal */
+.manage-fichas-content {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Título da página */
+.page-title {
+  font-size: 50px !important;
+  font-weight: bold;
+  color: #444;
+  text-align: left;
+  margin-bottom: 20px;
+  font-family: arial;
+  padding-left: 50px;
+}
+
+/* Seção do botão adicionar */
+.add-ficha-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-left: 130px;
+}
+
+.add-ficha-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e2760a;
+  color: white;
+  border: none;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.add-ficha-circle:hover {
+  background-color: #c96508;
+}
+
+.add-ficha-text {
+  font-size: 25px;
+  color: #000;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Container de busca */
+.search-container {
+  position: relative;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #e2760a;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #e2760a;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+/* Mensagens de feedback */
+.message {
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.message.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Lista de fichas */
+.fichas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Item individual da ficha */
+.ficha-item {
+  background-color: #ababab;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.ficha-item:hover {
+  background-color: #999;
+}
+
+/* Informações da ficha */
+.ficha-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ficha-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+.ficha-student {
+  font-size: 14px;
+  color: #333;
+}
+
+.ficha-date {
+  font-size: 12px;
+  color: #555;
+}
+
+/* Ações da ficha */
+.ficha-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #000;
+  transition: color 0.3s ease;
+  padding: 5px;
+}
+
+.action-btn:hover {
+  color: #e2760a;
+}
+
+/* Mensagens de estado */
+.loading-message,
+.empty-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .manage-fichas-content {
+    padding: 20px;
+  }
+
+  .page-title {
+    font-size: 32px;
+  }
+
+  .ficha-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .ficha-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

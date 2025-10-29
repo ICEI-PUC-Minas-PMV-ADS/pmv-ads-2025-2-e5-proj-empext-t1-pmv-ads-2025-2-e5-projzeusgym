@@ -1,0 +1,12 @@
+/* ================================================= */
+/* ESTILOS DO FOOTER */
+/* ================================================= */
+
+.app-footer-aluno {
+    background-color: var(--primary-color); /* Laranja */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Garante que ele fique no final da página (graças ao flex-grow no main) */
+}

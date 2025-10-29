@@ -1,14 +1,12 @@
-// src/components/Footer.jsx
-
 import React from 'react';
-import './Footer.css';
+import './FooterAdmin.css'; 
 
-const Footer = () => {
+const FooterAdmin = () => {
     return (
-        <footer className="app-footer">
-            <p>© 2023 Zeus Gym. Todos os direitos reservados.</p>
+        <footer className="app-footer-aluno">
+            {/* O Rodapé é uma faixa de cor, conforme seu CSS */}
         </footer>
     );
 };
 
-export default Footer;
+export default FooterAdmin; 

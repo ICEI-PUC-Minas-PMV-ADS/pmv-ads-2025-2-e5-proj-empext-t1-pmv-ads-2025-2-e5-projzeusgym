@@ -1,8 +1,7 @@
-// src/components/HeaderAdmin.jsx
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminLayout.css'; // Importa os estilos de layout
+// CORREÇÃO: CSS na mesma pasta (components)
+import './HeaderAdmin.css'; 
 
 // activePage: 'exercicios', 'professores', ou 'alunos'
 const HeaderAdmin = ({ activePage }) => {
@@ -27,7 +26,7 @@ const HeaderAdmin = ({ activePage }) => {
                     {/* Botão Gerenciar Professores */}
                     <button 
                         className={`header-btn-aluno ${activePage === 'professores' ? 'active' : ''}`}
-                        onClick={() => handleNavigate('/professores')}
+                        onClick={() => handleNavigate('/professores/gerenciar')}
                     >
                         Gerenciar Professores
                     </button>

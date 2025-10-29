@@ -1,0 +1,36 @@
+/* ================================================= */
+/* VARIÁVEIS DE COR E RESET GLOBAL */
+/* ================================================= */
+:root {
+    --primary-color: #E2760A;
+    --secondary-color: #C76408;
+    --background-color: #f4f4f4;
+}
+
+/* Reset Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Configuração do corpo (CRÍTICO: Define o tamanho de fonte padrão) */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif; 
+    font-size: 16px; /* Impede que os elementos fiquem ENORMES */
+}
+
+/* Estrutura principal do Layout Admin (Wrapper) */
+.admin-layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Área de Conteúdo Principal (Para empurrar o footer) */
+.main-page-content {
+    flex-grow: 1; 
+    padding: 20px;
+}

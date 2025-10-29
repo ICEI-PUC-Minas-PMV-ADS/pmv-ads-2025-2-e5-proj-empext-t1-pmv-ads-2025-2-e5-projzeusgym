@@ -1,0 +1,132 @@
+/* ========================= */
+/* Estilos para ViewProfessor.jsx   */
+/* ========================= */
+
+.view-professor-container {
+    padding: 40px 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+/* --- CARD DE DETALHES --- */
+.professor-details-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    width: 100%;
+    max-width: 800px; /* Limita a largura do card */
+    margin-bottom: 30px;
+}
+
+.detail-item {
+    flex: 1 1 45%; /* Ocupa metade da largura em telas maiores */
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.detail-item.full-width {
+    flex: 1 1 100%; /* Ocupa a largura total */
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    font-size: 16px;
+    color: #333;
+    word-break: break-word;
+}
+
+/* Status (Exemplo de cor condicional) */
+.status-active {
+    color: green;
+    font-weight: bold;
+}
+
+
+/* --- BOTÕES DE AÇÃO --- */
+.action-buttons-group {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-edit-details,
+.btn-back-list {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none; /* Para links */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-edit-details {
+    background-color: #E2760A; /* Cor Laranja Primária */
+    color: white;
+    border: none;
+}
+
+.btn-edit-details:hover {
+    background-color: #c96500;
+}
+
+.btn-back-list {
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #aaa;
+}
+
+.btn-back-list:hover {
+    background-color: #bbb;
+}
+
+/* ========================= */
+/* RESPONSIVIDADE             */
+/* ========================= */
+@media (max-width: 768px) {
+    .view-professor-container {
+        padding: 20px 15px;
+    }
+    
+    .professor-details-card {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .detail-item {
+        flex: 1 1 100%;
+    }
+    
+    .action-buttons-group {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .btn-edit-details,
+    .btn-back-list {
+        width: 100%;
+        text-align: center;
+    }
+}

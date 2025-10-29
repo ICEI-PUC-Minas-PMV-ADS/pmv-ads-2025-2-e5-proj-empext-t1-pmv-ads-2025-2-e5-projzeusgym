@@ -1,7 +1,6 @@
-// src/components/FooterAdmin.jsx
-
 import React from 'react';
-import '../styles/AdminLayout.css'; // Importa os estilos de layout
+// CORREÇÃO: CSS na mesma pasta (components)
+import './FooterAdmin.css'; 
 
 const FooterAdmin = () => {
     return (

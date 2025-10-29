@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CadastroFichaTreino.css'; 
 
-// IMPORTANDO OS COMPONENTES REUTILIZÁVEIS
 import HeaderAdmin from '../components/HeaderAdmin'; 
 import FooterAdmin from '../components/FooterAdmin'; 
-import '../styles/AdminLayout.css'; 
+import '../styles/LayoutBase.css';
 
 const baseURL = 'http://localhost:3000';
 

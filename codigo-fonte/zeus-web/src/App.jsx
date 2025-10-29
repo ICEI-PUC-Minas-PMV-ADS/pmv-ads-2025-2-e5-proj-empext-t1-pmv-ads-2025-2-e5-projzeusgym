@@ -20,6 +20,9 @@ import EditProfessor from './pages/EditProfessor';
 import GerenciarAvaliacoes from './pages/GerenciarAvaliacoes';
 import UploadAvaliacao from './pages/UploadAvaliacao';
 
+// COMPONENTE ADICIONADO:
+import ViewProfessor from './pages/ViewProfessor'; 
+
 // Componente para proteger rotas (só acessa se estiver autenticado)
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -98,35 +101,23 @@ function App() {
             }
           />
 
-<<<<<<< HEAD
-          {/* ROTAS DE GERENCIAMENTO DE PROFESSORES */}
-          
-          {/* ⭐️ ADICIONADO: Redireciona a rota antiga /professores para a nova /professores/gerenciar */}
-          <Route 
-            path="/professores"
-            element={<Navigate to="/professores/gerenciar" replace />} 
-          />
-          
-          {/* ROTA PRINCIPAL: Listagem/Gerenciamento de Professores */}
-          <Route
-            path="/professores/gerenciar" 
-            element={
-              <ProtectedRoute>
-                <ManageProfessors />
-              </ProtectedRoute>
-            }
-          />
-=======
           {/* ROTAS DE GERENCIAMENTO DE PROFESSORES */}
-          <Route
+          
+          {/* Redireciona a rota antiga /professores para a nova /professores/gerenciar */}
+          <Route 
             path="/professores"
+            element={<Navigate to="/professores/gerenciar" replace />} 
+          />
+          
+          {/* ROTA PRINCIPAL: Listagem/Gerenciamento de Professores */}
+          <Route
+            path="/professores/gerenciar" 
             element={
               <ProtectedRoute>
                 <ManageProfessors />
               </ProtectedRoute>
             }
           />
->>>>>>> c7e02893dc8da3deebd1227eff7702125cc2fbed
 
           <Route
             path="/professores/cadastrar"
@@ -137,26 +128,6 @@ function App() {
             }
           />
 
-<<<<<<< HEAD
-          <Route
-            path="/professores/editar/:id"
-            element={
-              <ProtectedRoute>
-                <EditProfessor />
-              </ProtectedRoute>
-            }
-          />
-          
-          {/* ROTA DE VISUALIZAÇÃO DE PROFESSOR */}
-          <Route
-            path="/professores/ver/:id" 
-            element={
-              <ProtectedRoute>
-                <ViewProfessor /> 
-              </ProtectedRoute>
-            }
-          />
-=======
           <Route
             path="/professores/editar/:id"
             element={
@@ -165,7 +136,16 @@ function App() {
               </ProtectedRoute>
             }
           />
->>>>>>> c7e02893dc8da3deebd1227eff7702125cc2fbed
+          
+          {/* ROTA DE VISUALIZAÇÃO DE PROFESSOR (ADICIONADA) */}
+          <Route
+            path="/professores/ver/:id" 
+            element={
+              <ProtectedRoute>
+                <ViewProfessor /> 
+              </ProtectedRoute>
+            }
+          />
 
 
           {/* ROTAS DE GERENCIAMENTO DE ALUNOS */}
