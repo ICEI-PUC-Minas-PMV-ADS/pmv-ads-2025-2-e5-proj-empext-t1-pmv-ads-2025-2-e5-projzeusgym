@@ -2,6 +2,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import HomeScreenStyle from '../styles/HomeScreenStyle.js';
 import LogoZeus from '../../assets/Logo_zeus.png';
+import HeaderStyle from '../styles/HeaderStyle.js';
+import FooterStyle from '../styles/FooterStyle.js';
 
 
 const MainButton = ({ label, onPress }) => (
@@ -36,14 +38,15 @@ const HomeScreen = ({ navigation }) => {
             <StatusBar style="light" backgroundColor="#FF8C00" />
 
             {/* 1. Header (Cabeçalho Laranja) */}
-            <View style={HomeScreenStyle.header}>
-                <TouchableOpacity style={HomeScreenStyle.menuButton}>
+            <View style={HeaderStyle.header}>
+                <TouchableOpacity style={HeaderStyle.menuButton}
+                onPress={() => navigation.openDrawer()}>
                     {/* Ícone de Menu (Substituir por ícone real futuramente) */}
-                    <Text style={HomeScreenStyle.menuText}>☰</Text>
+                    <Text style={HeaderStyle.menuText}>☰</Text>
                 </TouchableOpacity>
                 <Image
                     source={LogoZeus}
-                    style={HomeScreenStyle.logoPlaceholder}
+                    style={HeaderStyle.logoPlaceholder}
                 />
             </View>
 
@@ -57,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
 
             {/* 3. Footer (Rodapé Laranja) */}
-            <View style={HomeScreenStyle.footer} />
+            <View style={FooterStyle.footer} />
         </View>
     );
 };

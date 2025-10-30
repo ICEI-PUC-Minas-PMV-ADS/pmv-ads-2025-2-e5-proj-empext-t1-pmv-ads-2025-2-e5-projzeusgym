@@ -1,33 +1,36 @@
 import {StyleSheet} from 'react-native';
 
-const HomeScreenStyle = StyleSheet.create({
+const HeaderStyle = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
     },
 
-    // --- CONTENT ---//
-    content: {
-        flex: 1,
-        paddingHorizontal: 30,
-        paddingTop: 50,
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
-    },
+        paddingHorizontal: 15,
+        paddingTop: 40, // Ajuste para a barra de status
+        paddingBottom: 10,
+        backgroundColor: '#FF8C00', // Laranja do design
+    } ,
 
-    titleText: {
-        fontSize: 40,
-        fontWeight: '900', // Extra bold
-        color: '#000',
-        marginBottom: 40,
-        // Efeito de sombra no texto (simulando a sombra da imagem)
-        textShadowColor: 'rgba(0, 0, 0, 0.3)',
-        textShadowOffset: {
-            width: 3, height: 3
-        } ,
-        textShadowRadius: 5,
-    },
+    menuButton: {
+        padding: 5,
+    } ,
 
-    // --- BUTTONS ---
+    menuText: {
+        fontSize: 30,
+        color: '#fff',
+        fontWeight: 'bold',
+    } ,
+
+    logoPlaceholder: {
+        width: 50,
+        height: 50,
+        borderRadius: 5,
+    } ,
     button: {
         width: '100%',
         maxWidth: 300,
@@ -55,4 +58,4 @@ const HomeScreenStyle = StyleSheet.create({
     } ,
 });
 
-export default HomeScreenStyle;
+export default HeaderStyle;
