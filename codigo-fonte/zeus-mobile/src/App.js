@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import CalcularIMC from './pages/CalcularImc';
 
 import HomeScreen from './pages/HomeScreen';
 import RegistrarPeso from './pages/RegistrarPeso'; 
@@ -43,6 +44,17 @@ export default function App() {
             ),
            }} 
         />
+        <Drawer.Screen
+          name="CalcularIMC"
+          component={CalcularIMC}
+          options={{
+            title: 'Calcular IMC',
+            headerShown: false,
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="fitness-outline" size={size} color={color} />
+            ),
+          }}
+        />  
       </Drawer.Navigator>
     </NavigationContainer>
   );
