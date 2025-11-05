@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node codigo-fonte/src/server.js", 
+    "heroku-postbuild": "cd codigo-fonte && npm install",
     "dev": "nodemon src/server.js"
   },
   "keywords": [],
