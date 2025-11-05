@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
-const { Op } = require('sequelize'); 
+const { Op } = require('sequelize');
 
 const userLogin = async (req, res) => {
     const { login, password } = req.body;
@@ -13,15 +13,17 @@ const userLogin = async (req, res) => {
     try {
 
         const user = await Users.findOne({
-            where: { 
-                email: login, 
-                role: { [Op.in]: ['professor', 'aluno'] } 
+            where: {
+                email: login,
+                role: { [Op.in]: ['professor', 'aluno'] }
             },
             attributes: ['id', 'name', 'email', 'password', 'role', 'mustChangePassword'],
         });
-        if (!user) return res.status(404).json({ message: 'Usu�rio n�o encontrado.' });
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!user) return res.status(404).json({ message: 'Usu�rio n�o encontrado.' });
+        const userPassword = password.trim();
+
+        const isPasswordValid = await bcrypt.compare(userPassword, user.password);
         if (!isPasswordValid) return res.status(401).json({ message: 'Senha incorreta.' });
 
         if (user.mustChangePassword) {

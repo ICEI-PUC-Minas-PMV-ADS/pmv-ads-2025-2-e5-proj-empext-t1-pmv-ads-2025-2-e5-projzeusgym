@@ -2,19 +2,17 @@ function generateRandomPassword(length = 10) {
     const chars = {
         lower: 'abcdefghijklmnopqrstuvwxyz',
         upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        numbers: '01234456789',
-        symbols: '!@#$%^&*()-_+=[]{}|;:,.<>?',
+        numbers: '0123456789',
     };
 
 
-    const allChars = chars.lower + chars.upper + chars.numbers + chars.symbols;
+    const allChars = chars.lower + chars.upper + chars.numbers;
     
     let password = '';
 
     password += chars.lower[Math.floor(Math.random() * chars.lower.length)];
     password += chars.upper[Math.floor(Math.random() * chars.upper.length)];
     password += chars.numbers[Math.floor(Math.random() * chars.numbers.length)];
-    password += chars.symbols[Math.floor(Math.random() * chars.symbols.length)];
 
     // Preenche o restante da senha com caracteres aleatórios
     for (let i = password.length; i < length; i++) {
