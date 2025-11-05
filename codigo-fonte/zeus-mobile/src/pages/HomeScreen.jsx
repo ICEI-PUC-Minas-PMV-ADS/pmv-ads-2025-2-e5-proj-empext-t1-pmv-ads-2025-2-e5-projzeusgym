@@ -19,6 +19,7 @@ const routeMap = {
     //'Calcular IMC': 'CalcularIMCScreen', // Colocar nome correto da rota
     'Calcular IMC': 'CalcularIMC',
     //'Avaliação Física': 'AvaliacaoFisicaScreen', // Colocar nome correto da rota
+    'Treinos': 'MeusTreinos',
 };
 
 const HomeScreen = ({ navigation }) => {
