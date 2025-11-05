@@ -52,6 +52,13 @@ const GerenciarExercicio = () => {
   }, [token, showForm]);
 
   useEffect(() => {
+  if (error) {
+    alert(error);
+  }
+}, [error]);
+
+
+  useEffect(() => {
     if (search.trim() === '') {
       setSuggestions([]);
       return;
