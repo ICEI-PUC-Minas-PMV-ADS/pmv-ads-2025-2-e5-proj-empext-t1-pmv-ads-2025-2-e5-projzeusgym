@@ -54,6 +54,30 @@ const WeightStyle = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  historyList: {
+        width: '100%',
+        marginTop: 10,
+    },
+    historyItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 5,
+        marginBottom: 8,
+        borderWidth: 1,
+        borderColor: '#ddd',
+    },
+    historyText: {
+        fontSize: 16,
+        color: '#333',
+    },
+    noHistoryText: {
+        textAlign: 'center',
+        marginTop: 20,
+        fontSize: 16,
+        color: '#999',
+    },
 });
 
 export default WeightStyle;

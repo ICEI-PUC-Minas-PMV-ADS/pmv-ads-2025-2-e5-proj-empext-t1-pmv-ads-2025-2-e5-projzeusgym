@@ -1,7 +1,7 @@
 // src/pages/TreinoDetalhes.jsx
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
-import axios from 'axios';
+//import axios from 'axios';
 import { useRoute } from '@react-navigation/native';
 import TreinosStyles from '../styles/TreinosStyle';
 import LogoZeus from '../../assets/Logo_zeus.png';

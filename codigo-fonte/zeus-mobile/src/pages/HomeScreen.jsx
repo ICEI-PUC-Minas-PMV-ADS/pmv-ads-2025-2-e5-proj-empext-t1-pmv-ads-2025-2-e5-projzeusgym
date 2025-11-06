@@ -14,11 +14,8 @@ const MainButton = ({ label, onPress }) => (
 );
 
 const routeMap = {
-    //'Treinos': 'TreinosScreen', // Colocar nome correto da rota
     'Registar Peso': 'RegistrarPeso',
-    //'Calcular IMC': 'CalcularIMCScreen', // Colocar nome correto da rota
     'Calcular IMC': 'CalcularIMC',
-    //'Avaliação Física': 'AvaliacaoFisicaScreen', // Colocar nome correto da rota
     'Treinos': 'MeusTreinos',
 };
 

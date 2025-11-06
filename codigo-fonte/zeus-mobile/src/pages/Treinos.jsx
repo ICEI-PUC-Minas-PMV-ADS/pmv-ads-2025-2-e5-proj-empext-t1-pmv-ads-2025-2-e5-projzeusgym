@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator, Image, ScrollView } fr
 import { StatusBar } from 'expo-status-bar';
 import TreinosStyles from '../styles/TreinosStyle';
 import LogoZeus from '../../assets/Logo_zeus.png';
-import axios from 'axios';
+//import axios from 'axios';
 
 const Treinos = ({ navigation }) => {
   const [loading, setLoading] = useState(true);

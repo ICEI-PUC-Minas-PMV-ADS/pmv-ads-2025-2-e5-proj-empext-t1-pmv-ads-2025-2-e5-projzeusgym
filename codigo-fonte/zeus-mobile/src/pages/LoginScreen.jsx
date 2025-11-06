@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,23 +6,23 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  Alert
+  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../context/AuthContext';
 import LogoZeus from '../../assets/Logo_zeus.png';
-import { API_BASE_URL } from '@env'; 
+import { API_BASE_URL } from '@env';
 
-const saveToken = async (token) => {
-    console.log("Token Armazenado (Simulação)");
-};
-
-export default function LoginScreen({ setUserToken }) {
+export default function LoginScreen() {
+  // ✅ Agora o login usa o contexto para autenticação
+  const { signIn } = useContext(AuthContext);
   const navigation = useNavigation();
+
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Função para lidar com o login
+  // Função de login
   const handleLogin = async () => {
     if (!login || !password) {
       Alert.alert('Erro', 'Por favor, preencha o Login e a Senha.');
@@ -32,7 +32,7 @@ export default function LoginScreen({ setUserToken }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, { // Ajuste o endpoint se necessário
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,26 +44,29 @@ export default function LoginScreen({ setUserToken }) {
 
       if (response.ok) {
         if (data.token) {
-          await saveToken(data.token);
-          setUserToken(data.token);
-          Alert.alert('Sucesso', 'Login realizado com sucesso! Token recebido.');
-          console.log('Token:', data.token);
+          Alert.alert('Sucesso', 'Login realizado com sucesso! Bem-vindo.');
+          console.log('Token Recebido:', data.token);
+
+          // ✅ Usa o contexto para salvar token e ativar o AppDrawer
+          await signIn(data.token);
         }
       } else {
-        
         if (response.status === 403 && data.tempToken) {
           Alert.alert('Atenção', data.message || 'Troca de senha obrigatória.');
           console.log('Temp Token para troca de senha:', data.tempToken);
-          navigation.navigate('ChangePasswordScreen', { tempToken: data.tempToken });
-
+          navigation.navigate('ChangePasswordScreen', {
+            tempToken: data.tempToken,
+          });
         } else {
-          // Outros erros (400, 401, 404, etc.)
-          Alert.alert('Erro', data.message || 'Erro desconhecido ao tentar logar.');
+          Alert.alert('Erro', data.message || 'Login ou senha incorretos.');
         }
       }
     } catch (error) {
       console.error('Erro de rede/servidor:', error);
-      Alert.alert('Erro', 'Não foi possível conectar ao servidor. Tente novamente.');
+      Alert.alert(
+        'Erro',
+        'Não foi possível conectar ao servidor. Verifique sua conexão.'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -71,22 +74,14 @@ export default function LoginScreen({ setUserToken }) {
 
   return (
     <View style={LoginScreenStyle.container}>
-      {/* Área superior laranja/laranja escura - Baseado no "Frame 11" */}
-      <View style={LoginScreenStyle.header}>
-        <Text style={LoginScreenStyle.headerText}></Text>
-      </View>
+      {/* Header */}
+      <View style={LoginScreenStyle.header} />
 
+      {/* Corpo */}
       <View style={LoginScreenStyle.loginBox}>
-        {/* Logo */}
-        <Image
-          // Substitua pela sua imagem real, ou use require('./caminho/para/sua/logo.png')
-          source={LogoZeus}
-          style={LoginScreenStyle.logo}
-          resizeMode="contain"
-        />
+        <Image source={LogoZeus} style={LoginScreenStyle.logo} resizeMode="contain" />
         <Text style={LoginScreenStyle.gymName}>ZEUS GYM</Text>
 
-        {/* Campo de Usuário (Login/Email) */}
         <TextInput
           style={LoginScreenStyle.input}
           placeholder="USUÁRIO"
@@ -98,7 +93,6 @@ export default function LoginScreen({ setUserToken }) {
           editable={!isLoading}
         />
 
-        {/* Campo de Senha */}
         <TextInput
           style={LoginScreenStyle.input}
           placeholder="SENHA"
@@ -111,30 +105,30 @@ export default function LoginScreen({ setUserToken }) {
           editable={!isLoading}
         />
 
-        {/* Botão ENTRAR */}
         <TouchableOpacity
           style={LoginScreenStyle.button}
           onPress={handleLogin}
           disabled={isLoading}
         >
-          {isLoading ? (
-            <Text style={LoginScreenStyle.buttonText}>ENTRANDO...</Text>
-          ) : (
-            <Text style={LoginScreenStyle.buttonText}>ENTRAR</Text>
-          )}
+          <Text style={LoginScreenStyle.buttonText}>
+            {isLoading ? 'ENTRANDO...' : 'ENTRAR'}
+          </Text>
         </TouchableOpacity>
 
-        {/* Esqueceu a senha */}
         <TouchableOpacity
           style={LoginScreenStyle.forgotPassword}
-          onPress={() => Alert.alert('Ação', 'Navegar para a tela de recuperação de senha')}
+          onPress={() =>
+            Alert.alert('Ação', 'Navegar para a tela de recuperação de senha')
+          }
           disabled={isLoading}
         >
-          <Text style={LoginScreenStyle.forgotPasswordText}>Esqueci minha senha</Text>
+          <Text style={LoginScreenStyle.forgotPasswordText}>
+            Esqueci minha senha
+          </Text>
         </TouchableOpacity>
       </View>
 
-      {/* Área inferior laranja/laranja escura - Baseado no "Frame 27" */}
+      {/* Footer */}
       <View style={LoginScreenStyle.footer} />
     </View>
   );
@@ -143,35 +137,35 @@ export default function LoginScreen({ setUserToken }) {
 const LoginScreenStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', // Fundo branco
+    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-between', // Para manter o header e footer nas extremidades
+    justifyContent: 'space-between',
   },
   header: {
     width: '100%',
-    height: 60, // Altura do frame superior
-    backgroundColor: '#E57300', // Laranja escuro do topo
+    height: 60,
+    backgroundColor: '#E57300',
   },
   footer: {
     width: '100%',
-    height: 60, // Altura do frame inferior
-    backgroundColor: '#E57300', // Laranja escuro da base
+    height: 60,
+    backgroundColor: '#E57300',
   },
   loginBox: {
     width: '80%',
     alignItems: 'center',
-    marginTop: -30, // Puxa um pouco para cima para sobrepor o header, se necessário
+    marginTop: -30,
     paddingHorizontal: 20,
   },
   logo: {
-    width: 150, // Ajuste o tamanho da logo
+    width: 150,
     height: 150,
     marginBottom: 10,
   },
   gymName: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF8C00', // Laranja da marca
+    color: '#FF8C00',
     marginBottom: 30,
   },
   input: {
@@ -179,21 +173,21 @@ const LoginScreenStyle = StyleSheet.create({
     height: 50,
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 25, // Bordas arredondadas
+    borderRadius: 25,
     paddingHorizontal: 20,
     marginBottom: 15,
     fontSize: 16,
-    textAlign: 'center', // Texto centralizado como na imagem
+    textAlign: 'center',
   },
   button: {
     width: '100%',
     height: 50,
-    backgroundColor: '#FF8C00', // Laranja do botão ENTRAR
+    backgroundColor: '#FF8C00',
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    shadowColor: '#000', // Sombra para dar profundidade
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
