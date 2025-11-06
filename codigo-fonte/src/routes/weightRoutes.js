@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const WeightController = require('../controllers/WeightController');
-const authMiddleware = require('../middlewares/authMiddleware'); 
+const authNotAdminMiddleware = require('../middlewares/authNotAdminMiddleware'); 
 
-router.use(authMiddleware); 
+router.use(authNotAdminMiddleware); 
 
 router.post('/', WeightController.registerWeight);
 
