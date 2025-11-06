@@ -4,39 +4,39 @@ const { sendWelcomeEmail } = require('../services/sendEmail');
 const { generateRandomPassword } = require('../services/generatePassword');
 
 exports.createProfessor = async (req, res) => {
-  try {
-    const { name, birthdate, gender, cpf, cref_mg, email, password } = req.body;
+  try {
+    const { name, birthdate, gender, cpf, cref_mg, email, password } = req.body;
 
-    if (!name || !email || !password || !cpf || !cref_mg) {
-      return res.status(400).json({ error: 'Todos os campos obrigatórios (name, email, password, cpf, cref_mg) são requeridos para professor.' });
-    }
+    if (!name || !email || !password || !cpf || !cref_mg) {
+      return res.status(400).json({ error: 'Todos os campos obrigatórios (name, email, password, cpf, cref_mg) são requeridos para professor.' });
+    }
 
-    const existingUserByCpf = await Users.findOne({ where: { cpf } });
-    if (existingUserByCpf) {
-      return res.status(400).json({ error: 'CPF já cadastrado.' });
-    }
+    const existingUserByCpf = await Users.findOne({ where: { cpf } });
+    if (existingUserByCpf) {
+      return res.status(400).json({ error: 'CPF já cadastrado.' });
+    }
 
-    const existingUserByEmail = await Users.findOne({ where: { email } });
-    if (existingUserByEmail) {
-      return res.status(400).json({ error: 'Email já cadastrado.' });
-    }
+    const existingUserByEmail = await Users.findOne({ where: { email } });
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: 'Email já cadastrado.' });
+    }
 
-    const professor = await Users.create({
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cref_mg,
-      email,
-      password,
-      role: 'professor',
-    });
+    const professor = await Users.create({
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cref_mg,
+      email,
+      password,
+      role: 'professor',
+    });
 
-    return res.status(201).json({ message: 'Professor cadastrado com sucesso!', professor });
-  } catch (error) {
-    console.error('Erro ao cadastrar professor:', error);
-    return res.status(500).json({ error: 'Erro interno ao cadastrar professor.' });
-  }
+    return res.status(201).json({ message: 'Professor cadastrado com sucesso!', professor });
+  } catch (error) {
+    console.error('Erro ao cadastrar professor:', error);
+    return res.status(500).json({ error: 'Erro interno ao cadastrar professor.' });
+  }
 };
 
 exports.listProfessors = async (req, res) => {
@@ -55,380 +55,365 @@ exports.listProfessors = async (req, res) => {
 };
 
 exports.getProfessorById = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const professor = await Users.findOne({
-      where: {
-        id,
-        role: 'professor'
-      },
-      attributes: { exclude: ['password'] }
-    });
+    const professor = await Users.findOne({
+      where: {
+        id,
+        role: 'professor'
+      },
+      attributes: { exclude: ['password'] }
+    });
 
-    if (!professor) {
-      return res.status(404).json({ message: 'Professor não encontrado.' });
-    }
+    if (!professor) {
+      return res.status(404).json({ message: 'Professor não encontrado.' });
+    }
 
-    return res.status(200).json(professor);
-  } catch (error) {
-    console.error('Erro ao buscar professor por ID:', error);
-    return res.status(500).json({ error: 'Erro interno ao buscar professor.' });
-  }
+    return res.status(200).json(professor);
+  } catch (error) {
+    console.error('Erro ao buscar professor por ID:', error);
+    return res.status(500).json({ error: 'Erro interno ao buscar professor.' });
+  }
 };
 
 exports.updateProfessor = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, birthdate, gender, cpf, cref_mg, email, password } = req.body;
+  try {
+    const { id } = req.params;
+    const { name, birthdate, gender, cpf, cref_mg, email, password } = req.body;
 
-    const professor = await Users.findOne({
-      where: {
-        id,
-        role: 'professor'
-      }
-    });
+    const professor = await Users.findOne({
+      where: {
+        id,
+        role: 'professor'
+      }
+    });
 
-    if (!professor) {
-      return res.status(404).json({ error: 'Professor não encontrado.' });
-    }
+    if (!professor) {
+      return res.status(404).json({ error: 'Professor não encontrado.' });
+    }
 
-    if (cpf && cpf !== professor.cpf) {
-      const existingUserByCpf = await Users.findOne({ where: { cpf } });
-      if (existingUserByCpf) {
-        return res.status(400).json({ error: 'CPF já cadastrado para outro usuário.' });
-      }
-    }
+    if (cpf && cpf !== professor.cpf) {
+      const existingUserByCpf = await Users.findOne({ where: { cpf } });
+      if (existingUserByCpf) {
+        return res.status(400).json({ error: 'CPF já cadastrado para outro usuário.' });
+      }
+    }
 
-    if (email && email !== professor.email) {
-      const existingUserByEmail = await Users.findOne({ where: { email } });
-      if (existingUserByEmail) {
-        return res.status(400).json({ error: 'Email já cadastrado para outro usuário.' });
-      }
-    }
+    if (email && email !== professor.email) {
+      const existingUserByEmail = await Users.findOne({ where: { email } });
+      if (existingUserByEmail) {
+        return res.status(400).json({ error: 'Email já cadastrado para outro usuário.' });
+      }
+    }
 
-    const updateData = {
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cref_mg,
-      email,
-    };
+    const updateData = {
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cref_mg,
+      email,
+    };
 
-    if (password) {
-      updateData.password = await bcrypt.hash(password, 10);
-      updateData.mustChangePassword = true;
-    }
+    if (password) {
+      updateData.password = await bcrypt.hash(password, 10);
+      updateData.mustChangePassword = true;
+    }
 
-    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
+    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
 
-    await Users.update(updateData, { where: { id } });
+    await Users.update(updateData, { where: { id } });
 
-    const updatedProfessor = await Users.findOne({
-      where: { id },
-      attributes: { exclude: ['password'] }
-    });
+    const updatedProfessor = await Users.findOne({
+      where: { id },
+      attributes: { exclude: ['password'] }
+    });
 
-    return res.status(200).json({ message: 'Professor atualizado com sucesso!', professor: updatedProfessor });
-  } catch (error) {
-    console.error('Erro ao atualizar professor:', error);
-    return res.status(500).json({ error: 'Erro interno ao atualizar professor.' });
-  }
+    return res.status(200).json({ message: 'Professor atualizado com sucesso!', professor: updatedProfessor });
+  } catch (error) {
+    console.error('Erro ao atualizar professor:', error);
+    return res.status(500).json({ error: 'Erro interno ao atualizar professor.' });
+  }
 };
 
 exports.deleteProfessor = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const deletedCount = await Users.destroy({
-      where: {
-        id,
-        role: 'professor'
-      }
-    });
+    const deletedCount = await Users.destroy({
+      where: {
+        id,
+        role: 'professor'
+      }
+    });
 
-    if (deletedCount === 0) {
-      return res.status(404).json({ error: 'Professor não encontrado para exclusão.' });
-    }
+    if (deletedCount === 0) {
+      return res.status(404).json({ error: 'Professor não encontrado para exclusão.' });
+    }
 
-    return res.status(200).json({ message: 'Professor excluído com sucesso!' });
-  } catch (error) {
-    console.error('Erro ao excluir professor:', error);
-    return res.status(500).json({ error: 'Erro interno ao excluir professor.' });
-  }
+    return res.status(200).json({ message: 'Professor excluído com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao excluir professor:', error);
+    return res.status(500).json({ error: 'Erro interno ao excluir professor.' });
+  }
 };
 
 exports.createAluno = async (req, res) => {
-  try {
-    const { name, birthdate, gender, cpf, cellphone, restriction, email } = req.body;
+  try {
+    const { name, birthdate, gender, cpf, cellphone, restriction, email } = req.body;
 
-    if (!name || !email || !cpf) {
-      return res.status(400).json({ error: 'Todos os campos obrigatórios (name, email, password, cpf) são requeridos para aluno.' });
-    }
+    if (!name || !email || !cpf) {
+      return res.status(400).json({ error: 'Todos os campos obrigatórios (name, email, password, cpf) são requeridos para aluno.' });
+    }
 
-    const existingUserByCpf = await Users.findOne({ where: { cpf } });
-    if (existingUserByCpf) {
-      return res.status(400).json({ error: 'CPF já cadastrado.' });
-    }
+    const existingUserByCpf = await Users.findOne({ where: { cpf } });
+    if (existingUserByCpf) {
+      return res.status(400).json({ error: 'CPF já cadastrado.' });
+    }
 
-    const existingUserByEmail = await Users.findOne({ where: { email } });
-    if (existingUserByEmail) {
-      return res.status(400).json({ error: 'Email já cadastrado.' });
-    }
+    const existingUserByEmail = await Users.findOne({ where: { email } });
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: 'Email já cadastrado.' });
+    }
 
-    const senhaInicial = generateRandomPassword(10);
-    console.log('\n======================');
-    console.log('[DEBUG SENHA] Senha inicial GERADA:', senhaInicial);
-    
-   
+    const senhaInicial = generateRandomPassword(10);
+    const senhaCriptografada = await bcrypt.hash(senhaInicial, 10);
 
-    const aluno = await Users.create({
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cellphone,
-      restriction,
-      email,
-      password: senhaInicial,
-      mustChangePassword: true,
-      role: 'aluno',
-    });
+    const aluno = await Users.create({
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cellphone,
+      restriction,
+      email,
+      password: senhaCriptografada,
+      mustChangePassword: true,
+      role: 'aluno',
+    });
 
-    console.log('[DEBUG CONFIRM] Senha original (plaintext):', senhaInicial)
-    const emailSent = await sendWelcomeEmail(email, senhaInicial);
+    await sendWelcomeEmail(email, senhaInicial);
 
-    if (emailSent) {
-      console.log('[CREATE ALUNO] 📧 E-mail enviado com sucesso para:', email);
-      console.log('[DEBUG SENHA] Senha enviada no e-mail:', senhaInicial);
-    } else {
-      console.log('[CREATE ALUNO] ⚠️ Falha no envio do e-mail de boas-vindas.');
-    }
-
-    console.log('======================\n');
-
-    return res.status(201).json({
-      message: 'Aluno cadastrado com sucesso! E-mail de boas-vindas com senha inicial enviado.',
-      aluno: { id: aluno.id, name: aluno.name, email: aluno.email, role: aluno.role }
-    });
-  } catch (error) {
-    console.error('Erro ao cadastrar aluno:', error);
-    return res.status(500).json({ error: 'Erro interno ao cadastrar aluno.' });
-  }
+    return res.status(201).json({ message: 'Aluno cadastrado com sucesso! E-mail de boas-vindas com senha inicial enviado.',
+            aluno: { id: aluno.id, name: aluno.name, email: aluno.email, role: aluno.role }});
+  } catch (error) {
+    console.error('Erro ao cadastrar aluno:', error);
+    return res.status(500).json({ error: 'Erro interno ao cadastrar aluno.' });
+  }
 };
 
 exports.listAlunos = async (req, res) => {
-  try {
-    const alunos = await Users.findAll({
-      where: {
-        role: 'aluno'
-      },
-      attributes: { exclude: ['password'] }
-    });
+  try {
+    const alunos = await Users.findAll({
+      where: {
+        role: 'aluno'
+      },
+      attributes: { exclude: ['password'] }
+    });
 
-    if (alunos.length === 0) {
-      return res.status(404).json({ message: 'Nenhum aluno encontrado.' });
-    }
+    if (alunos.length === 0) {
+      return res.status(404).json({ message: 'Nenhum aluno encontrado.' });
+    }
 
-    return res.status(200).json(alunos);
-  } catch (error) {
-    console.error('Erro ao listar alunos:', error);
-    return res.status(500).json({ error: 'Erro interno ao listar alunos.' });
-  }
+    return res.status(200).json(alunos);
+  } catch (error) {
+    console.error('Erro ao listar alunos:', error);
+    return res.status(500).json({ error: 'Erro interno ao listar alunos.' });
+  }
 };
 
 exports.getAlunoById = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const aluno = await Users.findOne({
-      where: {
-        id,
-        role: 'aluno'
-      },
-      attributes: { exclude: ['password'] } // Exclui a senha da resposta
-    });
+    const aluno = await Users.findOne({
+      where: {
+        id,
+        role: 'aluno'
+      },
+      attributes: { exclude: ['password'] } // Exclui a senha da resposta
+    });
 
-    if (!aluno) {
-      return res.status(404).json({ error: 'Aluno não encontrado.' });
-    }
+    if (!aluno) {
+      return res.status(404).json({ error: 'Aluno não encontrado.' });
+    }
 
-    return res.status(200).json(aluno);
-  } catch (error) {
-    console.error('Erro ao buscar aluno por ID:', error);
-    return res.status(500).json({ error: 'Erro interno ao buscar aluno.' });
-  }
+    return res.status(200).json(aluno);
+  } catch (error) {
+    console.error('Erro ao buscar aluno por ID:', error);
+    return res.status(500).json({ error: 'Erro interno ao buscar aluno.' });
+  }
 };
 
 exports.updateAluno = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, birthdate, gender, cpf, cellphone, restriction, email, password } = req.body;
+  try {
+    const { id } = req.params;
+    const { name, birthdate, gender, cpf, cellphone, restriction, email, password } = req.body;
 
-    const aluno = await Users.findOne({
-      where: {
-        id,
-        role: 'aluno'
-      }
-    });
+    const aluno = await Users.findOne({
+      where: {
+        id,
+        role: 'aluno'
+      }
+    });
 
-    if (!aluno) {
-      return res.status(404).json({ error: 'Aluno não encontrado.' });
-    }
+    if (!aluno) {
+      return res.status(404).json({ error: 'Aluno não encontrado.' });
+    }
 
-    if (cpf && cpf !== aluno.cpf) {
-      const existingUserByCpf = await Users.findOne({ where: { cpf } });
-      if (existingUserByCpf) {
-        return res.status(400).json({ error: 'CPF já cadastrado para outro usuário.' });
-      }
-    }
+    if (cpf && cpf !== aluno.cpf) {
+      const existingUserByCpf = await Users.findOne({ where: { cpf } });
+      if (existingUserByCpf) {
+        return res.status(400).json({ error: 'CPF já cadastrado para outro usuário.' });
+      }
+    }
 
-    if (email && email !== aluno.email) {
-      const existingUserByEmail = await Users.findOne({ where: { email } });
-      if (existingUserByEmail) {
-        return res.status(400).json({ error: 'Email já cadastrado para outro usuário.' });
-      }
-    }
+    if (email && email !== aluno.email) {
+      const existingUserByEmail = await Users.findOne({ where: { email } });
+      if (existingUserByEmail) {
+        return res.status(400).json({ error: 'Email já cadastrado para outro usuário.' });
+      }
+    }
 
-    const updateData = {
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cellphone,
-      restriction,
-      email,
-    };
+    const updateData = {
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cellphone,
+      restriction,
+      email,
+    };
 
-    if (password) {
-      updateData.password = await bcrypt.hash(password, 10);
-      updateData.mustChangePassword = true;
-    }
+    if (password) {
+      updateData.password = await bcrypt.hash(password, 10);
+      updateData.mustChangePassword = true;
+    }
 
-    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
+    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
 
-    await Users.update(updateData, { where: { id } });
+    await Users.update(updateData, { where: { id } });
 
-    const updatedAluno = await Users.findOne({
-      where: { id },
-      attributes: { exclude: ['password'] }
-    });
+    const updatedAluno = await Users.findOne({
+      where: { id },
+      attributes: { exclude: ['password'] }
+    });
 
-    return res.status(200).json({ message: 'Aluno atualizado com sucesso!', aluno: updatedAluno });
-  } catch (error) {
-    console.error('Erro ao atualizar aluno:', error);
-    return res.status(500).json({ error: 'Erro interno ao atualizar aluno.' });
-  }
+    return res.status(200).json({ message: 'Aluno atualizado com sucesso!', aluno: updatedAluno });
+  } catch (error) {
+    console.error('Erro ao atualizar aluno:', error);
+    return res.status(500).json({ error: 'Erro interno ao atualizar aluno.' });
+  }
 };
 
 exports.deleteAluno = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const deletedCount = await Users.destroy({
-      where: {
-        id,
-        role: 'aluno'
-      }
-    });
+    const deletedCount = await Users.destroy({
+      where: {
+        id,
+        role: 'aluno'
+      }
+    });
 
-    if (deletedCount === 0) {
-      return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
-    }
+    if (deletedCount === 0) {
+      return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
+    }
 
-    return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
-  } catch (error) {
-    console.error('Erro ao excluir aluno:', error);
-    return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
-  }
+    return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao excluir aluno:', error);
+    return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
+  }
 };
 
 // 🚨 CORREÇÃO: Método para listar todos os exercícios (Solução do Erro 500)
 exports.listExercises = async (req, res) => {
-  try {
-    // Usa o modelo Exercises que você importou no topo
-    const exercises = await Exercises.findAll();
+    try {
+        // Usa o modelo Exercises que você importou no topo
+        const exercises = await Exercises.findAll(); 
 
-    if (!exercises || exercises.length === 0) {
-      // Retorna 404 se a tabela estiver vazia
-      return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
-    }
+        if (!exercises || exercises.length === 0) {
+            // Retorna 404 se a tabela estiver vazia
+            return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
+        }
 
-    // Retorna 200 (OK) com a lista completa
-    return res.status(200).json(exercises);
-  } catch (error) {
-    console.error('Erro ao listar exercícios:', error);
-    return res.status(500).json({ error: 'Erro interno ao listar exercícios.' });
-  }
+        // Retorna 200 (OK) com a lista completa
+        return res.status(200).json(exercises);
+    } catch (error) {
+        console.error('Erro ao listar exercícios:', error);
+        return res.status(500).json({ error: 'Erro interno ao listar exercícios.' });
+    }
 };
 
 exports.createExercise = async (req, res) => {
-  try {
-    const { nome, exerGrupo, comentario } = req.body;
+  try {
+    const { nome, exerGrupo, comentario } = req.body;
 
-    if (!nome || !exerGrupo) {
-      return res.status(400).json({ error: 'Os campos nome e grupo muscular são obrigatórios.' });
-    }
+    if (!nome || !exerGrupo) {
+      return res.status(400).json({ error: 'Os campos nome e grupo muscular são obrigatórios.' });
+    }
 
-    const existingExercise = await Exercises.findOne({ where: { nome } });
-    if (existingExercise) {
-      return res.status(400).json({ error: 'Exercício já cadastrado.' });
-    }
+    const existingExercise = await Exercises.findOne({ where: { nome } });
+    if (existingExercise) {
+      return res.status(400).json({ error: 'Exercício já cadastrado.' });
+    }
 
-    const exercise = await Exercises.create({ nome, exerGrupo, comentario });
+    const exercise = await Exercises.create({ nome, exerGrupo, comentario });
 
-    return res.status(201).json({ message: 'Exercício cadastrado com sucesso!', exercise });
-  } catch (error) {
-    console.error('Erro ao cadastrar exercício:', error);
-    return res.status(500).json({ error: 'Erro interno ao cadastrar exercício.' });
-  }
+    return res.status(201).json({ message: 'Exercício cadastrado com sucesso!', exercise });
+  } catch (error) {
+    console.error('Erro ao cadastrar exercício:', error);
+    return res.status(500).json({ error: 'Erro interno ao cadastrar exercício.' });
+  }
 };
 
 exports.deleteExercise = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const exercise = await Exercises.findByPk(id);
-    if (!exercise) {
-      return res.status(404).json({ error: 'Exercício não encontrado.' });
-    }
+    const exercise = await Exercises.findByPk(id);
+    if (!exercise) {
+      return res.status(404).json({ error: 'Exercício não encontrado.' });
+    }
 
-    await exercise.destroy();
-    return res.status(200).json({ message: 'Exercício deletado com sucesso.' });
-  } catch (error) {
-    console.error('Erro ao deletar exercício:', error);
-    return res.status(500).json({ error: 'Erro interno ao deletar exercício.' });
-  }
+    await exercise.destroy();
+    return res.status(200).json({ message: 'Exercício deletado com sucesso.' });
+  } catch (error) {
+    console.error('Erro ao deletar exercício:', error);
+    return res.status(500).json({ error: 'Erro interno ao deletar exercício.' });
+  }
 };
 
 exports.updateExercise = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { nome, exerGrupo, comentario } = req.body;
+  try {
+    const { id } = req.params;
+    const { nome, exerGrupo, comentario } = req.body;
 
     const exercise = await Exercises.findByPk(id);
     if (!exercise) {
       return res.status(404).json({ error: 'Exercício não encontrado.' });
     }
 
-    const existingExercise = await Exercises.findOne({ where: { nome } });
+      const existingExercise = await Exercises.findOne({ where: { nome } });
     if (existingExercise) {
       return res.status(400).json({ error: 'Exercício já cadastrado.' });
     }
 
-    // Atualiza apenas os campos enviados
-    if (nome) exercise.nome = nome;
-    if (exerGrupo) exercise.exerGrupo = exerGrupo;
-    if (comentario) exercise.comentario = comentario;
+    // Atualiza apenas os campos enviados
+    if (nome) exercise.nome = nome;
+    if (exerGrupo) exercise.exerGrupo = exerGrupo;
+    if (comentario) exercise.comentario = comentario;
 
-    await exercise.save();
+    await exercise.save();
 
-    return res.status(200).json({ message: 'Exercício atualizado com sucesso.', exercise });
-  } catch (error) {
-    console.error('Erro ao atualizar exercício:', error);
-    return res.status(500).json({ error: 'Erro interno ao atualizar exercício.' });
-  }
+    return res.status(200).json({ message: 'Exercício atualizado com sucesso.', exercise });
+  } catch (error) {
+    console.error('Erro ao atualizar exercício:', error);
+    return res.status(500).json({ error: 'Erro interno ao atualizar exercício.' });
+  }
 };
 
 exports.listExercises = async (req, res) => {
