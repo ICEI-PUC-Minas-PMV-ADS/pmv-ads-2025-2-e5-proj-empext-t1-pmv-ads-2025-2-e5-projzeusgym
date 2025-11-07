@@ -978,9 +978,90 @@ Apresente os casos de testes utilizados na realização da verificação e valid
 </table>
 
 
-
 ### ETAPA 4
-Criar casos de teste da etapa 4
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-021 - S<br>Registrar peso corporal e visualizar histórico</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se um usuário consegue salvar seu peso corporal e ver o histórico.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-013	Como aluno, desejo registar meu peso e poder acompanhar o histórico.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Fazer o login.<br>
+      2. Clicar em Registrar Peso.<br>
+      3. Inserir peso válido.<br>
+      4. Clicar no botão "Salvar".
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Colocar peso válido<br>
+      - <strong>Ação:</strong> Colocar valor de peso válido
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve salvar o peso que foi registardo pelo usuário.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-022 - I<br>Registrar peso corporal e visualizar histórico</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se um usuário consegue salvar seu peso corporal inválido e ver o histórico.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Natália Romero Soltau</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Insucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-013	Como aluno, desejo registar meu peso e poder acompanhar o histórico.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Fazer o login.<br>
+      2. Clicar em Registrar Peso.<br>
+      3. Inserir peso válido.<br>
+      4. Clicar no botão "Salvar".
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Colocar peso válido<br>
+      - <strong>Ação:</strong> Colocar valor de peso válido
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve emitir uma mensagem que o valor colocado não é válido.</td>
+  </tr>
+</table>
+
  
 # Evidências de Testes de Software
 
@@ -1492,7 +1573,58 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
 
 
 ### ETAPA 4
-Colocar evidências de teste da etapa 4
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-0021S<br>Cadastrar peso corporal</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Dados cadastrados com sucesso do banco de dados.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema cadastrou novo peso corporal com seucesso.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-022I<br>Cadastrar peso corporal</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve emitir uma mensagem de alerta que o peso colocado não é válido.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Natália Romero Soltau </td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">06/10/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema emitiu a mensagem de forma correta.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><video src=""/></td>
+  </tr>
+</table>
 
 ## Parte 2 - Testes por pares
 A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade deve ser testada por um colega e os testes devem ser evidenciados. O colega "Tester" deve utilizar o caso de teste criado pelo desenvolvedor responsável pela funcionalidade (desenvolveu a funcionalidade e criou o caso de testes descrito no plano de testes) e caso perceba a necessidade de outros casos de teste, deve acrescentá-los na sessão "Plano de Testes".
