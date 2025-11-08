@@ -56,6 +56,8 @@ const GerenciarExercicio = () => {
       setSuggestions([]);
       return;
     }
+
+    
     const lowerSearch = search.toLowerCase();
     const filtered = exercicios.filter(ex =>
       ex.nome.toLowerCase().includes(lowerSearch)
@@ -72,6 +74,11 @@ const GerenciarExercicio = () => {
       return [exercicio, ...others];
     });
   };
+    useEffect(() => {
+  if (error) {
+    alert(error);
+  }
+}, [error]);
 
   const gerenciarAluno = () => {
     navigate('/alunos');
