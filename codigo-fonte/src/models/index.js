@@ -1,9 +1,3 @@
-const sequelize = require('../config/database');
-const { DataTypes } = require('sequelize');
-const Users = require('./Users');
-const Exercises = require('./Exercises');
-const Weight = require('./Weight');
-
 const db = {
     sequelize,
     Users,
@@ -11,7 +5,9 @@ const db = {
     Weight,
 };
 
-db.Users = require('./Users')
+db.Users = require('./Users')(sequelize, DataTypes);
+db.Exercises = require('./Exercises')(sequelize, DataTypes);
+db.Weight = require('./Weight')(sequelize, DataTypes);
 
 db.TrainingSheet = require('./TrainingSheet')(sequelize, DataTypes);
 db.TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
