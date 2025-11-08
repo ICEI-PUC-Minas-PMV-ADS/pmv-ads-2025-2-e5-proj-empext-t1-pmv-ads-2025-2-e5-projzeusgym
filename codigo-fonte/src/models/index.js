@@ -1,14 +1,11 @@
-const sequelize = require('../config/database');
-const { DataTypes } = require('sequelize');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/database');
 
 const db = {};
-
-// Caminho da pasta de models
 const modelsDir = __dirname;
 
-// Carrega todos os models dinamicamente
 fs.readdirSync(modelsDir)
   .filter((file) => file !== 'index.js' && file.endsWith('.js'))
   .forEach((file) => {
@@ -17,29 +14,32 @@ fs.readdirSync(modelsDir)
 
     let model;
 
-    // 🔹 Suporte para os dois padrões de exportação
-    if (typeof modelDef === 'function' && !(modelDef.prototype instanceof sequelize.Model)) {
-      // Forma antiga: exporta uma função (sequelize, DataTypes)
+    // 🧩 Suporte para todos os formatos de model
+    if (typeof modelDef === 'function' && !(modelDef.prototype instanceof Model)) {
+      // Padrão antigo: exporta uma função (sequelize, DataTypes)
       model = modelDef(sequelize, DataTypes);
-    } else if (modelDef.prototype instanceof sequelize.Model) {
-      // Forma moderna: classe estende Model
-      model = modelDef.initModel(sequelize);
+    } else if (modelDef.prototype instanceof Model) {
+      // Padrão classe: exporta class que estende Model com método initModel()
+      if (typeof modelDef.initModel === 'function') {
+        model = modelDef.initModel(sequelize);
+      } else {
+        model = modelDef; // Já é um model pronto
+      }
     } else {
-      // Já é um model definido
       model = modelDef;
     }
 
     db[model.name] = model;
   });
 
-// 🔹 Configura associações (se existirem)
+// 🔹 Chama associações declaradas dentro dos models
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
-// 🔹 Associações extras específicas (se não estiverem dentro dos models)
+// 🔹 Associações manuais adicionais (se não estiverem dentro dos models)
 if (db.TrainingSheet && db.Exercises && db.TrainingSheetExercises) {
   db.TrainingSheet.belongsToMany(db.Exercises, {
     through: db.TrainingSheetExercises,
@@ -71,5 +71,6 @@ if (db.Users && db.Weight) {
 }
 
 db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 module.exports = db;
