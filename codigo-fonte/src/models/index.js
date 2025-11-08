@@ -11,6 +11,8 @@ const db = {
     Weight,
 };
 
+db.Users = require('./Users')
+
 db.TrainingSheet = require('./TrainingSheet')(sequelize, DataTypes);
 db.TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
 db.PhysicalAssessment = require('./PhysicalAssessment')(sequelize, DataTypes);
