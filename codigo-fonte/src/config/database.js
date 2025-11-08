@@ -44,7 +44,4 @@ async function testConnection() {
 
 testConnection();
 
-module.exports = sequelize; // Certifique-se de exportar a instância
-
-
 module.exports = sequelize;
