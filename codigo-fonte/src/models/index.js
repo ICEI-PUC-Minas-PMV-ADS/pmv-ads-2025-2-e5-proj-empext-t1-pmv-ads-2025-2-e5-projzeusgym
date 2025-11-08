@@ -1,17 +1,48 @@
-const sequelize = require('../config/database');
-const { DataTypes } = require('sequelize');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+const { Sequelize, DataTypes } = require('sequelize');
 
-// Importa os modelos
-const Users = require('./Users');
-const Exercises = require('./Exercises');
-const Weight = require('./Weight');
-const TrainingSheet = require('./TrainingSheet');
-const TrainingSheetExercises = require('./TrainingSheetExercises');
-const PhysicalAssessment = require('./PhysicalAssessment');
+// Configura a conexão com o banco de dados
+let sequelize;
 
-// Cria o objeto principal de modelos
+if (process.env.JAWSDB_URL) {
+  sequelize = new Sequelize(process.env.JAWSDB_URL, {
+    dialect: 'mysql',
+    logging: false,
+  });
+} else {
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASS,
+    {
+      host: process.env.DB_HOST,
+      dialect: 'mysql',
+      logging: false,
+    }
+  );
+}
+
+// Importa todos os modelos
+const UsersModel = require('./Users');
+const ExercisesModel = require('./Exercises');
+const WeightModel = require('./Weight');
+const TrainingSheetModel = require('./TrainingSheet');
+const TrainingSheetExercisesModel = require('./TrainingSheetExercises');
+const PhysicalAssessmentModel = require('./PhysicalAssessment');
+
+// Inicializa cada modelo com a instância Sequelize
+const Users = UsersModel(sequelize, DataTypes);
+const Exercises = ExercisesModel(sequelize, DataTypes);
+const Weight = WeightModel(sequelize, DataTypes);
+const TrainingSheet = TrainingSheetModel(sequelize, DataTypes);
+const TrainingSheetExercises = TrainingSheetExercisesModel(sequelize, DataTypes);
+const PhysicalAssessment = PhysicalAssessmentModel(sequelize, DataTypes);
+
+// Junta todos os modelos em um objeto db
 const db = {
   sequelize,
+  Sequelize,
   Users,
   Exercises,
   Weight,
@@ -20,35 +51,11 @@ const db = {
   PhysicalAssessment,
 };
 
-/**
- * 🔹 Associações
- */
-
-// Treino ↔ Exercícios (tabela pivô)
-db.TrainingSheet.belongsToMany(db.Exercises, {
-  through: db.TrainingSheetExercises,
-  foreignKey: 'sheetId',
-  otherKey: 'exerciseId',
-  as: 'trainingExercises', // alias alterado para evitar conflito
+// Executa automaticamente as associações de cada modelo (se existirem)
+Object.values(db).forEach((model) => {
+  if (model && typeof model.associate === 'function') {
+    model.associate(db);
+  }
 });
-
-db.Exercises.belongsToMany(db.TrainingSheet, {
-  through: db.TrainingSheetExercises,
-  foreignKey: 'exerciseId',
-  otherKey: 'sheetId',
-  as: 'exerciseSheets', // alias único
-});
-
-// Relações TrainingSheet ↔ Users
-db.TrainingSheet.belongsTo(db.Users, { as: 'aluno', foreignKey: 'alunoId' });
-db.TrainingSheet.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
-
-// Relações PhysicalAssessment ↔ Users
-db.PhysicalAssessment.belongsTo(db.Users, { as: 'student', foreignKey: 'studentId' });
-db.PhysicalAssessment.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
-
-// Users ↔ Weight
-db.Users.hasMany(db.Weight, { foreignKey: 'userId', as: 'weightHistory' });
-db.Weight.belongsTo(db.Users, { foreignKey: 'userId', as: 'user' });
 
 module.exports = db;
