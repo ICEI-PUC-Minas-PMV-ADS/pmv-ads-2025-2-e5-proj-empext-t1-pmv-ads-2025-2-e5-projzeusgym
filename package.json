@@ -1,4 +1,13 @@
-{
+  {
+  "name": "codigo-fonte",
+  "version": "1.0.0",
+  "description": "Descrever orientações essenciais para utilização da aplicação.",
+  "main": "index.js", 
+  
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
