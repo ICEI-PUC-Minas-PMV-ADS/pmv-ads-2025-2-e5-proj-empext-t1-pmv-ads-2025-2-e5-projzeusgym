@@ -1,10 +1,17 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Configura a conexão com o banco de dados
+// Importar modelos
+const UsersModel = require('./Users');
+const CarrinhoModel = require('./Carrinho');
+const ItemCarrinhoModel = require('./ItemCarrinho');
+const ProdutoModel = require('./Produto');
+
 let sequelize;
 
+// Usa variável do Heroku se existir
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL, {
     dialect: 'mysql',
@@ -14,7 +21,7 @@ if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
-    process.env.DB_PASS,
+    process.env.DB_PASSWORD,
     {
       host: process.env.DB_HOST,
       dialect: 'mysql',
@@ -23,39 +30,24 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-// Importa todos os modelos
-const UsersModel = require('./Users');
-const ExercisesModel = require('./Exercises');
-const WeightModel = require('./Weight');
-const TrainingSheetModel = require('./TrainingSheet');
-const TrainingSheetExercisesModel = require('./TrainingSheetExercises');
-const PhysicalAssessmentModel = require('./PhysicalAssessment');
+// ✅ Inicializa todos os modelos
+const Users = UsersModel.init(sequelize, DataTypes);
+const Carrinho = CarrinhoModel.init(sequelize, DataTypes);
+const ItemCarrinho = ItemCarrinhoModel.init(sequelize, DataTypes);
+const Produto = ProdutoModel.init(sequelize, DataTypes);
 
-// Inicializa cada modelo com a instância Sequelize
-const Users = UsersModel(sequelize, DataTypes);
-const Exercises = ExercisesModel(sequelize, DataTypes);
-const Weight = WeightModel(sequelize, DataTypes);
-const TrainingSheet = TrainingSheetModel(sequelize, DataTypes);
-const TrainingSheetExercises = TrainingSheetExercisesModel(sequelize, DataTypes);
-const PhysicalAssessment = PhysicalAssessmentModel(sequelize, DataTypes);
+// ✅ Define associações (apenas se existirem)
+if (typeof Users.associate === 'function') Users.associate({ Carrinho });
+if (typeof Carrinho.associate === 'function') Carrinho.associate({ Users, ItemCarrinho });
+if (typeof ItemCarrinho.associate === 'function') ItemCarrinho.associate({ Carrinho, Produto });
+if (typeof Produto.associate === 'function') Produto.associate({ ItemCarrinho });
 
-// Junta todos os modelos em um objeto db
-const db = {
+// Exporta
+module.exports = {
   sequelize,
   Sequelize,
   Users,
-  Exercises,
-  Weight,
-  TrainingSheet,
-  TrainingSheetExercises,
-  PhysicalAssessment,
+  Carrinho,
+  ItemCarrinho,
+  Produto,
 };
-
-// Executa automaticamente as associações de cada modelo (se existirem)
-Object.values(db).forEach((model) => {
-  if (model && typeof model.associate === 'function') {
-    model.associate(db);
-  }
-});
-
-module.exports = db;
