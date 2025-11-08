@@ -19,7 +19,7 @@ const HeaderAdmin = ({ activePage }) => {
                     {/* Botão Gerenciar Exercícios */}
                     <button 
                         className={`header-btn-aluno ${activePage === 'exercicios' ? 'active' : ''}`}
-                        onClick={() => handleNavigate('/exercicios')}
+                        onClick={() => handleNavigate('/gerenciarexercicios')}
                     >
                         Gerenciar Exercícios
                     </button>
