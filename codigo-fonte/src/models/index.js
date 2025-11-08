@@ -1,14 +1,13 @@
-// src/models/index.js
+const sequelize = require('../config/database');
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Caminho para o arquivo onde você cria o Sequelize
 
-// Importa os modelos
-const Users = require('./Users')(sequelize, DataTypes);
-const Exercises = require('./Exercises')(sequelize, DataTypes);
-const Weight = require('./Weight')(sequelize, DataTypes);
-const TrainingSheet = require('./TrainingSheet')(sequelize, DataTypes);
-const TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
-const PhysicalAssessment = require('./PhysicalAssessment')(sequelize, DataTypes);
+// Importa os modelos (sem invocar como função)
+const Users = require('./Users');
+const Exercises = require('./Exercises');
+const Weight = require('./Weight');
+const TrainingSheet = require('./TrainingSheet');
+const TrainingSheetExercises = require('./TrainingSheetExercises');
+const PhysicalAssessment = require('./PhysicalAssessment');
 
 // Cria o objeto db
 const db = {
@@ -26,13 +25,13 @@ db.TrainingSheet.belongsToMany(db.Exercises, {
   through: db.TrainingSheetExercises,
   foreignKey: 'sheetId',
   otherKey: 'exerciseId',
-  as: 'exercises'
+  as: 'exercises',
 });
 
 db.Exercises.belongsToMany(db.TrainingSheet, {
   through: db.TrainingSheetExercises,
   foreignKey: 'exerciseId',
-  otherKey: 'sheetId'
+  otherKey: 'sheetId',
 });
 
 db.TrainingSheet.belongsTo(db.Users, { as: 'aluno', foreignKey: 'alunoId' });
