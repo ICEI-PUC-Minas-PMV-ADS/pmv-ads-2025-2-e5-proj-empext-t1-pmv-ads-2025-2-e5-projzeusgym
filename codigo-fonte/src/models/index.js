@@ -3,15 +3,17 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Importar modelos
+// Importa todos os models existentes
 const UsersModel = require('./Users');
-const CarrinhoModel = require('./Carrinho');
-const ItemCarrinhoModel = require('./ItemCarrinho');
-const ProdutoModel = require('./Produto');
+const ExercisesModel = require('./Exercises');
+const PhysicalAssessmentModel = require('./PhysicalAssessment');
+const TrainingSheetModel = require('./TrainingSheet');
+const TrainingSheetExercisesModel = require('./TrainingSheetExercises');
+const WeightModel = require('./Weight');
 
 let sequelize;
 
-// Usa variável do Heroku se existir
+// Configuração do banco (Heroku ou local)
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL, {
     dialect: 'mysql',
@@ -30,24 +32,32 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-// ✅ Inicializa todos os modelos
-const Users = UsersModel.init(sequelize, DataTypes);
-const Carrinho = CarrinhoModel.init(sequelize, DataTypes);
-const ItemCarrinho = ItemCarrinhoModel.init(sequelize, DataTypes);
-const Produto = ProdutoModel.init(sequelize, DataTypes);
+// Inicializa todos os models
+const Users = UsersModel(sequelize, DataTypes);
+const Exercises = ExercisesModel(sequelize, DataTypes);
+const PhysicalAssessment = PhysicalAssessmentModel(sequelize, DataTypes);
+const TrainingSheet = TrainingSheetModel(sequelize, DataTypes);
+const TrainingSheetExercises = TrainingSheetExercisesModel(sequelize, DataTypes);
+const Weight = WeightModel(sequelize, DataTypes);
 
-// ✅ Define associações (apenas se existirem)
-if (typeof Users.associate === 'function') Users.associate({ Carrinho });
-if (typeof Carrinho.associate === 'function') Carrinho.associate({ Users, ItemCarrinho });
-if (typeof ItemCarrinho.associate === 'function') ItemCarrinho.associate({ Carrinho, Produto });
-if (typeof Produto.associate === 'function') Produto.associate({ ItemCarrinho });
+// Associações (caso existam nos models)
+if (Users.associate) Users.associate({ Exercises, PhysicalAssessment, TrainingSheet, Weight });
+if (Exercises.associate) Exercises.associate({ TrainingSheetExercises });
+if (PhysicalAssessment.associate) PhysicalAssessment.associate({ Users });
+if (TrainingSheet.associate) TrainingSheet.associate({ Users, TrainingSheetExercises });
+if (TrainingSheetExercises.associate) TrainingSheetExercises.associate({ TrainingSheet, Exercises });
+if (Weight.associate) Weight.associate({ Users });
 
-// Exporta
-module.exports = {
+// Exporta todos os models
+const db = {
   sequelize,
   Sequelize,
   Users,
-  Carrinho,
-  ItemCarrinho,
-  Produto,
+  Exercises,
+  PhysicalAssessment,
+  TrainingSheet,
+  TrainingSheetExercises,
+  Weight,
 };
+
+module.exports = db;
