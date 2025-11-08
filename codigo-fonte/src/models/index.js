@@ -1,15 +1,22 @@
 const sequelize = require('../config/database');
 const { DataTypes } = require('sequelize');
 
-// Importa os modelos (sem invocar como função)
-const Users = require('./Users');
-const Exercises = require('./Exercises');
-const Weight = require('./Weight');
-const TrainingSheet = require('./TrainingSheet');
-const TrainingSheetExercises = require('./TrainingSheetExercises');
-const PhysicalAssessment = require('./PhysicalAssessment');
+// 🔹 Função auxiliar para importar modelos
+function loadModel(modelPath) {
+  const modelDef = require(modelPath);
+  // Se o model exporta uma função, chamamos com (sequelize, DataTypes)
+  return typeof modelDef === 'function' ? modelDef(sequelize, DataTypes) : modelDef;
+}
 
-// Cria o objeto db
+// 🔹 Importa todos os models corretamente
+const Users = loadModel('./Users');
+const Exercises = loadModel('./Exercises');
+const Weight = loadModel('./Weight');
+const TrainingSheet = loadModel('./TrainingSheet');
+const TrainingSheetExercises = loadModel('./TrainingSheetExercises');
+const PhysicalAssessment = loadModel('./PhysicalAssessment');
+
+// 🔹 Cria o objeto db
 const db = {
   sequelize,
   Users,
@@ -20,7 +27,14 @@ const db = {
   PhysicalAssessment,
 };
 
-// Associações
+// 🔹 Executa associações declaradas dentro dos models (ex: TrainingSheet.associate)
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
+// 🔹 Associações adicionais globais (caso não estejam nos models)
 db.TrainingSheet.belongsToMany(db.Exercises, {
   through: db.TrainingSheetExercises,
   foreignKey: 'sheetId',
@@ -43,4 +57,5 @@ db.PhysicalAssessment.belongsTo(db.Users, { as: 'professor', foreignKey: 'profes
 db.Users.hasMany(db.Weight, { foreignKey: 'userId', as: 'weightHistory' });
 db.Weight.belongsTo(db.Users, { foreignKey: 'userId', as: 'user' });
 
+// 🔹 Exporta o objeto db
 module.exports = db;
