@@ -1,3 +1,4 @@
+// config/database.js
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -5,22 +6,21 @@ const { Sequelize } = require('sequelize');
 
 let sequelize;
 
-// CRUCIAL: Se JAWSDB_URL existir (ambiente Heroku), use a URL completa.
+// Se estiver no Heroku (com variável JAWSDB_URL), usa a URL completa
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL, {
     dialect: 'mysql',
     logging: false,
-    // Se o seu Add-on precisar de conexão segura (SSL), descomente as linhas abaixo.
-    // O JawsDB às vezes exige:
+    // Descomente se o seu add-on exigir SSL
     // dialectOptions: {
     //   ssl: {
-    //     require: true, 
-    //     rejectUnauthorized: false
-    //   }
+    //     require: true,
+    //     rejectUnauthorized: false,
+    //   },
     // },
   });
 } else {
-  // Configuração Local: Usa as variáveis separadas do seu .env
+  // Configuração local
   sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
@@ -32,16 +32,5 @@ if (process.env.JAWSDB_URL) {
     }
   );
 }
-
-async function testConnection() {
-  try {
-    await sequelize.authenticate();
-    console.log('Conectado ao banco de dados!');
-  } catch (error) {
-    console.error('Erro ao conectar no banco de dados:', error);
-  }
-}
-
-testConnection();
 
 module.exports = sequelize;
