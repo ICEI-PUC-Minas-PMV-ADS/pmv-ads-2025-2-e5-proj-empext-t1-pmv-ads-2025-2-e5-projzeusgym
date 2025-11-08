@@ -1,76 +1,54 @@
-const path = require('path');
-const fs = require('fs');
-const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/database');
+const { DataTypes } = require('sequelize');
 
-const db = {};
-const modelsDir = __dirname;
+// Importa os modelos
+const Users = require('./Users');
+const Exercises = require('./Exercises');
+const Weight = require('./Weight');
+const TrainingSheet = require('./TrainingSheet');
+const TrainingSheetExercises = require('./TrainingSheetExercises');
+const PhysicalAssessment = require('./PhysicalAssessment');
 
-fs.readdirSync(modelsDir)
-  .filter((file) => file !== 'index.js' && file.endsWith('.js'))
-  .forEach((file) => {
-    const modelPath = path.join(modelsDir, file);
-    const modelDef = require(modelPath);
+// Cria o objeto principal de modelos
+const db = {
+  sequelize,
+  Users,
+  Exercises,
+  Weight,
+  TrainingSheet,
+  TrainingSheetExercises,
+  PhysicalAssessment,
+};
 
-    let model;
+/**
+ * 🔹 Associações
+ */
 
-    // 🧩 Suporte para todos os formatos de model
-    if (typeof modelDef === 'function' && !(modelDef.prototype instanceof Model)) {
-      // Padrão antigo: exporta uma função (sequelize, DataTypes)
-      model = modelDef(sequelize, DataTypes);
-    } else if (modelDef.prototype instanceof Model) {
-      // Padrão classe: exporta class que estende Model com método initModel()
-      if (typeof modelDef.initModel === 'function') {
-        model = modelDef.initModel(sequelize);
-      } else {
-        model = modelDef; // Já é um model pronto
-      }
-    } else {
-      model = modelDef;
-    }
-
-    db[model.name] = model;
-  });
-
-// 🔹 Chama associações declaradas dentro dos models
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+// Treino ↔ Exercícios (tabela pivô)
+db.TrainingSheet.belongsToMany(db.Exercises, {
+  through: db.TrainingSheetExercises,
+  foreignKey: 'sheetId',
+  otherKey: 'exerciseId',
+  as: 'trainingExercises', // alias alterado para evitar conflito
 });
 
-// 🔹 Associações manuais adicionais (se não estiverem dentro dos models)
-if (db.TrainingSheet && db.Exercises && db.TrainingSheetExercises) {
-  db.TrainingSheet.belongsToMany(db.Exercises, {
-    through: db.TrainingSheetExercises,
-    foreignKey: 'sheetId',
-    otherKey: 'exerciseId',
-    as: 'exercises',
-  });
+db.Exercises.belongsToMany(db.TrainingSheet, {
+  through: db.TrainingSheetExercises,
+  foreignKey: 'exerciseId',
+  otherKey: 'sheetId',
+  as: 'exerciseSheets', // alias único
+});
 
-  db.Exercises.belongsToMany(db.TrainingSheet, {
-    through: db.TrainingSheetExercises,
-    foreignKey: 'exerciseId',
-    otherKey: 'sheetId',
-  });
-}
+// Relações TrainingSheet ↔ Users
+db.TrainingSheet.belongsTo(db.Users, { as: 'aluno', foreignKey: 'alunoId' });
+db.TrainingSheet.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
 
-if (db.TrainingSheet && db.Users) {
-  db.TrainingSheet.belongsTo(db.Users, { as: 'aluno', foreignKey: 'alunoId' });
-  db.TrainingSheet.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
-}
+// Relações PhysicalAssessment ↔ Users
+db.PhysicalAssessment.belongsTo(db.Users, { as: 'student', foreignKey: 'studentId' });
+db.PhysicalAssessment.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
 
-if (db.PhysicalAssessment && db.Users) {
-  db.PhysicalAssessment.belongsTo(db.Users, { as: 'student', foreignKey: 'studentId' });
-  db.PhysicalAssessment.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
-}
-
-if (db.Users && db.Weight) {
-  db.Users.hasMany(db.Weight, { foreignKey: 'userId', as: 'weightHistory' });
-  db.Weight.belongsTo(db.Users, { foreignKey: 'userId', as: 'user' });
-}
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+// Users ↔ Weight
+db.Users.hasMany(db.Weight, { foreignKey: 'userId', as: 'weightHistory' });
+db.Weight.belongsTo(db.Users, { foreignKey: 'userId', as: 'user' });
 
 module.exports = db;
