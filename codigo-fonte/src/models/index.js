@@ -3,15 +3,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Importa todos os models existentes
-const UsersModel = require('./Users');
-const ExercisesModel = require('./Exercises');
-const PhysicalAssessmentModel = require('./PhysicalAssessment');
-const TrainingSheetModel = require('./TrainingSheet');
-const TrainingSheetExercisesModel = require('./TrainingSheetExercises');
-const WeightModel = require('./Weight');
 
-let sequelize;
+let sequelize; // A variável sequelize será definida abaixo
 
 // Configuração do banco (Heroku ou local)
 if (process.env.JAWSDB_URL) {
@@ -32,15 +25,14 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-// Inicializa todos os models
-const Users = UsersModel(sequelize, DataTypes);
-const Exercises = ExercisesModel(sequelize, DataTypes);
-const PhysicalAssessment = PhysicalAssessmentModel(sequelize, DataTypes);
-const TrainingSheet = TrainingSheetModel(sequelize, DataTypes);
-const TrainingSheetExercises = TrainingSheetExercisesModel(sequelize, DataTypes);
-const Weight = WeightModel(sequelize, DataTypes);
+const Users = require('./Users'); // Agora importa o modelo (classe) diretamente
+const Exercises = require('./Exercises');
+const PhysicalAssessment = require('./PhysicalAssessment');
+const TrainingSheet = require('./TrainingSheet');
+const TrainingSheetExercises = require('./TrainingSheetExercises');
+const Weight = require('./Weight');
 
-// Associações (caso existam nos models)
+
 if (Users.associate) Users.associate({ Exercises, PhysicalAssessment, TrainingSheet, Weight });
 if (Exercises.associate) Exercises.associate({ TrainingSheetExercises });
 if (PhysicalAssessment.associate) PhysicalAssessment.associate({ Users });
