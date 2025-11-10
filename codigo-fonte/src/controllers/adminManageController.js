@@ -178,7 +178,6 @@ exports.createAluno = async (req, res) => {
     }
 
     const senhaInicial = generateRandomPassword(10);
-    const senhaCriptografada = await bcrypt.hash(senhaInicial, 10);
 
     const aluno = await Users.create({
       name,
@@ -188,7 +187,7 @@ exports.createAluno = async (req, res) => {
       cellphone,
       restriction,
       email,
-      password: senhaCriptografada,
+      password: senhaInicial,
       mustChangePassword: true,
       role: 'aluno',
     });
