@@ -13,7 +13,7 @@ import HomeScreen from './pages/HomeScreen';
 import RegistrarPeso from './pages/RegistrarPeso';
 import LoginScreen from './pages/LoginScreen';
 import ChangePasswordScreen from './pages/ChangePasswordScreen';
-
+import HistoricoAvalia from './pages/HistoricoAvalia';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -74,6 +74,17 @@ function AppDrawer() {
           headerShown: false,
           drawerIcon: ({ color, size }) => (
             <Ionicons name="fitness-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="HistoricoAvalia"
+        component={HistoricoAvalia}
+        options={{
+          title: 'Histórico de Avaliações',
+          headerShown: false,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="document-text-outline" size={size} color={color} />
           ),
         }}
       />

@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
@@ -60,6 +61,7 @@ const changePassword = async (req, res) => {
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET);
         if (!payload.mustChangePassword) {
+            
             return res.status(403).json({ message: 'Acesso negado para troca de senha.' });
         }
 
