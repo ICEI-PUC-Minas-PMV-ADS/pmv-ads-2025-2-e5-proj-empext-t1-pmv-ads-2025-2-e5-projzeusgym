@@ -10,9 +10,7 @@ import {
     ActivityIndicator
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-// URL base da sua API (use o mesmo do LoginScreen)
-const API_BASE_URL = 'http://192.168.1.116:3000'; 
+import { API_BASE_URL } from '@env';
 
 export default function ChangePasswordScreen({ navigation, route }) {
     const { tempToken } = route.params; 
