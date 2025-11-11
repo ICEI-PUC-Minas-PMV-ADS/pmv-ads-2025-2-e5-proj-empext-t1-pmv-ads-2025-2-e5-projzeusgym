@@ -47,6 +47,7 @@ const HeaderAdmin = ({ activePage }) => {
                                 src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                                 alt="Perfil"
                                 className="profile-image"
+                                onClick={() => handleNavigate("/dashboard")}
                             /> 
                         </a>
                     </div>
