@@ -21,8 +21,9 @@ const userLogin = async (req, res) => {
             attributes: ['id', 'name', 'email', 'password', 'role', 'mustChangePassword'],
         });
         if (!user) return res.status(404).json({ message: 'Usu�rio n�o encontrado.' });
+          const userPassword = password.trim();
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(userPassword, user.password);
         if (!isPasswordValid) return res.status(401).json({ message: 'Senha incorreta.' });
 
         if (user.mustChangePassword) {
@@ -67,6 +68,7 @@ const changePassword = async (req, res) => {
 
         const user = await Users.findByPk(payload.id);
         if (!user) return res.status(404).json({ message: 'Usu�rio n�o encontrado.' });
+       
 
         user.password = await bcrypt.hash(newPassword, 10);
         user.mustChangePassword = false;
