@@ -22,7 +22,9 @@ const userLogin = async (req, res) => {
         });
         if (!user) return res.status(404).json({ message: 'Usu�rio n�o encontrado.' });
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+         const userPassword = password.trim();
+
+        const isPasswordValid = await bcrypt.compare(userPassword, user.password);
         if (!isPasswordValid) return res.status(401).json({ message: 'Senha incorreta.' });
 
         if (user.mustChangePassword) {
