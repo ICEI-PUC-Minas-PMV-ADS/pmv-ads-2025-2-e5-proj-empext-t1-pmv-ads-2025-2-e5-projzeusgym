@@ -17,6 +17,7 @@ const routeMap = {
     'Registar Peso': 'RegistrarPeso',
     'Calcular IMC': 'CalcularIMC',
     'Treinos': 'MeusTreinos',
+    'Avaliação física': 'HistoricoAvalia',
 };
 
 const HomeScreen = ({ navigation }) => {

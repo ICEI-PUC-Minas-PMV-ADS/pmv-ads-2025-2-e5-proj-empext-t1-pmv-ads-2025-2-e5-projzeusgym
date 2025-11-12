@@ -32,6 +32,14 @@ const HistoricoAvalia = ({ navigation }) => {
             <Text style={HistoricoStyle.medidaText}>Peso: 75kg</Text>
             <Text style={HistoricoStyle.medidaText}>IMC: 24.5</Text>
             <Text style={HistoricoStyle.medidaText}>BF: 18%</Text>
+            <Text style={HistoricoStyle.medidaText}>Altura: 1.75m</Text>
+            <Text style={HistoricoStyle.medidaText}>Massa Muscular: 30%</Text>
+            <Text style={HistoricoStyle.medidaText}>Peito (cm): 100</Text>
+             <Text style={HistoricoStyle.medidaText}>Cintura (cm): 100</Text>
+            <Text style={HistoricoStyle.medidaText}>Quadril (cm): 80</Text>
+            <Text style={HistoricoStyle.medidaText}>Coxa (cm): 67</Text>
+            <Text style={HistoricoStyle.medidaText}>Panturrilha (cm):45</Text>
+            <Text style={HistoricoStyle.medidaText}>Pescoço (cm): 43</Text>
           </View>
         </View>
       </ScrollView>
