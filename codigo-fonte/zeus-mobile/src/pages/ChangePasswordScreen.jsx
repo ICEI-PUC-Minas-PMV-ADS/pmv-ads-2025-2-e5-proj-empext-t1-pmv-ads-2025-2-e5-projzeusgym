@@ -12,7 +12,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 // URL base da sua API (use o mesmo do LoginScreen)
-const API_BASE_URL = 'http://192.168.1.116:3000'; 
+const API_BASE_URL = 'http://localhost:3000'; 
 
 export default function ChangePasswordScreen({ navigation, route }) {
     const { tempToken } = route.params; 

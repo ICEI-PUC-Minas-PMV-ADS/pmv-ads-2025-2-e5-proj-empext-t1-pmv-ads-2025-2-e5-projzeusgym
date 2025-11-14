@@ -35,7 +35,7 @@ const CadastrarAvaliacao = () => {
 
     const fetchStudents = async () => {
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             const response = await api.get('/admin/alunos', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -48,7 +48,7 @@ const CadastrarAvaliacao = () => {
 
     const fetchAssessmentData = async () => {
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             const response = await api.get(`/physical-assessments/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -139,7 +139,7 @@ const CadastrarAvaliacao = () => {
         const url = isEditing ? `/physical-assessments/${id}` : '/physical-assessments';
 
         try {
-            const token = localStorage.getItem('authToken'); 
+            const token = localStorage.getItem('token'); 
             const response = await method(url, dataToSubmit, {
                 headers: { Authorization: `Bearer ${token}` }
             });

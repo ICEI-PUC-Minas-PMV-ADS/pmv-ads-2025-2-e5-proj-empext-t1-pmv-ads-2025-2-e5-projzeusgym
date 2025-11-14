@@ -15,11 +15,13 @@ const GerenciarAvaliacoes = () => {
 
     const fetchAssessments = async () => {
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             const response = await api.get('/physical-assessments', {
                 headers: { Authorization: `Bearer ${token}` }
             });
+
             setAssessments(response.data);
+           
         } catch (error) {
             console.error('Erro ao buscar avaliações:', error);
             alert('Erro ao carregar avaliações físicas.');
@@ -34,7 +36,7 @@ const GerenciarAvaliacoes = () => {
         }
 
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             await api.delete(`/physical-assessments/${assessmentId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -60,7 +62,7 @@ const GerenciarAvaliacoes = () => {
 
     const handleDownload = async (assessmentId) => {
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             const response = await api.get(`/physical-assessments/${assessmentId}/download`, {
                 headers: { Authorization: `Bearer ${token}` },
                 responseType: 'blob'
@@ -223,12 +225,7 @@ const GerenciarAvaliacoes = () => {
                                     <div className="assessment-actions">
                                         {assessment.filePath && (
                                             <>
-                                                <button 
-                                                    className="btn btn-view"
-                                                    onClick={() => window.open(`http://localhost:3000/physical-assessments/${assessment.id}/view`, '_blank')}
-                                                >
-                                                    Visualizar
-                                                </button>
+                                            
                                                 <button 
                                                     className="btn btn-download"
                                                     onClick={() => handleDownload(assessment.id)}

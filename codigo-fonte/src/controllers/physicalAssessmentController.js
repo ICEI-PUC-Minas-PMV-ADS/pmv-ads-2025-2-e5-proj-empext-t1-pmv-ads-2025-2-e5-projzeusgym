@@ -77,10 +77,18 @@ exports.createPhysicalAssessment = async (req, res) => {
 
 exports.getPhysicalAssessments = async (req, res) => {
   try {
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
     const { studentId } = req.query;
 
-    let whereClause = { professorId };
+    let whereClause = {};
+    
+    // Se for professor, filtra apenas suas avaliações
+    // Se for admin, mostra todas
+    if (role === 'professor') {
+      whereClause.professorId
+= userId;
+    }
+    
     if (studentId) {
       whereClause.studentId = studentId;
     }
@@ -88,7 +96,8 @@ exports.getPhysicalAssessments = async (req, res) => {
     const assessments = await PhysicalAssessment.findAll({
       where: whereClause,
       include: [
-        { model: Users, as: 'student', attributes: ['id', 'name', 'email'] }
+        { model: Users, as: 'student', attributes: ['id', 'name', 'email'] },
+        { model: Users, as: 'professor', attributes: ['id', 'name', 'email'] }
       ],
       order: [['assessmentDate', 'DESC']]
     });

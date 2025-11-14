@@ -22,10 +22,12 @@ const UploadAvaliacao = () => {
 
     const fetchStudents = async () => {
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             const response = await api.get('/admin/alunos', {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: {
+                    Authorization: `Bearer ${token}` }
             });
+console.log(response);
             setStudents(response.data);
         } catch (error) {
             console.error('Erro ao buscar alunos:', error);
@@ -115,17 +117,17 @@ const UploadAvaliacao = () => {
         submitData.append('pdfFile', selectedFile);
         
         try {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             const response = await api.post('/physical-assessments', submitData, {
                 headers: { 
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            
-            alert('Avaliação física registrada com sucesso!');
-            navigate('/avaliacoes');
-            
+            if (response.status === 201) {
+                alert('Avaliação física registrada com sucesso!');
+                navigate('/avaliacoes');
+            }
         } catch (error) {
             console.error('Erro ao registrar avaliação:', error);
             const errorMessage = error.response?.data?.error || 'Erro ao registrar avaliação.';

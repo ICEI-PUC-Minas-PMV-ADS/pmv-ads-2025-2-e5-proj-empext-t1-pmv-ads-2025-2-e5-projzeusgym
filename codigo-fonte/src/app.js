@@ -7,6 +7,7 @@ const adminManageRoute = require('./routes/adminManage');
 const authNotAdminRoutes = require('./routes/authNotAdminRoutes');
 const trainingSheetRoutes = require('./routes/trainingSheetRoutes');
 const physicalAssessmentRoutes = require('./routes/physicalAssessmentRoutes');
+const studentAssessmentRoutes = require('./routes/studentAssessmentRoutes');
 const weightRoutes = require('./routes/weightRoutes');
 
 const app = express();
@@ -31,6 +32,7 @@ app.use('/admin', adminManageRoute);
 app.use('/auth', authNotAdminRoutes);
 app.use('/trainingsheets', trainingSheetRoutes);
 app.use('/physical-assessments', physicalAssessmentRoutes);
+app.use('/api/student/assessments', studentAssessmentRoutes);
 app.use('/weight', weightRoutes)
 
 
