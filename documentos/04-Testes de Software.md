@@ -1068,7 +1068,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td>Este caso de teste verifica seo usuário aluno consegue visualizar seu histórico de avaliações.</td>
+    <td>Este caso de teste verifica se o usuário consegue visualizar seu histórico de avaliações.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
@@ -1097,7 +1097,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td>O sistema deve exibir histórico de avaiações do aluno.</td>
+    <td>O sistema deve exibir histórico de avaliações do aluno.</td>
   </tr>
 </table>
 
@@ -1703,6 +1703,60 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
   </tr>
   <tr>
     <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/c33fb850-2d61-4379-bfd0-ce515a98b487"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-023 S<br>Visualizar histórico de avaliações</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve exibir histórico de avaliações do aluno</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">15/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema exibiu a lista de avaliações do usuário.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/4fcfc0cc-3972-435a-92a4-b7df3b5b4696"/></td>
+  
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-024 S<br>Download de avaliações</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve realizar o download do arquivo intacto, sem erro ou corrompido</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">15/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O download do arquivo foi realizado com sucesso</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/14c0cbc0-07e1-47c4-99a8-b5392594f473"/></td>
+  
   </tr>
 </table>
 
