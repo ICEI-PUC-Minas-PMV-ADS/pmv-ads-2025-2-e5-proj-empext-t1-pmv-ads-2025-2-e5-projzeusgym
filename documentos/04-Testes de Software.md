@@ -1062,6 +1062,86 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-023 - S<br>Visualizar histórico de avaliações</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica seo usuário aluno consegue visualizar seu histórico de avaliações.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-009 Como aluno, desejo acessar um histórico de avaliações físicas para acompanhar minha evolução ao longo do tempo.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Fazer o login.<br>
+      2. Acessar tela de avaliações.<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Credenciais válidas<br>
+      - <strong>Ação:</strong> Acessar tela de avaliações
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve exibir histórico de avaiações do aluno.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-024 - S<br> Download de avaliações</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td>Este caso de teste verifica se o usuário aluno consegue fazer download de suas avaliações.</td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Douglas Takemi Kimura</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td>RF-010 Como aluno, desejo baixar minha avaliação física em PDF para guardar ou compartilhar quando necessário.</td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. Fazer o login.<br>
+      2. Acessar tela de avaliações.<br>
+      3. Clicar no ícone de download de uma avaliação<br>
+      4. Salvar avaliação<br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong> Credenciais válidas<br>
+      - <strong>Ação:</strong> Acessar tela de avaliações e fazer download
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td>O sistema deve realizar o download do arquivo intacto, sem erro ou corrompido</td>
+  </tr>
+</table>
+
  
 # Evidências de Testes de Software
 
