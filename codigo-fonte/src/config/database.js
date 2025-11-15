@@ -19,7 +19,7 @@ if (process.env.JAWSDB_URL) {
   });
 } else {
   // Ambiente local
-  sequelize = new Sequelize(
+ sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
     process.env.DB_PASS,
