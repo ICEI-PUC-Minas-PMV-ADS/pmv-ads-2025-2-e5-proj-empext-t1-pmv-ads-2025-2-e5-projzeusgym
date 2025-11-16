@@ -1148,11 +1148,11 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td></td>
+    <td>Este caso de teste verifica se o usuário adm/professor consegue fazer upload de avaliações.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
-    <td width="430">Rafael</td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
   </tr>
  <tr>
     <td><strong>Tipo do Teste</strong></td>
@@ -1160,41 +1160,41 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td></td>
+    <td>RF-007 Como professor, desejo registrar avaliações físicas dos alunos (peso, altura, medidas corporais, etc.) para acompanhar sua evolução corporal</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
     <td>
-      1. <br>
-      2. <br>
-      3. <br>
-      4. <br>
+      1. Fazer o login.<br>
+      2. Acessar tela de avaliações<br>
+      3. Clicar no ícone/área de upload de uma avaliação<br>
+      4. Avaliação será salva e ficará disponivel para vizualizão<br>
       </td>
   </tr>
     <tr>
     <td><strong>Dados de teste</strong></td>
     <td>
-      - <strong>Usuário:</strong><br>
-      - <strong>Ação:</strong>
+      - <strong>Usuário:</strong> Credenciais válidas<br>
+      - <strong>Ação:</strong> Acessar tela de avaliações e fazer upload
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td></td>
+    <td> Sistema deve realizar o upload do arquivo</td>
   </tr>
 </table>
 
 
 <table>
   <tr>
-    <th colspan="2" width="1000">CT-026 - I <br> Cadastro de Avaliações</th>
+    <th colspan="2" width="1000">CT-026 - I <br> Tratamento de dados invalidos de Avaliações</th>
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td></td>
+    <td>Este caso de teste verifica se o sistema consegue permitir upload/download apenas de arquivos válidos.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
-    <td width="430">Rafael</td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
   </tr>
  <tr>
     <td><strong>Tipo do Teste</strong></td>
@@ -1202,26 +1202,26 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td></td>
+    <td>RF-007 Como professor, desejo registrar avaliações físicas dos alunos (peso, altura, medidas corporais, etc.) para acompanhar sua evolução corporal</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
     <td>
-      1. <br>
-      2. <br>
-      3. <br>
-      4. <br>
+      1. Fazer o login.<br>
+      2. Acessar tela de avaliações<br>
+      3. Clicar no ícone/área de upload de uma avaliação<br>
+      4. Tentar fazer upload de um arquivo não PDF ou com tamanho superior a 5mb<br>
       </td>
   </tr>
     <tr>
     <td><strong>Dados de teste</strong></td>
     <td>
-      - <strong>Usuário:</strong><br>
-      - <strong>Ação:</strong>
+      - <strong>Usuário:</strong> Credenciais válidas<br>
+      - <strong>Ação:</strong> Acessar tela de avaliações e fazer upload
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td></td>
+    <td> O sistema deve mostrar erro ao tentar fazer upload de arquivos fora dos cirtérios</td>
   </tr>
 </table>
 
@@ -1232,11 +1232,11 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td></td>
+    <td>Este caso de teste verifica se o usuário adm/professor consegue fazer exclusões de avaliações</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
-    <td width="430">Rafael</td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
   </tr>
  <tr>
     <td><strong>Tipo do Teste</strong></td>
@@ -1244,26 +1244,26 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td></td>
+    <td>RF-007 Como professor, desejo registrar avaliações físicas dos alunos (peso, altura, medidas corporais, etc.) para acompanhar sua evolução corporal</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
     <td>
-      1. <br>
-      2. <br>
-      3. <br>
-      4. <br>
+      1. Fazer o login.<br>
+      2. Acessar tela de avaliações.<br>
+      3. Clicar no PDF de uma avaliação<br>
+      4. Excluir uma avaliação<br>
       </td>
   </tr>
     <tr>
     <td><strong>Dados de teste</strong></td>
     <td>
-      - <strong>Usuário:</strong><br>
-      - <strong>Ação:</strong>
+      - <strong>Usuário:</strong>Credenciais válidas<br>
+      - <strong>Ação:</strong> Acessar tela de avaliações e exclui-lá
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td></td>
+    <td> Conseguir excluir avalição</td>
   </tr>
 </table>
 
@@ -1274,11 +1274,11 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
-    <td></td>
+    <td>Este caso de teste verifica se o usuário consegue fazer download de suas avaliações.</td>
   </tr>
   <tr>
     <td><strong>Responsável Caso de Teste </strong></td>
-    <td width="430">Rafael</td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
   </tr>
  <tr>
     <td><strong>Tipo do Teste</strong></td>
@@ -1286,26 +1286,26 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr> 
   <tr>
     <td><strong>Requisitos associados</strong></td>
-    <td></td>
+    <td>RF-007 Como professor, desejo registrar avaliações físicas dos alunos (peso, altura, medidas corporais, etc.) para acompanhar sua evolução corporal</td>
   </tr>
   <tr>
     <td><strong>Passos</strong></td>
     <td>
-      1. <br>
-      2. <br>
-      3. <br>
-      4. <br>
+      1. Fazer o login<br>
+      2. Acessar tela de avaliações<br>
+      3. Clicar no ícone de download de uma avaliação <br>
+      4. Salvar avaliação<br>
       </td>
   </tr>
     <tr>
     <td><strong>Dados de teste</strong></td>
     <td>
-      - <strong>Usuário:</strong><br>
-      - <strong>Ação:</strong>
+      - <strong>Usuário:</strong>Credenciais válidas<br>
+      - <strong>Ação:</strong>Acessar tela de avaliações e fazer download
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td></td>
+    <td> O sistema deve realizar o download do arquivo</td>
   </tr>
 </table>
 
