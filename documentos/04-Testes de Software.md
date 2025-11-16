@@ -2330,4 +2330,60 @@ Colocar evidências de teste da etapa 3
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-025 -S S<br>Cadastro de avaliações
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">Cadastro da avaliação e upload do arquivo integro e sem erros.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">  Rafael Dos Santos Rodrigues </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">14/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Cadastro da avaliação realizada e upload do arquivo realizado com sucesso </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+  
+ <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/faeedace-8183-4e44-93ac-2fc9715fbd73"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-026 -I<br>Cadastro de avaliações
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema não deve permitir cadastrar avaliações com datas inválidas, sem definição de um aluno, sem o arquivo de avaliação ou arquivos que não sejam .PDF .</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">  Rafael Dos Santos Rodrigues </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">14/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Não foi possível cadastrar avaliação com dados inválidos </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/681a3a78-e7bd-4310-824e-3576f75ccdb8"/></td>
+  </tr>
+</table>
 
