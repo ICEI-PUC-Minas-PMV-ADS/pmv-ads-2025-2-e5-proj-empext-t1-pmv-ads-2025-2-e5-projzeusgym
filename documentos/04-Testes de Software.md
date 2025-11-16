@@ -2336,7 +2336,7 @@ Colocar evidências de teste da etapa 4
   </tr>
   <tr>
     <td width="170"><strong>Critérios de êxito</strong></td>
-    <td colspan="5">Cadastro da avaliação e upload do arquivo integro e sem erros.</td>
+    <td colspan="5">Cadastro da avaliação e upload do arquivo íntegro e sem erros.</td>
   </tr>
     <tr>
       <td><strong>Responsável pela funcionalidade</strong></td>
@@ -2384,6 +2384,62 @@ Colocar evidências de teste da etapa 4
   </tr>
   <tr>
 <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/681a3a78-e7bd-4310-824e-3576f75ccdb8"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-027 -S<br>Excluir avaliação
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve apagar os dados cadastrados da avaliação no BD.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">  Rafael Dos Santos Rodrigues </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">15/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Dados apagados com sucesso no BD </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/184891de-2714-4706-bd1b-6dc66eee7b8e"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-028 -S<br>Download de avaliação
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5"> O sistema deve realizar download do arquivo de avaliação íntegro e sem erros.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">  Rafael Dos Santos Rodrigues </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430">Douglas Takemi Kimura </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">15/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Download do arquivo de avaliação íntegro e sem erros  </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/f0feb940-1d4d-4be0-9baf-018b3d8b96d2"/></td>
   </tr>
 </table>
 
