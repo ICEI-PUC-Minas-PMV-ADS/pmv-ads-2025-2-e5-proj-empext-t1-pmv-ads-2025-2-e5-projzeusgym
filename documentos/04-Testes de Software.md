@@ -1142,6 +1142,175 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-025 - S<br> Upload de Avaliações</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Rafael</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. <br>
+      2. <br>
+      3. <br>
+      4. <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong><br>
+      - <strong>Ação:</strong>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td></td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-026 - I <br> Tratamento de dados invalidos de Avaliações</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Rafael</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. <br>
+      2. <br>
+      3. <br>
+      4. <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong><br>
+      - <strong>Ação:</strong>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td></td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-027 - S<br> Excluir Avaliações</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Rafael</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. <br>
+      2. <br>
+      3. <br>
+      4. <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong><br>
+      - <strong>Ação:</strong>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td></td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <th colspan="2" width="1000">CT-028 - S<br> Download de Avaliações</th>
+  </tr>
+  <tr>
+    <td width="150"><strong>Descrição</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Responsável Caso de Teste </strong></td>
+    <td width="430">Rafael</td>
+  </tr>
+ <tr>
+    <td><strong>Tipo do Teste</strong></td>
+    <td width="430">Sucesso</td>
+  </tr> 
+  <tr>
+    <td><strong>Requisitos associados</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Passos</strong></td>
+    <td>
+      1. <br>
+      2. <br>
+      3. <br>
+      4. <br>
+      </td>
+  </tr>
+    <tr>
+    <td><strong>Dados de teste</strong></td>
+    <td>
+      - <strong>Usuário:</strong><br>
+      - <strong>Ação:</strong>
+  </tr>
+    <tr>
+    <td><strong>Critérios de êxito</strong></td>
+    <td></td>
+  </tr>
+</table>
+
+
+
  
 # Evidências de Testes de Software
 
