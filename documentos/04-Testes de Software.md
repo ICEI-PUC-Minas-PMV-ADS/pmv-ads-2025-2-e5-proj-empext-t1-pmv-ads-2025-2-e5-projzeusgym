@@ -1144,7 +1144,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
 
 <table>
   <tr>
-    <th colspan="2" width="1000">CT-025 - S<br> Upload de Avaliações</th>
+    <th colspan="2" width="1000">CT-025 - S<br> Cadastro de Avaliações</th>
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
@@ -1186,7 +1186,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
 
 <table>
   <tr>
-    <th colspan="2" width="1000">CT-026 - I <br> Tratamento de dados invalidos de Avaliações</th>
+    <th colspan="2" width="1000">CT-026 - I <br> Cadastro de Avaliações</th>
   </tr>
   <tr>
     <td width="150"><strong>Descrição</strong></td>
