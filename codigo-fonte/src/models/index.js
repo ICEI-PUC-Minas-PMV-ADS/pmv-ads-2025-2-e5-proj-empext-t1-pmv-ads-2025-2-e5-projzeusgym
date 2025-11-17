@@ -1,34 +1,55 @@
-const sequelize = require('../config/database');
-const { DataTypes } = require('sequelize');
-const Users = require('./Users');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
+const { Sequelize, DataTypes } = require('sequelize');
+
+
+let sequelize; // A variável sequelize será definida abaixo
+
+// Configuração do banco (Heroku ou local)
+if (process.env.JAWSDB_URL) {
+  sequelize = new Sequelize(process.env.JAWSDB_URL, {
+    dialect: 'mysql',
+    logging: false,
+  });
+} else {
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: process.env.DB_HOST,
+      dialect: 'mysql',
+      logging: false,
+    }
+  );
+}
+
+const Users = require('./Users'); // Agora importa o modelo (classe) diretamente
 const Exercises = require('./Exercises');
+const PhysicalAssessment = require('./PhysicalAssessment');
+const TrainingSheet = require('./TrainingSheet');
+const TrainingSheetExercises = require('./TrainingSheetExercises');
 const Weight = require('./Weight');
 
+
+if (Users.associate) Users.associate({ Exercises, PhysicalAssessment, TrainingSheet, Weight });
+if (Exercises.associate) Exercises.associate({ TrainingSheetExercises });
+if (PhysicalAssessment.associate) PhysicalAssessment.associate({ Users });
+if (TrainingSheet.associate) TrainingSheet.associate({ Users, TrainingSheetExercises });
+if (TrainingSheetExercises.associate) TrainingSheetExercises.associate({ TrainingSheet, Exercises });
+if (Weight.associate) Weight.associate({ Users });
+
+// Exporta todos os models
 const db = {
-    sequelize,
-    Users,
-    Exercises,
-    Weight,
+  sequelize,
+  Sequelize,
+  Users,
+  Exercises,
+  PhysicalAssessment,
+  TrainingSheet,
+  TrainingSheetExercises,
+  Weight,
 };
-
-db.TrainingSheet = require('./TrainingSheet')(sequelize, DataTypes);
-db.TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
-db.PhysicalAssessment = require('./PhysicalAssessment')(sequelize, DataTypes);
-
-// Associações
-// 🛑 MODIFICADO: Adicionado 'as: "exercises"' para corrigir seu erro
-db.TrainingSheet.belongsToMany(db.Exercises, { through: db.TrainingSheetExercises, foreignKey: 'sheetId', otherKey: 'exerciseId', as: 'exercises' });
-db.Exercises.belongsToMany(db.TrainingSheet, { through: db.TrainingSheetExercises, foreignKey: 'exerciseId', otherKey: 'sheetId' }); // Pode ou não precisar do alias 'as: "sheets"'
-
-// 🛑 ADICIONADO: Associações BelongsTo para aluno e professor da Ficha de Treino
-db.TrainingSheet.belongsTo(db.Users, { as: 'aluno', foreignKey: 'alunoId' });
-db.TrainingSheet.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
-
-// Associações para PhysicalAssessment
-db.PhysicalAssessment.belongsTo(db.Users, { as: 'student', foreignKey: 'studentId' });
-db.PhysicalAssessment.belongsTo(db.Users, { as: 'professor', foreignKey: 'professorId' });
-
-db.Users.hasMany(db.Weight, {foreignKey: 'userId', as: 'weightHistory'});
-db.Weight.belongsTo(db.Users, {foreignKey: 'userId', as: 'user'});
 
 module.exports = db;
