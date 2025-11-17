@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const studentAssessmentController= require('../controllers/studentAssessmentController');
-const authMiddleware = require('../middlewares/authmiddlewareflexible');
+const authMiddleware = require('../middlewares/authMiddlewareFlexible');
 
 /**
  * Rotas de avaliações físicas para ALUNOS
