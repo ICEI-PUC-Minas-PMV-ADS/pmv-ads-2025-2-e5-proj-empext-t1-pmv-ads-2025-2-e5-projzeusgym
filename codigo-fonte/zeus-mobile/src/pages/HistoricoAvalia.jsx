@@ -9,6 +9,7 @@ import LogoZeus from '../../assets/Logo_zeus.png';
 import HeaderStyle from '../styles/HeaderStyle';
 import HistoricoStyle from '../styles/HistoricoStyle';
 
+
 const HistoricoAvalia = ({ navigation }) => {
   const [assessments, setAssessments] = useState([]);
   const [loading, setLoading] = useState(true);
