@@ -7,7 +7,7 @@ const db = require('./models/index');
 
 db.sequelize.sync({ alter: true })  
   .then(() => {
-    app.listen(PORT,'0.0.0.0', () => {
+    app.listen(PORT, () => {
       console.log(`Servidor rodando na porta ${PORT}`);
     });
   })
