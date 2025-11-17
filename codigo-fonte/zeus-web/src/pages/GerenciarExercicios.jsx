@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
   
 
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://guarded-shelf-40573-5295222ff305.herokuapp.com';
 
 const GerenciarExercicio = () => {
   const navigate = useNavigate();
