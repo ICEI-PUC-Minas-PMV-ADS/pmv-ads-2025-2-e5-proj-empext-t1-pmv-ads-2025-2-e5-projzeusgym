@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CadastroFichaTreino.css'; 
 
-const baseURL = 'http://localhost:3000';
+const baseURL = ' https://guarded-shelf-40573-5295222ff305.herokuapp.com';
 
 const initialExerciseState = {
     nome: '', 

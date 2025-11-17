@@ -6,7 +6,7 @@ import HeaderAdmin from '../components/HeaderAdmin';
 import FooterAdmin from '../components/FooterAdmin'; 
 import '../styles/LayoutBase.css';
 
-const baseURL = 'http://localhost:3000';
+const baseURL = ' https://guarded-shelf-40573-5295222ff305.herokuapp.com';
 
 const initialExerciseState = {
     idExercicio: '', 
