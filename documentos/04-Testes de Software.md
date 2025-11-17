@@ -1221,7 +1221,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
   </tr>
     <tr>
     <td><strong>Critérios de êxito</strong></td>
-    <td> O sistema deve mostrar erro ao tentar fazer upload de arquivos fora dos cirtérios</td>
+    <td> O sistema deve mostrar erro ao tentar fazer upload de arquivos fora dos critérios</td>
   </tr>
 </table>
 
@@ -1928,6 +1928,110 @@ Cada funcionalidade desenvolvida deve ser testada pelo próprio desenvolvedor, u
   
   </tr>
 </table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-025 S<br>Cadastro de Avaliações</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5"> O sistema deve permitir que o usuário faça upload de avaliações.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">16/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O Upload do arquivo foi realizado com sucesso</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src=>/</td>
+  
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-026 I<br>Tratamento de dados invalidos de Avaliações</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema consegue permitir upload/download apenas de arquivos válidos.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">16/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema deve mostrar erro ao tentar fazer upload de arquivos fora dos critérios</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src=/></td>
+  
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-027 - S<br>Excluir Avaliações</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve permitir exclusões de avaliações</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">16/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Conseguir excluir avalição</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src=/></td>
+  
+  </tr>
+</table>
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-028 S<br>Download de Avaliações</th>
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5">O sistema deve permitir download de avaliações.</td>
+  </tr>
+    <tr>
+    <td><strong>Responsável pela funcionalidade (desenvolvimento e teste)</strong></td>
+    <td width="430">Rafael dos Santos Rodrigues</td>
+     <td width="100"><strong>Data do Teste</strong></td>
+    <td width="150">16/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema deve realizar o download do arquivo</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src=/></td>
+  
+  </tr>
+</table>
 
 ## Parte 2 - Testes por pares
 A fim de aumentar a qualidade da aplicação desenvolvida, cada funcionalidade deve ser testada por um colega e os testes devem ser evidenciados. O colega "Tester" deve utilizar o caso de teste criado pelo desenvolvedor responsável pela funcionalidade (desenvolveu a funcionalidade e criou o caso de testes descrito no plano de testes) e caso perceba a necessidade de outros casos de teste, deve acrescentá-los na sessão "Plano de Testes".
@@ -2330,6 +2434,60 @@ Colocar evidências de teste da etapa 3
 
 ### ETAPA 4
 Colocar evidências de teste da etapa 4
+<table>
+  <tr>
+    <th colspan="6" width="1000">CT-023 - S<br>Visualizar histórico de avaliações
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5"> O sistema deve  mostrar o histórico de avaliações</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">  Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430"> Rafael dos Santos Rodrigues </td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">16/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">O sistema deve exibir histórico de avaliações do aluno.</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src=/></td>
+  </tr>
+</table>
+  <table>
+  <tr>
+    <th colspan="6" width="1000">CT-024 - S<br>Download das avaliações
+  </tr>
+  <tr>
+    <td width="170"><strong>Critérios de êxito</strong></td>
+    <td colspan="5"> O sistema deve realizar download do arquivo de avaliação íntegro e sem erros.</td>
+  </tr>
+    <tr>
+      <td><strong>Responsável pela funcionalidade</strong></td>
+    <td width="430">  Douglas Takemi Kimura </td>
+      <td><strong>Responsável pelo teste</strong></td>
+    <td width="430"> Rafael dos Santos Rodrigues</td>
+     <td width="100"><strong>Data do teste</strong></td>
+    <td width="150">16/11/2025</td>
+  </tr>
+    <tr>
+    <td width="170"><strong>Comentário</strong></td>
+    <td colspan="5">Download do arquivo de avaliação íntegro e sem erros  </td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center"><strong>Evidência</strong></td>
+  </tr>
+  <tr>
+<td colspan="6" align="center"><video src=/></td>
+  </tr>
+</table>
 <table>
   <tr>
     <th colspan="6" width="1000">CT-025 -S S<br>Cadastro de avaliações
