@@ -9,7 +9,7 @@ router.post('/login', async (req, res) => {
     const { login, password } = req.body;
 
     // Consulta SQL: buscar usuário pelo email
-    const query = `SELECT id, name, password FROM Users WHERE email = ?`;
+    const query = `SELECT id, name, password FROM users WHERE email = ?`;
 
     try {
         // IMPORTANTE: sequelize.query retorna diretamente um array de objetos
