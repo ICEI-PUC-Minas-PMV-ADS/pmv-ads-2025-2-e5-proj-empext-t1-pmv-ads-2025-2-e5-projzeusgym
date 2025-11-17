@@ -8,7 +8,7 @@ import { Buffer } from 'buffer';
 import LogoZeus from '../../assets/Logo_zeus.png';
 import HeaderStyle from '../styles/HeaderStyle';
 import HistoricoStyle from '../styles/HistoricoStyle';
-
+import { API_BASE_URL } from '@env';
 
 const HistoricoAvalia = ({ navigation }) => {
   const [assessments, setAssessments] = useState([]);
@@ -31,7 +31,7 @@ const HistoricoAvalia = ({ navigation }) => {
       const token = await getAuthToken();
 
       const response = await fetch(
-        `http://192.168.1.120:3000/api/student/assessments`,
+        `${API_BASE_URL}/api/student/assessments`,
         {
           method: 'GET',
           headers: {
@@ -62,7 +62,7 @@ const HistoricoAvalia = ({ navigation }) => {
     const token = await AsyncStorage.getItem('userToken') || await AsyncStorage.getItem('authToken');
     if (!token) throw new Error('Token não encontrado');
 
-    const url = `http://192.168.1.120:3000/api/student/assessments/${assessment.id}/download`;
+    const url = `${API_BASE_URL}/api/student/assessments/${assessment.id}/download`;
     console.log('Download URL:', url);
 
     const response = await fetch(url, {
