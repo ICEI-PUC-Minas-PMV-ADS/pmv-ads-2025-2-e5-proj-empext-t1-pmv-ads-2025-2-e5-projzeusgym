@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CadastroFichaTreino.css'; // Reutilizando o CSS para layout
 
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://guarded-shelf-40573-5295222ff305.herokuapp.com';
 
 const ViewFichaTreino = () => {
     const navigate = useNavigate();
