@@ -212,7 +212,7 @@ exports.listAlunos = async (req, res) => {
     });
 
     if (alunos.length === 0) {
-      return res.status(404).json({ message: 'Nenhum aluno encontrado.' });
+      return res.status(200).json({ message: 'Nenhum aluno encontrado.' });
     }
 
     return res.status(200).json(alunos);
