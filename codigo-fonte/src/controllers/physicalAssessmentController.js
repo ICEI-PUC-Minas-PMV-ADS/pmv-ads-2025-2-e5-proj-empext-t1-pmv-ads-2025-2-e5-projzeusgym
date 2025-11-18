@@ -93,11 +93,11 @@ exports.getPhysicalAssessments = async (req, res) => {
     // Se for professor, filtra apenas suas avaliações
     // Se for admin, mostra todas
     if (role === 'professor') {
-      whereClause.professorId = userId;
+      whereClause.professorId= userId;
     }
     
     if (studentId) {
-      whereClause.studentId = studentId;
+      whereClause.studentId= studentId;
     }
 
     const assessments = await PhysicalAssessment.findAll({
