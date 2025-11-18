@@ -80,12 +80,20 @@ exports.getPhysicalAssessments = async (req, res) => {
     const { id: userId, role } = req.user;
     const { studentId } = req.query;
 
+    // Validações de entrada
+    if (!userId || !role) {
+      return res.status(401).json({ 
+        error: 'Usuário não autenticado adequadamente.',
+        data: []
+      });
+    }
+
     let whereClause = {};
     
     // Se for professor, filtra apenas suas avaliações
     // Se for admin, mostra todas
     if (role === 'professor') {
-      whereClause.professorId= userId;
+      whereClause.professorId = userId;
     }
     
     if (studentId) {
@@ -101,10 +109,19 @@ exports.getPhysicalAssessments = async (req, res) => {
       order: [['assessmentDate', 'DESC']]
     });
 
-    return res.status(200).json(assessments);
+    // Sempre retorna array, mesmo se vazio
+    const result = Array.isArray(assessments) ? assessments : [];
+    
+    return res.status(200).json(result);
   } catch (error) {
     console.error('Erro ao buscar avaliações físicas:', error);
-    return res.status(500).json({ error: 'Erro interno ao buscar avaliações físicas.' });
+    
+    // Retorna erro estruturado mas sempre com array vazio como fallback
+    return res.status(500).json({ 
+      error: 'Erro interno ao buscar avaliações físicas.',
+      message: error.message,
+      data: [] // Array vazio para não quebrar o frontend
+    });
   }
 };
 
