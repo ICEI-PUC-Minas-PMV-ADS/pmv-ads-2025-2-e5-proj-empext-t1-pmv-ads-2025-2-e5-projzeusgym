@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
   
 
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://teste-zeusgym-50b8de268016.herokuapp.com';
 
 const GerenciarExercicio = () => {
   const navigate = useNavigate();
@@ -186,7 +186,7 @@ const GerenciarExercicio = () => {
 
       {/* Conteúdo em Branco */}
       <main className="dashboard-main">
-        <div v className="content-exercises">
+        <div className="content-exercises">
         <div className="main-header-aluno">
                                 <h2 className="main-title-aluno">Exercícios</h2>
                                 <button className="add-aluno-btn"
