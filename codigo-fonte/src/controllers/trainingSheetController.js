@@ -24,7 +24,8 @@ exports.listTrainingSheets = async (req, res) => {
       ],
     });
 
-    return res.status(200).json(sheets);
+    return res.status(200).json(Array.isArray(sheets) ? sheets : []);
+
   } catch (error) {
     console.error('Erro ao listar fichas:', error);
     return res.status(500).json({ error: 'Erro interno ao listar fichas.' });
