@@ -336,7 +336,7 @@ exports.listExercises = async (req, res) => {
 
         if (!exercises || exercises.length === 0) {
             // Retorna 404 se a tabela estiver vazia
-            return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
+            return res.status(200).json({ message: 'Nenhum exercício encontrado.' });
         }
 
         // Retorna 200 (OK) com a lista completa
@@ -419,7 +419,7 @@ exports.listExercises = async (req, res) => {
   try {
     const exercises = await Exercises.findAll();
     if (!exercises || exercises.length === 0) {
-      return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
+      return res.status(200).json({ message: 'Nenhum exercício encontrado.' });
     }
     return res.status(200).json(exercises);
   } catch (error) {
