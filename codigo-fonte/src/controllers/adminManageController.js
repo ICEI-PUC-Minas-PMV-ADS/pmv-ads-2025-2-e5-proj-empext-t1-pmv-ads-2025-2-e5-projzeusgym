@@ -329,39 +329,6 @@ exports.deleteAluno = async (req, res) => {
 };
 
 // 🚨 CORREÇÃO: Método para listar todos os exercícios (Solução do Erro 500)
-exports.listAlunos = async (req, res) => {
-  try {
-    // Validação básica
-    if (!Users) {
-      console.error('Modelo Users não encontrado');
-      return res.status(200).json([]);
-    }
-
-    const alunos = await Users.findAll({
-      where: {
-        role: 'aluno'
-      },
-      attributes: { exclude: ['password'] }
-    }).catch(dbError => {
-      console.error('Erro específico do banco:', dbError);
-      return []; // Retorna array vazio em caso de erro de DB
-    });
-
-    // Garantir que sempre retorna array, mesmo se vazio
-    const result = Array.isArray(alunos) ? alunos : [];
-    
-    // Log para debug (opcional)
-    console.log(`Encontrados ${result.length} alunos`);
-    
-    return res.status(200).json(result);
-  } catch (error) {
-    console.error('Erro ao listar alunos:', error);
-    console.error('Stack:', error.stack);
-    
-    // CRÍTICO: Sempre retorna array vazio para não quebrar frontend
-    return res.status(200).json([]);
-  }
-}
 
 exports.createExercise = async (req, res) => {
   try {
