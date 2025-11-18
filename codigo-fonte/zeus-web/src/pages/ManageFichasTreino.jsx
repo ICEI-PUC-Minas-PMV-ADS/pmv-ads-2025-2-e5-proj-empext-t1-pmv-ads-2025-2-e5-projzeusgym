@@ -7,7 +7,7 @@ import HeaderAdmin from "../components/HeaderAdmin"
 import FooterAdmin from "../components/FooterAdmin"
 import "./ManageFichasTreino.css"
 
-const baseURL = "http://localhost:3000"
+const baseURL = "https://teste-zeusgym-50b8de268016.herokuapp.com"
 
 const ManageFichasTreino = () => {
   const navigate = useNavigate()
