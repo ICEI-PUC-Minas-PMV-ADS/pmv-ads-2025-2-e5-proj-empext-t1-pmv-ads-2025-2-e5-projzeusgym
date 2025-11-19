@@ -67,6 +67,7 @@ exports.getTrainingSheetById = async (req, res) => {
           },
         },
       ],
+      logging: console.log // Log da query SQL
     });
 
     if (!sheet) {
@@ -159,7 +160,7 @@ exports.createTrainingSheet = async (req, res) => {
         // Criar associação na tabela intermediária
         const association = await TrainingSheetExercises.create({
           sheetId: trainingSheet.id,
-          exerciseId: exerciseId,
+          exerciseId: parseInt(exerciseId), // Convertendo para número
           series: normalizeValue(series),
           repeticoes: normalizeValue(repeticoes),
           carga: normalizeValue(carga),
