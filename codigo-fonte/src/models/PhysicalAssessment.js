@@ -1,7 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-
-const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
+module.exports = (sequelize, DataTypes) => {
+  const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -142,17 +140,18 @@ const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
     timestamps: true
   });
 
-PhysicalAssessment.associate = (models) => {
-  PhysicalAssessment.belongsTo(models.Users, { 
-    as: 'student', 
-    foreignKey: 'studentId',
-    onDelete: 'CASCADE'
-  });
-  PhysicalAssessment.belongsTo(models.Users, { 
-    as: 'professor', 
-    foreignKey: 'professorId',
-    onDelete: 'CASCADE'
-  });
-};
+  PhysicalAssessment.associate = (models) => {
+    PhysicalAssessment.belongsTo(models.Users, { 
+      as: 'student', 
+      foreignKey: 'studentId',
+      onDelete: 'CASCADE'
+    });
+    PhysicalAssessment.belongsTo(models.Users, { 
+      as: 'professor', 
+      foreignKey: 'professorId',
+      onDelete: 'CASCADE'
+    });
+  };
 
-module.exports = PhysicalAssessment;
+  return PhysicalAssessment;
+};
