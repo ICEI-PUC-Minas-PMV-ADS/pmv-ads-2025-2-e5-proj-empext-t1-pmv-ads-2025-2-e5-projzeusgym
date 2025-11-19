@@ -130,7 +130,7 @@ exports.createTrainingSheet = async (req, res) => {
 
         // Criar associação na tabela intermediária
         await TrainingSheetExercises.create({
-          trainingSheetId: trainingSheet.id,
+          sheetId: trainingSheet.id,
           exerciseId: exerciseId,
           series: normalizeValue(series),
           repeticoes: normalizeValue(repeticoes),
