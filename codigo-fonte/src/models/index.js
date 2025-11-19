@@ -25,13 +25,12 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-// Inicializar modelos com sequelize
-const Users = require('./Users')(sequelize, DataTypes);
-const Exercises = require('./Exercises')(sequelize, DataTypes);
-const PhysicalAssessment = require('./PhysicalAssessment')(sequelize, DataTypes);
-const TrainingSheet = require('./TrainingSheet')(sequelize, DataTypes);
-const TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
-const Weight = require('./Weight')(sequelize, DataTypes);
+const Users = require('./Users'); // Agora importa o modelo (classe) diretamente
+const Exercises = require('./Exercises');
+const PhysicalAssessment = require('./PhysicalAssessment');
+const TrainingSheet = require('./TrainingSheet');
+const TrainingSheetExercises = require('./TrainingSheetExercises');
+const Weight = require('./Weight');
 
 
 if (Users.associate) Users.associate({ Exercises, PhysicalAssessment, TrainingSheet, Weight });
