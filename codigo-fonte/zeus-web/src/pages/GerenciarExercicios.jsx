@@ -33,23 +33,40 @@ const GerenciarExercicio = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch(`${baseURL}/admin/exercises`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+  if (!token) {
+    setError('Token de autenticação não encontrado.');
+    setLoading(false);
+    return;
+  }
+
+  fetch(`${baseURL}/admin/exercises`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  })
+    .then(async response => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Erro ao buscar exercícios');
       }
-    })
-      .then(response => response.json())
-      .then(data => {
+
+      if (Array.isArray(data)) {
         setExercicios(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError('Erro ao carregar exercícios.');
-        setLoading(false);
-      });
-  }, [token, showForm]);
+      } else {
+        setExercicios([]);
+      }
+
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('Erro no fetch:', err.message);
+      setError(err.message);
+      setLoading(false);
+    });
+}, [token, showForm]);
 
   useEffect(() => {
     if (search.trim() === '') {

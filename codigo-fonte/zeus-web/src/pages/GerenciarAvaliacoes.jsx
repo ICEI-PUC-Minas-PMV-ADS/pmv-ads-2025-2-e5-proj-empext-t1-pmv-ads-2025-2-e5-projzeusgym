@@ -60,40 +60,50 @@ const GerenciarAvaliacoes = () => {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     };
 
-    const handleDownload = async (assessmentId) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await api.get(`/physical-assessments/${assessmentId}/download`, {
-                headers: { Authorization: `Bearer ${token}` },
-                responseType: 'blob'
-            });
-            
-            // Criar URL para download
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            
-            // Extrair nome do arquivo do header Content-Disposition
-            const contentDisposition = response.headers['content-disposition'];
-            let fileName = 'avaliacao.pdf';
-            if (contentDisposition) {
-                const fileNameMatch = contentDisposition.match(/filename="(.+)"/);
-                if (fileNameMatch) {
-                    fileName = fileNameMatch[1];
-                }
-            }
-            
-            link.setAttribute('download', fileName);
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            window.URL.revokeObjectURL(url);
-            
-        } catch (error) {
-            console.error('Erro ao fazer download:', error);
-            alert('Erro ao fazer download do arquivo.');
-        }
-    };
+ const handleDownload = async (assessmentId) => {
+  try {
+    setLoading(true);
+    const token = localStorage.getItem('token');
+    
+    // Fazer requisição para o backend que redireciona para o Azure
+    const response = await api.get(`/physical-assessments/${assessmentId}/download`, {
+      headers: { 
+        Authorization: `Bearer ${token}` 
+      },
+      responseType: 'blob' // Importante para downloads
+    });
+
+    // Criar blob URL e forçar download
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    
+    // Tentar extrair nome do arquivo do header
+    const contentDisposition = response.headers['content-disposition'];
+    let filename = `avaliacao_${assessmentId}.pdf`;
+    
+    if (contentDisposition) {
+      const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+      if (filenameMatch) {
+        filename = filenameMatch[1];
+      }
+    }
+    
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    
+    // Cleanup
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(link);
+    
+  } catch (error) {
+    console.error('Erro no download:', error);
+    alert('Erro ao fazer download do arquivo');
+  } finally {
+    setLoading(false);
+  }
+};
 
     const filteredAssessments = assessments.filter(assessment => 
         !filterStudent || 
@@ -223,7 +233,7 @@ const GerenciarAvaliacoes = () => {
                                     )}
 
                                     <div className="assessment-actions">
-                                        {assessment.filePath && (
+                                        {assessment.fileUrl && (
                                             <>
                                             
                                                 <button 
