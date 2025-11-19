@@ -215,3 +215,111 @@ exports.deleteTrainingSheet = async (req, res) => {
     return res.status(500).json({ error: 'Erro interno ao deletar ficha de treino.' });
   }
 };
+
+// =================================================================
+// ATUALIZAR FICHA - Apenas Professor/Admin
+// =================================================================
+exports.updateTrainingSheet = async (req, res) => {
+  try {
+    const { id: userId, role } = req.user;
+    const { sheetId } = req.params;
+    const { alunoId, nome, descricao, exercises } = req.body;
+
+    // Verificar se o usuário é professor ou admin
+    if (role === 'aluno') {
+      return res.status(403).json({ error: 'Acesso negado. Apenas professores podem atualizar fichas.' });
+    }
+
+    // Validações básicas
+    if (!nome || nome.trim() === '') {
+      return res.status(400).json({ error: 'Nome da ficha é obrigatório.' });
+    }
+
+    // Verificar se a ficha existe e pertence ao professor
+    const whereCondition = { id: sheetId, professorId: userId };
+    
+    const existingSheet = await TrainingSheet.findOne({
+      where: whereCondition
+    });
+
+    if (!existingSheet) {
+      return res.status(404).json({ error: 'Ficha não encontrada ou você não tem permissão para editá-la.' });
+    }
+
+    // Se mudou o aluno, verificar se o novo aluno existe
+    if (alunoId && alunoId !== existingSheet.alunoId) {
+      const aluno = await Users.findOne({
+        where: { id: alunoId, role: 'aluno' }
+      });
+
+      if (!aluno) {
+        return res.status(404).json({ error: 'Aluno não encontrado.' });
+      }
+    }
+
+    // 1. Atualizar dados básicos da ficha
+    await TrainingSheet.update({
+      alunoId: normalizeValue(alunoId) || existingSheet.alunoId,
+      nome: normalizeValue(nome),
+      descricao: normalizeValue(descricao)
+    }, {
+      where: whereCondition
+    });
+
+    // 2. Se exercises foram enviados, recriar todas as associações
+    if (exercises && Array.isArray(exercises)) {
+      // Deletar associações existentes
+      await TrainingSheetExercises.destroy({
+        where: { sheetId: sheetId }
+      });
+
+      // Criar novas associações
+      for (const exercise of exercises) {
+        const { exerciseId, series, repeticoes, carga, descanso } = exercise;
+
+        // Verificar se o exercício existe
+        const exerciseExists = await Exercises.findByPk(exerciseId);
+        if (!exerciseExists) {
+          console.warn(`Exercício com ID ${exerciseId} não encontrado. Ignorando.`);
+          continue;
+        }
+
+        // Criar nova associação
+        await TrainingSheetExercises.create({
+          sheetId: parseInt(sheetId),
+          exerciseId: parseInt(exerciseId),
+          series: normalizeValue(series),
+          repeticoes: normalizeValue(repeticoes),
+          carga: normalizeValue(carga),
+          descanso: normalizeValue(descanso)
+        });
+      }
+    }
+
+    // 3. Buscar a ficha atualizada com todas as associações
+    const updatedSheet = await TrainingSheet.findOne({
+      where: { id: sheetId },
+      include: [
+        { model: Users, as: 'aluno', attributes: ['id', 'name', 'email'] },
+        {
+          model: Exercises,
+          as: 'exercises',
+          attributes: ['id', 'nome'],
+          through: { 
+            model: TrainingSheetExercises,
+            attributes: ['series', 'repeticoes', 'carga', 'descanso'] 
+          },
+        },
+      ],
+    });
+
+    return res.status(200).json({
+      message: 'Ficha de treino atualizada com sucesso!',
+      trainingSheet: updatedSheet
+    });
+
+  } catch (error) {
+    console.error('Erro ao atualizar ficha de treino:', error);
+    return res.status(500).json({ error: 'Erro interno ao atualizar ficha de treino.' });
+  }
+};

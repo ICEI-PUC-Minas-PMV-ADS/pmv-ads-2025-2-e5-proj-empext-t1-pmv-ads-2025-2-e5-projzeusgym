@@ -6,7 +6,7 @@ import HeaderAdmin from '../components/HeaderAdmin';
 import FooterAdmin from '../components/FooterAdmin'; 
 import '../styles/LayoutBase.css';
 
-const baseURL = ' https://teste-zeusgym-50b8de268016.herokuapp.com';
+const baseURL = 'https://teste-zeusgym-50b8de268016.herokuapp.com';
 
 const initialExerciseState = {
     idExercicio: '', 
@@ -148,7 +148,7 @@ const EditFichaTreino = () => {
             setIsLoading(false);
         });
 
-    }, [fichaId, token, alunos.length]); // Dependência de alunos.length forçará recarregar após a lista de alunos
+    }, [fichaId, token, alunos.length, isLoading]); // Dependência de alunos.length forçará recarregar após a lista de alunos
 
     // --- Lógica de Manipulação dos Exercícios ---
     const handleAddExercicio = () => {
@@ -323,8 +323,8 @@ const EditFichaTreino = () => {
                                     <option value="">-- Selecione o Aluno --</option>
                                     {alunos.map((aluno) => (
                                         <option key={aluno.id} value={safeString(aluno.id)}>
-                                            {/* ✅ CORREÇÃO AQUI: Usando aluno.name */}
-                                            **{aluno.name}** ({aluno.email})
+                                                    {/* ✅ CORREÇÃO AQUI: Usando aluno.name */}
+                                            {aluno.name} ({aluno.email})
                                         </option>
                                     ))}
                                 </select>
