@@ -6,7 +6,7 @@ import HeaderAdmin from '../components/HeaderAdmin';
 import FooterAdmin from '../components/FooterAdmin'; 
 import '../styles/LayoutBase.css';
 
-const baseURL = ' https://guarded-shelf-40573-5295222ff305.herokuapp.com';
+const baseURL = ' https://teste-zeusgym-50b8de268016.herokuapp.com';
 
 const initialExerciseState = {
     idExercicio: '', 
