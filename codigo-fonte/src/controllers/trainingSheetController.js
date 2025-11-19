@@ -44,10 +44,14 @@ exports.getTrainingSheetById = async (req, res) => {
     const { id: userId, role } = req.user;
     const { sheetId } = req.params;
 
+    console.log(`[DEBUG] Buscando ficha ID: ${sheetId} para usuário: ${userId} (${role})`);
+
     const whereCondition =
       role === 'aluno'
         ? { id: sheetId, alunoId: userId }
         : { id: sheetId, professorId: userId };
+
+    console.log('[DEBUG] Where condition:', whereCondition);
 
     const sheet = await TrainingSheet.findOne({
       where: whereCondition,
@@ -66,8 +70,21 @@ exports.getTrainingSheetById = async (req, res) => {
     });
 
     if (!sheet) {
+      console.log('[DEBUG] Ficha não encontrada');
       return res.status(404).json({ error: 'Ficha não encontrada.' });
     }
+
+    console.log('[DEBUG] Ficha encontrada:', {
+      id: sheet.id,
+      nome: sheet.nome,
+      exercisesCount: sheet.exercises ? sheet.exercises.length : 0
+    });
+
+    // Debug: verificar se há exercícios na tabela intermediária
+    const exercisesInTable = await TrainingSheetExercises.findAll({
+      where: { sheetId: sheet.id }
+    });
+    console.log(`[DEBUG] Exercícios na tabela intermediária para ficha ${sheet.id}:`, exercisesInTable.length);
 
     return res.status(200).json(sheet);
   } catch (error) {
@@ -116,20 +133,31 @@ exports.createTrainingSheet = async (req, res) => {
       descricao: normalizeValue(descricao)
     });
 
+    console.log(`[DEBUG CREATE] Ficha ${trainingSheet.id} criada. Processando ${exercises ? exercises.length : 0} exercícios.`);
+
     // Se foram enviados exercícios, associar à ficha
     if (exercises && Array.isArray(exercises) && exercises.length > 0) {
-      for (const exercise of exercises) {
+      console.log('[DEBUG CREATE] Exercícios recebidos:', exercises);
+      
+      for (let i = 0; i < exercises.length; i++) {
+        const exercise = exercises[i];
         const { exerciseId, series, repeticoes, carga, descanso } = exercise;
+
+        console.log(`[DEBUG CREATE] Processando exercício ${i + 1}:`, {
+          exerciseId, series, repeticoes, carga, descanso
+        });
 
         // Verificar se o exercício existe
         const exerciseExists = await Exercises.findByPk(exerciseId);
         if (!exerciseExists) {
-          console.warn(`Exercício com ID ${exerciseId} não encontrado. Ignorando.`);
+          console.warn(`[DEBUG CREATE] Exercício com ID ${exerciseId} não encontrado. Ignorando.`);
           continue;
         }
 
+        console.log(`[DEBUG CREATE] Exercício ${exerciseId} encontrado: ${exerciseExists.nome}`);
+
         // Criar associação na tabela intermediária
-        await TrainingSheetExercises.create({
+        const association = await TrainingSheetExercises.create({
           sheetId: trainingSheet.id,
           exerciseId: exerciseId,
           series: normalizeValue(series),
@@ -137,7 +165,11 @@ exports.createTrainingSheet = async (req, res) => {
           carga: normalizeValue(carga),
           descanso: normalizeValue(descanso)
         });
+
+        console.log(`[DEBUG CREATE] Associação criada:`, association.toJSON());
       }
+    } else {
+      console.log('[DEBUG CREATE] Nenhum exercício foi enviado ou array está vazio.');
     }
 
     // Buscar a ficha criada com todas as associações para retornar

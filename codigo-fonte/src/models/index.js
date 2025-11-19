@@ -93,6 +93,14 @@ TrainingSheet.belongsToMany(Exercises, {
   as: 'exercises'
 });
 
+// Associação reversa de Exercises para TrainingSheet
+Exercises.belongsToMany(TrainingSheet, {
+  through: TrainingSheetExercises,
+  foreignKey: 'exerciseId',
+  otherKey: 'sheetId',
+  as: 'trainingSheets'
+});
+
 // Outras associações via função associate (se existir)
 if (Users.associate) Users.associate({ Exercises, PhysicalAssessment, TrainingSheet, Weight });
 if (Exercises.associate) Exercises.associate({ TrainingSheetExercises });
