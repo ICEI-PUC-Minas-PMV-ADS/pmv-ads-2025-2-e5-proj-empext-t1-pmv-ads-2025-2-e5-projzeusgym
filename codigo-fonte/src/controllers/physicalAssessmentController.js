@@ -3,6 +3,11 @@ const fs = require('fs');
 const path = require('path');
 const azureStorage = require('../config/azureStorage');
 
+// DEBUG: Verificar se os models estão sendo importados corretamente
+console.log('🔍 DEBUG PhysicalAssessmentController:');
+console.log('PhysicalAssessment:', typeof PhysicalAssessment, PhysicalAssessment?.name);
+console.log('Users:', typeof Users, Users?.name);
+
 exports.createPhysicalAssessment = async (req, res) => {
   try {
     const { 
