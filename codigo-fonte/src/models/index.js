@@ -5,22 +5,23 @@ const { Sequelize, DataTypes } = require('sequelize');
 const Users = sequelize.define('Users', {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
   name: { type: DataTypes.STRING, allowNull: false },
-  email: { type: DataTypes.STRING, allowNull: false, unique: true },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true, validate: { isEmail: true } },
   password: { type: DataTypes.STRING, allowNull: false },
   role: { type: DataTypes.ENUM('admin', 'professor', 'aluno'), allowNull: false },
   birthdate: { type: DataTypes.DATEONLY, allowNull: true },
   gender: { type: DataTypes.ENUM('masculino', 'feminino', 'outro'), allowNull: true },
-  cpf: { type: DataTypes.STRING(11), allowNull: true, unique: true },
-  phone: { type: DataTypes.STRING, allowNull: true },
-  address: { type: DataTypes.TEXT, allowNull: true },
-  isActive: { type: DataTypes.BOOLEAN, defaultValue: true }
+  cpf: { type: DataTypes.STRING(11), allowNull: true, unique: true, validate: { len: [11, 11] } },
+  cellphone: { type: DataTypes.STRING, allowNull: true },
+  restriction: { type: DataTypes.STRING, allowNull: true },
+  cref_mg: { type: DataTypes.STRING, allowNull: true },
+  mustChangePassword: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true }
 }, { tableName: 'users', timestamps: true });
 
 const Exercises = sequelize.define('Exercises', {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
   nome: { type: DataTypes.STRING, allowNull: false },
-  grupo_muscular: { type: DataTypes.STRING, allowNull: true },
-  descricao: { type: DataTypes.TEXT, allowNull: true }
+  exerGrupo: { type: DataTypes.STRING, allowNull: false },
+  comentario: { type: DataTypes.TEXT, allowNull: true }
 }, { tableName: 'exercises', timestamps: true });
 
 const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
@@ -58,11 +59,14 @@ const TrainingSheet = sequelize.define('TrainingSheet', {
 
 const Weight = sequelize.define('Weight', {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  userId: { type: DataTypes.INTEGER, allowNull: false },
-  weight: { type: DataTypes.DECIMAL(5, 2), allowNull: false },
-  date: { type: DataTypes.DATEONLY, allowNull: false },
-  observations: { type: DataTypes.TEXT, allowNull: true }
-}, { tableName: 'weights', timestamps: true });
+  userId: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'users', key: 'id' } },
+  weight: { type: DataTypes.FLOAT, allowNull: false },
+  date: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW }
+}, {
+  tableName: 'weights',
+  timestamps: true,
+  indexes: [{ fields: ['userId', 'date'] }]
+});
 
 const TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
 
