@@ -1,6 +1,7 @@
 const { PhysicalAssessment, Users } = require('../models');
 const fs = require('fs');
 const path = require('path');
+const azureStorage = require('../config/azureStorage');
 
 exports.createPhysicalAssessment = async (req, res) => {
   try {
@@ -46,16 +47,38 @@ exports.createPhysicalAssessment = async (req, res) => {
       });
     }
 
-    const assessment = await PhysicalAssessment.create({
+    // Tentar upload para Azure Blob Storage
+    const uploadResult = await azureStorage.uploadFile(
+      req.file.buffer, 
+      req.file.originalname, 
+      req.file.mimetype
+    );
+
+    let assessmentData = {
       studentId,
       professorId,
       assessmentDate,
       assessmentType: assessmentType || 'inicial',
       fileName: req.file.originalname,
-      filePath: req.file.path,
       fileSize: req.file.size,
       observations
-    });
+    };
+
+    if (uploadResult.success) {
+      // Azure configurado e upload bem-sucedido
+      assessmentData.fileUrl = uploadResult.url;
+      assessmentData.blobName = uploadResult.blobName;
+      console.log('✅ Arquivo enviado para Azure Storage:', uploadResult.blobName);
+    } else {
+      // Azure não configurado ou erro - informar ao usuário
+      console.warn('⚠️  Azure Storage não disponível:', uploadResult.error);
+      return res.status(503).json({ 
+        error: 'Serviço de upload não está disponível. Entre em contato com o administrador.',
+        details: uploadResult.error
+      });
+    }
+
+    const assessment = await PhysicalAssessment.create(assessmentData);
 
     // Buscar a avaliação criada com os dados do aluno
     const assessmentWithStudent = await PhysicalAssessment.findOne({
@@ -218,12 +241,25 @@ exports.deletePhysicalAssessment = async (req, res) => {
       });
     }
 
-    // Excluir o arquivo físico se existir
+    // Excluir o arquivo do Azure Storage se existir
+    if (assessment.blobName) {
+      try {
+        const deleteResult = await azureStorage.deleteFile(assessment.blobName);
+        if (!deleteResult.success) {
+          console.error('Erro ao excluir arquivo do Azure:', deleteResult.error);
+        }
+      } catch (fileError) {
+        console.error('Erro ao excluir arquivo do Azure:', fileError);
+        // Continuar mesmo se não conseguir excluir o arquivo
+      }
+    }
+
+    // Backward compatibility: excluir arquivo local se existir
     if (assessment.filePath && fs.existsSync(assessment.filePath)) {
       try {
         fs.unlinkSync(assessment.filePath);
       } catch (fileError) {
-        console.error('Erro ao excluir arquivo:', fileError);
+        console.error('Erro ao excluir arquivo local:', fileError);
         // Continuar mesmo se não conseguir excluir o arquivo
       }
     }
@@ -292,20 +328,37 @@ exports.downloadPDF = async (req, res) => {
       return res.status(404).json({ error: 'Avaliação não encontrada.' });
     }
 
-    if (!assessment.filePath || !fs.existsSync(assessment.filePath)) {
-      return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
+    // Priorizar Azure Storage
+    if (assessment.fileUrl && assessment.blobName) {
+      // Gerar URL com SAS token para acesso temporário
+      const sasUrl = await azureStorage.generateSasUrl(assessment.blobName, 60); // 60 minutos
+      
+      // Redirecionar para a URL do Azure com nome de arquivo customizado
+      const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
+      const date = assessment.assessmentDate.replace(/-/g, '');
+      const fileName = `avaliacao_${studentName}_${date}.pdf`;
+      
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+      
+      return res.redirect(sasUrl);
     }
 
-    // Gerar nome descritivo para o download
-    const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
-    const date = assessment.assessmentDate.replace(/-/g, '');
-    const fileName = `avaliacao_${studentName}_${date}.pdf`;
+    // Fallback para arquivo local (backward compatibility)
+    if (assessment.filePath && fs.existsSync(assessment.filePath)) {
+      const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
+      const date = assessment.assessmentDate.replace(/-/g, '');
+      const fileName = `avaliacao_${studentName}_${date}.pdf`;
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
-    
-    const fileStream = fs.createReadStream(assessment.filePath);
-    fileStream.pipe(res);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+      
+      const fileStream = fs.createReadStream(assessment.filePath);
+      fileStream.pipe(res);
+      return;
+    }
+
+    return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
 
   } catch (error) {
     console.error('Erro ao fazer download do PDF:', error);
@@ -329,15 +382,28 @@ exports.viewPDF = async (req, res) => {
       return res.status(404).json({ error: 'Avaliação não encontrada.' });
     }
 
-    if (!assessment.filePath || !fs.existsSync(assessment.filePath)) {
-      return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
+    // Priorizar Azure Storage
+    if (assessment.fileUrl && assessment.blobName) {
+      // Gerar URL com SAS token para acesso temporário
+      const sasUrl = await azureStorage.generateSasUrl(assessment.blobName, 60); // 60 minutos
+      
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline');
+      
+      return res.redirect(sasUrl);
     }
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'inline');
-    
-    const fileStream = fs.createReadStream(assessment.filePath);
-    fileStream.pipe(res);
+    // Fallback para arquivo local (backward compatibility)
+    if (assessment.filePath && fs.existsSync(assessment.filePath)) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline');
+      
+      const fileStream = fs.createReadStream(assessment.filePath);
+      fileStream.pipe(res);
+      return;
+    }
+
+    return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
 
   } catch (error) {
     console.error('Erro ao visualizar PDF:', error);

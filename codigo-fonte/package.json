@@ -5,18 +5,26 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "build": "echo 'Build step - No build required for backend'",
+    "heroku-postbuild": "echo 'Heroku post-build completed'",
+    "migrate": "node scripts/migrateAzureStorage.js",
+    "test-azure": "node scripts/testAzureStorage.js",
+    "check-heroku": "node scripts/checkHerokuSetup.js",
+    "azure-setup": "node scripts/azureSetupGuide.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@azure/storage-blob": "^12.29.1",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
+    "multer-blob-storage": "^1.1.1",
     "mysql2": "^3.15.3",
     "nodemailer": "^7.0.9",
     "sequelize": "^6.37.7"

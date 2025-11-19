@@ -36,7 +36,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     filePath: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      comment: 'Caminho local (deprecated - usar fileUrl)'
+    },
+    fileUrl: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      comment: 'URL do arquivo no Azure Blob Storage'
+    },
+    blobName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'Nome do blob no Azure Storage'
     },
     fileSize: {
       type: DataTypes.INTEGER,
