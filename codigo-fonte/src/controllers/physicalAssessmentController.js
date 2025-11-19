@@ -328,20 +328,34 @@ exports.downloadPDF = async (req, res) => {
       return res.status(404).json({ error: 'Avaliação não encontrada.' });
     }
 
-    // Priorizar Azure Storage
+    // Priorizar Azure Storage - fazer proxy do arquivo
     if (assessment.fileUrl && assessment.blobName) {
+      const https = require('https');
+      const http = require('http');
+      
       // Gerar URL com SAS token para acesso temporário
       const sasUrl = await azureStorage.generateSasUrl(assessment.blobName, 60); // 60 minutos
       
-      // Redirecionar para a URL do Azure com nome de arquivo customizado
+      // Nome customizado do arquivo
       const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
       const date = assessment.assessmentDate.replace(/-/g, '');
       const fileName = `avaliacao_${studentName}_${date}.pdf`;
       
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+      // Fazer proxy do arquivo do Azure
+      const client = sasUrl.startsWith('https') ? https : http;
       
-      return res.redirect(sasUrl);
+      return client.get(sasUrl, (azureResponse) => {
+        // Configurar headers para download
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+        res.setHeader('Content-Length', azureResponse.headers['content-length']);
+        
+        // Fazer pipe do arquivo do Azure para a response
+        azureResponse.pipe(res);
+      }).on('error', (error) => {
+        console.error('Erro ao fazer proxy do arquivo do Azure:', error);
+        return res.status(500).json({ error: 'Erro ao baixar arquivo do Azure Storage.' });
+      });
     }
 
     // Fallback para arquivo local (backward compatibility)
