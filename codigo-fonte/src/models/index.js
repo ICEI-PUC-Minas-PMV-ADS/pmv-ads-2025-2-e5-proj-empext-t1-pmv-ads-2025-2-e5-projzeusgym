@@ -27,7 +27,7 @@ if (process.env.JAWSDB_URL) {
 
 const Users = require('./Users'); // Agora importa o modelo (classe) diretamente
 const Exercises = require('./Exercises');
-const PhysicalAssessment = require('./PhysicalAssessment');
+const PhysicalAssessment = require('./PhysicalAssessment')(sequelize, DataTypes); // Inicializa o modelo
 const TrainingSheet = require('./TrainingSheet');
 const TrainingSheetExercises = require('./TrainingSheetExercises');
 const Weight = require('./Weight');
