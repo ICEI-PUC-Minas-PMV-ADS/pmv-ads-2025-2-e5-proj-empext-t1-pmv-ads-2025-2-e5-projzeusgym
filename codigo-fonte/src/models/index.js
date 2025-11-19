@@ -1,12 +1,70 @@
 const sequelize = require('../config/database');
 const { Sequelize, DataTypes } = require('sequelize');
 
-const Users = require('./Users'); // Agora importa o modelo (classe) diretamente
-const Exercises = require('./Exercises');
-const PhysicalAssessment = require('./PhysicalAssessment');
-const TrainingSheet = require('./TrainingSheet');
-const TrainingSheetExercises = require('./TrainingSheetExercises');
-const Weight = require('./Weight');
+// Definir todos os modelos usando a MESMA instância sequelize
+const Users = sequelize.define('Users', {
+  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  name: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true },
+  password: { type: DataTypes.STRING, allowNull: false },
+  role: { type: DataTypes.ENUM('admin', 'professor', 'aluno'), allowNull: false },
+  birthdate: { type: DataTypes.DATEONLY, allowNull: true },
+  gender: { type: DataTypes.ENUM('masculino', 'feminino', 'outro'), allowNull: true },
+  cpf: { type: DataTypes.STRING(11), allowNull: true, unique: true },
+  phone: { type: DataTypes.STRING, allowNull: true },
+  address: { type: DataTypes.TEXT, allowNull: true },
+  isActive: { type: DataTypes.BOOLEAN, defaultValue: true }
+}, { tableName: 'users', timestamps: true });
+
+const Exercises = sequelize.define('Exercises', {
+  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  nome: { type: DataTypes.STRING, allowNull: false },
+  grupo_muscular: { type: DataTypes.STRING, allowNull: true },
+  descricao: { type: DataTypes.TEXT, allowNull: true }
+}, { tableName: 'exercises', timestamps: true });
+
+const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  studentId: { type: DataTypes.INTEGER, allowNull: false },
+  professorId: { type: DataTypes.INTEGER, allowNull: false },
+  assessmentDate: { type: DataTypes.DATEONLY, allowNull: false },
+  assessmentType: { type: DataTypes.ENUM('inicial', 'trimestral', 'semestral', 'anual'), allowNull: false, defaultValue: 'inicial' },
+  fileName: { type: DataTypes.STRING, allowNull: true },
+  filePath: { type: DataTypes.STRING, allowNull: true },
+  fileUrl: { type: DataTypes.TEXT, allowNull: true },
+  blobName: { type: DataTypes.STRING, allowNull: true },
+  fileSize: { type: DataTypes.INTEGER, allowNull: true },
+  weight: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  height: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  bodyFat: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  muscleMass: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  chest: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  waist: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  hip: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  arm: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  thigh: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  calf: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  neck: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
+  observations: { type: DataTypes.TEXT, allowNull: true }
+}, { tableName: 'physical_assessments', timestamps: true });
+
+const TrainingSheet = sequelize.define('TrainingSheet', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  nome: { type: DataTypes.STRING, allowNull: false },
+  descricao: { type: DataTypes.TEXT, allowNull: true },
+  professorId: { type: DataTypes.INTEGER, allowNull: false },
+  alunoId: { type: DataTypes.INTEGER, allowNull: false }
+}, { tableName: 'training_sheets', timestamps: true });
+
+const Weight = sequelize.define('Weight', {
+  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  userId: { type: DataTypes.INTEGER, allowNull: false },
+  weight: { type: DataTypes.DECIMAL(5, 2), allowNull: false },
+  date: { type: DataTypes.DATEONLY, allowNull: false },
+  observations: { type: DataTypes.TEXT, allowNull: true }
+}, { tableName: 'weights', timestamps: true });
+
+const TrainingSheetExercises = require('./TrainingSheetExercises')(sequelize, DataTypes);
 
 
 // Definir associações diretamente aqui
