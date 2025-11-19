@@ -83,6 +83,16 @@ PhysicalAssessment.belongsTo(Users, {
   onDelete: 'CASCADE'
 });
 
+// Associações do TrainingSheet
+TrainingSheet.belongsTo(Users, { as: 'professor', foreignKey: 'professorId' });
+TrainingSheet.belongsTo(Users, { as: 'aluno', foreignKey: 'alunoId' });
+TrainingSheet.belongsToMany(Exercises, { 
+  through: TrainingSheetExercises, 
+  foreignKey: 'sheetId', 
+  otherKey: 'exerciseId',
+  as: 'exercises'
+});
+
 // Outras associações via função associate (se existir)
 if (Users.associate) Users.associate({ Exercises, PhysicalAssessment, TrainingSheet, Weight });
 if (Exercises.associate) Exercises.associate({ TrainingSheetExercises });

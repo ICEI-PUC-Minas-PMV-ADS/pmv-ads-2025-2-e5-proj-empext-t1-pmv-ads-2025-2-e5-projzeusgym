@@ -15,11 +15,15 @@ exports.listTrainingSheets = async (req, res) => {
     const sheets = await TrainingSheet.findAll({
       where: whereCondition,
       include: [
-        { association: 'aluno', attributes: ['id', 'name', 'email'] },
+        { model: Users, as: 'aluno', attributes: ['id', 'name', 'email'] },
         {
-          association: 'exercises',
+          model: Exercises,
+          as: 'exercises',
           attributes: ['id', 'nome'],
-          through: { attributes: ['series', 'repeticoes', 'carga', 'descanso'] },
+          through: { 
+            model: TrainingSheetExercises,
+            attributes: ['series', 'repeticoes', 'carga', 'descanso'] 
+          },
         },
       ],
     });
@@ -48,11 +52,15 @@ exports.getTrainingSheetById = async (req, res) => {
     const sheet = await TrainingSheet.findOne({
       where: whereCondition,
       include: [
-        { association: 'aluno', attributes: ['id', 'name', 'email'] },
+        { model: Users, as: 'aluno', attributes: ['id', 'name', 'email'] },
         {
-          association: 'exercises',
+          model: Exercises,
+          as: 'exercises',
           attributes: ['id', 'nome'],
-          through: { attributes: ['series', 'repeticoes', 'carga', 'descanso'] },
+          through: { 
+            model: TrainingSheetExercises,
+            attributes: ['series', 'repeticoes', 'carga', 'descanso'] 
+          },
         },
       ],
     });
