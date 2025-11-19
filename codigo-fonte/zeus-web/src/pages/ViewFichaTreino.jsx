@@ -48,6 +48,10 @@ const ViewFichaTreino = () => {
         .then(data => {
             // Assume que a API retorna o objeto da ficha
             console.log("Dados da Ficha Carregados:", data); // Verificação
+            console.log("Exercícios da Ficha:", data.exercises); // Debug dos exercícios
+            if (data.exercises && data.exercises.length > 0) {
+                console.log("Primeiro exercício:", data.exercises[0]); // Debug estrutura
+            }
             setFicha(data); 
             setMensagem({ type: 'success', text: `Ficha ID ${fichaId} carregada com sucesso!` });
         })
@@ -64,15 +68,21 @@ const ViewFichaTreino = () => {
 
     // --- Renderização da Linha da Tabela de Exercícios (CORRIGIDA) ---
     const renderExercicioRow = (item, index) => {
+        // Debug: Log do item para ver a estrutura
+        console.log(`Exercício ${index}:`, item);
+        
         // 🎯 Acessa as propriedades da tabela de associação (pivô)
-        const details = item.TrainingSheetExercises || {}; 
+        // Sequelize pode retornar os dados da tabela intermediária em diferentes locais
+        const details = item.TrainingSheetExercises || item.through || item.dataValues?.TrainingSheetExercises || {}; 
+
+        console.log(`Details do exercício ${index}:`, details);
 
         return (
             <tr key={index}>
-                <td>{item.nome}</td>
-                <td>{details.series || '-'}</td> {/* CORRIGIDO */}
-                <td>{details.repeticoes || '-'}</td> {/* CORRIGIDO */}
-                <td>{details.carga === 0 ? 0 : (details.carga || '-')}</td> {/* CORRIGIDO: Mostra 0 ou '-' */}
+                <td>{item.nome || item.name || '-'}</td>
+                <td>{details.series || '-'}</td>
+                <td>{details.repeticoes || '-'}</td>
+                <td>{details.carga === 0 ? '0' : (details.carga || '-')}</td>
             </tr>
         );
     };
