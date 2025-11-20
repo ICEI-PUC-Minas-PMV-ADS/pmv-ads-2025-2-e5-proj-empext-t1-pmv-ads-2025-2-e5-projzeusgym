@@ -4,6 +4,7 @@ import { FaPlus } from 'react-icons/fa';
 import HeaderAdmin from '../components/HeaderAdmin';
 import Footer from '../components/Footer';
 import { API_BASE_URL } from '../config/api';
+import './GerenciarExercicios.css';
 
 const GerenciarExercicio = () => {
   const [exercicios, setExercicios] = useState([]);
