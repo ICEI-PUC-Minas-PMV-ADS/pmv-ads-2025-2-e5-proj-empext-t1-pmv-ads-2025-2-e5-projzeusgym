@@ -227,53 +227,42 @@ exports.downloadMyAssessmentPDF = async (req, res) => {
     const studentId = req.user.id;
     const { assessmentId } = req.params;
 
-    console.log(`[DOWNLOAD] User ${studentId} requesting assessment ${assessmentId}`);
-
-    // First, let's check if the assessment exists at all
-    const anyAssessment = await PhysicalAssessment.findOne({
-      where: { id: assessmentId }
-    });
-
-    if (!anyAssessment) {
-      console.log(`[DOWNLOAD] Assessment ${assessmentId} does not exist in database`);
-      return res.status(404).json({ error: 'Avaliação não encontrada.' });
-    }
-
-    console.log(`[DOWNLOAD] Assessment ${assessmentId} exists, belongs to student ${anyAssessment.studentId}`);
-
     const assessment = await PhysicalAssessment.findOne({
       where: { id: assessmentId, studentId }
     });
 
     if (!assessment) {
-      console.log(`[DOWNLOAD] Assessment ${assessmentId} found but does not belong to user ${studentId}`);
       return res.status(404).json({ error: 'Avaliação não encontrada.' });
     }
-    if (!assessment.filePath) return res.status(404).json({ error: 'Arquivo PDF não disponível.' });
 
-    const filePath = path.isAbsolute(assessment.filePath)
-      ? assessment.filePath
-      : path.join(__dirname, '../../', assessment.filePath);
+    if (!assessment.filePath) {
+      return res.status(404).json({ error: 'Arquivo PDF não disponível.' });
+    }
 
-    if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Arquivo não encontrado no servidor.' });
+    // Import Azure Storage service
+    const azureStorage = require('../config/azureStorage');
 
-    const stat = fs.statSync(filePath);
-    const fileName = assessment.fileName || 'avaliacao.pdf';
+    // Extract blob name from filePath (remove any URL prefix)
+    const blobName = assessment.filePath.includes('/') 
+      ? assessment.filePath.split('/').pop() 
+      : assessment.filePath;
 
-    res.writeHead(200, {
-      'Content-Type': 'application/pdf',
-      'Content-Length': stat.size,
-      'Content-Disposition': `attachment; filename="${fileName}"`
-    });
+    try {
+      // Generate SAS URL for secure access
+      const sasUrl = await azureStorage.generateSasUrl(blobName, 10); // 10 minutes expiry
 
-    const stream = fs.createReadStream(filePath);
-    stream.on('error', (err) => {
-      console.error('File stream error:', err);
-      if (!res.headersSent) return res.status(500).json({ error: 'Erro ao ler o arquivo.' });
-      res.end();
-    });
+      if (!sasUrl) {
+        return res.status(500).json({ error: 'Erro ao gerar link de download.' });
+      }
 
-    stream.pipe(res);
+      // Redirect to the SAS URL for download
+      return res.redirect(sasUrl);
+
+    } catch (azureError) {
+      console.error('Azure Storage error:', azureError);
+      return res.status(500).json({ error: 'Erro ao acessar arquivo no storage.' });
+    }
+
   } catch (error) {
     console.error('Error downloading PDF:', error);
     res.status(500).json({ error: 'Erro ao fazer download do PDF.' });
