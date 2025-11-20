@@ -52,11 +52,27 @@ const ManageFichasTreino = () => {
   }, [fetchFichas])
 
   const handleDeletarFicha = async (fichaId, titulo) => {
-    if (!window.confirm(`Tem certeza que deseja deletar a ficha "${titulo}"?`)) {
+    // Validações básicas
+    if (!fichaId) {
+      setMensagem({ type: "error", text: "ID da ficha não encontrado." })
       return
     }
 
+    if (!token) {
+      setMensagem({ type: "error", text: "Token de autenticação não encontrado. Faça login novamente." })
+      return
+    }
+
+    if (!window.confirm(`Tem certeza que deseja deletar a ficha "${titulo}"?\n\nEsta ação não pode ser desfeita e removerá todos os exercícios associados.`)) {
+      return
+    }
+
+    // Indicador de loading durante delete
+    setMensagem({ type: "info", text: `Deletando ficha "${titulo}"...` })
+
     try {
+      console.log(`Tentando deletar ficha ID: ${fichaId}`)
+      
       const response = await fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
         method: "DELETE",
         headers: {
@@ -65,14 +81,29 @@ const ManageFichasTreino = () => {
         },
       })
 
+      console.log(`Response status: ${response.status}`)
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: "Erro desconhecido." }))
-        throw new Error(`Falha ao deletar a ficha. Detalhe: ${errorData.message}`)
+        let errorMessage = "Erro desconhecido"
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorData.message || `Erro ${response.status}`
+        } catch {
+          errorMessage = `Erro ${response.status}: ${response.statusText}`
+        }
+        throw new Error(errorMessage)
       }
 
       setMensagem({ type: "success", text: `Ficha "${titulo}" deletada com sucesso!` })
-      fetchFichas()
+      await fetchFichas() // Recarrega a lista
     } catch (err) {
+      console.error('Erro completo ao deletar ficha:', {
+        error: err,
+        message: err.message,
+        fichaId,
+        titulo,
+        token: token ? 'presente' : 'ausente'
+      })
       setMensagem({ type: "error", text: `Erro ao deletar: ${err.message}` })
     }
   }
