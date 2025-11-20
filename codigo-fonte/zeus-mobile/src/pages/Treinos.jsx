@@ -1,30 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, Image, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import TreinosStyles from '../styles/TreinosStyle';
 import LogoZeus from '../../assets/Logo_zeus.png';
-//import axios from 'axios';
 
 const Treinos = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [mensagem, setMensagem] = useState('');
   const [fichas, setFichas] = useState([]);
 
-  // Token de teste (aluno)
-  const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOiJhbHVubyIsImlhdCI6MTc2MjI5NzEyMiwiZXhwIjoxNzYyMzAwNzIyfQ.lG0FpVv-yrRwlXz8HD7o3KPeHiOj_lL5umqZZjnxWCo';
 
+   
+          
   const carregarFichas = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/trainingsheets', {
-        headers: { Authorization: `Bearer ${TOKEN}` },
+      const getAuthToken = async () => {
+        const token = await AsyncStorage.getItem('userToken') || await AsyncStorage.getItem('authToken');
+        if (!token) throw new Error('Token não encontrado no armazenamento local');
+        return token;
+      };
+
+      const token = await getAuthToken();
+      
+      const response = await fetch('https://teste-zeusgym-50b8de268016.herokuapp.com/trainingsheets', {
+        method: 'GET',
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
       });
 
-      setFichas(response.data);
-      if (response.data.length === 0) {
+      if (!response.ok) {
+        throw new Error(`Erro ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setFichas(data);
+      
+      if (data.length === 0) {
         setMensagem('Nenhuma ficha de treino cadastrada.');
       }
     } catch (error) {
-      console.log(error);
+      console.error('Erro ao carregar fichas:', error);
       setMensagem('Erro ao carregar fichas de treino.');
     } finally {
       setLoading(false);

@@ -183,8 +183,6 @@ const HistoricoAvalia = ({ navigation }) => {
                 shadowRadius: 4,
                 elevation: 3
               }}
-              onPress={assessment.filePath ? () => handleDownload(assessment) : null}
-              disabled={!assessment.filePath}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <View style={{ flex: 1 }}>
@@ -204,14 +202,14 @@ const HistoricoAvalia = ({ navigation }) => {
                       📄 {assessment.fileName}
                     </Text>
                   )}
-                  {!assessment.filePath && (
+                  {!assessment.fileUrl && (
                     <Text style={{ fontSize: 12, color: '#999', fontStyle: 'italic', marginTop: 4 }}>
                       Arquivo não disponível
                     </Text>
                   )}
                 </View>
-                {assessment.filePath ? (
-                  <Text style={{ fontSize: 24, marginLeft: 12 }}>📥</Text>
+                {assessment.fileUrl ? (
+                  <Text style={{ fontSize: 24, marginLeft: 12 }} onPress={() => handleDownload(assessment)}>📥</Text>
                 ) : (
                   <Text style={{ fontSize: 24, marginLeft: 12, opacity: 0.3 }}>📄</Text>
                 )}

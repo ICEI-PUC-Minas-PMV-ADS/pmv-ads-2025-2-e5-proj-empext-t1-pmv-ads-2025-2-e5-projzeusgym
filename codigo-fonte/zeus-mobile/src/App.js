@@ -14,6 +14,8 @@ import RegistrarPeso from './pages/RegistrarPeso';
 import LoginScreen from './pages/LoginScreen';
 import ChangePasswordScreen from './pages/ChangePasswordScreen';
 import HistoricoAvalia from './pages/HistoricoAvalia';
+import Treinos from './pages/Treinos';
+import TreinoDetalhes from './pages/TreinosDetalhes';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -86,6 +88,22 @@ function AppDrawer() {
           drawerIcon: ({ color, size }) => (
             <Ionicons name="document-text-outline" size={size} color={color} />
           ),
+        }}
+      />
+      <Drawer.Screen
+        name="Treinos"
+        component={Treinos}
+        options={{
+          title: 'Minhas Fichas de Treino',
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="TreinoDetalhes"
+        component={TreinoDetalhes}
+        options={{
+          title: 'Detalhes do Treino',
+          headerShown: false,
         }}
       />
       {/* Item de Logout */}
