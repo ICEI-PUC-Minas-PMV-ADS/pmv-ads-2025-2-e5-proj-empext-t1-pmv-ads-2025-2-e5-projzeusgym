@@ -17,22 +17,23 @@ exports.createProfessor = async (req, res) => {
     }
 
     const existingUserByEmail = await Users.findOne({ where: { email } });
-    if (existingUserByEmail) {
-      return res.status(400).json({ error: 'Email já cadastrado.' });
-    }
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: 'Email já cadastrado.' });
+    }
 
-    const professor = await Users.create({
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cref_mg,
-      email,
-      password,
-      role: 'professor',
-    });
+    // Hash da senha antes de salvar no banco
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    return res.status(201).json({ message: 'Professor cadastrado com sucesso!', professor });
+    const professor = await Users.create({
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cref_mg,
+      email,
+      password: hashedPassword,
+      role: 'professor',
+    });    return res.status(201).json({ message: 'Professor cadastrado com sucesso!', professor });
   } catch (error) {
     console.error('Erro ao cadastrar professor:', error);
     return res.status(500).json({ error: 'Erro interno ao cadastrar professor.' });
@@ -182,6 +183,10 @@ exports.createAluno = async (req, res) => {
     console.log('[ALUNO] Senha gerada:', senhaInicial);
     console.log('[ALUNO] Criando aluno com email:', email);
 
+    // Hash da senha antes de salvar no banco
+    const hashedPassword = await bcrypt.hash(senhaInicial, 10);
+    console.log('[ALUNO] Senha hasheada para armazenamento');
+
     const aluno = await Users.create({
       name,
       birthdate,
@@ -190,7 +195,7 @@ exports.createAluno = async (req, res) => {
       cellphone,
       restriction,
       email,
-      password: senhaInicial,
+      password: hashedPassword,
       mustChangePassword: true,
       role: 'aluno',
     });
