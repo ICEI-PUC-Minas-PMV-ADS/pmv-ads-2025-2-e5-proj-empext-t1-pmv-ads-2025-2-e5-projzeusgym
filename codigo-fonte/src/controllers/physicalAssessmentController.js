@@ -105,13 +105,14 @@ exports.getPhysicalAssessments = async (req, res) => {
 
     let whereClause = {};
     
-    // Se for professor, filtra apenas suas avaliações
-    // Se for admin, mostra todas
-    if (role === 'professor') {
-      whereClause.professorId = userId;
+    // Admin e professores podem ver todas as avaliações
+    // Alunos só podem ver suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
     }
     
-    if (studentId) {
+    // Se foi especificado um studentId na query, filtrar por ele
+    if (studentId && (role === 'admin' || role === 'professor')) {
       whereClause.studentId = studentId;
     }
 
@@ -138,20 +139,30 @@ exports.getPhysicalAssessments = async (req, res) => {
 exports.getPhysicalAssessmentById = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
+
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem ver qualquer avaliação
+    // Alunos só podem ver suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
+    }
 
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      },
+      where: whereClause,
       include: [
         { model: Users, as: 'student', attributes: ['id', 'name', 'email'] }
       ]
     });
 
     if (!assessment) {
-      return res.status(404).json({ error: 'Avaliação física não encontrada.' });
+      let errorMessage = 'Avaliação física não encontrada.';
+      if (role === 'aluno' || role === 'student') {
+        errorMessage = 'Avaliação não encontrada ou não pertence a você.';
+      }
+      return res.status(404).json({ error: errorMessage });
     }
 
     return res.status(200).json(assessment);
@@ -164,14 +175,22 @@ exports.getPhysicalAssessmentById = async (req, res) => {
 exports.updatePhysicalAssessment = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
     const updateData = req.body;
 
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem atualizar qualquer avaliação
+    // Alunos não podem atualizar (apenas professores e admin)
+    if (role === 'aluno' || role === 'student') {
+      return res.status(403).json({ 
+        error: 'Alunos não têm permissão para atualizar avaliações físicas.' 
+      });
+    }
+
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      }
+      where: whereClause
     });
 
     if (!assessment) {
@@ -298,9 +317,9 @@ exports.deletePhysicalAssessment = async (req, res) => {
 exports.getStudentAssessments = async (req, res) => {
   try {
     const { studentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
 
-    // Verificar se o aluno existe e se o professor tem acesso
+    // Verificar se o aluno existe
     const student = await Users.findOne({
       where: { 
         id: studentId, 
@@ -312,11 +331,21 @@ exports.getStudentAssessments = async (req, res) => {
       return res.status(404).json({ error: 'Aluno não encontrado.' });
     }
 
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { studentId };
+    
+    // Admin e professores podem ver avaliações de qualquer aluno
+    // Alunos só podem ver suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      if (studentId !== userId.toString()) {
+        return res.status(403).json({ 
+          error: 'Você só pode visualizar suas próprias avaliações.' 
+        });
+      }
+    }
+
     const assessments = await PhysicalAssessment.findAll({
-      where: { 
-        studentId, 
-        professorId 
-      },
+      where: whereClause,
       include: [
         { model: Users, as: 'student', attributes: ['id', 'name', 'email'] }
       ],
@@ -333,20 +362,31 @@ exports.getStudentAssessments = async (req, res) => {
 exports.downloadPDF = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
+
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem baixar qualquer avaliação
+    // Alunos só podem baixar suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
+    }
+    // Para admin e professor, não adiciona filtro extra (podem baixar qualquer uma)
 
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      },
+      where: whereClause,
       include: [
         { model: Users, as: 'student', attributes: ['name'] }
       ]
     });
 
     if (!assessment) {
-      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+      let errorMessage = 'Avaliação não encontrada.';
+      if (role === 'aluno' || role === 'student') {
+        errorMessage = 'Avaliação não encontrada ou não pertence a você.';
+      }
+      return res.status(404).json({ error: errorMessage });
     }
 
     // Priorizar Azure Storage - fazer proxy do arquivo
@@ -404,17 +444,28 @@ exports.downloadPDF = async (req, res) => {
 exports.viewPDF = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
+
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem visualizar qualquer avaliação
+    // Alunos só podem visualizar suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
+    }
+    // Para admin e professor, não adiciona filtro extra (podem visualizar qualquer uma)
 
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      }
+      where: whereClause
     });
 
     if (!assessment) {
-      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+      let errorMessage = 'Avaliação não encontrada.';
+      if (role === 'aluno' || role === 'student') {
+        errorMessage = 'Avaliação não encontrada ou não pertence a você.';
+      }
+      return res.status(404).json({ error: errorMessage });
     }
 
     // Priorizar Azure Storage
