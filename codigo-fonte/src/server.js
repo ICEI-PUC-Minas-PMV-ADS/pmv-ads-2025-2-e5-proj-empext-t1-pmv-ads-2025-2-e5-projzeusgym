@@ -7,8 +7,28 @@ const db = require('./models/index');
 const azureStorage = require('./config/azureStorage');
 
 // Inicializar Azure Storage e sincronizar banco de dados
+const syncDatabase = async () => {
+  try {
+    // Tentar uma sincronização simples primeiro
+    await db.sequelize.sync({ alter: false });
+    console.log('🔄 Sincronização simples bem-sucedida');
+    return true;
+  } catch (error) {
+    console.warn('⚠️  Sincronização simples falhou, tentando sem alterações:', error.message);
+    try {
+      // Se falhar, tentar apenas autenticar
+      await db.sequelize.authenticate();
+      console.log('🔗 Conexão com banco validada');
+      return true;
+    } catch (authError) {
+      console.error('❌ Falha na conexão com banco:', authError.message);
+      throw authError;
+    }
+  }
+};
+
 Promise.all([
-  db.sequelize.sync({ alter: true }),
+  syncDatabase(),
   azureStorage.initializeContainer().catch(err => {
     console.warn('⚠️  Azure Storage não pôde ser inicializado:', err.message);
     return false; // Continuar mesmo se Azure falhar
