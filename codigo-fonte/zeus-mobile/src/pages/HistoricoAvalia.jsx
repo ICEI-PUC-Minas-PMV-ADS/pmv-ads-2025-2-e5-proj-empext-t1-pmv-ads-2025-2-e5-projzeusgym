@@ -30,7 +30,7 @@ const HistoricoAvalia = ({ navigation }) => {
       const token = await getAuthToken();
 
       const response = await fetch(
-        `http://192.168.1.120:3000/api/student/assessments`,
+        `https://teste-zeusgym-50b8de268016.herokuapp.com/api/student/assessments`,
         {
           method: 'GET',
           headers: {
@@ -61,7 +61,7 @@ const HistoricoAvalia = ({ navigation }) => {
     const token = await AsyncStorage.getItem('userToken') || await AsyncStorage.getItem('authToken');
     if (!token) throw new Error('Token não encontrado');
 
-    const url = `http://192.168.1.120:3000/api/student/assessments/${assessment.id}/download`;
+    const url = `https://teste-zeusgym-50b8de268016.herokuapp.com/api/student/assessments/${assessment.id}/download`;
     console.log('Download URL:', url);
 
     const response = await fetch(url, {

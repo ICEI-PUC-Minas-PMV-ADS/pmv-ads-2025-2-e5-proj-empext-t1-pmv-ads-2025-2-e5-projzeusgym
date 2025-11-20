@@ -192,10 +192,23 @@ exports.createAluno = async (req, res) => {
       role: 'aluno',
     });
 
-    await sendWelcomeEmail(email, senhaInicial);
+    // Tentar enviar email, mas não falhar se não conseguir
+    const emailSent = await sendWelcomeEmail(email, senhaInicial);
+    
+    let message = 'Aluno cadastrado com sucesso!';
+    if (emailSent) {
+        message += ' E-mail de boas-vindas com senha inicial enviado.';
+        console.log(`✅ Email enviado para ${email}`);
+    } else {
+        message += ' ⚠️ Não foi possível enviar o e-mail. A senha inicial é: ' + senhaInicial;
+        console.warn(`⚠️ Email não enviado para ${email}. Senha inicial: ${senhaInicial}`);
+    }
 
-    return res.status(201).json({ message: 'Aluno cadastrado com sucesso! E-mail de boas-vindas com senha inicial enviado.',
-            aluno: { id: aluno.id, name: aluno.name, email: aluno.email, role: aluno.role }});
+    return res.status(201).json({ 
+        message,
+        senhaInicial: emailSent ? undefined : senhaInicial, // Só mostra a senha se o email não foi enviado
+        aluno: { id: aluno.id, name: aluno.name, email: aluno.email, role: aluno.role }
+    });
   } catch (error) {
     console.error('Erro ao cadastrar aluno:', error);
     return res.status(500).json({ error: 'Erro interno ao cadastrar aluno.' });
