@@ -39,7 +39,7 @@ const GerenciarExercicio = () => {
     return;
   }
 
-  fetch(`${baseURL}/admin/exercises`, {
+  fetch(`${API_BASE_URL}/admin/exercises`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -141,8 +141,8 @@ const GerenciarExercicio = () => {
       const method = formMode === 'create' ? 'POST' : 'PUT';
       const url =
         formMode === 'create'
-          ? `${baseURL}/admin/exercises`
-          : `${baseURL}/admin/exercises/${formData.id}`;
+          ? `${API_BASE_URL}/admin/exercises`
+          : `${API_BASE_URL}/admin/exercises/${formData.id}`;
       const response = await fetch(url, {
         method,
         headers: {
@@ -177,7 +177,7 @@ const GerenciarExercicio = () => {
     }
     setLoading(true);
     try {
-      const response = await fetch(`${baseURL}/admin/exercises/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/exercises/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

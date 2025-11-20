@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CadastroFichaTreino.css'; 
-
-const baseURL = ' https://teste-zeusgym-50b8de268016.herokuapp.com';
+import { API_BASE_URL } from '../config/api';
 
 const initialExerciseState = {
     nome: '', 
@@ -38,7 +37,7 @@ const CadastroFichaDeTreino = () => {
 
     // --- EFEITO: Carregar a Lista de Alunos do BD ---
     useEffect(() => {
-        fetch(`${baseURL}/admin/alunos`, {
+        fetch(`${API_BASE_URL}/admin/alunos`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -74,7 +73,7 @@ const CadastroFichaDeTreino = () => {
 
     // --- EFEITO: Carregar a Lista de Exercícios do BD ---
     useEffect(() => {
-        fetch(`${baseURL}/admin/exercises`, {
+        fetch(`${API_BASE_URL}/admin/exercises`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -153,7 +152,7 @@ const CadastroFichaDeTreino = () => {
         setMensagem({ type: 'info', text: 'Enviando ficha para o servidor...' });
         
         // Lógica para enviar dados à API/backend
-        fetch(`${baseURL}/trainingsheets`, {
+        fetch(`${API_BASE_URL}/trainingsheets`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

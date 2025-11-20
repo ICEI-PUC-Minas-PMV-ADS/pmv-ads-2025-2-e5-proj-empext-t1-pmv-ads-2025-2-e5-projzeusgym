@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CadastroFichaTreino.css'; // Reutilizando o CSS para layout
-
-const baseURL = 'https://teste-zeusgym-50b8de268016.herokuapp.com';
+import { API_BASE_URL } from '../config/api';
 
 const ViewFichaTreino = () => {
     const navigate = useNavigate();
@@ -31,7 +30,7 @@ const ViewFichaTreino = () => {
         setMensagem(null);
         
         // Rota GET para buscar UMA ficha: /trainingsheets/:id
-        fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+        fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ const ManageFichasTreino = () => {
     setMensagem(null)
 
     try {
-      const response = await fetch(`${baseURL}/trainingsheets`, {
+      const response = await fetch(`${API_BASE_URL}/trainingsheets`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const ManageFichasTreino = () => {
     }
 
     try {
-      const response = await fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+      const response = await fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

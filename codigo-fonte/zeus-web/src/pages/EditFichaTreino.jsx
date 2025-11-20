@@ -46,10 +46,10 @@ const EditFichaTreino = () => {
         let isMounted = true;
         const fetchData = async () => {
             const promises = [
-                fetch(`${baseURL}/admin/alunos`, {
+                fetch(`${API_BASE_URL}/admin/alunos`, {
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
                 }).then(res => res.json()),
-                fetch(`${baseURL}/admin/exercises`, {
+                fetch(`${API_BASE_URL}/admin/exercises`, {
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
                 }).then(res => res.json())
             ];
@@ -104,7 +104,7 @@ const EditFichaTreino = () => {
             return;
         }
 
-        fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+        fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
         })
@@ -207,7 +207,7 @@ const EditFichaTreino = () => {
 
         setMensagem({ type: 'info', text: `Enviando atualização para Ficha ID ${fichaId}...` });
 
-        fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+        fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
