@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
-import { FaSearch, FaEdit, FaTrash, FaEye } from "react-icons/fa"
+import { FaEdit, FaTrash, FaEye } from "react-icons/fa"
 import HeaderAdmin from "../components/HeaderAdmin"
 import FooterAdmin from "../components/FooterAdmin"
+import SearchBar from "../components/SearchBar"
 import "./ManageFichasTreino.css"
 import { API_BASE_URL } from '../config/api';
 
@@ -133,16 +134,11 @@ const ManageFichasTreino = () => {
           <span className="add-ficha-text">Cadastrar ficha</span>
         </div>
 
-        <div className="search-container">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Procurar"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <FaSearch className="search-icon" />
-        </div>
+        <SearchBar 
+          value={searchTerm}
+          onChange={setSearchTerm}
+          placeholder="Pesquisar fichas de treino..."
+        />
 
         {/* Mensagem de feedback */}
         {mensagem && <div className={`message ${mensagem.type}`}>{mensagem.text}</div>}

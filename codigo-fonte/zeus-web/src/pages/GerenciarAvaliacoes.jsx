@@ -2,6 +2,7 @@ import './GerenciarAvaliacoes.css';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import React, { useState, useEffect } from 'react';
+import SearchBar from '../components/SearchBar';
 
 const GerenciarAvaliacoes = () => {
     const navigate = useNavigate();
@@ -185,17 +186,12 @@ const GerenciarAvaliacoes = () => {
                         </button>
                     </div>
 
-                    <div className="search-section">
-                        <span className="search-icon">🔍</span>
-                        <div className="search-bar">
-                            <input
-                                type="text"
-                                value={filterStudent}
-                                onChange={(e) => setFilterStudent(e.target.value)}
-                                placeholder="Digite o nome do aluno..."
-                            />
-                        </div>
-                    </div>
+                    <SearchBar 
+                        value={filterStudent}
+                        onChange={setFilterStudent}
+                        placeholder="Pesquisar por nome do aluno..."
+                        className="full-width"
+                    />
 
                     <div className="content-box">
                     {filteredAssessments.length === 0 ? (

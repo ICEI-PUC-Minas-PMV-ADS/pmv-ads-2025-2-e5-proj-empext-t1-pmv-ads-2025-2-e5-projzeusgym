@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt } from 'react-icons/fa';
 // CORREÇÃO: CSS na mesma pasta (components)
 import './HeaderAdmin.css'; 
+import bracoLogo from '../assets/braco.png';
 
 // activePage: 'exercicios', 'professores', 'alunos', 'fichas', ou 'avaliacoes'
 const HeaderAdmin = ({ activePage }) => {
@@ -54,14 +55,14 @@ const HeaderAdmin = ({ activePage }) => {
                     {/* Botão Gerenciar Fichas de Treino */}
                     <button 
                         className={`header-btn-aluno ${activePage === 'fichas' ? 'active' : ''}`}
-                        onClick={() => handleNavigate('/manage-fichas-treino')}
+                        onClick={() => handleNavigate('/fichas-treino')}
                     >
                         Fichas de Treino
                     </button>
                     {/* Botão Gerenciar Avaliações */}
                     <button 
                         className={`header-btn-aluno ${activePage === 'avaliacoes' ? 'active' : ''}`}
-                        onClick={() => handleNavigate('/gerenciar-avaliacoes')}
+                        onClick={() => handleNavigate('/avaliacoes')}
                     >
                         Avaliações Físicas
                     </button>
@@ -73,7 +74,7 @@ const HeaderAdmin = ({ activePage }) => {
                     <div className="profile-icon">
                         <a href="#"> 
                             <img
-                                src="/assets/braco.png"
+                                src={bracoLogo}
                                 alt="Perfil"
                                 className="profile-image"
                                 onClick={() => handleNavigate("/dashboard")}

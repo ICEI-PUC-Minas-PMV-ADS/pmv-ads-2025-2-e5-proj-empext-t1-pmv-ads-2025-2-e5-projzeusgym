@@ -203,12 +203,11 @@ const GerenciarExercicio = () => {
         {/* Campo de pesquisa */}
         <section style={{ marginTop: '2rem' }}>
           <h2>Gerenciar de Exercícios</h2>
-          <input
-            type="text"
-            placeholder="Pesquisar exercício..."
+          <SearchBar 
             value={search}
-            onChange={e => setSearch(e.target.value)}
-            style={{ width: '100%', padding: '8px', marginBottom: '8px' }}
+            onChange={setSearch}
+            placeholder="Pesquisar exercícios..."
+            className="full-width"
           />
         
           {/* Sugestões */}
