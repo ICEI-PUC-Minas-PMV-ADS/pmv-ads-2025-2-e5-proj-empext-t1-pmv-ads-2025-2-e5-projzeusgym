@@ -225,19 +225,40 @@ exports.updatePhysicalAssessment = async (req, res) => {
 exports.deletePhysicalAssessment = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
 
-    // Buscar a avaliação para obter o caminho do arquivo
-    const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      }
+    // Primeiro, verificar se a avaliação existe
+    const assessmentExists = await PhysicalAssessment.findOne({
+      where: { id: assessmentId },
+      include: [
+        { model: Users, as: 'professor', attributes: ['name'] }
+      ]
     });
 
-    if (!assessment) {
+    if (!assessmentExists) {
       return res.status(404).json({ 
-        error: 'Avaliação física não encontrada ou você não tem permissão para excluí-la.' 
+        error: 'Avaliação física não encontrada.' 
+      });
+    }
+
+    // Verificar permissões baseadas no papel do usuário
+    let hasPermission = false;
+    let assessment = null;
+
+    if (role === 'admin') {
+      // Admin pode deletar qualquer avaliação
+      hasPermission = true;
+      assessment = assessmentExists;
+    } else if (role === 'professor' && assessmentExists.professorId === userId) {
+      // Professor só pode deletar suas próprias avaliações
+      hasPermission = true;
+      assessment = assessmentExists;
+    }
+
+    if (!hasPermission) {
+      const creatorName = assessmentExists.professor?.name || 'outro professor';
+      return res.status(403).json({ 
+        error: `Apenas o professor/admin que criou a avaliação pode deletá-la. Esta avaliação foi criada por: ${creatorName}` 
       });
     }
 

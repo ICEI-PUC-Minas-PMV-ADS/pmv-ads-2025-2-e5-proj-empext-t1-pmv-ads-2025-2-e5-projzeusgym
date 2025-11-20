@@ -44,7 +44,14 @@ const GerenciarAvaliacoes = () => {
             fetchAssessments();
         } catch (error) {
             console.error('Erro ao excluir avaliação:', error);
-            alert('Erro ao excluir avaliação física.');
+            
+            // Extrair mensagem específica do erro
+            const errorMessage = error.response?.data?.error || 
+                               error.response?.data?.message || 
+                               error.message || 
+                               'Erro ao excluir avaliação física.';
+            
+            alert(errorMessage);
         }
     };
 
