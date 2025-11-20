@@ -4,6 +4,7 @@ import { FaPlus, FaSearch, FaTrash, FaEdit, FaPencilAlt, FaTimes } from 'react-i
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import HeaderAdmin from '../components/HeaderAdmin';
 
 const GerenciarAluno = () => {
     const { user, logout } = useAuth();
@@ -163,26 +164,7 @@ const GerenciarAluno = () => {
 
     return (
         <div className="alunos-container">
-            <header className="alunos-header">
-                <div className="header-content-aluno">
-                    <div className="button-group-aluno">
-                        <button className="header-btn-aluno" onClick={gerenciarExercicio}>Gerenciar Exercícios</button>
-                        <button className="header-btn-aluno" onClick={gerenciarProf}>Gerenciar Professores</button>
-                        <button className="header-btn-aluno">Gerenciar Alunos</button>
-                    </div>
-                    <div className="icon-group-aluno">
-                        <div className="profile-icon-aluno">
-                            <a href="#"> <img
-                                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                alt="Perfil"
-                                className="profile-image"
-                                onClick={paginaInicial}
-                            /> </a>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
+         <HeaderAdmin activePage="alunos" />
             <main className="alunos-main">
                 <div className="content-wrapper-aluno">
                     <div className="main-header-aluno">
