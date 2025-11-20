@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Alert, FlatList } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { API_BASE_URL } from '@env'; 
 import { AuthContext } from '../context/AuthContext';
 import LogoZeus from '../../assets/Logo_zeus.png';
 import HeaderStyle from '../styles/HeaderStyle.js';
 import WeightStyle from '../styles/WeightStyle.js';
 import FooterStyle from '../styles/FooterStyle.js';
 
+const API_BASE_URL= 'https://teste-zeusgym-50b8de268016.herokuapp.com';
 const HistoryItem = ({ item }) => {
   const formattedDate = new Date(item.date).toLocaleDateString('pt-BR', {
     day: '2-digit',

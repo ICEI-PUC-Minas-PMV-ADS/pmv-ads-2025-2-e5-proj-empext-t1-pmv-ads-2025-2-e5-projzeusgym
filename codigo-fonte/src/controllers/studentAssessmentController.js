@@ -2,6 +2,20 @@ const { PhysicalAssessment, Users } = require('../models');
 const path = require('path');
 const fs = require('fs');
 
+// Helper function to convert stream to buffer
+async function streamToBuffer(readableStream) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    readableStream.on('data', (data) => {
+      chunks.push(data instanceof Buffer ? data : Buffer.from(data));
+    });
+    readableStream.on('end', () => {
+      resolve(Buffer.concat(chunks));
+    });
+    readableStream.on('error', reject);
+  });
+}
+
 /**
  * Student Assessment Controller
  * Handles assessment-related operations for students
@@ -248,15 +262,27 @@ exports.downloadMyAssessmentPDF = async (req, res) => {
       : assessment.filePath;
 
     try {
-      // Generate SAS URL for secure access
-      const sasUrl = await azureStorage.generateSasUrl(blobName, 10); // 10 minutes expiry
-
-      if (!sasUrl) {
-        return res.status(500).json({ error: 'Erro ao gerar link de download.' });
+      // Get blob client for downloading
+      const blockBlobClient = azureStorage.containerClient.getBlockBlobClient(blobName);
+      
+      // Check if blob exists
+      const exists = await blockBlobClient.exists();
+      if (!exists) {
+        return res.status(404).json({ error: 'Arquivo não encontrado no storage.' });
       }
 
-      // Redirect to the SAS URL for download
-      return res.redirect(sasUrl);
+      // Download the blob content as buffer
+      const downloadResponse = await blockBlobClient.download();
+      const downloadedContent = await streamToBuffer(downloadResponse.readableStreamBody);
+      
+      const fileName = assessment.fileName || 'avaliacao.pdf';
+
+      // Set response headers and send file content
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Length', downloadedContent.length);
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+      
+      return res.send(downloadedContent);
 
     } catch (azureError) {
       console.error('Azure Storage error:', azureError);
