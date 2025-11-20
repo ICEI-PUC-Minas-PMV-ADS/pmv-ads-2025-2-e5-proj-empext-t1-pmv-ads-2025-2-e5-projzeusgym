@@ -183,18 +183,38 @@ const HistoricoAvalia = ({ navigation }) => {
                 shadowRadius: 4,
                 elevation: 3
               }}
-              onPress={() => handleDownload(assessment)}
+              onPress={assessment.filePath ? () => handleDownload(assessment) : null}
+              disabled={!assessment.filePath}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 14, fontWeight: '600', color: '#333', marginBottom: 4 }}>
-                    📄 {assessment.fileName}
+                  <Text style={{ fontSize: 16, fontWeight: '600', color: '#333', marginBottom: 4 }}>
+                    🏋️ Avaliação Física
                   </Text>
-                  <Text style={{ fontSize: 12, color: '#999' }}>
-                    {formatDate(assessment.assessmentDate)}
+                  <Text style={{ fontSize: 14, color: '#666', marginBottom: 4 }}>
+                    Data: {formatDate(assessment.assessmentDate)}
                   </Text>
+                  {assessment.professor && (
+                    <Text style={{ fontSize: 12, color: '#999' }}>
+                      Prof: {assessment.professor.name}
+                    </Text>
+                  )}
+                  {assessment.fileName && assessment.filePath && (
+                    <Text style={{ fontSize: 12, color: '#007AFF', marginTop: 4 }}>
+                      📄 {assessment.fileName}
+                    </Text>
+                  )}
+                  {!assessment.filePath && (
+                    <Text style={{ fontSize: 12, color: '#999', fontStyle: 'italic', marginTop: 4 }}>
+                      Arquivo não disponível
+                    </Text>
+                  )}
                 </View>
-                <Text style={{ fontSize: 24, marginLeft: 12 }}>📥</Text>
+                {assessment.filePath ? (
+                  <Text style={{ fontSize: 24, marginLeft: 12 }}>📥</Text>
+                ) : (
+                  <Text style={{ fontSize: 24, marginLeft: 12, opacity: 0.3 }}>📄</Text>
+                )}
               </View>
             </TouchableOpacity>
           ))

@@ -58,11 +58,6 @@ exports.getMyAssessments = async (req, res) => {
             order: [['assessmentDate', 'DESC']]
         });
 
-        console.log(`[LIST] Found ${assessments.length} assessments for user ${studentId}`);
-        if (assessments.length > 0) {
-            console.log(`[LIST] Assessment IDs: ${assessments.map(a => a.id).join(', ')}`);
-        }
-
         res.json(assessments);
     } catch (error) {
         console.error('Error fetching student assessments:', error);
@@ -241,54 +236,39 @@ exports.downloadMyAssessmentPDF = async (req, res) => {
     const studentId = req.user.id;
     const { assessmentId } = req.params;
 
-    console.log(`[DOWNLOAD] User ${studentId} requesting assessment ${assessmentId}`);
-
     const assessment = await PhysicalAssessment.findOne({
       where: { id: assessmentId, studentId }
     });
 
     if (!assessment) {
-      console.log(`[DOWNLOAD] Assessment ${assessmentId} not found for user ${studentId}`);
       return res.status(404).json({ error: 'Avaliação não encontrada.' });
     }
 
-    console.log(`[DOWNLOAD] Assessment found. FilePath: "${assessment.filePath}"`);
-
-    if (!assessment.filePath) {
-      console.log(`[DOWNLOAD] No filePath for assessment ${assessmentId}`);
+    if (!assessment.fileUrl) {
       return res.status(404).json({ error: 'Arquivo PDF não disponível.' });
     }
 
     // Import Azure Storage service
     const azureStorage = require('../config/azureStorage');
 
-    // Extract blob name from filePath (remove any URL prefix)
-    const blobName = assessment.filePath.includes('/') 
-      ? assessment.filePath.split('/').pop() 
-      : assessment.filePath;
-
-    console.log(`[DOWNLOAD] Extracted blob name: "${blobName}"`);
+    // Extract blob name from fileUrl (remove any URL prefix)
+    const blobName = assessment.fileUrl.includes('/') 
+      ? assessment.fileUrl.split('/').pop() 
+      : assessment.fileUrl;
 
     try {
       // Get blob client for downloading
       const blockBlobClient = azureStorage.containerClient.getBlockBlobClient(blobName);
       
-      console.log(`[DOWNLOAD] Checking if blob exists...`);
-      
       // Check if blob exists
       const exists = await blockBlobClient.exists();
       if (!exists) {
-        console.log(`[DOWNLOAD] Blob "${blobName}" does not exist in Azure Storage`);
         return res.status(404).json({ error: 'Arquivo não encontrado no storage.' });
       }
-
-      console.log(`[DOWNLOAD] Blob exists, downloading...`);
 
       // Download the blob content as buffer
       const downloadResponse = await blockBlobClient.download();
       const downloadedContent = await streamToBuffer(downloadResponse.readableStreamBody);
-      
-      console.log(`[DOWNLOAD] Downloaded ${downloadedContent.length} bytes`);
       
       const fileName = assessment.fileName || 'avaliacao.pdf';
 
@@ -297,7 +277,6 @@ exports.downloadMyAssessmentPDF = async (req, res) => {
       res.setHeader('Content-Length', downloadedContent.length);
       res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
       
-      console.log(`[DOWNLOAD] Sending file content to client`);
       return res.send(downloadedContent);
 
     } catch (azureError) {
