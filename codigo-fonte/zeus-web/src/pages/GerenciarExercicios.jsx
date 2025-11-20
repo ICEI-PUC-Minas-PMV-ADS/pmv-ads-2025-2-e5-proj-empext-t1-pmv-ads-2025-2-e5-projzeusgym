@@ -1,24 +1,17 @@
-import './GerenciarExercicios.css';
-import HeaderAdmin from '../components/HeaderAdmin';  
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-  import { AiFillDelete, AiFillEdit}from 'react-icons/ai';
-  import { FaPlus } from 'react-icons/fa';
-  import Footer from '../components/Footer';
-  
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { FaPlus } from 'react-icons/fa';
+import HeaderAdmin from '../components/HeaderAdmin';
+import Footer from '../components/Footer';
 import { API_BASE_URL } from '../config/api';
-  
-
-  
-
 
 const GerenciarExercicio = () => {
-  const navigate = useNavigate();
   const [exercicios, setExercicios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [highlightedId, setHighlightedId] = useState(null);
 
   // Pop-up states
@@ -97,16 +90,6 @@ const GerenciarExercicio = () => {
     alert(error);
   }
 }, [error]);
-
-  const gerenciarAluno = () => {
-    navigate('/alunos');
-  };
-  const gerenciarProf = () => {
-        navigate('/professores');
-    };
-      const paginaInicial = () => {
-        navigate('/dashboard');
-    };
 
   // Abrir formulário para criar novo exercício
   const openCreateForm = () => {
