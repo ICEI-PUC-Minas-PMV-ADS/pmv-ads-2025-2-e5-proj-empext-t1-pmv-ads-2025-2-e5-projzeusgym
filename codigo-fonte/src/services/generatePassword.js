@@ -2,11 +2,11 @@ function generateRandomPassword(length = 10) {
     const chars = {
         lower: 'abcdefghijklmnopqrstuvwxyz',
         upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        numbers: '01234456789',
+        numbers: '0123456789', // Corrigido: tinha "01234456789"
     };
 
-
-    const allChars = chars.lower + chars.upper + chars.numbers + chars.symbols;
+    console.log('[PASSWORD] Gerando senha de', length, 'caracteres');
+    const allChars = chars.lower + chars.upper + chars.numbers; // Removido chars.symbols undefined
     
     let password = '';
 
@@ -19,9 +19,13 @@ function generateRandomPassword(length = 10) {
         password += allChars[Math.floor(Math.random() * allChars.length)];
     }
 
+    // Embaralha os caracteres
     password = password.split('').sort(() => 0.5 - Math.random()).join('');
     
-    return password.slice(0, length);
+    const finalPassword = password.slice(0, length);
+    console.log('[PASSWORD] Senha gerada:', finalPassword);
+    
+    return finalPassword;
 }
 
 module.exports = {

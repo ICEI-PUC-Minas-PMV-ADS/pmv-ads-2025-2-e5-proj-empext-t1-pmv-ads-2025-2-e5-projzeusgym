@@ -177,22 +177,26 @@ exports.createAluno = async (req, res) => {
       return res.status(400).json({ error: 'Email já cadastrado.' });
     }
 
-    const senhaInicial = generateRandomPassword(10);
+    const senhaInicial = generateRandomPassword(10);
+    
+    console.log('[ALUNO] Senha gerada:', senhaInicial);
+    console.log('[ALUNO] Criando aluno com email:', email);
 
-    const aluno = await Users.create({
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cellphone,
-      restriction,
-      email,
-      password: senhaInicial,
-      mustChangePassword: true,
-      role: 'aluno',
-    });
-
-    // Tentar enviar email, mas não falhar se não conseguir
+    const aluno = await Users.create({
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cellphone,
+      restriction,
+      email,
+      password: senhaInicial,
+      mustChangePassword: true,
+      role: 'aluno',
+    });
+    
+    console.log('[ALUNO] Aluno criado com ID:', aluno.id);
+    console.log('[ALUNO] Senha que será enviada por email:', senhaInicial);    // Tentar enviar email, mas não falhar se não conseguir
     const emailSent = await sendWelcomeEmail(email, senhaInicial);
     
     let message = 'Aluno cadastrado com sucesso!';
