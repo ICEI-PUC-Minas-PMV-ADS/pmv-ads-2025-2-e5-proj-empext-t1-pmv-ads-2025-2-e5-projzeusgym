@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CadastroFichaTreino.css'; 
+import { API_BASE_URL } from '../config/api';
 
 import HeaderAdmin from '../components/HeaderAdmin'; 
 import FooterAdmin from '../components/FooterAdmin'; 
 import '../styles/LayoutBase.css';
 
-const baseURL = 'https://teste-zeusgym-50b8de268016.herokuapp.com';
+
 
 const initialExerciseState = {
     idExercicio: '', 

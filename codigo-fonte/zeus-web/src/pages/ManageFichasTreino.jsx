@@ -6,8 +6,7 @@ import { FaSearch, FaEdit, FaTrash, FaEye } from "react-icons/fa"
 import HeaderAdmin from "../components/HeaderAdmin"
 import FooterAdmin from "../components/FooterAdmin"
 import "./ManageFichasTreino.css"
-
-const baseURL = "https://teste-zeusgym-50b8de268016.herokuapp.com"
+import { API_BASE_URL } from '../config/api';
 
 const ManageFichasTreino = () => {
   const navigate = useNavigate()

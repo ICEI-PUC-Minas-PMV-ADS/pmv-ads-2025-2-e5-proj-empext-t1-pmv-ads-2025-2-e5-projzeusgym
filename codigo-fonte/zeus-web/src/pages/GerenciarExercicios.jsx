@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
   import { FaPlus } from 'react-icons/fa';
   import Footer from '../components/Footer';
   
+import { API_BASE_URL } from '../config/api';
+  
 
   
 
-const baseURL = 'https://teste-zeusgym-50b8de268016.herokuapp.com';
 
 const GerenciarExercicio = () => {
   const navigate = useNavigate();
