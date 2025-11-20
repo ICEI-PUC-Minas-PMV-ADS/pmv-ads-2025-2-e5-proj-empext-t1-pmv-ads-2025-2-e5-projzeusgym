@@ -22,7 +22,7 @@ async function sendWelcomeEmail(alunoEmail, senhaInicial, tokenTrocaSenha) {
     // 1. Configurar o transportador
     // Se estiver usando o Gmail, você precisa gerar uma "App Password"
     // na sua conta do Google (em Segurança).
-    let transporter = nodemailer.createTransporter({
+    let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: EMAIL_USER,
