@@ -44,6 +44,11 @@ exports.getMyAssessments = async (req, res) => {
             order: [['assessmentDate', 'DESC']]
         });
 
+        console.log(`[LIST] Found ${assessments.length} assessments for user ${studentId}`);
+        if (assessments.length > 0) {
+            console.log(`[LIST] Assessment IDs: ${assessments.map(a => a.id).join(', ')}`);
+        }
+
         res.json(assessments);
     } catch (error) {
         console.error('Error fetching student assessments:', error);
@@ -222,11 +227,28 @@ exports.downloadMyAssessmentPDF = async (req, res) => {
     const studentId = req.user.id;
     const { assessmentId } = req.params;
 
+    console.log(`[DOWNLOAD] User ${studentId} requesting assessment ${assessmentId}`);
+
+    // First, let's check if the assessment exists at all
+    const anyAssessment = await PhysicalAssessment.findOne({
+      where: { id: assessmentId }
+    });
+
+    if (!anyAssessment) {
+      console.log(`[DOWNLOAD] Assessment ${assessmentId} does not exist in database`);
+      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+    }
+
+    console.log(`[DOWNLOAD] Assessment ${assessmentId} exists, belongs to student ${anyAssessment.studentId}`);
+
     const assessment = await PhysicalAssessment.findOne({
       where: { id: assessmentId, studentId }
     });
 
-    if (!assessment) return res.status(404).json({ error: 'Avaliação não encontrada.' });
+    if (!assessment) {
+      console.log(`[DOWNLOAD] Assessment ${assessmentId} found but does not belong to user ${studentId}`);
+      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+    }
     if (!assessment.filePath) return res.status(404).json({ error: 'Arquivo PDF não disponível.' });
 
     const filePath = path.isAbsolute(assessment.filePath)

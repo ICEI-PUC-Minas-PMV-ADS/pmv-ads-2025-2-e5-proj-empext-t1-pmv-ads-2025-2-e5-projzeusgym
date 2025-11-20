@@ -35,17 +35,32 @@ const HistoricoAvalia = ({ navigation }) => {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
           }
         }
       );
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers.get('content-type'));
+      
       if (response.ok) {
         const data = await response.json();
-        const assessmentsWithFiles = data.filter(assessment => assessment.filePath);
-        setAssessments(assessmentsWithFiles);
+        console.log('Assessment data received:', data);
+        console.log('Total assessments:', data.length);
+        
+        // Don't filter by filePath - show all assessments
+        setAssessments(data || []);
+        
+        if (data && data.length === 0) {
+          console.log('No assessments found for this user');
+        }
       } else {
-        Alert.alert('Erro', 'Falha ao carregar avaliações');
+        const errorText = await response.text();
+        console.error('Error response:', response.status, errorText);
+        Alert.alert('Erro', `Falha ao carregar avaliações: ${response.status}`);
       }
     } catch (error) {
       console.error('Erro ao buscar avaliações:', error);
