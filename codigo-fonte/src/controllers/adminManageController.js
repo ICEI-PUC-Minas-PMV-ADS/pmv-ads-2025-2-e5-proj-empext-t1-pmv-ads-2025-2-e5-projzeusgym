@@ -307,28 +307,34 @@ exports.updateAluno = async (req, res) => {
 };
 
 exports.deleteAluno = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const deletedCount = await Users.destroy({
-      where: {
-        id,
-        role: 'aluno'
-      }
-    });
+    const deletedCount = await Users.destroy({
+      where: {
+        id,
+        role: 'aluno'
+      }
+    });
 
-    if (deletedCount === 0) {
-      return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
-    }
+    if (deletedCount === 0) {
+      return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
+    }
 
-    return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
-  } catch (error) {
-    console.error('Erro ao excluir aluno:', error);
-    return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
-  }
-};
-
-// 🚨 CORREÇÃO: Método para listar todos os exercícios (Solução do Erro 500)
+    return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao excluir aluno:', error);
+    
+    // Tratamento específico para erro de integridade referencial
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({ 
+        error: 'Não é possível excluir este aluno pois ele possui dados associados (fichas de treino, avaliações físicas ou registros de peso). Exclua primeiro os dados relacionados.' 
+      });
+    }
+    
+    return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
+  }
+};// 🚨 CORREÇÃO: Método para listar todos os exercícios (Solução do Erro 500)
 
 exports.createExercise = async (req, res) => {
   try {

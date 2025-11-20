@@ -84,8 +84,16 @@ PhysicalAssessment.belongsTo(Users, {
 });
 
 // Associações do TrainingSheet
-TrainingSheet.belongsTo(Users, { as: 'professor', foreignKey: 'professorId' });
-TrainingSheet.belongsTo(Users, { as: 'aluno', foreignKey: 'alunoId' });
+TrainingSheet.belongsTo(Users, { 
+  as: 'professor', 
+  foreignKey: 'professorId',
+  onDelete: 'CASCADE' // Se professor for deletado, remove suas fichas
+});
+TrainingSheet.belongsTo(Users, { 
+  as: 'aluno', 
+  foreignKey: 'alunoId',
+  onDelete: 'CASCADE' // Se aluno for deletado, remove suas fichas
+});
 TrainingSheet.belongsToMany(Exercises, { 
   through: TrainingSheetExercises, 
   foreignKey: 'sheetId', 
@@ -99,6 +107,12 @@ Exercises.belongsToMany(TrainingSheet, {
   foreignKey: 'exerciseId',
   otherKey: 'sheetId',
   as: 'trainingSheets'
+});
+
+// Associações do Weight
+Weight.belongsTo(Users, {
+  foreignKey: 'userId',
+  onDelete: 'CASCADE' // Se usuário for deletado, remove seus registros de peso
 });
 
 // Outras associações via função associate (se existir)
