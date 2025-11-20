@@ -2,6 +2,7 @@ import './CadastrarAluno.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../services/api';
 import React, { useState, useEffect } from 'react';
+import HeaderAdmin from '../components/HeaderAdmin';
 
 const CadastrarAluno = () => {
     const navigate = useNavigate();
@@ -112,24 +113,7 @@ const CadastrarAluno = () => {
 
     return (
         <div className="alunos-container">
-            <header className="alunos-header">
-                <div className="header-content-aluno">
-                    <div className="button-group-aluno">
-                        <button className="header-btn-aluno">Gerenciar Exercícios</button>
-                        <button className="header-btn-aluno">Gerenciar Professores</button>
-                        <button className="header-btn-aluno">Gerenciar Alunos</button>
-                    </div>
-                    <div className="icon-group">
-                        <div className="profile-icon">
-                            <a href="#"> <img
-                                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                alt="Perfil"
-                                className="profile-image"
-                            /> </a>
-                        </div>
-                    </div>
-                </div>
-            </header>
+           <HeaderAdmin activePage="alunos" />
             <main className="alunos-main">
                 <div className="header-main-aluno">
                     {isEditing ? 'Editar Aluno' : 'Cadastrar novo aluno'}

@@ -183,7 +183,7 @@ const GerenciarExercicio = () => {
   return (
     <div className="dashboard-container">
       {/* Header Laranja */}
-      <HeaderAdmin activePage="exercicios" />
+      <HeaderAdmin activePage="gerenciarexercicios" />
     
 
       {/* Conteúdo em Branco */}
