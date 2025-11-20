@@ -113,7 +113,7 @@ const CadastrarAluno = () => {
 
     return (
         <div className="alunos-container">
-           <HeaderAdmin activePage="alunos" />
+           <HeaderAdmin/>
             <main className="alunos-main">
                 <div className="header-main-aluno">
                     {isEditing ? 'Editar Aluno' : 'Cadastrar novo aluno'}
