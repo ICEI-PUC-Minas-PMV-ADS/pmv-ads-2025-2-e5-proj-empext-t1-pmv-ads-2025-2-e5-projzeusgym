@@ -20,6 +20,16 @@ import TreinoDetalhes from './pages/TreinosDetalhes';
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
+// --- Stack Navigator para Treinos (inclui detalhes) ---
+function TreinosStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="TreinosList" component={Treinos} />
+      <Stack.Screen name="TreinoDetalhes" component={TreinoDetalhes} />
+    </Stack.Navigator>
+  );
+}
+
 // --- Drawer Principal (Após Login) ---
 function AppDrawer() {
   const { signOut } = React.useContext(AuthContext);
@@ -92,20 +102,16 @@ function AppDrawer() {
       />
       <Drawer.Screen
         name="Treinos"
-        component={Treinos}
+        component={TreinosStack}
         options={{
           title: 'Minhas Fichas de Treino',
           headerShown: false,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="book-outline" size={size} color={color} />
+          ),
         }}
       />
-      <Drawer.Screen
-        name="TreinoDetalhes"
-        component={TreinoDetalhes}
-        options={{
-          title: 'Detalhes do Treino',
-          headerShown: false,
-        }}
-      />
+
       {/* Item de Logout */}
       <Drawer.Screen
         name="Logout"

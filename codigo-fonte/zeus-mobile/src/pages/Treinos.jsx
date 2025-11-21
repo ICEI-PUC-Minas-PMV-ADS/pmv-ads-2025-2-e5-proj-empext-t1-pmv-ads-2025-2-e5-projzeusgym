@@ -57,20 +57,44 @@ const Treinos = ({ navigation }) => {
     navigation.navigate('TreinoDetalhes', { treino: ficha });
   };
 
+  if (loading) {
+    return (
+      <View style={TreinosStyles.container}>
+        <StatusBar style="light" backgroundColor="#FF8C00" />
+        <View style={TreinosStyles.header}>
+          <TouchableOpacity 
+            style={TreinosStyles.menuButton} 
+            onPress={() => navigation.openDrawer()}
+          >
+            <Text style={TreinosStyles.menuIcon}>☰</Text>
+          </TouchableOpacity>
+          <Image source={LogoZeus} style={TreinosStyles.logo} />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size="large" color="#FF8C00" />
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={TreinosStyles.container}>
       <StatusBar style="light" backgroundColor="#FF8C00" />
 
-      {/* HEADER */}
       <View style={TreinosStyles.header}>
-        <TouchableOpacity style={TreinosStyles.menuButton} onPress={() => navigation.openDrawer()}>
+        <TouchableOpacity 
+          style={TreinosStyles.menuButton} 
+          onPress={() => navigation.openDrawer()}
+        >
           <Text style={TreinosStyles.menuIcon}>☰</Text>
         </TouchableOpacity>
         <Image source={LogoZeus} style={TreinosStyles.logo} />
       </View>
 
-      {/* CONTEÚDO */}
-      <ScrollView contentContainerStyle={TreinosStyles.content}>
+      <ScrollView 
+        style={{ flex: 1, paddingHorizontal: 30, paddingTop: 50 }}
+        contentContainerStyle={{ alignItems: 'center' }}
+      >
         <Text style={TreinosStyles.title}>Minhas Fichas</Text>
 
         {loading ? (
