@@ -119,7 +119,7 @@ function AppDrawer() {
         options={{
           title: 'Sair',
           headerShown: false,
-          drawerIcon: ({ color, size }) => (
+          drawerIcon: ({ color, size }) => ( 
             <TouchableOpacity
               onPress={signOut}
               style={{
