@@ -2617,7 +2617,7 @@ Colocar evidências de teste da etapa 4
   </tr>
     <tr>
     <td width="170"><strong>Comentário</strong></td>
-    <td colspan="5">como aluno acessar fichas de treino  </td>
+    <td colspan="5">como aluno acessar fichas de treino com sucesso  </td>
   </tr>
   <tr>
     <td colspan="6" align="center"><strong>Evidência</strong></td>
@@ -2627,7 +2627,7 @@ Colocar evidências de teste da etapa 4
   </tr>
 </table>
 
-<table>
+ <table>
   <tr>
     <th colspan="6" width="1000">CT-030 -S<br>Registrar peso
   </tr>
