@@ -37,7 +37,7 @@ Para mais informações, consulte os microfundamentos Fundamentos de Engenharia 
 |RF-005| Como administrador e professor, desejo cadastrar e gerenciar exercicios. | ALTA | 
 |RF-006| Como professor, desejo criar e gerenciar fichas de treino para alunos específicos, cadastrando os exercícios necessários. | ALTA | 
 |RF-007| Como professor, desejo registrar avaliações físicas dos alunos (peso, altura, medidas corporais, etc.) para acompanhar sua evolução corporal | MÉDIA | 
-|RF-008| Como aluno, desejo inserir informações do treino (peso, repetições etc.) para registrar meu desempenho.| MÉDIA |
+|RF-008| Como aluno, desejo ter acesso aos meus treinos.| ALTA |
 |RF-009| Como aluno, desejo acessar um histórico de avaliações físicas para acompanhar minha evolução ao longo do tempo  | MÉDIA |
 |RF-010| Como aluno, desejo baixar minha avaliação física em PDF para guardar ou compartilhar quando necessário. | BAIXA |
 |RF-011| Como aluno, desejo poder gerenciar minha conta a qualquer momento para ter controle sobre meus dados pessoais.| MÉDIA |
