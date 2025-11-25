@@ -2654,31 +2654,3 @@ Colocar evidências de teste da etapa 4
 <td colspan="6" align="center"><video src="https://github.com/user-attachments/assets/22492859-8a14-44b8-90c4-7ea2a42e67ff"/></td>
   </tr>
 </table>
-
-<table>
-  <tr>
-    <th colspan="6" width="1000">CT-030 -S<br>Acessar treinos
-  </tr>
-  <tr>
-    <td width="170"><strong>Critérios de êxito</strong></td>
-    <td colspan="5"> Como aluno devo conseguir visualizar meus treinos no aplicativo.</td>
-  </tr>
-    <tr>
-      <td><strong>Responsável pela funcionalidade</strong></td>
-    <td width="430">  Gabriel Victor</td>
-      <td><strong>Responsável pelo teste</strong></td>
-    <td width="430"> Natália Romero Soltau </td>
-     <td width="100"><strong>Data do teste</strong></td>
-    <td width="150">23/11/2025</td>
-  </tr>
-    <tr>
-    <td width="170"><strong>Comentário</strong></td>
-    <td colspan="5">Visualizar meus treinos </td>
-  </tr>
-  <tr>
-    <td colspan="6" align="center"><strong>Evidência</strong></td>
-  </tr>
-  <tr>
-<td colspan="6" align="center"><video src=""/></td>
-  </tr>
-</table>
