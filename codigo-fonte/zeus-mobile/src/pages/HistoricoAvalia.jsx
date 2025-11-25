@@ -31,22 +31,37 @@ const HistoricoAvalia = ({ navigation }) => {
       const token = await getAuthToken();
 
       const response = await fetch(
-        `${API_BASE_URL}/api/student/assessments`,
+        `http://192.168.1.120:3000/api/student/assessments`,
         {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
           }
         }
       );
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers.get('content-type'));
+      
       if (response.ok) {
         const data = await response.json();
-        const assessmentsWithFiles = data.filter(assessment => assessment.filePath);
-        setAssessments(assessmentsWithFiles);
+        console.log('Assessment data received:', data);
+        console.log('Total assessments:', data.length);
+        
+        // Don't filter by filePath - show all assessments
+        setAssessments(data || []);
+        
+        if (data && data.length === 0) {
+          console.log('No assessments found for this user');
+        }
       } else {
-        Alert.alert('Erro', 'Falha ao carregar avaliações');
+        const errorText = await response.text();
+        console.error('Error response:', response.status, errorText);
+        Alert.alert('Erro', `Falha ao carregar avaliações: ${response.status}`);
       }
     } catch (error) {
       console.error('Erro ao buscar avaliações:', error);
@@ -62,7 +77,7 @@ const HistoricoAvalia = ({ navigation }) => {
     const token = await AsyncStorage.getItem('userToken') || await AsyncStorage.getItem('authToken');
     if (!token) throw new Error('Token não encontrado');
 
-    const url = `${API_BASE_URL}/api/student/assessments/${assessment.id}/download`;
+    const url = `http://192.168.1.120:3000/api/student/assessments/${assessment.id}/download`;
     console.log('Download URL:', url);
 
     const response = await fetch(url, {
@@ -169,18 +184,36 @@ const HistoricoAvalia = ({ navigation }) => {
                 shadowRadius: 4,
                 elevation: 3
               }}
-              onPress={() => handleDownload(assessment)}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 14, fontWeight: '600', color: '#333', marginBottom: 4 }}>
-                    📄 {assessment.fileName}
+                  <Text style={{ fontSize: 16, fontWeight: '600', color: '#333', marginBottom: 4 }}>
+                    🏋️ Avaliação Física
                   </Text>
-                  <Text style={{ fontSize: 12, color: '#999' }}>
-                    {formatDate(assessment.assessmentDate)}
+                  <Text style={{ fontSize: 14, color: '#666', marginBottom: 4 }}>
+                    Data: {formatDate(assessment.assessmentDate)}
                   </Text>
+                  {assessment.professor && (
+                    <Text style={{ fontSize: 12, color: '#999' }}>
+                      Prof: {assessment.professor.name}
+                    </Text>
+                  )}
+                  {assessment.fileName && assessment.filePath && (
+                    <Text style={{ fontSize: 12, color: '#007AFF', marginTop: 4 }}>
+                      📄 {assessment.fileName}
+                    </Text>
+                  )}
+                  {!assessment.fileUrl && (
+                    <Text style={{ fontSize: 12, color: '#999', fontStyle: 'italic', marginTop: 4 }}>
+                      Arquivo não disponível
+                    </Text>
+                  )}
                 </View>
-                <Text style={{ fontSize: 24, marginLeft: 12 }}>📥</Text>
+                {assessment.fileUrl ? (
+                  <Text style={{ fontSize: 24, marginLeft: 12 }} onPress={() => handleDownload(assessment)}>📥</Text>
+                ) : (
+                  <Text style={{ fontSize: 24, marginLeft: 12, opacity: 0.3 }}>📄</Text>
+                )}
               </View>
             </TouchableOpacity>
           ))

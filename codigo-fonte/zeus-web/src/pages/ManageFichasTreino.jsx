@@ -2,12 +2,12 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
-import { FaSearch, FaEdit, FaTrash, FaEye } from "react-icons/fa"
+import { FaEdit, FaTrash, FaEye } from "react-icons/fa"
 import HeaderAdmin from "../components/HeaderAdmin"
 import FooterAdmin from "../components/FooterAdmin"
+import SearchBar from "../components/SearchBar"
 import "./ManageFichasTreino.css"
-
-const baseURL = " https://guarded-shelf-40573-5295222ff305.herokuapp.com"
+import { API_BASE_URL } from '../config/api';
 
 const ManageFichasTreino = () => {
   const navigate = useNavigate()
@@ -23,7 +23,7 @@ const ManageFichasTreino = () => {
     setMensagem(null)
 
     try {
-      const response = await fetch(`${baseURL}/trainingsheets`, {
+      const response = await fetch(`${API_BASE_URL}/trainingsheets`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -53,12 +53,28 @@ const ManageFichasTreino = () => {
   }, [fetchFichas])
 
   const handleDeletarFicha = async (fichaId, titulo) => {
-    if (!window.confirm(`Tem certeza que deseja deletar a ficha "${titulo}"?`)) {
+    // Validações básicas
+    if (!fichaId) {
+      setMensagem({ type: "error", text: "ID da ficha não encontrado." })
       return
     }
 
+    if (!token) {
+      setMensagem({ type: "error", text: "Token de autenticação não encontrado. Faça login novamente." })
+      return
+    }
+
+    if (!window.confirm(`Tem certeza que deseja deletar a ficha "${titulo}"?\n\nEsta ação não pode ser desfeita e removerá todos os exercícios associados.`)) {
+      return
+    }
+
+    // Indicador de loading durante delete
+    setMensagem({ type: "info", text: `Deletando ficha "${titulo}"...` })
+
     try {
-      const response = await fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+      console.log(`Tentando deletar ficha ID: ${fichaId}`)
+      
+      const response = await fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -66,14 +82,29 @@ const ManageFichasTreino = () => {
         },
       })
 
+      console.log(`Response status: ${response.status}`)
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: "Erro desconhecido." }))
-        throw new Error(`Falha ao deletar a ficha. Detalhe: ${errorData.message}`)
+        let errorMessage = "Erro desconhecido"
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorData.message || `Erro ${response.status}`
+        } catch {
+          errorMessage = `Erro ${response.status}: ${response.statusText}`
+        }
+        throw new Error(errorMessage)
       }
 
       setMensagem({ type: "success", text: `Ficha "${titulo}" deletada com sucesso!` })
-      fetchFichas()
+      await fetchFichas() // Recarrega a lista
     } catch (err) {
+      console.error('Erro completo ao deletar ficha:', {
+        error: err,
+        message: err.message,
+        fichaId,
+        titulo,
+        token: token ? 'presente' : 'ausente'
+      })
       setMensagem({ type: "error", text: `Erro ao deletar: ${err.message}` })
     }
   }
@@ -103,16 +134,11 @@ const ManageFichasTreino = () => {
           <span className="add-ficha-text">Cadastrar ficha</span>
         </div>
 
-        <div className="search-container">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Procurar"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <FaSearch className="search-icon" />
-        </div>
+        <SearchBar 
+          value={searchTerm}
+          onChange={setSearchTerm}
+          placeholder="Pesquisar fichas de treino..."
+        />
 
         {/* Mensagem de feedback */}
         {mensagem && <div className={`message ${mensagem.type}`}>{mensagem.text}</div>}

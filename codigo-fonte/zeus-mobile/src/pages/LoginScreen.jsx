@@ -32,7 +32,7 @@ export default function LoginScreen() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      const response = await fetch(`https://teste-zeusgym-50b8de268016.herokuapp.com/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,20 @@ const { PhysicalAssessment, Users } = require('../models');
 const path = require('path');
 const fs = require('fs');
 
+// Helper function to convert stream to buffer
+async function streamToBuffer(readableStream) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    readableStream.on('data', (data) => {
+      chunks.push(data instanceof Buffer ? data : Buffer.from(data));
+    });
+    readableStream.on('end', () => {
+      resolve(Buffer.concat(chunks));
+    });
+    readableStream.on('error', reject);
+  });
+}
+
 /**
  * Student Assessment Controller
  * Handles assessment-related operations for students
@@ -226,32 +240,50 @@ exports.downloadMyAssessmentPDF = async (req, res) => {
       where: { id: assessmentId, studentId }
     });
 
-    if (!assessment) return res.status(404).json({ error: 'Avaliação não encontrada.' });
-    if (!assessment.filePath) return res.status(404).json({ error: 'Arquivo PDF não disponível.' });
+    if (!assessment) {
+      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+    }
 
-    const filePath = path.isAbsolute(assessment.filePath)
-      ? assessment.filePath
-      : path.join(__dirname, '../../', assessment.filePath);
+    if (!assessment.fileUrl) {
+      return res.status(404).json({ error: 'Arquivo PDF não disponível.' });
+    }
 
-    if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Arquivo não encontrado no servidor.' });
+    // Import Azure Storage service
+    const azureStorage = require('../config/azureStorage');
 
-    const stat = fs.statSync(filePath);
-    const fileName = assessment.fileName || 'avaliacao.pdf';
+    // Extract blob name from fileUrl (remove any URL prefix)
+    const blobName = assessment.fileUrl.includes('/') 
+      ? assessment.fileUrl.split('/').pop() 
+      : assessment.fileUrl;
 
-    res.writeHead(200, {
-      'Content-Type': 'application/pdf',
-      'Content-Length': stat.size,
-      'Content-Disposition': `attachment; filename="${fileName}"`
-    });
+    try {
+      // Get blob client for downloading
+      const blockBlobClient = azureStorage.containerClient.getBlockBlobClient(blobName);
+      
+      // Check if blob exists
+      const exists = await blockBlobClient.exists();
+      if (!exists) {
+        return res.status(404).json({ error: 'Arquivo não encontrado no storage.' });
+      }
 
-    const stream = fs.createReadStream(filePath);
-    stream.on('error', (err) => {
-      console.error('File stream error:', err);
-      if (!res.headersSent) return res.status(500).json({ error: 'Erro ao ler o arquivo.' });
-      res.end();
-    });
+      // Download the blob content as buffer
+      const downloadResponse = await blockBlobClient.download();
+      const downloadedContent = await streamToBuffer(downloadResponse.readableStreamBody);
+      
+      const fileName = assessment.fileName || 'avaliacao.pdf';
 
-    stream.pipe(res);
+      // Set response headers and send file content
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Length', downloadedContent.length);
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+      
+      return res.send(downloadedContent);
+
+    } catch (azureError) {
+      console.error('Azure Storage error:', azureError);
+      return res.status(500).json({ error: 'Erro ao acessar arquivo no storage.' });
+    }
+
   } catch (error) {
     console.error('Error downloading PDF:', error);
     res.status(500).json({ error: 'Erro ao fazer download do PDF.' });

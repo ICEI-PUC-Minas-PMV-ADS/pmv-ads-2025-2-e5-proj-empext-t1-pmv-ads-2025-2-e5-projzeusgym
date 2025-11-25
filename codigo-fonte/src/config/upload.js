@@ -2,25 +2,15 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Criar diretório de uploads se não existir
+// Criar diretório de uploads se não existir (backup local)
 const uploadDir = path.join(__dirname, '../../uploads/physical-assessments');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Configuração do storage
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadDir);
-    },
-    filename: (req, file, cb) => {
-        // Gerar nome único para o arquivo
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        const sanitizedName = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
-        const fileName = `avaliacao_${uniqueSuffix}_${sanitizedName}`;
-        cb(null, fileName);
-    }
-});
+// Configuração do storage para usar memória (não salvar no disco)
+// Os arquivos serão enviados diretamente para o Azure
+const storage = multer.memoryStorage();
 
 // Filtro para aceitar apenas PDFs
 const fileFilter = (req, file, cb) => {

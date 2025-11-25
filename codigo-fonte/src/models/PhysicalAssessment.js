@@ -1,5 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
-  const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const PhysicalAssessment = sequelize.define('PhysicalAssessment', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -36,7 +38,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     filePath: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      comment: 'Caminho local (deprecated - usar fileUrl)'
+    },
+    fileUrl: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      comment: 'URL do arquivo no Azure Blob Storage'
+    },
+    blobName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'Nome do blob no Azure Storage'
     },
     fileSize: {
       type: DataTypes.INTEGER,
@@ -127,20 +140,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'physical_assessments',
     timestamps: true
-  });
+});
 
-  PhysicalAssessment.associate = (models) => {
-    PhysicalAssessment.belongsTo(models.Users, { 
-      as: 'student', 
-      foreignKey: 'studentId',
-      onDelete: 'CASCADE'
-    });
-    PhysicalAssessment.belongsTo(models.Users, { 
-      as: 'professor', 
-      foreignKey: 'professorId',
-      onDelete: 'CASCADE'
-    });
-  };
+// Associações serão definidas no index.js
 
-  return PhysicalAssessment;
-};
+module.exports = PhysicalAssessment;

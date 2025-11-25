@@ -14,9 +14,21 @@ import RegistrarPeso from './pages/RegistrarPeso';
 import LoginScreen from './pages/LoginScreen';
 import ChangePasswordScreen from './pages/ChangePasswordScreen';
 import HistoricoAvalia from './pages/HistoricoAvalia';
+import Treinos from './pages/Treinos';
+import TreinoDetalhes from './pages/TreinosDetalhes';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
+
+// --- Stack Navigator para Treinos (inclui detalhes) ---
+function TreinosStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="TreinosList" component={Treinos} />
+      <Stack.Screen name="TreinoDetalhes" component={TreinoDetalhes} />
+    </Stack.Navigator>
+  );
+}
 
 // --- Drawer Principal (Após Login) ---
 function AppDrawer() {
@@ -88,6 +100,18 @@ function AppDrawer() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="Treinos"
+        component={TreinosStack}
+        options={{
+          title: 'Minhas Fichas de Treino',
+          headerShown: false,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="book-outline" size={size} color={color} />
+          ),
+        }}
+      />
+
       {/* Item de Logout */}
       <Drawer.Screen
         name="Logout"
@@ -95,7 +119,7 @@ function AppDrawer() {
         options={{
           title: 'Sair',
           headerShown: false,
-          drawerIcon: ({ color, size }) => (
+          drawerIcon: ({ color, size }) => ( 
             <TouchableOpacity
               onPress={signOut}
               style={{

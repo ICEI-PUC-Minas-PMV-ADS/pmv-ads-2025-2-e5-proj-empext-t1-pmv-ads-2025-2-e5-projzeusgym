@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const trainingSheetController = require('../controllers/trainingSheetController');
 const authMiddleware = require('../middlewares/authMiddleware');
+const authMiddlewareFlexible = require('../middlewares/authMiddlewareFlexible');
 
 const hasPermission = (role) => role === 'professor' || role === 'admin';
 
@@ -26,12 +27,12 @@ router.post('/:sheetId/exercises', authMiddleware, async (req, res) => {
 });
 
 // ✅ Listar fichas (Professor, Admin e Aluno)
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', authMiddlewareFlexible, async (req, res) => {
   await trainingSheetController.listTrainingSheets(req, res);
 });
 
 // ✅ Obter ficha por ID (Professor, Admin e Aluno)
-router.get('/:sheetId', authMiddleware, async (req, res) => {
+router.get('/:sheetId', authMiddlewareFlexible, async (req, res) => {
   await trainingSheetController.getTrainingSheetById(req, res);
 });
 

@@ -40,6 +40,10 @@ JWT_SECRET=sua_chave_secreta_aqui
 PORT=3000
 ADMIN_LOGIN=admin
 ADMIN_PASSWORD=sua_senha_admin
+
+# Configurações do Azure Storage (obrigatórias para upload de arquivos)
+AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=suaconta;AccountKey=suachave;EndpointSuffix=core.windows.net
+AZURE_CONTAINER_NAME=physical-assessments
 ```
 
 Obs.: Crie o banco MySQL academia_zeus usando as credenciais definidas no .env.
@@ -107,8 +111,72 @@ json{
 }
 ```
 
+## Configuração do Azure Blob Storage
+
+### Pré-requisitos Azure
+1. **Conta Azure**: Tenha uma conta ativa no Microsoft Azure
+2. **Storage Account**: Crie uma conta de armazenamento no Azure Portal
+3. **Connection String**: Obtenha a string de conexão da sua storage account
+
+### Configuração
+1. **Crie uma Storage Account no Azure Portal**:
+   - Vá para Azure Portal > Storage Accounts > Create
+   - Escolha um nome único para sua storage account
+   - Configure as opções conforme necessário
+
+2. **Obtenha a Connection String**:
+   - Vá para sua Storage Account > Access Keys
+   - Copie uma das connection strings disponíveis
+
+3. **Configure as variáveis de ambiente**:
+   ```env
+   AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=suaconta;AccountKey=suachave;EndpointSuffix=core.windows.net
+   AZURE_CONTAINER_NAME=physical-assessments
+   ```
+
+### Migrações e Testes
+
+#### Executar Migração do Banco (Adicionar colunas Azure)
+```bash
+node scripts/migrateAzureStorage.js
+```
+
+#### Testar Conexão com Azure Storage
+```bash
+node scripts/testAzureStorage.js
+```
+
+### Funcionalidades
+- **Upload**: Arquivos PDF são enviados diretamente para Azure Blob Storage
+- **URLs**: Apenas URLs dos arquivos são salvas no banco de dados
+- **SAS Tokens**: URLs temporárias com acesso limitado por tempo
+- **Backward Compatibility**: Sistema mantém compatibilidade com arquivos locais existentes
+
 ### Observações
 O arquivo .env é ignorado pelo .gitignore por motivos de segurança. 
 Configure-o localmente com base no .env.example.
+
+## 🚀 Deploy no Heroku
+
+Para deploy no Heroku com Azure Blob Storage, consulte o arquivo `HEROKU_SETUP.md` que contém:
+- Configuração do Azure Storage Account
+- Definição de variáveis de ambiente no Heroku
+- Instruções de deploy e troubleshooting
+- Informações sobre custos e performance
+
+### Comandos rápidos para Heroku:
+```bash
+# Definir variáveis essenciais
+heroku config:set AZURE_STORAGE_CONNECTION_STRING="sua-connection-string" -a sua-app
+heroku config:set JWT_SECRET="sua-chave-secreta" -a sua-app
+
+# Deploy
+git push heroku main
+
+# Testar Azure Storage
+heroku run npm run test-azure -a sua-app
+```
+- **Azure Storage é obrigatório** para o funcionamento do upload de avaliações físicas
+- O sistema criará automaticamente o container se ele não existir
 
 

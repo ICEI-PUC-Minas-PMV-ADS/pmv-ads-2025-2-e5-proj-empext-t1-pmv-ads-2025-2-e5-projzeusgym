@@ -16,8 +16,10 @@ const MainButton = ({ label, onPress }) => (
 const routeMap = {
     'Registar Peso': 'RegistrarPeso',
     'Calcular IMC': 'CalcularIMC',
-    'Treinos': 'MeusTreinos',
+    'Treinos': 'Treinos',
     'Avaliação física': 'HistoricoAvalia',
+    'TreinoDetalhes': 'TreinoDetalhes',
+
 };
 
 const HomeScreen = ({ navigation }) => {

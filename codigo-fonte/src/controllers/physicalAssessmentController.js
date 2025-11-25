@@ -1,6 +1,7 @@
 const { PhysicalAssessment, Users } = require('../models');
 const fs = require('fs');
 const path = require('path');
+const azureStorage = require('../config/azureStorage');
 
 exports.createPhysicalAssessment = async (req, res) => {
   try {
@@ -46,16 +47,38 @@ exports.createPhysicalAssessment = async (req, res) => {
       });
     }
 
-    const assessment = await PhysicalAssessment.create({
+    // Tentar upload para Azure Blob Storage
+    const uploadResult = await azureStorage.uploadFile(
+      req.file.buffer, 
+      req.file.originalname, 
+      req.file.mimetype
+    );
+
+    let assessmentData = {
       studentId,
       professorId,
       assessmentDate,
       assessmentType: assessmentType || 'inicial',
       fileName: req.file.originalname,
-      filePath: req.file.path,
       fileSize: req.file.size,
       observations
-    });
+    };
+
+    if (uploadResult.success) {
+      // Azure configurado e upload bem-sucedido
+      assessmentData.fileUrl = uploadResult.url;
+      assessmentData.blobName = uploadResult.blobName;
+      console.log('✅ Arquivo enviado para Azure Storage:', uploadResult.blobName);
+    } else {
+      // Azure não configurado ou erro - informar ao usuário
+      console.warn('⚠️  Azure Storage não disponível:', uploadResult.error);
+      return res.status(503).json({ 
+        error: 'Serviço de upload não está disponível. Entre em contato com o administrador.',
+        details: uploadResult.error
+      });
+    }
+
+    const assessment = await PhysicalAssessment.create(assessmentData);
 
     // Buscar a avaliação criada com os dados do aluno
     const assessmentWithStudent = await PhysicalAssessment.findOne({
@@ -82,14 +105,14 @@ exports.getPhysicalAssessments = async (req, res) => {
 
     let whereClause = {};
     
-    // Se for professor, filtra apenas suas avaliações
-    // Se for admin, mostra todas
-    if (role === 'professor') {
-      whereClause.professorId
-= userId;
+    // Admin e professores podem ver todas as avaliações
+    // Alunos só podem ver suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
     }
     
-    if (studentId) {
+    // Se foi especificado um studentId na query, filtrar por ele
+    if (studentId && (role === 'admin' || role === 'professor')) {
       whereClause.studentId = studentId;
     }
 
@@ -102,30 +125,44 @@ exports.getPhysicalAssessments = async (req, res) => {
       order: [['assessmentDate', 'DESC']]
     });
 
-    return res.status(200).json(assessments);
+    // Garantir que sempre retorna array
+    const result = Array.isArray(assessments) ? assessments : [];
+    return res.status(200).json(result);
   } catch (error) {
     console.error('Erro ao buscar avaliações físicas:', error);
-    return res.status(500).json({ error: 'Erro interno ao buscar avaliações físicas.' });
+    console.error('Stack:', error.stack);
+    // CRÍTICO: Sempre retorna array vazio para não quebrar frontend
+    return res.status(200).json([]);
   }
 };
 
 exports.getPhysicalAssessmentById = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
+
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem ver qualquer avaliação
+    // Alunos só podem ver suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
+    }
 
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      },
+      where: whereClause,
       include: [
         { model: Users, as: 'student', attributes: ['id', 'name', 'email'] }
       ]
     });
 
     if (!assessment) {
-      return res.status(404).json({ error: 'Avaliação física não encontrada.' });
+      let errorMessage = 'Avaliação física não encontrada.';
+      if (role === 'aluno' || role === 'student') {
+        errorMessage = 'Avaliação não encontrada ou não pertence a você.';
+      }
+      return res.status(404).json({ error: errorMessage });
     }
 
     return res.status(200).json(assessment);
@@ -138,14 +175,22 @@ exports.getPhysicalAssessmentById = async (req, res) => {
 exports.updatePhysicalAssessment = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
     const updateData = req.body;
 
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem atualizar qualquer avaliação
+    // Alunos não podem atualizar (apenas professores e admin)
+    if (role === 'aluno' || role === 'student') {
+      return res.status(403).json({ 
+        error: 'Alunos não têm permissão para atualizar avaliações físicas.' 
+      });
+    }
+
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      }
+      where: whereClause
     });
 
     if (!assessment) {
@@ -199,28 +244,62 @@ exports.updatePhysicalAssessment = async (req, res) => {
 exports.deletePhysicalAssessment = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
 
-    // Buscar a avaliação para obter o caminho do arquivo
-    const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      }
+    // Primeiro, verificar se a avaliação existe
+    const assessmentExists = await PhysicalAssessment.findOne({
+      where: { id: assessmentId },
+      include: [
+        { model: Users, as: 'professor', attributes: ['name'] }
+      ]
     });
 
-    if (!assessment) {
+    if (!assessmentExists) {
       return res.status(404).json({ 
-        error: 'Avaliação física não encontrada ou você não tem permissão para excluí-la.' 
+        error: 'Avaliação física não encontrada.' 
       });
     }
 
-    // Excluir o arquivo físico se existir
+    // Verificar permissões baseadas no papel do usuário
+    let hasPermission = false;
+    let assessment = null;
+
+    if (role === 'admin') {
+      // Admin pode deletar qualquer avaliação
+      hasPermission = true;
+      assessment = assessmentExists;
+    } else if (role === 'professor' && assessmentExists.professorId === userId) {
+      // Professor só pode deletar suas próprias avaliações
+      hasPermission = true;
+      assessment = assessmentExists;
+    }
+
+    if (!hasPermission) {
+      const creatorName = assessmentExists.professor?.name || 'outro professor';
+      return res.status(403).json({ 
+        error: `Apenas o professor/admin que criou a avaliação pode deletá-la. Esta avaliação foi criada por: ${creatorName}` 
+      });
+    }
+
+    // Excluir o arquivo do Azure Storage se existir
+    if (assessment.blobName) {
+      try {
+        const deleteResult = await azureStorage.deleteFile(assessment.blobName);
+        if (!deleteResult.success) {
+          console.error('Erro ao excluir arquivo do Azure:', deleteResult.error);
+        }
+      } catch (fileError) {
+        console.error('Erro ao excluir arquivo do Azure:', fileError);
+        // Continuar mesmo se não conseguir excluir o arquivo
+      }
+    }
+
+    // Backward compatibility: excluir arquivo local se existir
     if (assessment.filePath && fs.existsSync(assessment.filePath)) {
       try {
         fs.unlinkSync(assessment.filePath);
       } catch (fileError) {
-        console.error('Erro ao excluir arquivo:', fileError);
+        console.error('Erro ao excluir arquivo local:', fileError);
         // Continuar mesmo se não conseguir excluir o arquivo
       }
     }
@@ -238,9 +317,9 @@ exports.deletePhysicalAssessment = async (req, res) => {
 exports.getStudentAssessments = async (req, res) => {
   try {
     const { studentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
 
-    // Verificar se o aluno existe e se o professor tem acesso
+    // Verificar se o aluno existe
     const student = await Users.findOne({
       where: { 
         id: studentId, 
@@ -252,11 +331,21 @@ exports.getStudentAssessments = async (req, res) => {
       return res.status(404).json({ error: 'Aluno não encontrado.' });
     }
 
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { studentId };
+    
+    // Admin e professores podem ver avaliações de qualquer aluno
+    // Alunos só podem ver suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      if (studentId !== userId.toString()) {
+        return res.status(403).json({ 
+          error: 'Você só pode visualizar suas próprias avaliações.' 
+        });
+      }
+    }
+
     const assessments = await PhysicalAssessment.findAll({
-      where: { 
-        studentId, 
-        professorId 
-      },
+      where: whereClause,
       include: [
         { model: Users, as: 'student', attributes: ['id', 'name', 'email'] }
       ],
@@ -273,36 +362,78 @@ exports.getStudentAssessments = async (req, res) => {
 exports.downloadPDF = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
+
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem baixar qualquer avaliação
+    // Alunos só podem baixar suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
+    }
+    // Para admin e professor, não adiciona filtro extra (podem baixar qualquer uma)
 
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      },
+      where: whereClause,
       include: [
         { model: Users, as: 'student', attributes: ['name'] }
       ]
     });
 
     if (!assessment) {
-      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+      let errorMessage = 'Avaliação não encontrada.';
+      if (role === 'aluno' || role === 'student') {
+        errorMessage = 'Avaliação não encontrada ou não pertence a você.';
+      }
+      return res.status(404).json({ error: errorMessage });
     }
 
-    if (!assessment.filePath || !fs.existsSync(assessment.filePath)) {
-      return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
+    // Priorizar Azure Storage - fazer proxy do arquivo
+    if (assessment.fileUrl && assessment.blobName) {
+      const https = require('https');
+      const http = require('http');
+      
+      // Gerar URL com SAS token para acesso temporário
+      const sasUrl = await azureStorage.generateSasUrl(assessment.blobName, 60); // 60 minutos
+      
+      // Nome customizado do arquivo
+      const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
+      const date = assessment.assessmentDate.replace(/-/g, '');
+      const fileName = `avaliacao_${studentName}_${date}.pdf`;
+      
+      // Fazer proxy do arquivo do Azure
+      const client = sasUrl.startsWith('https') ? https : http;
+      
+      return client.get(sasUrl, (azureResponse) => {
+        // Configurar headers para download
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+        res.setHeader('Content-Length', azureResponse.headers['content-length']);
+        
+        // Fazer pipe do arquivo do Azure para a response
+        azureResponse.pipe(res);
+      }).on('error', (error) => {
+        console.error('Erro ao fazer proxy do arquivo do Azure:', error);
+        return res.status(500).json({ error: 'Erro ao baixar arquivo do Azure Storage.' });
+      });
     }
 
-    // Gerar nome descritivo para o download
-    const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
-    const date = assessment.assessmentDate.replace(/-/g, '');
-    const fileName = `avaliacao_${studentName}_${date}.pdf`;
+    // Fallback para arquivo local (backward compatibility)
+    if (assessment.filePath && fs.existsSync(assessment.filePath)) {
+      const studentName = assessment.student.name.replace(/\s+/g, '_').toLowerCase();
+      const date = assessment.assessmentDate.replace(/-/g, '');
+      const fileName = `avaliacao_${studentName}_${date}.pdf`;
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
-    
-    const fileStream = fs.createReadStream(assessment.filePath);
-    fileStream.pipe(res);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+      
+      const fileStream = fs.createReadStream(assessment.filePath);
+      fileStream.pipe(res);
+      return;
+    }
+
+    return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
 
   } catch (error) {
     console.error('Erro ao fazer download do PDF:', error);
@@ -313,28 +444,52 @@ exports.downloadPDF = async (req, res) => {
 exports.viewPDF = async (req, res) => {
   try {
     const { assessmentId } = req.params;
-    const professorId = req.user.id;
+    const { id: userId, role } = req.user;
+
+    // Configurar filtro baseado no papel do usuário
+    let whereClause = { id: assessmentId };
+    
+    // Admin e professores podem visualizar qualquer avaliação
+    // Alunos só podem visualizar suas próprias avaliações
+    if (role === 'aluno' || role === 'student') {
+      whereClause.studentId = userId;
+    }
+    // Para admin e professor, não adiciona filtro extra (podem visualizar qualquer uma)
 
     const assessment = await PhysicalAssessment.findOne({
-      where: { 
-        id: assessmentId, 
-        professorId 
-      }
+      where: whereClause
     });
 
     if (!assessment) {
-      return res.status(404).json({ error: 'Avaliação não encontrada.' });
+      let errorMessage = 'Avaliação não encontrada.';
+      if (role === 'aluno' || role === 'student') {
+        errorMessage = 'Avaliação não encontrada ou não pertence a você.';
+      }
+      return res.status(404).json({ error: errorMessage });
     }
 
-    if (!assessment.filePath || !fs.existsSync(assessment.filePath)) {
-      return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
+    // Priorizar Azure Storage
+    if (assessment.fileUrl && assessment.blobName) {
+      // Gerar URL com SAS token para acesso temporário
+      const sasUrl = await azureStorage.generateSasUrl(assessment.blobName, 60); // 60 minutos
+      
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline');
+      
+      return res.redirect(sasUrl);
     }
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'inline');
-    
-    const fileStream = fs.createReadStream(assessment.filePath);
-    fileStream.pipe(res);
+    // Fallback para arquivo local (backward compatibility)
+    if (assessment.filePath && fs.existsSync(assessment.filePath)) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline');
+      
+      const fileStream = fs.createReadStream(assessment.filePath);
+      fileStream.pipe(res);
+      return;
+    }
+
+    return res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
 
   } catch (error) {
     console.error('Erro ao visualizar PDF:', error);

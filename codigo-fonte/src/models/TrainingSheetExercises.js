@@ -12,14 +12,24 @@ module.exports = (sequelize) => {
             primaryKey: true,
         },
         
-        // CRÍTICO: Definindo as Foreign Keys explicitamente para garantir o mapeamento
+        // CRÍTICO: Definindo as Foreign Keys com integridade referencial
         sheetId: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'training_sheets',
+                key: 'id'
+            },
+            onDelete: 'CASCADE' // Se ficha for deletada, remove exercícios
         },
         exerciseId: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'exercises',
+                key: 'id'
+            },
+            onDelete: 'CASCADE' // Se exercício for deletado, remove associações
         },
 
         // CAMPOS DE DETALHE

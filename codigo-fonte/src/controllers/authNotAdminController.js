@@ -20,11 +20,20 @@ const userLogin = async (req, res) => {
             },
             attributes: ['id', 'name', 'email', 'password', 'role', 'mustChangePassword'],
         });
-        if (!user) return res.status(404).json({ message: 'Usu�rio n�o encontrado.' });
-          const userPassword = password.trim();
+        if (!user) return res.status(404).json({ message: 'Usuário não encontrado.' });
+        
+        const userPassword = password.trim();
+        console.log('[LOGIN] Tentativa de login para:', login);
+        console.log('[LOGIN] Senha fornecida:', userPassword);
+        console.log('[LOGIN] Hash no banco:', user.password.substring(0, 20) + '...');
 
         const isPasswordValid = await bcrypt.compare(userPassword, user.password);
-        if (!isPasswordValid) return res.status(401).json({ message: 'Senha incorreta.' });
+        console.log('[LOGIN] Senha válida:', isPasswordValid);
+        
+        if (!isPasswordValid) {
+            console.log('[LOGIN] ❌ Falha na autenticação para:', login);
+            return res.status(401).json({ message: 'Senha incorreta.' });
+        }
 
         if (user.mustChangePassword) {
             const tempToken = jwt.sign(

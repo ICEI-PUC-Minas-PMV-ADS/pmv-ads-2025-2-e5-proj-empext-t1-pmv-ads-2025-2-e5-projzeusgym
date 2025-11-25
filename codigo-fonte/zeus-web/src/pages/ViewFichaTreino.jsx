@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CadastroFichaTreino.css'; // Reutilizando o CSS para layout
-
-const baseURL = 'https://guarded-shelf-40573-5295222ff305.herokuapp.com';
+import { API_BASE_URL } from '../config/api';
 
 const ViewFichaTreino = () => {
     const navigate = useNavigate();
@@ -31,7 +30,7 @@ const ViewFichaTreino = () => {
         setMensagem(null);
         
         // Rota GET para buscar UMA ficha: /trainingsheets/:id
-        fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+        fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,7 +46,6 @@ const ViewFichaTreino = () => {
         })
         .then(data => {
             // Assume que a API retorna o objeto da ficha
-            console.log("Dados da Ficha Carregados:", data); // Verificação
             setFicha(data); 
             setMensagem({ type: 'success', text: `Ficha ID ${fichaId} carregada com sucesso!` });
         })
@@ -62,17 +60,17 @@ const ViewFichaTreino = () => {
     }, [fichaId, token]);
 
 
-    // --- Renderização da Linha da Tabela de Exercícios (CORRIGIDA) ---
+    // --- Renderização da Linha da Tabela de Exercícios ---
     const renderExercicioRow = (item, index) => {
-        // 🎯 Acessa as propriedades da tabela de associação (pivô)
-        const details = item.TrainingSheetExercises || {}; 
+        // Acessa as propriedades da tabela de associação (pivô)
+        const details = item.TrainingSheetExercises || item.through || {}; 
 
         return (
             <tr key={index}>
-                <td>{item.nome}</td>
-                <td>{details.series || '-'}</td> {/* CORRIGIDO */}
-                <td>{details.repeticoes || '-'}</td> {/* CORRIGIDO */}
-                <td>{details.carga === 0 ? 0 : (details.carga || '-')}</td> {/* CORRIGIDO: Mostra 0 ou '-' */}
+                <td>{item.nome || item.name || '-'}</td>
+                <td>{details.series || '-'}</td>
+                <td>{details.repeticoes || '-'}</td>
+                <td>{details.carga === 0 ? '0' : (details.carga || '-')}</td>
             </tr>
         );
     };

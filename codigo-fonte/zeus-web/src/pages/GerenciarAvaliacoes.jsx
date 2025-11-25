@@ -2,7 +2,8 @@ import './GerenciarAvaliacoes.css';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import React, { useState, useEffect } from 'react';
-
+import SearchBar from '../components/SearchBar';
+import HeaderAdmin from '../components/HeaderAdmin';
 const GerenciarAvaliacoes = () => {
     const navigate = useNavigate();
     const [assessments, setAssessments] = useState([]);
@@ -44,7 +45,14 @@ const GerenciarAvaliacoes = () => {
             fetchAssessments();
         } catch (error) {
             console.error('Erro ao excluir avaliação:', error);
-            alert('Erro ao excluir avaliação física.');
+            
+            // Extrair mensagem específica do erro
+            const errorMessage = error.response?.data?.error || 
+                               error.response?.data?.message || 
+                               error.message || 
+                               'Erro ao excluir avaliação física.';
+            
+            alert(errorMessage);
         }
     };
 
@@ -60,40 +68,50 @@ const GerenciarAvaliacoes = () => {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     };
 
-    const handleDownload = async (assessmentId) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await api.get(`/physical-assessments/${assessmentId}/download`, {
-                headers: { Authorization: `Bearer ${token}` },
-                responseType: 'blob'
-            });
-            
-            // Criar URL para download
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            
-            // Extrair nome do arquivo do header Content-Disposition
-            const contentDisposition = response.headers['content-disposition'];
-            let fileName = 'avaliacao.pdf';
-            if (contentDisposition) {
-                const fileNameMatch = contentDisposition.match(/filename="(.+)"/);
-                if (fileNameMatch) {
-                    fileName = fileNameMatch[1];
-                }
-            }
-            
-            link.setAttribute('download', fileName);
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            window.URL.revokeObjectURL(url);
-            
-        } catch (error) {
-            console.error('Erro ao fazer download:', error);
-            alert('Erro ao fazer download do arquivo.');
-        }
-    };
+ const handleDownload = async (assessmentId) => {
+  try {
+    setLoading(true);
+    const token = localStorage.getItem('token');
+    
+    // Fazer requisição para o backend que redireciona para o Azure
+    const response = await api.get(`/physical-assessments/${assessmentId}/download`, {
+      headers: { 
+        Authorization: `Bearer ${token}` 
+      },
+      responseType: 'blob' // Importante para downloads
+    });
+
+    // Criar blob URL e forçar download
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    
+    // Tentar extrair nome do arquivo do header
+    const contentDisposition = response.headers['content-disposition'];
+    let filename = `avaliacao_${assessmentId}.pdf`;
+    
+    if (contentDisposition) {
+      const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+      if (filenameMatch) {
+        filename = filenameMatch[1];
+      }
+    }
+    
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    
+    // Cleanup
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(link);
+    
+  } catch (error) {
+    console.error('Erro no download:', error);
+    alert('Erro ao fazer download do arquivo');
+  } finally {
+    setLoading(false);
+  }
+};
 
     const filteredAssessments = assessments.filter(assessment => 
         !filterStudent || 
@@ -110,50 +128,7 @@ const GerenciarAvaliacoes = () => {
 
     return (
         <div className="avaliacoes-container">
-            <header className="avaliacoes-header">
-                <div className="header-content">
-                        <div className="button-group">
-                            <button 
-                                className="header-btn"
-                                onClick={() => navigate('/gerenciarexercicios')}
-                            >
-                                Gerenciar Exercícios
-                            </button>
-                            <button 
-                                className="header-btn"
-                                onClick={() => navigate('/professores')}
-                            >
-                                Gerenciar Professores
-                            </button>
-                            <button 
-                                className="header-btn"
-                                onClick={() => navigate('/alunos')}
-                            >
-                                Gerenciar Alunos
-                            </button>
-                            <button className="header-btn active">Avaliações Físicas</button>
-                        </div>
-                    <div className="icon-group">
-                        <div className="profile-icon">
-                            <button 
-                                onClick={() => navigate('/dashboard')}
-                                style={{ 
-                                    background: 'none', 
-                                    border: 'none', 
-                                    cursor: 'pointer',
-                                    padding: 0
-                                }}
-                            >
-                                <img
-                                    src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                    alt="Página Principal"
-                                    className="profile-image"
-                                />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <HeaderAdmin activePage="avaliacoes" />
 
             <main className="avaliacoes-main">
                 <div className="content-wrapper-avaliacoes">
@@ -168,17 +143,12 @@ const GerenciarAvaliacoes = () => {
                         </button>
                     </div>
 
-                    <div className="search-section">
-                        <span className="search-icon">🔍</span>
-                        <div className="search-bar">
-                            <input
-                                type="text"
-                                value={filterStudent}
-                                onChange={(e) => setFilterStudent(e.target.value)}
-                                placeholder="Digite o nome do aluno..."
-                            />
-                        </div>
-                    </div>
+                    <SearchBar 
+                        value={filterStudent}
+                        onChange={setFilterStudent}
+                        placeholder="Pesquisar por nome do aluno..."
+                        className="full-width"
+                    />
 
                     <div className="content-box">
                     {filteredAssessments.length === 0 ? (
@@ -223,7 +193,7 @@ const GerenciarAvaliacoes = () => {
                                     )}
 
                                     <div className="assessment-actions">
-                                        {assessment.filePath && (
+                                        {assessment.fileUrl && (
                                             <>
                                             
                                                 <button 

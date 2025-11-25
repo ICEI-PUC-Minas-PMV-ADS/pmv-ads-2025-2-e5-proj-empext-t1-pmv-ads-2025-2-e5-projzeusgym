@@ -12,27 +12,29 @@ const TreinosStyles = StyleSheet.create({
     
     // --- HEADER E FOOTER PADRÃO ---
     header: {
-        width: '100%',
-        height: 60, // Altura comum para cabeçalho
-        backgroundColor: ORANGE,
-        flexDirection: 'row',
-        alignItems: 'center',
+         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         paddingHorizontal: 15,
-        paddingTop: 5,
+        paddingTop: 40, // Ajuste para a barra de status
+        paddingBottom: 10,
+        backgroundColor: '#FF8C00', // Laranja do design
     },
     menuButton: {
         padding: 5,
     },
     menuIcon: {
-        fontSize: 28,
-        color: '#FFFFFF',
+       fontSize: 30,
+        color: '#fff',
         fontWeight: 'bold',
+    
     },
     logo: {
-        width: 40, 
-        height: 40,
+        width: 50,
+        height: 50,
+        borderRadius: 5,
     },
+    
     footer: {
         width: '100%',
         height: 40, // Altura comum para rodapé

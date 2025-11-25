@@ -1,23 +1,19 @@
-import './GerenciarExercicios.css';
-import HeaderAdmin from '../components/HeaderAdmin';  
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-  import { AiFillDelete, AiFillEdit}from 'react-icons/ai';
-  import { FaPlus } from 'react-icons/fa';
-  import Footer from '../components/Footer';
-  
-
-  
-
-const baseURL = 'https://guarded-shelf-40573-5295222ff305.herokuapp.com';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { FaPlus } from 'react-icons/fa';
+import HeaderAdmin from '../components/HeaderAdmin';
+import Footer from '../components/Footer';
+import { API_BASE_URL } from '../config/api';
+import SearchBar from '../components/SearchBar';
+import './GerenciarExercicios.css';
 
 const GerenciarExercicio = () => {
-  const navigate = useNavigate();
   const [exercicios, setExercicios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [highlightedId, setHighlightedId] = useState(null);
 
   // Pop-up states
@@ -33,23 +29,40 @@ const GerenciarExercicio = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch(`${baseURL}/admin/exercises`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+  if (!token) {
+    setError('Token de autenticação não encontrado.');
+    setLoading(false);
+    return;
+  }
+
+  fetch(`${API_BASE_URL}/admin/exercises`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  })
+    .then(async response => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Erro ao buscar exercícios');
       }
-    })
-      .then(response => response.json())
-      .then(data => {
+
+      if (Array.isArray(data)) {
         setExercicios(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError('Erro ao carregar exercícios.');
-        setLoading(false);
-      });
-  }, [token, showForm]);
+      } else {
+        setExercicios([]);
+      }
+
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('Erro no fetch:', err.message);
+      setError(err.message);
+      setLoading(false);
+    });
+}, [token, showForm]);
 
   useEffect(() => {
     if (search.trim() === '') {
@@ -79,16 +92,6 @@ const GerenciarExercicio = () => {
     alert(error);
   }
 }, [error]);
-
-  const gerenciarAluno = () => {
-    navigate('/alunos');
-  };
-  const gerenciarProf = () => {
-        navigate('/professores');
-    };
-      const paginaInicial = () => {
-        navigate('/dashboard');
-    };
 
   // Abrir formulário para criar novo exercício
   const openCreateForm = () => {
@@ -124,8 +127,8 @@ const GerenciarExercicio = () => {
       const method = formMode === 'create' ? 'POST' : 'PUT';
       const url =
         formMode === 'create'
-          ? `${baseURL}/admin/exercises`
-          : `${baseURL}/admin/exercises/${formData.id}`;
+          ? `${API_BASE_URL}/admin/exercises`
+          : `${API_BASE_URL}/admin/exercises/${formData.id}`;
       const response = await fetch(url, {
         method,
         headers: {
@@ -160,7 +163,7 @@ const GerenciarExercicio = () => {
     }
     setLoading(true);
     try {
-      const response = await fetch(`${baseURL}/admin/exercises/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/exercises/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -181,12 +184,12 @@ const GerenciarExercicio = () => {
   return (
     <div className="dashboard-container">
       {/* Header Laranja */}
-      <HeaderAdmin activePage="exercicios" />
+      <HeaderAdmin activePage="gerenciarexercicios" />
     
 
       {/* Conteúdo em Branco */}
       <main className="dashboard-main">
-        <div v className="content-exercises">
+        <div className="content-exercises">
         <div className="main-header-aluno">
                                 <h2 className="main-title-aluno">Exercícios</h2>
                                 <button className="add-aluno-btn"
@@ -201,12 +204,11 @@ const GerenciarExercicio = () => {
         {/* Campo de pesquisa */}
         <section style={{ marginTop: '2rem' }}>
           <h2>Gerenciar de Exercícios</h2>
-          <input
-            type="text"
-            placeholder="Pesquisar exercício..."
+          <SearchBar 
             value={search}
-            onChange={e => setSearch(e.target.value)}
-            style={{ width: '100%', padding: '8px', marginBottom: '8px' }}
+            onChange={setSearch}
+            placeholder="Pesquisar exercícios..."
+            className="full-width"
           />
         
           {/* Sugestões */}

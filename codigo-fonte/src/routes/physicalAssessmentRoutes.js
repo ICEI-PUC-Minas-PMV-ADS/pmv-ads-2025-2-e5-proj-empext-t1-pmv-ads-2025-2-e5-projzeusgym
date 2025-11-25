@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const physicalAssessmentController = require('../controllers/physicalAssessmentController');
-const authMiddleware = require('../middlewares/authMiddleware');
+const authMiddlewareFlexible = require('../middlewares/authMiddlewareFlexible');
 const { upload, handleUploadError } = require('../config/upload');
 
-// Aplicar middleware de autenticação em todas as rotas
-router.use(authMiddleware);
+// Aplicar middleware de autenticação flexível (admin, professor, aluno)
+router.use(authMiddlewareFlexible);
 
 // Rota para criar uma nova avaliação física (com upload de arquivo)
 router.post('/', upload.single('pdfFile'), handleUploadError, physicalAssessmentController.createPhysicalAssessment);

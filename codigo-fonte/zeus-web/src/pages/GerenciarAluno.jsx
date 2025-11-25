@@ -4,6 +4,7 @@ import { FaPlus, FaSearch, FaTrash, FaEdit, FaPencilAlt, FaTimes } from 'react-i
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import HeaderAdmin from '../components/HeaderAdmin';
 
 const GerenciarAluno = () => {
     const { user, logout } = useAuth();
@@ -42,11 +43,11 @@ const GerenciarAluno = () => {
             .replace(/[\u0300-\u036f]/g, "");
     };
 
-    const filteredAlunos = alunos.filter(aluno => { 
+    const filteredAlunos = Array.isArray(alunos) ? alunos.filter(aluno => { 
         const normalizedName = normalizeString(aluno.name);
         const normalizedSearchTerm = normalizeString(searchTerm);
         return normalizedName.includes(normalizedSearchTerm);
-    });
+    }) : [];
 
     const listToRender = filteredAlunos;
 
@@ -57,7 +58,23 @@ const GerenciarAluno = () => {
 
         try {
             const response = await api.get('/admin/alunos');
-            setAlunos(response.data);
+            
+            console.log('Status da resposta:', response.status); // Debug
+            console.log('Dados da resposta:', response.data); // Debug
+            
+            // Trata status 304 (Not Modified) - dados em cache
+            if (response.status === 304) {
+                console.log('Dados em cache, mantendo estado atual');
+                return; // Não altera o estado se dados não mudaram
+            }
+            
+            // Garante que sempre seja um array
+            if (Array.isArray(response.data)) {
+                setAlunos(response.data);
+            } else {
+                setAlunos([]);
+                console.warn('API retornou dados inválidos:', response.data);
+            }
 
         } catch (err) {
             if (err.response) {
@@ -66,13 +83,18 @@ const GerenciarAluno = () => {
                 } else if (err.response.status === 401) {
                     setError("Sessão expirada ou não autorizada. Por favor, faça login novamente.");
                     logout();
-                } else if (err.response.status === 404)  {
+                } else if (err.response.status === 404) {
                     setAlunos([]);
                     setMensagemInformativa("Nenhum aluno cadastrado."); 
                     setError(null);
                 }
             } else {
                 console.error("Erro no fetchAlunos:", err);
+                console.error("Detalhes do erro:", {
+                    message: err.message,
+                    code: err.code,
+                    config: err.config?.url
+                });
                 setError("Erro de rede. Verifique a conexão com o servidor.");
             }
 
@@ -103,7 +125,7 @@ const GerenciarAluno = () => {
             await api.delete(`/admin/alunos/${id}`);
 
             // Sucesso: atualiza o estado local
-            setAlunos(alunos.filter(aluno => aluno.id !== id));
+            setAlunos(prevAlunos => Array.isArray(prevAlunos) ? prevAlunos.filter(aluno => aluno.id !== id) : []);
             alert(`Aluno ${alunoToDelete.name} deletado com sucesso.`);
 
         } catch (err) {
@@ -142,26 +164,7 @@ const GerenciarAluno = () => {
 
     return (
         <div className="alunos-container">
-            <header className="alunos-header">
-                <div className="header-content-aluno">
-                    <div className="button-group-aluno">
-                        <button className="header-btn-aluno" onClick={gerenciarExercicio}>Gerenciar Exercícios</button>
-                        <button className="header-btn-aluno" onClick={gerenciarProf}>Gerenciar Professores</button>
-                        <button className="header-btn-aluno">Gerenciar Alunos</button>
-                    </div>
-                    <div className="icon-group-aluno">
-                        <div className="profile-icon-aluno">
-                            <a href="#"> <img
-                                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                                alt="Perfil"
-                                className="profile-image"
-                                onClick={paginaInicial}
-                            /> </a>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
+         <HeaderAdmin activePage="alunos" />
             <main className="alunos-main">
                 <div className="content-wrapper-aluno">
                     <div className="main-header-aluno">

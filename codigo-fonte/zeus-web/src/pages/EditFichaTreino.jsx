@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CadastroFichaTreino.css'; 
+import { API_BASE_URL } from '../config/api';
 
 import HeaderAdmin from '../components/HeaderAdmin'; 
 import FooterAdmin from '../components/FooterAdmin'; 
 import '../styles/LayoutBase.css';
 
-const baseURL = ' https://guarded-shelf-40573-5295222ff305.herokuapp.com';
+
 
 const initialExerciseState = {
     idExercicio: '', 
@@ -46,10 +47,10 @@ const EditFichaTreino = () => {
         let isMounted = true;
         const fetchData = async () => {
             const promises = [
-                fetch(`${baseURL}/admin/alunos`, {
+                fetch(`${API_BASE_URL}/admin/alunos`, {
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
                 }).then(res => res.json()),
-                fetch(`${baseURL}/admin/exercises`, {
+                fetch(`${API_BASE_URL}/admin/exercises`, {
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
                 }).then(res => res.json())
             ];
@@ -104,7 +105,7 @@ const EditFichaTreino = () => {
             return;
         }
 
-        fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+        fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
         })
@@ -148,7 +149,7 @@ const EditFichaTreino = () => {
             setIsLoading(false);
         });
 
-    }, [fichaId, token, alunos.length]); // Dependência de alunos.length forçará recarregar após a lista de alunos
+    }, [fichaId, token, alunos.length, isLoading]); // Dependência de alunos.length forçará recarregar após a lista de alunos
 
     // --- Lógica de Manipulação dos Exercícios ---
     const handleAddExercicio = () => {
@@ -207,7 +208,7 @@ const EditFichaTreino = () => {
 
         setMensagem({ type: 'info', text: `Enviando atualização para Ficha ID ${fichaId}...` });
 
-        fetch(`${baseURL}/trainingsheets/${fichaId}`, {
+        fetch(`${API_BASE_URL}/trainingsheets/${fichaId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -323,8 +324,8 @@ const EditFichaTreino = () => {
                                     <option value="">-- Selecione o Aluno --</option>
                                     {alunos.map((aluno) => (
                                         <option key={aluno.id} value={safeString(aluno.id)}>
-                                            {/* ✅ CORREÇÃO AQUI: Usando aluno.name */}
-                                            **{aluno.name}** ({aluno.email})
+                                                    {/* ✅ CORREÇÃO AQUI: Usando aluno.name */}
+                                            {aluno.name} ({aluno.email})
                                         </option>
                                     ))}
                                 </select>

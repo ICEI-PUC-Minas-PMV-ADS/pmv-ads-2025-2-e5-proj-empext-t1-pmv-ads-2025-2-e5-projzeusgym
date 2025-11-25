@@ -17,22 +17,23 @@ exports.createProfessor = async (req, res) => {
     }
 
     const existingUserByEmail = await Users.findOne({ where: { email } });
-    if (existingUserByEmail) {
-      return res.status(400).json({ error: 'Email já cadastrado.' });
-    }
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: 'Email já cadastrado.' });
+    }
 
-    const professor = await Users.create({
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cref_mg,
-      email,
-      password,
-      role: 'professor',
-    });
+    // Hash da senha antes de salvar no banco
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    return res.status(201).json({ message: 'Professor cadastrado com sucesso!', professor });
+    const professor = await Users.create({
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cref_mg,
+      email,
+      password: hashedPassword,
+      role: 'professor',
+    });    return res.status(201).json({ message: 'Professor cadastrado com sucesso!', professor });
   } catch (error) {
     console.error('Erro ao cadastrar professor:', error);
     return res.status(500).json({ error: 'Erro interno ao cadastrar professor.' });
@@ -177,25 +178,46 @@ exports.createAluno = async (req, res) => {
       return res.status(400).json({ error: 'Email já cadastrado.' });
     }
 
-    const senhaInicial = generateRandomPassword(10);
+    const senhaInicial = generateRandomPassword(10);
+    
+    console.log('[ALUNO] Senha gerada:', senhaInicial);
+    console.log('[ALUNO] Criando aluno com email:', email);
 
-    const aluno = await Users.create({
-      name,
-      birthdate,
-      gender,
-      cpf,
-      cellphone,
-      restriction,
-      email,
-      password: senhaInicial,
-      mustChangePassword: true,
-      role: 'aluno',
-    });
+    // Hash da senha antes de salvar no banco
+    const hashedPassword = await bcrypt.hash(senhaInicial, 10);
+    console.log('[ALUNO] Senha hasheada para armazenamento');
 
-    await sendWelcomeEmail(email, senhaInicial);
+    const aluno = await Users.create({
+      name,
+      birthdate,
+      gender,
+      cpf,
+      cellphone,
+      restriction,
+      email,
+      password: hashedPassword,
+      mustChangePassword: true,
+      role: 'aluno',
+    });
+    
+    console.log('[ALUNO] Aluno criado com ID:', aluno.id);
+    console.log('[ALUNO] Senha que será enviada por email:', senhaInicial);    // Tentar enviar email, mas não falhar se não conseguir
+    const emailSent = await sendWelcomeEmail(email, senhaInicial);
+    
+    let message = 'Aluno cadastrado com sucesso!';
+    if (emailSent) {
+        message += ' E-mail de boas-vindas com senha inicial enviado.';
+        console.log(`✅ Email enviado para ${email}`);
+    } else {
+        message += ' ⚠️ Não foi possível enviar o e-mail. A senha inicial é: ' + senhaInicial;
+        console.warn(`⚠️ Email não enviado para ${email}. Senha inicial: ${senhaInicial}`);
+    }
 
-    return res.status(201).json({ message: 'Aluno cadastrado com sucesso! E-mail de boas-vindas com senha inicial enviado.',
-            aluno: { id: aluno.id, name: aluno.name, email: aluno.email, role: aluno.role }});
+    return res.status(201).json({ 
+        message,
+        senhaInicial: emailSent ? undefined : senhaInicial, // Só mostra a senha se o email não foi enviado
+        aluno: { id: aluno.id, name: aluno.name, email: aluno.email, role: aluno.role }
+    });
   } catch (error) {
     console.error('Erro ao cadastrar aluno:', error);
     return res.status(500).json({ error: 'Erro interno ao cadastrar aluno.' });
@@ -212,7 +234,7 @@ exports.listAlunos = async (req, res) => {
     });
 
     if (alunos.length === 0) {
-      return res.status(404).json({ message: 'Nenhum aluno encontrado.' });
+      return res.status(200).json({ message: 'Nenhum aluno encontrado.' });
     }
 
     return res.status(200).json(alunos);
@@ -307,45 +329,34 @@ exports.updateAluno = async (req, res) => {
 };
 
 exports.deleteAluno = async (req, res) => {
-  try {
-    const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-    const deletedCount = await Users.destroy({
-      where: {
-        id,
-        role: 'aluno'
-      }
-    });
+    const deletedCount = await Users.destroy({
+      where: {
+        id,
+        role: 'aluno'
+      }
+    });
 
-    if (deletedCount === 0) {
-      return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
-    }
+    if (deletedCount === 0) {
+      return res.status(404).json({ error: 'Aluno não encontrado para exclusão.' });
+    }
 
-    return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
-  } catch (error) {
-    console.error('Erro ao excluir aluno:', error);
-    return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
-  }
-};
-
-// 🚨 CORREÇÃO: Método para listar todos os exercícios (Solução do Erro 500)
-exports.listExercises = async (req, res) => {
-    try {
-        // Usa o modelo Exercises que você importou no topo
-        const exercises = await Exercises.findAll(); 
-
-        if (!exercises || exercises.length === 0) {
-            // Retorna 404 se a tabela estiver vazia
-            return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
-        }
-
-        // Retorna 200 (OK) com a lista completa
-        return res.status(200).json(exercises);
-    } catch (error) {
-        console.error('Erro ao listar exercícios:', error);
-        return res.status(500).json({ error: 'Erro interno ao listar exercícios.' });
-    }
-};
+    return res.status(200).json({ message: 'Aluno excluído com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao excluir aluno:', error);
+    
+    // Tratamento específico para erro de integridade referencial
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({ 
+        error: 'Não é possível excluir este aluno pois ele possui dados associados (fichas de treino, avaliações físicas ou registros de peso). Exclua primeiro os dados relacionados.' 
+      });
+    }
+    
+    return res.status(500).json({ error: 'Erro interno ao excluir aluno.' });
+  }
+};// 🚨 CORREÇÃO: Método para listar todos os exercícios (Solução do Erro 500)
 
 exports.createExercise = async (req, res) => {
   try {
@@ -419,7 +430,7 @@ exports.listExercises = async (req, res) => {
   try {
     const exercises = await Exercises.findAll();
     if (!exercises || exercises.length === 0) {
-      return res.status(404).json({ message: 'Nenhum exercício encontrado.' });
+      return res.status(200).json({ message: 'Nenhum exercício encontrado.' });
     }
     return res.status(200).json(exercises);
   } catch (error) {
