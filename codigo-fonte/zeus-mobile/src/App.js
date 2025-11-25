@@ -16,6 +16,7 @@ import ChangePasswordScreen from './pages/ChangePasswordScreen';
 import HistoricoAvalia from './pages/HistoricoAvalia';
 import Treinos from './pages/Treinos';
 import TreinoDetalhes from './pages/TreinosDetalhes';
+import PerfilUsuario from './pages/PerfilUsuario'
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -111,6 +112,17 @@ function AppDrawer() {
           ),
         }}
       />
+              <Drawer.Screen
+          name="PerfilUsuario"
+          component={PerfilUsuario}
+          options={{
+            title: 'Perfil',
+            headerShown: false,
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="person-outline" size={size} color={color} />
+            )
+          }}
+        />
 
       {/* Item de Logout */}
       <Drawer.Screen

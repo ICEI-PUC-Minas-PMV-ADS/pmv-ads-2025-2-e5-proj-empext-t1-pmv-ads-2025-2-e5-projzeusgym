@@ -50,6 +50,13 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+export const userProfile = {
+  getProfile: () => api.get('/profile'),
+
+  updateProfile: data => api.put('/profile', data),
+
+  deleteProfile: () => api.delete('/profile')
+}
 
 
 export default api;
