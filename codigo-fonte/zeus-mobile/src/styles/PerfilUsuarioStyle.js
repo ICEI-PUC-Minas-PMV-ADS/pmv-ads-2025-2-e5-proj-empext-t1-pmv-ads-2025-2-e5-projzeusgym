@@ -18,84 +18,125 @@ const COLORS = {
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000'
+    backgroundColor: '#fff'
   },
   content: {
     flex: 1,
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingTop: 24
+    paddingHorizontal: 10,
+    paddingTop: 50
   },
   title: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: '700',
-    marginBottom: 20
+    fontSize: 40,
+    fontWeight: '900',
+    color: '#000',
+    marginBottom: 40,
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 3, height: 3 },
+    textShadowRadius: 5
   },
   card: {
-    width: Math.min(width - 40, 320),
-    backgroundColor: '#fff',
-    borderRadius: 18,
-    paddingVertical: 18,
-    paddingHorizontal: 18,
+    width: '100%',
+    backgroundColor: '#A9A9A9',
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
     alignItems: 'flex-start',
-    elevation: 5,
+    marginBottom: 30,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    marginBottom: 20
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12
   },
   fieldRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 12,
     width: '100%'
   },
   fieldLabel: {
     width: '28%',
     fontWeight: '700',
-    color: '#333',
+    color: '#000',
     fontSize: 14
   },
   pill: {
     marginLeft: 10,
-    backgroundColor: '#FF8C00',
+    backgroundColor: '#fff',
     paddingHorizontal: 18,
     paddingVertical: 8,
     borderRadius: 20,
     minWidth: '62%'
   },
   pillText: {
-    color: '#fff',
+    color: '#000',
     fontWeight: '600',
     textAlign: 'center'
   },
   editButton: {
-    backgroundColor: '#666',
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    borderRadius: 30,
-    marginTop: 12,
-    width: Math.min(width - 80, 260),
-    alignItems: 'center'
+
+    width: '50%',
+    maxWidth: 300,
+    backgroundColor: '#A9A9A9',
+    borderRadius: 50,
+    paddingVertical: 18,
+    marginVertical: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12
   },
   editButtonText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 16
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000'
   },
   deleteButton: {
-    backgroundColor: '#444',
-    paddingVertical: 10,
-    paddingHorizontal: 28,
-    borderRadius: 22,
-    marginTop: 12,
-    width: Math.min(width - 120, 200),
-    alignItems: 'center'
+    width: '100%',
+    maxWidth: 300,
+    backgroundColor: '#A9A9A9',
+    borderRadius: 50,
+    paddingVertical: 18,
+    marginVertical: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12
   },
   deleteButtonText: {
-    color: '#fff',
-    fontWeight: '700'
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#000'
+  },
+  errorContainer: {
+    alignItems: 'center',
+    paddingVertical: 20
+  },
+  errorText: {
+    color: '#FF4444',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  retryButton: {
+    backgroundColor: '#A9A9A9',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 50,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12
+  },
+  retryButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000'
   }
 })

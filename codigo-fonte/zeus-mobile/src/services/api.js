@@ -9,7 +9,7 @@ import { EXPO_PUBLIC_API_BASE_URL } from '@env';
 // 2. Verifique a porta em que seu backend 'codigo-fonte' está rodando (ex: 3000)
 // 3. Substitua o valor abaixo. Não use 'localhost' ou '127.0.0.1' no app mobile!
 
-const BASE_URL = EXPO_PUBLIC_API_BASE_URL; 
+const BASE_URL = EXPO_PUBLIC_API_BASE_URL || 'https://teste-zeusgym-50b8de268016.herokuapp.com'; 
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -51,12 +51,14 @@ api.interceptors.response.use(
   }
 );
 export const userProfile = {
-  getProfile: () => api.get('/profile'),
+  getProfile: () => api.get('/auth/profile'),
 
-  updateProfile: data => api.put('/profile', data),
+  updateProfile: data => api.put('/auth/profile', data),
 
-  deleteProfile: () => api.delete('/profile')
-}
+  deleteProfile: () => api.delete('/auth/profile')
+};
+
 
 
 export default api;
+

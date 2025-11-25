@@ -57,6 +57,7 @@ function AppDrawer() {
         drawerInactiveTintColor: '#333',
       }}
     >
+        
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
@@ -68,6 +69,17 @@ function AppDrawer() {
           ),
         }}
       />
+       <Drawer.Screen
+          name="PerfilUsuario"
+          component={PerfilUsuario}
+          options={{
+            title: 'Perfil',
+            headerShown: false,
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="person-outline" size={size} color={color} />
+            )
+          }}
+        />
       <Drawer.Screen
         name="RegistrarPeso"
         component={RegistrarPeso}
@@ -112,17 +124,7 @@ function AppDrawer() {
           ),
         }}
       />
-              <Drawer.Screen
-          name="PerfilUsuario"
-          component={PerfilUsuario}
-          options={{
-            title: 'Perfil',
-            headerShown: false,
-            drawerIcon: ({ color, size }) => (
-              <Ionicons name="person-outline" size={size} color={color} />
-            )
-          }}
-        />
+           
 
       {/* Item de Logout */}
       <Drawer.Screen

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, TextInput } from 'react-native';
 import { View, Text, Image, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import LogoZeus from '../../assets/Logo_zeus.png';
@@ -11,6 +12,10 @@ const PerfilUsuario = ({ navigation }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalField, setModalField] = useState('');
+  const [modalFieldName, setModalFieldName] = useState('');
+  const [modalValue, setModalValue] = useState('');
 
   useEffect(() => {
     loadProfile();
@@ -37,11 +42,21 @@ const PerfilUsuario = ({ navigation }) => {
       [
         {
           text: 'Nome',
-          onPress: () => handleUpdateField('name', 'Nome')
+          onPress: () => {
+            setModalField('name');
+            setModalFieldName('Nome');
+            setModalValue('');
+            setModalVisible(true);
+          }
         },
         {
           text: 'Telefone',
-          onPress: () => handleUpdateField('cellphone', 'Telefone')
+          onPress: () => {
+            setModalField('cellphone');
+            setModalFieldName('Telefone');
+            setModalValue('');
+            setModalVisible(true);
+          }
         },
         {
           text: 'Cancelar',
@@ -51,22 +66,17 @@ const PerfilUsuario = ({ navigation }) => {
     );
   };
 
-  const handleUpdateField = async (field, fieldName) => {
-    Alert.prompt(
-      `Atualizar ${fieldName}`,
-      `Digite o novo ${fieldName.toLowerCase()}:`,
-      async (newValue) => {
-        if (newValue) {
-          try {
-            const response = await userProfile.updateProfile({ [field]: newValue });
-            setUser(response.data.user);
-            Alert.alert('Sucesso', 'Perfil atualizado com sucesso!');
-          } catch (error) {
-            Alert.alert('Erro', 'Não foi possível atualizar o perfil.');
-          }
-        }
-      }
-    );
+  const handleUpdateField = async () => {
+    if (!modalValue) return;
+    try {
+      const response = await userProfile.updateProfile({ [modalField]: modalValue });
+      setUser(response.data.user);
+      Alert.alert('Sucesso', 'Perfil atualizado com sucesso!');
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível atualizar o perfil.');
+    } finally {
+      setModalVisible(false);
+    }
   };
 
   const handleDelete = () => {
@@ -164,6 +174,40 @@ const PerfilUsuario = ({ navigation }) => {
             <TouchableOpacity style={PerfilUsuarioStyle.deleteButton} onPress={handleDelete}>
               <Text style={PerfilUsuarioStyle.deleteButtonText}>APAGAR CONTA</Text>
             </TouchableOpacity>
+
+            {/* Modal para editar campo */}
+            <Modal
+              visible={modalVisible}
+              animationType="slide"
+              transparent
+              onRequestClose={() => setModalVisible(false)}
+            >
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.4)' }}>
+                <View style={{ backgroundColor: '#fff', padding: 24, borderRadius: 18, width: '80%' }}>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>Atualizar {modalFieldName}</Text>
+                  <TextInput
+                    style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 10, marginBottom: 18, fontSize: 16 }}
+                    placeholder={`Digite o novo ${modalFieldName.toLowerCase()}`}
+                    value={modalValue}
+                    onChangeText={setModalValue}
+                  />
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity
+                      style={{ backgroundColor: '#A9A9A9', padding: 12, borderRadius: 8, flex: 1, marginRight: 8, alignItems: 'center' }}
+                      onPress={handleUpdateField}
+                    >
+                      <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>Salvar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{ backgroundColor: '#eee', padding: 12, borderRadius: 8, flex: 1, marginLeft: 8, alignItems: 'center' }}
+                      onPress={() => setModalVisible(false)}
+                    >
+                      <Text style={{ color: '#333', fontWeight: 'bold', fontSize: 16 }}>Cancelar</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
           </>
         ) : null}
       </View>
