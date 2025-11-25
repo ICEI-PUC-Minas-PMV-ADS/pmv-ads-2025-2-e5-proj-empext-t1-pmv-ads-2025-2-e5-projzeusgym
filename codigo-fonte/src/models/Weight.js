@@ -14,6 +14,7 @@ const Weight = sequelize.define('Weight', {
         references: {
             model: 'users', 
             key: 'id',
+            onDelete: 'CASCADE',
         },
     },
 
