@@ -7,16 +7,17 @@
   background: linear-gradient(135deg, #ff7e00 0%, #ff5500 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.error-message {
-    color: #ff3860;
-    text-align: center;
-    margin: 1.5rem 0;
-    font-weight: 500;
-    background-color: #ffeaea;
-    padding: .75rem;
-    border-radius: 5px;
-    border-left: 4px solid #ff3860;
+ 
+.error-container {
+  position: relative;
+  min-height: 40px; /* Garante espaço para a mensagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
+
 .login-form {
   background: white;
   padding: 2.5rem;
