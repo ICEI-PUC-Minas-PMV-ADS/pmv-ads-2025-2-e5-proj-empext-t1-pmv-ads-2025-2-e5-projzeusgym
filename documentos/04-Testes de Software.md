@@ -2627,7 +2627,7 @@ Colocar evidências de teste da etapa 4
   </tr>
 </table>
 
- <table>
+<table>
   <tr>
     <th colspan="6" width="1000">CT-030 -S<br>Registrar peso
   </tr>
