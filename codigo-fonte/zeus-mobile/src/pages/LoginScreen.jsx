@@ -95,6 +95,7 @@ export default function LoginScreen() {
 
         <TextInput
           style={LoginScreenStyle.input}
+          color="#000"
           placeholder="SENHA"
           placeholderTextColor="#999"
           value={password}
