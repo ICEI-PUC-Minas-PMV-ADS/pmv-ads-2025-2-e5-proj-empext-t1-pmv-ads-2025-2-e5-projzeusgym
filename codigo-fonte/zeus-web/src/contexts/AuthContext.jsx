@@ -13,29 +13,24 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (login, password) => {
         try {
-            // CORREÇÃO FINAL: Usando a rota COMPLETA (prefixo '/adminLogin' + endpoint '/login')
             const response = await api.post('/adminLogin/login', { login, password });
-            
-            const { token } = response.data;
-
-            // Salva o token no localStorage
-            localStorage.setItem('token', token);
-            
-            // Configura o token no cabeçalho das próximas requisições
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-            // SOLUÇÃO ALTERNATIVA: Usa os dados do login
-            setUser({ name: login, role: 'admin' });
-            
-            return { success: true };
-            
+            // Só autentica se status for 200 e papel permitido
+            if (response.status === 200 && response.data.token) {
+                const { token, role } = response.data;
+                if (role !== 'admin' && role !== 'professor') {
+                    return { success: false, message: 'Acesso permitido apenas para administradores e professores.' };
+                }
+                localStorage.setItem('token', token);
+                api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                setUser({ name: login, role });
+                return { success: true };
+            } else {
+                return { success: false, message: response.data.message || 'Login não autorizado.' };
+            }
         } catch (error) {
             console.error('Erro no login:', error);
-            // Seu log original mostrava: AuthContext.jsx:33
-            // É aqui que o erro de 404 será capturado.
-            return { 
-                success: false, 
-                // Tenta pegar a mensagem de erro do backend ou usa uma genérica
+            return {
+                success: false,
                 message: error.response?.data?.message || 'Login ou senha inválidos.'
             };
         }
