@@ -171,9 +171,9 @@ const PerfilUsuario = ({ navigation }) => {
               <Text style={PerfilUsuarioStyle.editButtonText}>EDITAR</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={PerfilUsuarioStyle.deleteButton} onPress={handleDelete}>
-              <Text style={PerfilUsuarioStyle.deleteButtonText}>APAGAR CONTA</Text>
-            </TouchableOpacity>
+           {/*<TouchableOpacity style={PerfilUsuarioStyle.deleteButton} onPress={handleDelete}>
+           // <Text style={PerfilUsuarioStyle.deleteButtonText}>APAGAR CONTA</Text>
+           // </TouchableOpacity>*/}
 
             {/* Modal para editar campo */}
             <Modal
