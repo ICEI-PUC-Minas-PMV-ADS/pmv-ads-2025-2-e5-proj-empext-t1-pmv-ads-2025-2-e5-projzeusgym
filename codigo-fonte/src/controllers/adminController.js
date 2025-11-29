@@ -11,12 +11,13 @@ const adminLogin = async (req, res) => {
   try {
     const user = await Users.findOne({
       where: {
-        email: login,
-        role: { [Op.in]: ['admin', 'professor'] }
+        email: login
       },
       attributes: ['id', 'name', 'email', 'password', 'role', 'mustChangePassword'],
     });
-    if (!user) return res.status(403).json({ message: 'Acesso permitido apenas para administradores e professores.' });
+    if (!user || (user.role !== 'admin' && user.role !== 'professor')) {
+      return res.status(403).json({ message: 'Acesso permitido apenas para administradores e professores.' });
+    }
     const userPassword = password.trim();
     const isPasswordValid = await bcrypt.compare(userPassword, user.password);
     if (!isPasswordValid) {

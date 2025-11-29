@@ -14,15 +14,12 @@ export const AuthProvider = ({ children }) => {
     const login = async (login, password) => {
         try {
             const response = await api.post('/adminLogin/login', { login, password });
-            // Só autentica se status for 200 e papel permitido
+            // Só autentica se status for 200 e token válido
             if (response.status === 200 && response.data.token) {
-                const { token, role } = response.data;
-                if (role !== 'admin' && role !== 'professor') {
-                    return { success: false, message: 'Acesso permitido apenas para administradores e professores.' };
-                }
+                const token = response.data.token;
                 localStorage.setItem('token', token);
                 api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                setUser({ name: login, role });
+                setUser({ name: login });
                 return { success: true };
             } else {
                 return { success: false, message: response.data.message || 'Login não autorizado.' };
