@@ -23,17 +23,6 @@ const adminLogin = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Senha incorreta.' });
     }
-    if (user.mustChangePassword) {
-      const tempToken = jwt.sign(
-        { id: user.id, role: user.role, mustChangePassword: true },
-        process.env.JWT_SECRET,
-        { expiresIn: '15m' }
-      );
-      return res.status(403).json({
-        message: 'Troca de senha obrigatória.',
-        tempToken,
-      });
-    }
     const token = jwt.sign(
       { id: user.id, role: user.role },
       process.env.JWT_SECRET,
