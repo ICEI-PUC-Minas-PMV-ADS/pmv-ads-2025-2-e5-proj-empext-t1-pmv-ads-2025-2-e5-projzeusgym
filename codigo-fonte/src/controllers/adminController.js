@@ -38,7 +38,7 @@ const adminLogin = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
-    return res.json({ message: 'Login bem-sucedido!', token });
+    return res.json({ message: 'Login bem-sucedido!', token, role: user.role });
   } catch (error) {
     console.error('Erro no login web:', error);
     return res.status(500).json({ message: 'Erro interno no servidor.' });
