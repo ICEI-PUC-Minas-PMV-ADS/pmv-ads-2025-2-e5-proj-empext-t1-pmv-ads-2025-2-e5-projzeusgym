@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
-const { Op } = require('sequelize');
 
 const adminLogin = async (req, res) => {
   const { login, password } = req.body;
@@ -23,6 +22,7 @@ const adminLogin = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Senha incorreta.' });
     }
+
     const token = jwt.sign(
       { id: user.id, role: user.role },
       process.env.JWT_SECRET,

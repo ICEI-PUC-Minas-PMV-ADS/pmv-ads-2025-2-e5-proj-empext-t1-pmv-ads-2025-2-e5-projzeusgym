@@ -119,7 +119,7 @@ export default function LoginScreen() {
         <TouchableOpacity
           style={LoginScreenStyle.forgotPassword}
           onPress={() =>
-            Alert.alert('Ação', 'Navegar para a tela de recuperação de senha')
+            Alert.alert('Ação', 'Entre em contato com o administrador para redefinir sua senha.')
           }
           disabled={isLoading}
         >
