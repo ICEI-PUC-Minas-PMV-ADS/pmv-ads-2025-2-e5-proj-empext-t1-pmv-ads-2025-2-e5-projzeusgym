@@ -10,8 +10,8 @@ function verifyAdminToken(req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    if (decoded.role !== 'admin') {
-      return res.status(403).json({ message: 'Acesso negado. Somente admins.' });
+    if (decoded.role !== 'admin' && decoded.role !== 'professor') {
+      return res.status(403).json({ message: 'Acesso negado. Somente admins e professores.' });
     }
 
     req.user = decoded; 
