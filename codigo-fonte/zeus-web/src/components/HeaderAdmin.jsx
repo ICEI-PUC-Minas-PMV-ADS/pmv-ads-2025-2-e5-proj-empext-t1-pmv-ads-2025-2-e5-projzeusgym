@@ -71,7 +71,7 @@ const HeaderAdmin = ({ activePage }) => {
                 {/* Grupo de Ícones */}
                 <div className="icon-group">
                     {/* Ícone de Perfil */}
-                    <div className="profile-icon">
+                    
                         <a href="#"> 
                             <img
                                 src={bracoLogo}
@@ -80,7 +80,7 @@ const HeaderAdmin = ({ activePage }) => {
                                 onClick={() => handleNavigate("/dashboard")}
                             /> 
                         </a>
-                    </div>
+                
                     {/* Botão de Logout */}
                     <button 
                         className="logout-btn"

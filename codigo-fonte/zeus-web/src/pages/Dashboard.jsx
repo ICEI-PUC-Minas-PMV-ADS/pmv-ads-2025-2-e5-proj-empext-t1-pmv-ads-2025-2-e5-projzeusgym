@@ -1,5 +1,7 @@
 import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
+import bracologo from '../assets/braco.png';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -29,21 +31,36 @@ const Dashboard = () => {
     navigate('/avaliacoes'); // Path definido no App.jsx
   };
 
-  return (  
+  return (
     <div className="dashboard-container">
       {/* Header Laranja */}
       <header className="dashboard-header">
         <div className="header-content">
           <h1>Zeus Gym</h1>
-          <div className="profile-icon">
-            <a href="#"> <img 
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" 
-              alt="Perfil" 
-              className="profile-image"
-            /> </a>
+          <div className="icon-group">
+            <a href="#">
+              <img
+                src={bracologo}
+                alt="Perfil"
+                className="profile-image"
+                onClick={() => navigate("/dashboard")}
+              />
+            </a>
+            <button
+              className="logout-btn"
+              title="Sair"
+              onClick={() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                localStorage.removeItem('userRole');
+                navigate('/login');
+              }}
+            >
+              <FaSignOutAlt />
+            </button>
           </div>
         </div>
-      </header>    
+      </header>
 
       {/* Conteúdo em Branco */}
       <main className="dashboard-main">

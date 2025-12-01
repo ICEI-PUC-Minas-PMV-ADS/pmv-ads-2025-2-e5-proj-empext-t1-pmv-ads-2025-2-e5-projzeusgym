@@ -5,6 +5,7 @@ import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import HeaderAdmin from '../components/HeaderAdmin';
+import SearchBar from '../components/SearchBar';
 
 const GerenciarAluno = () => {
     const { user, logout } = useAuth();
@@ -177,14 +178,12 @@ const GerenciarAluno = () => {
                     </div>
 
                     <div className="search-container-aluno">
-                        <input
-                            type="text"
-                            placeholder="Procurar"
-                            className="search-input"
+                        <SearchBar
                             value={searchTerm}
-                            onChange={handleSearchChange}
+                            onChange={setSearchTerm}
+                            placeholder="Pesquisar por nome do aluno..."
+                            className="full-width"
                         />
-                        <FaSearch className="search-icon" />
                     </div>
                 </div>
                 <div className="alunos-list-container">

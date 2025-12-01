@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { FaPlus, FaEdit, FaTrash, FaSearch } from "react-icons/fa"
+import { FaPlus, FaEdit, FaTrash } from "react-icons/fa"
 import api from "../services/api"
 import HeaderAdmin from "../components/HeaderAdmin"
 import FooterAdmin from "../components/FooterAdmin"
+import SearchBar from "../components/SearchBar"
 import "./ManageProfessors.css"
 
 const ManageProfessors = () => {
@@ -56,16 +57,12 @@ const ManageProfessors = () => {
           <span className="add-professor-text">Cadastrar professor</span>
         </div>
 
-        <div className="search-bar-wrapper">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Procurar"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <FaSearch className="search-icon" />
-        </div>
+        <SearchBar
+          value={searchTerm}
+          onChange={setSearchTerm}
+          placeholder="Pesquisar por nome do professor..."
+          className="full-width"
+        />
 
         <div className="professors-list">
           {filteredProfessors.length > 0 ? (
