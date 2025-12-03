@@ -1,29 +1,27 @@
 message: Please cite this software using these metadata.
-title:
+title: Sistema Sociotécnico Inovador para Gestão de Treinos da Academia Zeus (Projeto Zeus Gym)
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
+  - family-names: Torneiro Baptista
+    given-names: Cassiano
+  - family-names: Takemi Kimura
+    given-names: Douglas
+  - family-names: Miranda de Oliveira
+    given-names: Gabriel Victor
+  - family-names: Oliveira Gonçalves
+    given-names: Lucas
+  - family-names: Romero Soltau
+    given-names: Natália
+  - family-names: Dos Santos Rodrigues
+    given-names: Rafael
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Silveira
+    given-names: Sandra Maria
 keywords:
-  - 
-  - 
-repository-code: 
+  - gestão de academia
+  - ficha de treino
+  - automação
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e5-proj-empext-t1-pmv-ads-2025-2-e5-projzeusgym.git
 version: 1.0.0
-date-released: 2023-10-31
+
+date-released: 2025-12-07
