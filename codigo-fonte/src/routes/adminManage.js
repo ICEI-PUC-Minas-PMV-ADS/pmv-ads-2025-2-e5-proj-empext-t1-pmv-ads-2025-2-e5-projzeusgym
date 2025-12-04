@@ -5,44 +5,44 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 // ROTAS DE PROFESSORES
 router.post('/professores', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem cadastrar professores.' });
+  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem cadastrar professores.' });
   }
   await adminManageController.createProfessor(req, res);
 });
 
 router.get('/professores', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem listar professores.' });
+  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.listProfessors(req, res);
 });
 
 router.get('/professores/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem ver professores.' });
+if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.getProfessorById(req, res);
 });
 
 router.put('/professores/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem atualizar professores.' });
+ if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.updateProfessor(req, res);
 });
 
 router.delete('/professores/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem excluir professores.' });
+ if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.deleteProfessor(req, res);
 });
 
 // ROTAS DE ALUNOS
 router.post('/alunos', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem cadastrar alunos.' });
+ if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.createAluno(req, res);
 });
@@ -62,15 +62,15 @@ router.get('/alunos/:id', authMiddleware, async (req, res) => {
 });
 
 router.put('/alunos/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores e professores atualizar os dados de alunos.' });
+ if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.updateAluno(req, res);
 });
 
 router.delete('/alunos/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores e professores apagar alunos.' });
+ if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.deleteAluno(req, res);
 });
@@ -87,22 +87,22 @@ router.get('/exercises', authMiddleware, async (req, res) => {
 });
 
 router.post('/exercises', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem cadastrar exercícios.' });
-  }
+  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
+  }
   await adminManageController.createExercise(req, res);
 });
 
 router.delete('/exercises/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem deletar exercícios.' });
+ if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.deleteExercise(req, res);
 });
 
 router.put('/exercises/:id', authMiddleware, async (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Apenas administradores podem atualizar exercícios.' });
+  if (req.user.role !== 'admin' && req.user.role !== 'professor') {
+    return res.status(403).json({ error: 'Apenas administradores e professores podem ver os professores.' });
   }
   await adminManageController.updateExercise(req, res);
 });

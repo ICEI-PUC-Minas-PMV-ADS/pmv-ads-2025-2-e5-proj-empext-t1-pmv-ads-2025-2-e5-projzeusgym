@@ -198,13 +198,13 @@ const GerenciarAluno = () => {
                                                 className="action-btn delete-btn"
                                                 onClick={() => handleDelete(aluno)}
                                             >
-                                                <FaTrash />
+                                                <FaTrash/>
                                             </button>
                                             <button
                                                 className="action-btn edit-btn"
                                                 onClick={() => handleEdit(aluno.id)}
                                             >
-                                                <FaPencilAlt />
+                                                <FaPencilAlt/>
                                             </button>
                                         </>
                                     )}

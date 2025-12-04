@@ -19,7 +19,8 @@ export const AuthProvider = ({ children }) => {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                setUser({ name: login });
+                // Salva o role retornado pelo backend
+                setUser({ name: login, role: response.data.role });
                 return { success: true };
             } else {
                 return { success: false, message: response.data.message || 'Login não autorizado.' };
