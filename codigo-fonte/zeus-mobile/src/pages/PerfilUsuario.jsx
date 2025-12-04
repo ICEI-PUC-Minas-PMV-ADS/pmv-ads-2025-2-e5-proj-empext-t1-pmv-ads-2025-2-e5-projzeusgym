@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, TextInput } from 'react-native';
 import { View, Text, Image, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -7,8 +7,11 @@ import HeaderStyle from '../styles/HeaderStyle.js';
 import FooterStyle from '../styles/FooterStyle.js';
 import PerfilUsuarioStyle from '../styles/PerfilUsuarioStyle.js';
 import { userProfile } from '../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContext } from '../context/AuthContext';
 
 const PerfilUsuario = ({ navigation }) => {
+  const { signOut } = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -91,14 +94,7 @@ const PerfilUsuario = ({ navigation }) => {
           onPress: async () => {
             try {
               await userProfile.deleteProfile();
-              Alert.alert('Sucesso', 'Conta deletada com sucesso!', [
-                { 
-                  text: 'OK',
-                  onPress: () => {
-                    AsyncStorage.removeItem('userToken');
-                  }
-                }
-              ]);
+              signOut(); // Isso remove o token e redireciona para LoginScreen automaticamente
             } catch (error) {
               Alert.alert('Erro', 'Não foi possível deletar a conta.');
             }
@@ -171,9 +167,9 @@ const PerfilUsuario = ({ navigation }) => {
               <Text style={PerfilUsuarioStyle.editButtonText}>EDITAR</Text>
             </TouchableOpacity>
 
-           {/*<TouchableOpacity style={PerfilUsuarioStyle.deleteButton} onPress={handleDelete}>
-           // <Text style={PerfilUsuarioStyle.deleteButtonText}>APAGAR CONTA</Text>
-           // </TouchableOpacity>*/}
+           <TouchableOpacity style={PerfilUsuarioStyle.deleteButton} onPress={handleDelete}>
+           <Text style={PerfilUsuarioStyle.deleteButtonText}>APAGAR CONTA</Text>
+           </TouchableOpacity>
 
             {/* Modal para editar campo */}
             <Modal

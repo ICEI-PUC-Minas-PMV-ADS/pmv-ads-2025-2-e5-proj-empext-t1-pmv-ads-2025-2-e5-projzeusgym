@@ -95,9 +95,9 @@ export default StyleSheet.create({
     color: '#000'
   },
   deleteButton: {
-    width: '100%',
+    width: '50%',
     maxWidth: 300,
-    backgroundColor: '#A9A9A9',
+    backgroundColor: 'red',
     borderRadius: 50,
     paddingVertical: 18,
     marginVertical: 15,
@@ -109,7 +109,7 @@ export default StyleSheet.create({
     elevation: 12
   },
   deleteButtonText: {
-    fontSize: 28,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#000'
   },
