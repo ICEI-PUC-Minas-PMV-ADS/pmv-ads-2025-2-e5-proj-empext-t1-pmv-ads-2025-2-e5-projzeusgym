@@ -1,3 +1,7 @@
+
+https://github.com/user-attachments/assets/18f80cf2-d307-4732-b403-51879f918736
+
+https://github.com/user-attachments/assets/bf617bf4-aba7-41ee-a75d-12de853ce3f8
 # Etapa 1 - Apresentação da proposta da Solução
 Arquivo de apresentação (em slides) da proposta de solução  
 Deve conter a descrição do cliente, o Project Model Canvas e o Diagrama de Caso de Uso.
@@ -18,3 +22,10 @@ Deve conter a descrição do cliente, o Project Model Canvas e o Diagrama de Cas
   * resolução HD (720p) ou Full HD (1080p);
   * formato mp4.
 
+ 
+
+https://github.com/user-attachments/assets/4e5b4704-3fad-4786-acea-b86688878f99
+
+
+
+https://github.com/user-attachments/assets/3a48c42e-0ac4-4abb-8a16-a20f4fba28d0
