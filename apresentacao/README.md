@@ -15,6 +15,9 @@ Deve conter a descrição do cliente, o Project Model Canvas e o Diagrama de Cas
   * telas principais,
   * pontos positivos e desafios da experiência extensionista,
   * conclusão da equipe.
+ 
+    [Zeus gym apresentação final.pdf](https://github.com/user-attachments/files/24103389/Zeus.gym.apresentacao.final.pdf)
+
   
 - Vídeo de apresentação da solução:
   * tamanho do arquivo limitado a 90Mb;
